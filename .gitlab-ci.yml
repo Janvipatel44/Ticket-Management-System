@@ -48,7 +48,7 @@ deployJob:
   stage: deploy
   script:
     - pwd
-    - cd /users/grad/utla
+    - cd /home/gitlab-runner/builds/L8nssw4e/0/courses/2021-winter/CSCI5308/group-2
     - chmod og-rwx ${DEPLOY_SSH_KEY}
     - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY}" ${EXECUTABLE_TO_DEPLOY} "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DIR}/"
   artifacts:
