@@ -49,7 +49,7 @@ deployJob:
   script:
     - pwd
     - cd /home/gitlab-runner/builds/L8nssw4e/0/courses/2021-winter/CSCI5308/group-2
-    - ${DEPLOY_SSH_KEY} > deploy.txt
+    - \"${DEPLOY_SSH_KEY}\" > deploy.txt
     - chmod og-rwx deploy.txt
     - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY}" ${EXECUTABLE_TO_DEPLOY} "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DIR}/"
   artifacts:
