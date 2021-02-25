@@ -4,16 +4,16 @@
 # NOTE: It does not upload your test results to GitLab, you will need
 # to figure that out still.
 
-
-#before_script:
-  # The following line is only necessary if using a docker-based runner. 1
-  #- apk add --no-cache openssh-client
- # - chmod +x ./gradlew
- 
+# NOTE: You will need to adjust the following variable to the build output of your app
+#       right now it's configured to deploy an Android APK file from another class I taught.
 variables:
-  EXECUTABLE_TO_DEPLOY: "app/build/outputs/apk/debug/app-debug.jar"
-  DESTINATION_FILE: "App-${CI_PROJECT_NAME}-${CI_COMMIT_REF_NAME}-${CI_COMMIT_SHORT_SHA}.apk" 
- 
+  EXECUTABLE_TO_DEPLOY: "Group2/target"
+  #DESTINATION_FILE: "group2.jar"
+
+before_script:
+  # The following line is only necessary if using a docker-based runner.
+  #- apk add --no-cache openssh-client
+  #- chmod +x ./gradlew
 
 stages:
   - build
@@ -23,18 +23,19 @@ stages:
 build:
   stage: build
   script:
-    - mvn -f Group2/ clean compile
+    - cd Group2
+    - mvn clean compile
   artifacts:
     paths:
-    - app/build/outputs/
+      - Group2/target
   tags:
     - ugrad
-
 
 test:
   stage: test
   script:
-    - mvn -f Group2/ clean verify
+    - cd Group2
+    - mvn clean verify
   artifacts:
     when: always
     reports:
@@ -42,14 +43,14 @@ test:
         - Group2/target/surefire-reports/TEST-*.xml
   tags:
     - ugrad
-
-deploy:
+    
+deployJob:
   stage: deploy
+  script:
+   - chmod og-rwx ${DEPLOY_SSH_KEY}
+   - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY}" ${EXECUTABLE_TO_DEPLOY} "${DEPLOY_USER}@timberlea.cs.dal.ca:${DEPLOY_DIR}/build5308.jar"
+  artifacts:
+   paths:
+    - Group2/target
   tags:
     - ugrad
-  artifacts:
-    paths:
-      - app/build/outputs
-  script:
-    - chmod og-rwx ${DEPLOY_SSH_KEY}
-    - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY}" ${EXECUTABLE_TO_DEPLOY} "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DIR}/${DESTINATION_FILE}"
