@@ -46,13 +46,13 @@ test:
     
 deployJob:
   stage: deploy
-  tags:
-    - ugrad
-  artifacts:
-    paths:
-      - Group2/target
   script:
     - pwd
     - cd /users/grad/utla
     - chmod og-rwx ${DEPLOY_SSH_KEY}
     - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY}" ${EXECUTABLE_TO_DEPLOY} "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DIR}/"
+  artifacts:
+    paths:
+      - Group2/target
+  tags:
+    - ugrad
