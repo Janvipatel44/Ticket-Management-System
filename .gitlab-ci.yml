@@ -49,7 +49,7 @@ deployJob:
   script:
    - echo ${DEPLOY_SSH_KEY} > deploy.txt
    - chmod og-rwx deploy.txt
-   - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY}" ${EXECUTABLE_TO_DEPLOY} "${DEPLOY_USER}@\${DEPLOY_HOST}:${DEPLOY_DIR}/build5308.jar"
+   - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY}" ${EXECUTABLE_TO_DEPLOY} "${DEPLOY_USER}@timberlea.cs.dal.ca:${DEPLOY_DIR}/build5308.jar"
   artifacts:
    paths:
     - Group2/target
