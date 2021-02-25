@@ -9,7 +9,7 @@
 variables:
   EXECUTABLE_TO_DEPLOY: "Group2/target"
   #DESTINATION_FILE: "group2.jar"
-	#just a comment
+
 before_script:
   # The following line is only necessary if using a docker-based runner.
   #- apk add --no-cache openssh-client
