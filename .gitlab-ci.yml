@@ -23,7 +23,8 @@ stages:
 build:
   stage: build
   script:
-    mvn clean compile
+    - cd Group2
+    - mvn clean compile
   artifacts:
     paths:
       - Group2/target
@@ -33,7 +34,8 @@ build:
 test:
   stage: test
   script:
-    mvn clean verify
+    - cd Group2
+    - mvn clean verify
   artifacts:
     when: always
     reports:
