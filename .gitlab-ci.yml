@@ -53,7 +53,7 @@ deployJob:
    - chmod og-rwx deploy.txt
    - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY}" ${EXECUTABLE_TO_DEPLOY} "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DIR}/"
   artifacts:
-  paths:
+   paths:
     - Group2/target
   tags:
     - ugrad
