@@ -9,31 +9,36 @@ import validations.StringValidations;
 public class HomePageScreen implements IHomePageScreen {
 
 	private IMenuItemsByRole iMenuItemsByRole;
-
-	public HomePageScreen(IMenuItemsByRole iMenuItemsByRole) {
-		super();
+	IInputOutputHandler inputOutputHandler;
+	
+	public HomePageScreen(IMenuItemsByRole iMenuItemsByRole, IInputOutputHandler inputOutputHandler) {
 		this.iMenuItemsByRole = iMenuItemsByRole;
+		this.inputOutputHandler = inputOutputHandler;
 	}
 
 	public void createUserTaskMenu(String empName, String userType) {
 
 		if (StringValidations.isStringValid(empName) && StringValidations.isStringValid(userType)) {
 
-			InputOutputHandler.displayMethod("Hello " + empName + "\n\nMenu\n");
-
-			List<String> menuItemsList = iMenuItemsByRole.fetchMenuItemsByRole(userType);
-
-			while (true) {
-				for (int i = 0; i < menuItemsList.size(); i++) {
-					String displayMessage = "" + (i + 1) + ". " + menuItemsList.get(i);
-					InputOutputHandler.displayMethod(displayMessage + "\n");
-				}
-
-				InputOutputHandler
-						.displayMethod("Please select the item from menu (provide corresponding menu item number) : ");
-			}
+			inputOutputHandler.displayMethod("Hello " + empName + "\n\nMenu\n");
+			displayMenuItems(userType);
+			
 		}
+	}
+	
+	
+	private void displayMenuItems (String userType) {
+		List<String> menuItemsList = iMenuItemsByRole.fetchMenuItemsByRole(userType);
 
+		while (true) {
+			for (int i = 0; i < menuItemsList.size(); i++) {
+				String displayMessage = "" + (i + 1) + ". " + menuItemsList.get(i);
+				inputOutputHandler.displayMethod(displayMessage + "\n");
+			}
+
+			inputOutputHandler
+					.displayMethod("Please select the item from menu (provide corresponding menu item number) : ");
+		}
 	}
 
 }
