@@ -8,24 +8,26 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.group2.userinterface.IInputOutputHandler;
+
 public class ConnectionManager implements IConnectionManager{
 	
     private static String driverName = "com.mysql.cj.jdbc.Driver";   
 	private Connection connection = null;
 	private String configurationFile = null;
+	IInputOutputHandler inputOutputHandler;
 
 	public ConnectionManager(String ConfigurationFile){
 		this.configurationFile = ConfigurationFile;
 	}
      
 	public Connection establishConnection() {
-		// TODO Auto-generated method stub
-		try {
+		// TODO Auto-generated method stub	try {
 
         List<String> details = new ArrayList<>();								
-		
+		try {
 	    if(configurationFile.equals(null) || configurationFile.equals("")) {	
-			System.out.print("Invalid Configuration File name");
+	    	inputOutputHandler.displayMethod("Invalid Configuration File name");
 			return null;
 		}
 		FileReader deviceDetails = null;
@@ -44,17 +46,17 @@ public class ConnectionManager implements IConnectionManager{
         connection = DriverManager.getConnection(database, username, password);		
 		}
         catch (SQLException ex) {
-            	System.out.print(ex);
-                System.out.println("Failed to create the database connection."); 
+            System.out.print(ex);
+            inputOutputHandler.displayMethod("Failed to create the database connection."); 
         }
 	    catch (ClassNotFoundException ex) {
-	            System.out.println("Driver not found."); 
+	    	inputOutputHandler.displayMethod("Driver not found."); 
 	    }
 		catch (FileNotFoundException e) {
-            System.out.println("Invalid configuration file");
+			inputOutputHandler.displayMethod("Invalid configuration file");
         }
         catch (IOException e) {
-            System.out.println("Issue occured while reading configuration file.");
+        	inputOutputHandler.displayMethod("Issue occured while reading configuration file.");
         } 
 		return connection;
 	}
