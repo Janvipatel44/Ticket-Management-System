@@ -5,6 +5,8 @@ import org.junit.Test;
 
 import com.group2.userinterface.HomePageScreen;
 import com.group2.userinterface.IHomePageScreen;
+import com.group2.userinterface.IInputOutputHandler;
+import com.group2.userinterface.InputOutputHandler;
 
 public class MenuItemsByRoleTest {
 	
@@ -13,12 +15,14 @@ public class MenuItemsByRoleTest {
 	private IMenuItemsByRole menuItemsByRole;
 	private IRoleMngmntPersistenceOps iRoleMngmntPersistenceOps;
 	private IHomePageScreen homePageScreen;
+	private IInputOutputHandler inputOutputHandler;
 
 	@Before
 	public void init() {
 		iRoleMngmntPersistenceOps = new MenuItemsByRoleDBMock();
+		inputOutputHandler = new InputOutputHandler();
 		menuItemsByRole = new MenuItemsByRole(iRoleMngmntPersistenceOps);
-		homePageScreen = new HomePageScreen(menuItemsByRole);
+		homePageScreen = new HomePageScreen(menuItemsByRole, inputOutputHandler);
 	}
 
 	@Test

@@ -1,8 +1,8 @@
 package com.group2.userinterface;
 
-public class InputOutputHandler {
+public class InputOutputHandler implements IInputOutputHandler {
 	
-	public static void displayMethod(String printMessage) {
+	public void displayMethod(String printMessage) {
 		System.out.println(printMessage);
 	}
 }
