@@ -5,6 +5,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import database.IRoleMngmntPersistenceOps;
+
 public class MenuItemsByRoleTest {
 	
 	private final String userType = "End_User";
@@ -18,7 +20,7 @@ public class MenuItemsByRoleTest {
 	}
 
 	@Test
-	public void  createUserTaskMenuTest() {
+	public void  createUserTaskMenuTest() throws Exception {
 		List<String> menuItemsList = menuItemsByRole.fetchMenuItemsByRole(userType);
 	}
 }

@@ -2,6 +2,7 @@ package com.group2.roles;
 
 import java.util.List;
 
+import database.IRoleMngmntPersistenceOps;
 import validations.StringValidations;
 
 public class MenuItemsByRole implements IMenuItemsByRole {	
@@ -13,7 +14,7 @@ public class MenuItemsByRole implements IMenuItemsByRole {
 	}
 	
 	@Override
-	public List<String>  fetchMenuItemsByRole(String userType) {
+	public List<String>  fetchMenuItemsByRole(String userType) throws Exception {
 		
 		List<String> menuItemsByRole  = null;
 		

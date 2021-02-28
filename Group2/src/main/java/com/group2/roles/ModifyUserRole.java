@@ -1,5 +1,6 @@
 package com.group2.roles;
 
+import database.IRoleMngmntPersistenceOps;
 import validations.StringValidations;
 
 public class ModifyUserRole implements IModifyUserRole {
@@ -12,7 +13,7 @@ public class ModifyUserRole implements IModifyUserRole {
 	
 	
 	@Override
-	public boolean modifyUserRole(String empId, String userType) {
+	public boolean modifyUserRole(String empId, String userType) throws Exception {
 		
 		boolean isUserModified = false;
 		

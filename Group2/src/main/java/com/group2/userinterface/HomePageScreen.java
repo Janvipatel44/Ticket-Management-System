@@ -18,7 +18,7 @@ public class HomePageScreen implements IHomePageScreen {
 	}
 
 	
-	public void handleHomePageMenu(String empName, String userType) {
+	public void handleHomePageMenu(String empName, String userType) throws Exception {
 
 		if (StringValidations.isStringValid(empName) && StringValidations.isStringValid(userType)) {
 			String welcomeUser = "Hello " + empName + "\n\nMenu\n";
@@ -53,7 +53,7 @@ public class HomePageScreen implements IHomePageScreen {
 	}
 
 	
-	private int displayMenuItems(String userType) {
+	private int displayMenuItems(String userType) throws Exception {
 		List<String> menuItemsList = iMenuItemsByRole.fetchMenuItemsByRole(userType);
 
 		int i = 0;

@@ -3,9 +3,10 @@ package com.group2.userinterface;
 import org.junit.Before;
 
 import com.group2.roles.IMenuItemsByRole;
-import com.group2.roles.IRoleMngmntPersistenceOps;
 import com.group2.roles.MenuItemsByRole;
 import com.group2.roles.MenuItemsByRoleDBMock;
+
+import database.IRoleMngmntPersistenceOps;
 
 public class HomePageScreenTest {
 
