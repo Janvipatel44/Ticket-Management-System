@@ -1,6 +1,5 @@
 package com.group2.roles;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface IRoleMngmntPersistenceOps {
