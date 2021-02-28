@@ -1,5 +1,4 @@
 package database;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -9,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.group2.userinterface.IInputOutputHandler;
-
 public class ConnectionManager implements IConnectionManager{
 	
     private static String driverName = "com.mysql.cj.jdbc.Driver";   
