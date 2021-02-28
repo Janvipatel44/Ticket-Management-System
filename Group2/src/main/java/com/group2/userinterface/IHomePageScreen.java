@@ -1,5 +1,5 @@
 package com.group2.userinterface;
-public interface IHomePageScreen
-{
-	public void createUserTaskMenu (String empName, String userType);
+
+public interface IHomePageScreen {
+	public void handleHomePageMenu(String empName, String userType);
 }

@@ -10,13 +10,18 @@ import com.group2.roles.MenuItemsByRoleDBMock;
 public class HomePageScreenTest {
 
 	private final String userType = "End_User";
+	private final String empName = "Akshay";
+	
+	private IHomePageScreen homePageScreen;
 	private IMenuItemsByRole menuItemsByRole;
 	private IRoleMngmntPersistenceOps iRoleMngmntPersistenceOps;
+	private IInputOutputHandler inputOutputHandler;
 
 	@Before
 	public void init() {
-		iRoleMngmntPersistenceOps = new MenuItemsByRoleDBMock();
+		inputOutputHandler = new InputOutputHandler();
 		menuItemsByRole = new MenuItemsByRole(iRoleMngmntPersistenceOps);
+		homePageScreen = new HomePageScreen(menuItemsByRole, inputOutputHandler);
 	}
 	
 	public void createUserTaskMenu() {
