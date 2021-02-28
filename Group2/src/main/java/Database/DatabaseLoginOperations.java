@@ -13,10 +13,10 @@ public class DatabaseLoginOperations implements IDatabaseLoginOperations
     private final int six = 6;
     private boolean result=false;
 
-    @Override
+   /* @Override
     public boolean registerUserDatabase(String employeeID, String firstName, String lastName, String email, String user_password, String user_type, IDatabaseConnection connection)
     {
-        CallableStatement procedureCall;
+     /*   CallableStatement procedureCall;
         try {
             procedureCall = connection.getConnection().prepareCall("call registerUser(?,?,?,?,?,?)");
             procedureCall.setString(one,employeeID);
@@ -26,19 +26,19 @@ public class DatabaseLoginOperations implements IDatabaseLoginOperations
             procedureCall.setString(five, user_password);
             procedureCall.setString(six, user_type);
             return executeCommand(procedureCall);
-        }
-        catch (SQLException throwables)
-        {
-            System.out.println("Unbale to register new user.");
-            result = false;
-            return result;
-        }
-    }
+        }*/
+    //    catch (SQLException throwables)
+    //    {
+    //        System.out.println("Unbale to register new user.");
+      //      result = false;
+        //    return result;
+     //   }
+   // }
 
-    @Override
-    public boolean checkDuplicateEmployeeID(String employeeID, IDatabaseConnection connection)
-    {
-        CallableStatement procedureCall;
+ //   @Override
+    //public boolean checkDuplicateEmployeeID(String employeeID, IDatabaseConnection connection)
+    //{
+      /*  CallableStatement procedureCall;
 
         try
         {
@@ -63,9 +63,9 @@ public class DatabaseLoginOperations implements IDatabaseLoginOperations
             result = false;
             return result;
         }
-        return result = false;
-    }
-
+*/     //   return result = false;
+  //  }
+/*
     private boolean executeCommand(CallableStatement procedureCall)
     {
         try{
@@ -78,5 +78,5 @@ public class DatabaseLoginOperations implements IDatabaseLoginOperations
             result = false;
             return result;
         }
-    }
+    }*/
 }
