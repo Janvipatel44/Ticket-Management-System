@@ -1,29 +1,41 @@
 package login;
 import com.group2.userinterface.IInputOutputHandler;
-import com.group2.userinterface.InputOutputHandler;
-import database.ConnectionManager;
-import database.IConnectionManager;
-import database.IDatabaseLoginOperations;
+import database.IDatabaseUserRegistrationOperations;
 public class Registration implements IRegister
 {
-    IConnectionManager connection;
-    IDatabaseLoginOperations loginOperations;
-    IInputOutputHandler inputOutputHandler;
+    private final IDatabaseUserRegistrationOperations userRegistrationOperations;
+    private final IInputOutputHandler inputOutputHandler;
+    private final IEncryption encryption;
+    private final String passwordRegExp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,100}(?=.[@#&*!$%])";
+    private boolean result = false;
 
-    public Registration(IConnectionManager connection, IDatabaseLoginOperations loginOperations, IInputOutputHandler inputOutputHandler)
+    public Registration(IDatabaseUserRegistrationOperations userRegistrationOperations, IInputOutputHandler inputOutputHandler, IEncryption encryption)
     {
-        this.connection = connection;
-        this.loginOperations = loginOperations;
+        this.userRegistrationOperations = userRegistrationOperations;
         this.inputOutputHandler = inputOutputHandler;
+        this.encryption = encryption;
     }
 
-    @Override
     public boolean registerUser(String employeeID, String firstName, String lastName, String email, String user_password, String user_type)
     {
-        if(loginOperations.checkDuplicateEmployeeID(employeeID, connection))
+        if(userRegistrationOperations.checkDuplicateEmployeeID(employeeID))
         {
             inputOutputHandler.displayMethod("Error: Duplicate employee ID found. Please use a different employee ID and try again.");
+            return result;
         }
-        return false;
+        else
+        {
+            if(user_password.matches(passwordRegExp))
+            {
+                user_password = encryption.encryptPassword(user_password);
+                userRegistrationOperations.registerUserDatabase(employeeID, firstName, lastName, email, user_password, user_type);
+                return result = true;
+            }
+            else
+            {
+                inputOutputHandler.displayMethod("Error: Password does not match the requirements. \nA password must be at least 8 characters, must contain a special character (@,!,#,$,%,&,*), must be 8 to 100 characters in length, must contain at least one lower case and one upper case letter");
+                return result = false;
+            }
+        }
     }
 }
