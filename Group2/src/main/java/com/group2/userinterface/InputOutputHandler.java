@@ -6,4 +6,6 @@ public class InputOutputHandler implements IInputOutputHandler
 	{
 		System.out.println(printMessage);
 	}
+
+
 }

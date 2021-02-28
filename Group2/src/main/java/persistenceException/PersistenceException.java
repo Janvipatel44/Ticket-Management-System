@@ -1,9 +1,9 @@
-package customException;
-public class CustomException extends RuntimeException {
+package persistenceException;
+public class PersistenceException extends RuntimeException {
 
     String message;
 
-    CustomException(String message)
+    PersistenceException(String message)
     {
         this.message=message;
     }
