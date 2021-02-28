@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConn {
+	
+	//Temporary Database Connection class
+	
 	Connection connect = null;
 		public Connection connectDB() throws ClassNotFoundException {
 			
