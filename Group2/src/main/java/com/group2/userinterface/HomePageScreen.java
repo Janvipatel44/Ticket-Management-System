@@ -1,11 +1,7 @@
 package com.group2.userinterface;
-
 import java.util.List;
-
 import com.group2.roles.IMenuItemsByRole;
-
 import validations.StringValidations;
-
 public class HomePageScreen implements IHomePageScreen {
 
 	private IMenuItemsByRole iMenuItemsByRole;
