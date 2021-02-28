@@ -5,6 +5,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import database.IRoleMngmntPersistenceOps;
+
 public class ModifyUserRoleTest {
 
 	private final String userType = "End_User";
@@ -20,7 +22,7 @@ public class ModifyUserRoleTest {
 	}
 
 	@Test
-	public void modifyUserRoleTest() {
+	public void modifyUserRoleTest() throws Exception {
 		boolean isUserModified = modifyUserRole.modifyUserRole(this.empId, this.userType);
 		assertTrue(isUserModified);
 	}

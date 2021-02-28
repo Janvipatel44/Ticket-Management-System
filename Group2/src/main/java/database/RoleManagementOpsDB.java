@@ -1,4 +1,4 @@
-package com.group2.roles;
+package database;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import database.IConnectionManager;
+import persistenceException.PersistenceException;
 
 public class RoleManagementOpsDB implements IRoleMngmntPersistenceOps {
 
@@ -20,7 +20,7 @@ public class RoleManagementOpsDB implements IRoleMngmntPersistenceOps {
 	}
 
 	@Override
-	public List<String> accessMenuItemsByRole(String role) {
+	public List<String> accessMenuItemsByRole(String role) throws Exception {
 
 		List<String> menuItemsList = null;
 
@@ -43,14 +43,14 @@ public class RoleManagementOpsDB implements IRoleMngmntPersistenceOps {
 				}
 			}
 		} catch (SQLException throwables) {
-
+			throw new Exception("Failed during DB operations. Please contact admin.");
 		}
 		return menuItemsList;
 	}
 
 	
 	@Override
-	public boolean updateUserRole(String empId, String role) {
+	public boolean updateUserRole(String empId, String role) throws Exception {
 
 		Connection connection = connectionManager.establishConnection();
 
@@ -60,15 +60,13 @@ public class RoleManagementOpsDB implements IRoleMngmntPersistenceOps {
 			procedureCall.setString(1, empId);
 			procedureCall.setString(2, role);
 
-			boolean isResultSet = procedureCall.execute();
+			int updatedRows = procedureCall.executeUpdate();
 
-			if (isResultSet == false) {
-				if (procedureCall.getUpdateCount() > 0) {
-					return true;
-				}
+			if (updatedRows > 0) {
+				return true;
 			}
 		} catch (SQLException throwables) {
-
+			throw new Exception("Failed during DB operations. Please contact admin.");
 		}
 		return false;
 	}
