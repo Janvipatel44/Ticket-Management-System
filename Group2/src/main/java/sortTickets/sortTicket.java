@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import DBConnection.DBConn;
+import database.ConnectionManager;
+import database.IConnectionManager;
 
 public class sortTicket implements IsortTicket {
 DBConn obj=new DBConn();
@@ -14,10 +16,14 @@ DBConn obj=new DBConn();
 	private CallableStatement SPstatement=null;
 	private ResultSet resultSet=null;
 	private boolean hasResult=false;
+	private String ConfigurationFile = "ConfigurationFile";
+	
+	IConnectionManager IConnectionMng = new ConnectionManager(ConfigurationFile);
 	@Override
 	public void sortTickets(int choice) {
 		try {
-			connect = obj.connectDB();
+			connect = IConnectionMng.establishConnection();
+			
 			//Stored Procedure call that finds tickets from the system as per the user requirement 
 			SPstatement = connect.prepareCall("{call sortTickets(?)}");
 			//first parameter decided search option 
@@ -38,13 +44,13 @@ DBConn obj=new DBConn();
 			   		+resultSet.getString("impact")+ " "
 			   		+resultSet.getString("comments"));
 			}
-			
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			IConnectionMng.closeConnection();
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
 		}
 		
 	}
+	
+	
 }
