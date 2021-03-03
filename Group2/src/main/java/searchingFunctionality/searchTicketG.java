@@ -6,21 +6,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import DBConnection.DBConn;
+import database.ConnectionManager;
+import database.IConnectionManager;
 
 public class searchTicketG implements IsearchTicket{
 	//Database connectoion
-	DBConn obj=new DBConn();
+	
 	
 	private Connection connect=null;
 	private CallableStatement SPstatement=null;
 	private ResultSet resultSet=null;
 	private boolean hasResult=false;
+	private String ConfigurationFile = "ConfigurationFile";
 	private searchedOutput callObj=new searchedOutput();
 	
+	IConnectionManager IConnectionMng = new ConnectionManager(ConfigurationFile);
 	@Override
-	public void searchbyTicket(int choice, String searchtype) {
+	public boolean searchbyTicket(int choice, String searchtype) {
 		try {
-			connect = obj.connectDB();
+			connect = IConnectionMng.establishConnection();
 			//Stored Procedure call that finds tickets from the system as per the user requirement 
 			SPstatement = connect.prepareCall("{call searchTicket(?,?)}");
 			//first parameter decided search option 
@@ -33,21 +37,17 @@ public class searchTicketG implements IsearchTicket{
 			    resultSet = SPstatement.getResultSet();
 			    System.out.println("hasresult:"+hasResult + "resultset:"+resultSet );
 			    //pass string to display tickets on user screen
-				callObj.displaySearchedOutput(resultSet);
+				boolean result=callObj.displaySearchedOutput(resultSet);
+				return result;
 			}
-			else {
-				//tickets with given searching parameter is not exist in the system.
-				System.out.println("Ticket does not exist");
-			}
+			
 			//close DB connection
-			obj.closeConnection();
+			IConnectionMng.closeConnection();
 			
 		} 
 		catch (SQLException e) {
 				e.printStackTrace();
-		} 
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		}
+		return false;
 	}
 }
