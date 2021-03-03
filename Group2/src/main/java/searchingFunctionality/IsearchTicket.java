@@ -1,5 +1,5 @@
 package searchingFunctionality;
 
 public interface IsearchTicket {
-	public void searchbyTicket(int choice,String searchtype);
+	public boolean searchbyTicket(int choice,String searchtype);
 }
