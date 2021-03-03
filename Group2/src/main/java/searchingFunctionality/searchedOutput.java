@@ -8,7 +8,8 @@ import java.util.Scanner;
 public class searchedOutput {
 	ArrayList<ArrayList <String>> ticketsData=new ArrayList<ArrayList <String>>();
 	//Display searched tickets to a user
-	public void displaySearchedOutput(ResultSet resultSet) { 
+	public boolean displaySearchedOutput(ResultSet resultSet) { 
+		
 		try {
 			int i=0;
 			while (resultSet.next()) {	
@@ -46,6 +47,7 @@ public class searchedOutput {
 			}
 			if(ticketsData.size()==0) {
 				System.out.println("Tis ticket does not exist ");
+				return false;
 			}else {
 				System.out.println("Select Option:");
 				System.out.println("1. Export Tickets");
@@ -59,6 +61,7 @@ public class searchedOutput {
 				}else {
 					System.out.println("exit");
 				}
+				return true;
 			}
 			
 		}	 
