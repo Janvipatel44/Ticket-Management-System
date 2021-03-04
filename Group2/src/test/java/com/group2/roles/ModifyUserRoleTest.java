@@ -9,8 +9,8 @@ import database.IRoleMngmntPersistenceOps;
 
 public class ModifyUserRoleTest {
 
-	private final String userType = "End_User";
-	private final String empId = "E101";
+	private final String USER_TYPE = "End_User";
+	private final String EMP_ID = "E101";
 	
 	private IModifyUserRole modifyUserRole;
 	private IRoleMngmntPersistenceOps iRoleMngmntPersistenceOps;
@@ -23,7 +23,7 @@ public class ModifyUserRoleTest {
 
 	@Test
 	public void modifyUserRoleTest() throws Exception {
-		boolean isUserModified = modifyUserRole.modifyUserRole(this.empId, this.userType);
+		boolean isUserModified = modifyUserRole.modifyUserRole(USER_TYPE, EMP_ID);
 		assertTrue(isUserModified);
 	}
 }

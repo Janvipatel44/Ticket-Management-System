@@ -9,7 +9,7 @@ import database.IRoleMngmntPersistenceOps;
 
 public class MenuItemsByRoleTest {
 	
-	private final String userType = "End_User";
+	private final String USER_TYPE = "End_User";
 	private IMenuItemsByRole menuItemsByRole;
 	private IRoleMngmntPersistenceOps iRoleMngmntPersistenceOps;
 
@@ -21,6 +21,6 @@ public class MenuItemsByRoleTest {
 
 	@Test
 	public void  createUserTaskMenuTest() throws Exception {
-		List<String> menuItemsList = menuItemsByRole.fetchMenuItemsByRole(userType);
+		List<String> menuItemsList = menuItemsByRole.fetchMenuItemsByRole(USER_TYPE);
 	}
 }

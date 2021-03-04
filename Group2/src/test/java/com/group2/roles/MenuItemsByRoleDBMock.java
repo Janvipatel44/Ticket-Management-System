@@ -9,14 +9,14 @@ import validations.StringValidations;
 public class MenuItemsByRoleDBMock implements IRoleMngmntPersistenceOps {
 
 	
-	private final String userType = "End_User";
-	private final String empId = "E101";
+	private final String USER_TYPE = "End_User";
+	private final String EMP_ID = "E101";
 	
 	@Override
 	public List<String> accessMenuItemsByRole(String role) {
 				
 		List<String> menuItemsList = null;
-		if(StringValidations.isStringValid(role) && role.trim().equalsIgnoreCase(userType)) {
+		if(StringValidations.isStringValid(role) && role.trim().equalsIgnoreCase(USER_TYPE)) {
 			
 			menuItemsList = new ArrayList<String>();
 			
@@ -36,7 +36,7 @@ public class MenuItemsByRoleDBMock implements IRoleMngmntPersistenceOps {
 	public boolean updateUserRole(String empId, String role) {
 		
 		if (StringValidations.isStringValid(empId) && StringValidations.isStringValid(role)) {
-			if(empId.trim().equalsIgnoreCase(this.empId) && role.trim().equalsIgnoreCase(userType)) {
+			if(empId.trim().equalsIgnoreCase(EMP_ID) && role.trim().equalsIgnoreCase(USER_TYPE)) {
 				return true;
 			}
 		}
