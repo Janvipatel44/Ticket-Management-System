@@ -1,17 +1,14 @@
-package com.group2.userinterface;
+package com.group2.roles;
 
 import org.junit.Before;
 
-import com.group2.roles.IMenuItemsByRole;
-import com.group2.roles.MenuItemsByRole;
-import com.group2.roles.MenuItemsByRoleDBMock;
-
-import database.IRoleMngmntPersistenceOps;
+import com.group2.userinterface.IInputOutputHandler;
+import com.group2.userinterface.InputOutputHandler;
 
 public class HomePageScreenTest {
 
-	private final String userType = "End_User";
-	private final String empName = "Akshay";
+	private final String USER_TYPE = "End_User";
+	private final String EMP_NAME = "Akshay";
 	
 	private IHomePageScreen homePageScreen;
 	private IMenuItemsByRole menuItemsByRole;
@@ -20,12 +17,13 @@ public class HomePageScreenTest {
 
 	@Before
 	public void init() {
-		inputOutputHandler = new InputOutputHandler();
+		iRoleMngmntPersistenceOps = new MenuItemsByRoleDBMock();
 		menuItemsByRole = new MenuItemsByRole(iRoleMngmntPersistenceOps);
+		inputOutputHandler = new InputOutputHandler();
 		homePageScreen = new HomePageScreen(menuItemsByRole, inputOutputHandler);
 	}
 	
-	public void createUserTaskMenu() {
+	public void handleHomePageMenuTest() {
 		
 	}
 	

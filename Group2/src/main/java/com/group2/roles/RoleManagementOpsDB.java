@@ -1,4 +1,4 @@
-package database;
+package com.group2.roles;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import database.IConnectionManager;
 import persistenceException.PersistenceException;
 
 public class RoleManagementOpsDB implements IRoleMngmntPersistenceOps {
