@@ -9,6 +9,6 @@ public class EncryptionTest {
         Encryption encryption = new Encryption();
         String password = "Abcd@123";
         String result = encryption.encryptPassword(password);
-        assertEquals("AcegD68:", result);
+        assertEquals("AcegD68:", result, "Test failed.");
     }
 }
