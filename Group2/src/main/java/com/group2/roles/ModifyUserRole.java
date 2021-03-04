@@ -1,6 +1,5 @@
 package com.group2.roles;
 
-import database.IRoleMngmntPersistenceOps;
 import validations.StringValidations;
 
 public class ModifyUserRole implements IModifyUserRole {

@@ -3,7 +3,6 @@ package com.group2.roles;
 import java.util.ArrayList;
 import java.util.List;
 
-import database.IRoleMngmntPersistenceOps;
 import validations.StringValidations;
 
 public class MenuItemsByRoleDBMock implements IRoleMngmntPersistenceOps {
@@ -11,6 +10,11 @@ public class MenuItemsByRoleDBMock implements IRoleMngmntPersistenceOps {
 	
 	private final String USER_TYPE = "End_User";
 	private final String EMP_ID = "E101";
+	private final String CREATE_TICKET = "Create ticket";
+	private final String UPDATE_TICKET = "Update ticket";
+	private final String REOPEN = "Reopen the closed ticket";
+	private final String SEARCH_TICKETS = "Search tickets";
+	private final String RATING_FEATURE = "Rating feature";
 	
 	@Override
 	public List<String> accessMenuItemsByRole(String role) {
@@ -20,11 +24,11 @@ public class MenuItemsByRoleDBMock implements IRoleMngmntPersistenceOps {
 			
 			menuItemsList = new ArrayList<String>();
 			
-			menuItemsList.add("Create ticket");
-			menuItemsList.add("Update ticket");
-			menuItemsList.add("Reopen the closed ticket");
-			menuItemsList.add("Search tickets");
-			menuItemsList.add("Rating feature");
+			menuItemsList.add(CREATE_TICKET);
+			menuItemsList.add(UPDATE_TICKET);
+			menuItemsList.add(REOPEN);
+			menuItemsList.add(SEARCH_TICKETS);
+			menuItemsList.add(RATING_FEATURE);
 			
 			return menuItemsList;
 		}
@@ -35,13 +39,16 @@ public class MenuItemsByRoleDBMock implements IRoleMngmntPersistenceOps {
 	@Override
 	public boolean updateUserRole(String empId, String role) {
 		
+		boolean isUserUpadted = false;
+		
 		if (StringValidations.isStringValid(empId) && StringValidations.isStringValid(role)) {
 			if(empId.trim().equalsIgnoreCase(EMP_ID) && role.trim().equalsIgnoreCase(USER_TYPE)) {
-				return true;
+				isUserUpadted = true;
+				return isUserUpadted;
 			}
 		}
 		
-		return false;
+		return isUserUpadted;
 	}
 	 
 }
