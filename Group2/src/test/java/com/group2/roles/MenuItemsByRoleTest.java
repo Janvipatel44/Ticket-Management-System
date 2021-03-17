@@ -1,32 +1,53 @@
 package com.group2.roles;
 
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import com.group2.userinterface.HomePageScreen;
-import com.group2.userinterface.IHomePageScreen;
-import com.group2.userinterface.IInputOutputHandler;
-import com.group2.userinterface.InputOutputHandler;
-
 public class MenuItemsByRoleTest {
 	
-	private final String userType = "End_User";
-	private final String empName = "Akshay";
+	private final String USER_TYPE = "End_User";
+	private final String NULL_OBJECT = null;
+	private final String EMPTY = "";
+	private final String CREATE_TICKET = "Create ticket";
+	private final String INVALID_USER_TYPE = "ABC";
+	
 	private IMenuItemsByRole menuItemsByRole;
 	private IRoleMngmntPersistenceOps iRoleMngmntPersistenceOps;
-	private IHomePageScreen homePageScreen;
-	private IInputOutputHandler inputOutputHandler;
 
 	@Before
 	public void init() {
 		iRoleMngmntPersistenceOps = new MenuItemsByRoleDBMock();
-		inputOutputHandler = new InputOutputHandler();
 		menuItemsByRole = new MenuItemsByRole(iRoleMngmntPersistenceOps);
-		homePageScreen = new HomePageScreen(menuItemsByRole, inputOutputHandler);
 	}
 
 	@Test
-	public void  createUserTaskMenuTest() {
-//		homePageScreen.createUserTaskMenu(this.empName, this.userType);
+	public void  createUserTaskMenuTest() throws Exception {
+		List<String> menuItemsList = menuItemsByRole.fetchMenuItemsByRole(USER_TYPE);
+		boolean isMenuItemsListSizeGreaterThan0 = menuItemsList.size() > 0;
+		assertTrue(isMenuItemsListSizeGreaterThan0);
+		assertTrue(menuItemsList.contains(CREATE_TICKET));
+	}
+	
+	@Test
+	public void  createUserTaskMenuInvalidUserTypeTest() throws Exception {
+		List<String> menuItemsList = menuItemsByRole.fetchMenuItemsByRole(INVALID_USER_TYPE);
+		assertNull(menuItemsList);
+	}
+	
+	@Test
+	public void  createUserTaskMenuNullTest() throws Exception {
+		List<String> menuItemsList = menuItemsByRole.fetchMenuItemsByRole(NULL_OBJECT);
+		assertNull(menuItemsList);
+	}
+	
+	@Test
+	public void  createUserTaskMenuEmptyTest() throws Exception {
+		List<String> menuItemsList = menuItemsByRole.fetchMenuItemsByRole(EMPTY);
+		assertNull(menuItemsList);
 	}
 }

@@ -12,7 +12,7 @@ public class ModifyUserRole implements IModifyUserRole {
 	
 	
 	@Override
-	public boolean modifyUserRole(String empId, String userType) {
+	public boolean modifyUserRole(String empId, String userType) throws Exception {
 		
 		boolean isUserModified = false;
 		
