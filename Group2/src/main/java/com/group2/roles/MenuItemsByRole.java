@@ -13,7 +13,7 @@ public class MenuItemsByRole implements IMenuItemsByRole {
 	}
 	
 	@Override
-	public List<String>  fetchMenuItemsByRole(String userType) {
+	public List<String>  fetchMenuItemsByRole(String userType) throws Exception {
 		
 		List<String> menuItemsByRole  = null;
 		
