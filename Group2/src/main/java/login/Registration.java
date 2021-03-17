@@ -26,12 +26,18 @@ public class Registration implements IRegister
         {
             if(checkUpperCaseRule(user_password) && checkLowerCaseRule(user_password) && checkNumberRule(user_password) && checkSpecialCharacterRule(user_password) && checkLengthRule(user_password))
             {
+
                 String encrypted_password = encryption.encryptPassword(user_password);
                 result = userRegistrationOperations.registerUserDatabase(user, encrypted_password);
                 return result;
             }
             else
             {
+				System.out.println(checkUpperCaseRule(user_password));
+				System.out.println(checkLowerCaseRule(user_password));
+				System.out.println(checkNumberRule(user_password));
+				System.out.println(checkSpecialCharacterRule(user_password));
+				System.out.println(checkLengthRule(user_password));
                 inputOutputHandler.displayMethod("Error: Password does not match the requirements. \nA password must be at least 8 characters, must contain a special character (@,!,#,$,%,&,*), must be 8 to 100 characters in length, must contain at least one lower case and one upper case letter");
                 return result = false;
             }
@@ -45,7 +51,8 @@ public class Registration implements IRegister
     	int higherThreshold = 90;
     	for(int i=0;i<user_password.length();i++)
     	{
-    		if(user_password.indexOf(i)>=lowerThreshold && user_password.indexOf(i)<=higherThreshold)
+    		char c = user_password.charAt(i);
+    		if(c>=lowerThreshold && c<=higherThreshold)
     		{
     			upperCaseResult = true;
     			return upperCaseResult;
@@ -61,7 +68,8 @@ public class Registration implements IRegister
     	int higherThreshold = 122;
     	for(int i=0;i<user_password.length();i++)
     	{
-    		if(user_password.indexOf(i)>=lowerThreshold && user_password.indexOf(i)<=higherThreshold)
+			char c = user_password.charAt(i);
+    		if(c>=lowerThreshold && c<=higherThreshold)
     		{
     			lowerCaseResult = true;
     			return lowerCaseResult;
@@ -77,7 +85,8 @@ public class Registration implements IRegister
     	int higherThreshold = 57;
     	for(int i=0;i<user_password.length();i++)
     	{
-    		if(user_password.indexOf(i)>=lowerThreshold && user_password.indexOf(i)<=higherThreshold)
+			char c = user_password.charAt(i);
+    		if(c>=lowerThreshold && c<=higherThreshold)
     		{
     			checkNumberResult = true;
     			return checkNumberResult;
@@ -100,10 +109,11 @@ public class Registration implements IRegister
     	
     	for(int i=0;i<user_password.length();i++)
     	{
-    		if((user_password.indexOf(i)>=lowerThreshold_first && user_password.indexOf(i)<=higherThreshold_first) ||
-    		   (user_password.indexOf(i)>=lowerThreshold_second && user_password.indexOf(i)<=higherThreshold_second) ||
-    		   (user_password.indexOf(i)>=lowerThreshold_third && user_password.indexOf(i)<=higherThreshold_third) ||
-    		   (user_password.indexOf(i)>=lowerThreshold_fourth && user_password.indexOf(i)<=higherThreshold_fourth))
+			char c = user_password.charAt(i);
+    		if((c>=lowerThreshold_first && c<=higherThreshold_first) ||
+    		   (c>=lowerThreshold_second && c<=higherThreshold_second) ||
+    		   (c>=lowerThreshold_third && c<=higherThreshold_third) ||
+    		   (c>=lowerThreshold_fourth && c<=higherThreshold_fourth))
     		{
     			checkSpecialCharacterResult = true;
     			return checkSpecialCharacterResult;

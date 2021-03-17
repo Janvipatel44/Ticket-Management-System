@@ -16,8 +16,6 @@ public class AuthenticationOperations implements IAuthenticationOperations
     {
         final int one = 1;
         final int two = 2;
-        final String failedMessage = "Error: Unable to fetch password from database. Please try again.";
-        final String userNotFound = "Error: User does not exist.";
         final Object nullObject = null;
         String procedureName = "getPassword";
         Connection dummyConnection=null;
@@ -31,7 +29,7 @@ public class AuthenticationOperations implements IAuthenticationOperations
             String result=procedureCall.getString(two);
             if(result.equals(nullObject))
             {
-            	return userNotFound;
+            	return null;
             }
             else 
             {
@@ -40,7 +38,7 @@ public class AuthenticationOperations implements IAuthenticationOperations
         }
         catch (SQLException throwables)
         {
-            return failedMessage;
+            return null;
         }
     }
 }
