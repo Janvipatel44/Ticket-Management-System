@@ -60,7 +60,7 @@ public class ConnectionManager implements IConnectionManager{
 	}
 	public void closeConnection() {
 		// TODO Auto-generated method stub
-			
+			 
 		try {
 			connection.close();
 		} catch (SQLException e) {
