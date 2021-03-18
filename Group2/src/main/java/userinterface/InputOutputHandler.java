@@ -1,4 +1,4 @@
-package com.group2.userinterface;
+package userinterface;
 
 import java.util.Scanner;
 

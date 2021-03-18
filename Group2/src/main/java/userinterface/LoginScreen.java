@@ -1,4 +1,4 @@
-package com.group2.userinterface;
+package userinterface;
 public class LoginScreen implements ILoginScreen
 {
     private final IInputOutputHandler inputOutputHandler;

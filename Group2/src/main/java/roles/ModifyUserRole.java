@@ -1,12 +1,12 @@
-package com.group2.roles;
+package roles;
 
 import validations.StringValidations;
 
 public class ModifyUserRole implements IModifyUserRole {
 
-	private IRoleMngmntPersistenceOps iRolePersistence;
+	private IRoleManagementDao iRolePersistence;
 
-	public ModifyUserRole (IRoleMngmntPersistenceOps iRolePersistence) {
+	public ModifyUserRole (IRoleManagementDao iRolePersistence) {
 		this.iRolePersistence = iRolePersistence;
 	}
 	

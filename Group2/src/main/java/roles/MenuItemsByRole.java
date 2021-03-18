@@ -1,4 +1,4 @@
-package com.group2.roles;
+package roles;
 
 import java.util.List;
 
@@ -6,9 +6,9 @@ import validations.StringValidations;
 
 public class MenuItemsByRole implements IMenuItemsByRole {	
 	
-	private IRoleMngmntPersistenceOps iRolePersistence;
+	private IRoleManagementDao iRolePersistence;
 
-	public MenuItemsByRole (IRoleMngmntPersistenceOps iRolePersistence) {
+	public MenuItemsByRole (IRoleManagementDao iRolePersistence) {
 		this.iRolePersistence = iRolePersistence;
 	}
 	

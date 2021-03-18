@@ -1,4 +1,4 @@
-package com.group2.roles;
+package roles;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -8,25 +8,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import database.IConnectionManager;
-import persistenceException.PersistenceException;
 
-public class RoleManagementOpsDB implements IRoleMngmntPersistenceOps {
+public class RoleManagementDao implements IRoleManagementDao {
 
 	private final String menuItemsByRoleProcedure = "menu_items_by_role";
 	private final String updateUserRoleProcedure = "update_user_role";
 	private IConnectionManager connectionManager;
 
-	public RoleManagementOpsDB(IConnectionManager connectionManager) {
+	public RoleManagementDao(IConnectionManager connectionManager) {
 		this.connectionManager = connectionManager;
 	}
 
 	@Override
 	public List<String> accessMenuItemsByRole(String role) throws Exception {
-
 		List<String> menuItemsList = null;
-
 		Connection connection = connectionManager.establishConnection();
-
 		CallableStatement procedureCall;
 		try {
 			procedureCall = connection.prepareCall("call " + menuItemsByRoleProcedure + "(?)");
@@ -52,9 +48,7 @@ public class RoleManagementOpsDB implements IRoleMngmntPersistenceOps {
 	
 	@Override
 	public boolean updateUserRole(String empId, String role) throws Exception {
-
 		Connection connection = connectionManager.establishConnection();
-
 		CallableStatement procedureCall;
 		try {
 			procedureCall = connection.prepareCall("call " + updateUserRoleProcedure + "(?,?)");

@@ -6,6 +6,10 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import roles.IModifyUserRole;
+import roles.IRoleManagementDao;
+import roles.ModifyUserRole;
+
 public class ModifyUserRoleTest {
 
 	private final String USER_TYPE = "End_User";
@@ -16,7 +20,7 @@ public class ModifyUserRoleTest {
 	private final String INVALID_EMP_ID = "16751";
 	
 	private IModifyUserRole modifyUserRole;
-	private IRoleMngmntPersistenceOps iRoleMngmntPersistenceOps;
+	private IRoleManagementDao iRoleMngmntPersistenceOps;
 
 	@Before
 	public void init() {
