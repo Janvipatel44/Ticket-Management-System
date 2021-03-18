@@ -3,12 +3,12 @@ public class PersistenceException extends RuntimeException {
 
     String message;
 
-    PersistenceException(String message)
+    public PersistenceException(String message)
     {
         this.message=message;
     }
 
-    String getString()
+    public String getString()
     {
         return message;
     }
