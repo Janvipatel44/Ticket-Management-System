@@ -1,4 +1,4 @@
-package com.group2.roles;
+package roles;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
