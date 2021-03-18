@@ -1,8 +1,7 @@
 package login;
 import static org.junit.Assert.*;
 import org.junit.Test;
-import com.group2.userinterface.IInputOutputHandler;
-import com.group2.userinterface.InputOutputHandler;
+import userinterface.*;
 public class RegistrationTest
 {
 	
