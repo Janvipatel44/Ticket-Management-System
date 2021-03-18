@@ -19,7 +19,6 @@
 		<maven.compiler.target>1.7</maven.compiler.target>
 	</properties>
 
-<<<<<<< HEAD
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -32,15 +31,6 @@
       <artifactId>mockito-inline</artifactId>
       <version>3.7.7</version>
     </dependency>
-  </dependencies>
-=======
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
-		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -52,7 +42,6 @@
 			<version>2.6</version>
 		</dependency>
 	</dependencies>
->>>>>>> 1e4b70c55d45bf67f1e1a37d6da192802147005b
 
 	<build>
 		<pluginManagement><!-- lock down plugins versions to avoid using Maven 
