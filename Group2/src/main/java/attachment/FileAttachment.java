@@ -4,11 +4,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
 
-public class FileAttachment implements IAttachment {
+public class FileAttachment extends AbstractAttachment {
 
 	private IFileAttachmentDao fileAttachmentDao = null;
 
@@ -17,7 +16,7 @@ public class FileAttachment implements IAttachment {
 	}
 
 	public String upload(String sourcePath) throws Exception {
-		String attachmentId = UUID.randomUUID().toString().replace("-", "");
+		String attachmentId = generateAttachmentId();
 		try {
 			File file = new File(sourcePath);
 			InputStream fileInputStream = new FileInputStream(file);

@@ -1,4 +1,4 @@
-package com.group2.roles;
+package roles;
 
 import validations.StringValidations;
 

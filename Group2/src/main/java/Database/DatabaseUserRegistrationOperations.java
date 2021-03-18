@@ -1,8 +1,9 @@
 package database;
-import com.group2.userinterface.IInputOutputHandler;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import userinterface.IInputOutputHandler;
 public class DatabaseUserRegistrationOperations implements IDatabaseUserRegistrationOperations
 {
     private final int one = 1;

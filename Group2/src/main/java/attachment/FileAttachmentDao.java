@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.mysql.cj.jdbc.Blob;
+
 import database.IConnectionManager;
 
 public class FileAttachmentDao implements IFileAttachmentDao {
@@ -52,7 +54,7 @@ public class FileAttachmentDao implements IFileAttachmentDao {
 			if (isResultSet) {
 				ResultSet resultSet = procedureCall.getResultSet();
 				if (resultSet.next()) {
-					inputStream = (InputStream) resultSet.getBlob(0);
+					inputStream = ((Blob) resultSet.getBlob(1)).getBinaryStream();
 				}
 			}
 		} catch (SQLException throwables) {

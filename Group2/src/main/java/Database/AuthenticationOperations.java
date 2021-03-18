@@ -1,8 +1,9 @@
 package database;
-import com.group2.userinterface.IInputOutputHandler;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.sql.Types;
+
+import userinterface.IInputOutputHandler;
 public class AuthenticationOperations implements IAuthenticationOperations
 {
     private final IConnectionManager connection;

@@ -1,4 +1,4 @@
-package com.group2.userinterface;
+package userinterface;
 public interface IInputOutputHandler
 {
 	public void displayMethod(String printMessage);

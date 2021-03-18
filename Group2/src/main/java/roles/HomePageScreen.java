@@ -1,9 +1,8 @@
-package com.group2.roles;
+package roles;
 
 import java.util.List;
 
-import com.group2.userinterface.IInputOutputHandler;
-
+import userinterface.IInputOutputHandler;
 import validations.StringValidations;
 
 public class HomePageScreen implements IHomePageScreen {

@@ -1,4 +1,4 @@
-package com.group2.roles;
+package roles;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;

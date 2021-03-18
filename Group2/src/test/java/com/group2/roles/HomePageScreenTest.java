@@ -2,8 +2,13 @@ package com.group2.roles;
 
 import org.junit.Before;
 
-import com.group2.userinterface.IInputOutputHandler;
-import com.group2.userinterface.InputOutputHandler;
+import roles.HomePageScreen;
+import roles.IHomePageScreen;
+import roles.IMenuItemsByRole;
+import roles.IRoleManagementDao;
+import roles.MenuItemsByRole;
+import userinterface.IInputOutputHandler;
+import userinterface.InputOutputHandler;
 
 public class HomePageScreenTest {
 

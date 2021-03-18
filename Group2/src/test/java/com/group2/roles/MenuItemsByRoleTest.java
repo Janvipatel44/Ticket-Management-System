@@ -8,6 +8,10 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import roles.IMenuItemsByRole;
+import roles.IRoleManagementDao;
+import roles.MenuItemsByRole;
+
 public class MenuItemsByRoleTest {
 	
 	private final String USER_TYPE = "End_User";

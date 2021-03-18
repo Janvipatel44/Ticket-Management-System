@@ -1,6 +1,6 @@
 package login;
-import com.group2.userinterface.IInputOutputHandler;
 import database.IDatabaseUserRegistrationOperations;
+import userinterface.IInputOutputHandler;
 public class Registration implements IRegister
 {
     private final IDatabaseUserRegistrationOperations userRegistrationOperations;
