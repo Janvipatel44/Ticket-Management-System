@@ -1,8 +1,8 @@
-package roles;
+package userinterface;
 
 import java.util.List;
 
-import userinterface.IInputOutputHandler;
+import roles.IMenuItemsByRole;
 import validations.StringValidations;
 
 public class HomePageScreen implements IHomePageScreen {
