@@ -1,5 +1,7 @@
-package database;
+package login;
+import database.*;
 import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -14,30 +16,30 @@ public class DatabaseUserRegistrationOperations implements IDatabaseUserRegistra
     private final int six = 6;
     private boolean result=false;
     private final IConnectionManager connection;
-    private final IInputOutputHandler inputOutputHandler;
 
-    public DatabaseUserRegistrationOperations(IConnectionManager connection, IInputOutputHandler inputOutputHandler)
+    public DatabaseUserRegistrationOperations(IConnectionManager connection)
     {
         this.connection = connection;
-        this.inputOutputHandler = inputOutputHandler;
     }
 
-    public boolean registerUserDatabase(String employeeID, String firstName, String lastName, String email, String user_password, String user_type)
+    public boolean registerUserDatabase(User user, String user_password)
     {
+    	Connection dummyConnection=null;
         CallableStatement procedureCall;
         try {
-            procedureCall = connection.establishConnection().prepareCall("{call registerUser(?,?,?,?,?,?)}");
-            procedureCall.setString(one,employeeID);
-            procedureCall.setString(two,firstName);
-            procedureCall.setString(three,lastName);
-            procedureCall.setString(four, email);
+        	String procedureName = "registerUser";
+        	dummyConnection = connection.establishConnection();
+            procedureCall = dummyConnection.prepareCall("{call "+procedureName+"(?,?,?,?,?,?)}");
+            procedureCall.setString(one,user.getEmployeeID());
+            procedureCall.setString(two,user.getfirstName());
+            procedureCall.setString(three,user.getLastName());
+            procedureCall.setString(four, user.getEmail());
             procedureCall.setString(five, user_password);
-            procedureCall.setString(six, user_type);
+            procedureCall.setString(six, user.getUserType());
             return executeUpdateCommand(procedureCall);
         }
         catch (SQLException throwables)
         {
-            inputOutputHandler.displayMethod("Error: Unbale to register new user.");
             result = false;
             return result;
         }
@@ -65,7 +67,6 @@ public class DatabaseUserRegistrationOperations implements IDatabaseUserRegistra
         }
         catch (SQLException throwables)
         {
-            inputOutputHandler.displayMethod("Error: Unbale to register new user.");
             result = false;
             return result;
         }
@@ -81,7 +82,6 @@ public class DatabaseUserRegistrationOperations implements IDatabaseUserRegistra
         }
         catch (SQLException throwables)
         {
-            inputOutputHandler.displayMethod("Unbale to register new user.");
             result = false;
             return result;
         }
@@ -102,7 +102,6 @@ public class DatabaseUserRegistrationOperations implements IDatabaseUserRegistra
         }
         catch (SQLException throwables)
         {
-            inputOutputHandler.displayMethod("Unbale to register new user.");
             result = false;
             return result;
         }
