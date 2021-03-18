@@ -2,7 +2,7 @@ package com.group2.roles;
 
 import java.util.List;
 
-public interface IRoleMngmntPersistenceOps {
+public interface IRoleManagementDao {
 	
 	List<String> accessMenuItemsByRole(String role) throws Exception;
 	

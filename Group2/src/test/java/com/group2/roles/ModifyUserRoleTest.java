@@ -16,7 +16,7 @@ public class ModifyUserRoleTest {
 	private final String INVALID_EMP_ID = "16751";
 	
 	private IModifyUserRole modifyUserRole;
-	private IRoleMngmntPersistenceOps iRoleMngmntPersistenceOps;
+	private IRoleManagementDao iRoleMngmntPersistenceOps;
 
 	@Before
 	public void init() {

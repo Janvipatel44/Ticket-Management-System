@@ -4,9 +4,9 @@ import validations.StringValidations;
 
 public class ModifyUserRole implements IModifyUserRole {
 
-	private IRoleMngmntPersistenceOps iRolePersistence;
+	private IRoleManagementDao iRolePersistence;
 
-	public ModifyUserRole (IRoleMngmntPersistenceOps iRolePersistence) {
+	public ModifyUserRole (IRoleManagementDao iRolePersistence) {
 		this.iRolePersistence = iRolePersistence;
 	}
 	

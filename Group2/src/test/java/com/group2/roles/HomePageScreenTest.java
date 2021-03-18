@@ -12,7 +12,7 @@ public class HomePageScreenTest {
 	
 	private IHomePageScreen homePageScreen;
 	private IMenuItemsByRole menuItemsByRole;
-	private IRoleMngmntPersistenceOps iRoleMngmntPersistenceOps;
+	private IRoleManagementDao iRoleMngmntPersistenceOps;
 	private IInputOutputHandler inputOutputHandler;
 
 	@Before

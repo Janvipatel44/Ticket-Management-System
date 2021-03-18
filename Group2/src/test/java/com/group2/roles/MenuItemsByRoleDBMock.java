@@ -5,7 +5,7 @@ import java.util.List;
 
 import validations.StringValidations;
 
-public class MenuItemsByRoleDBMock implements IRoleMngmntPersistenceOps {
+public class MenuItemsByRoleDBMock implements IRoleManagementDao {
 
 	
 	private final String USER_TYPE = "End_User";
