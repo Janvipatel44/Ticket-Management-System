@@ -1,9 +1,5 @@
-<<<<<<< HEAD:Group2/src/main/java/login/DatabaseUserRegistrationOperations.java
 package login;
 import database.*;
-=======
-package database;
->>>>>>> 1e4b70c55d45bf67f1e1a37d6da192802147005b:Group2/src/main/java/Database/DatabaseUserRegistrationOperations.java
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
