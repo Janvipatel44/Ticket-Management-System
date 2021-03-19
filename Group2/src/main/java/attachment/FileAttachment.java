@@ -3,6 +3,7 @@ package attachment;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 
 import org.apache.commons.io.FileUtils;
@@ -27,9 +28,15 @@ public class FileAttachment extends AbstractAttachment {
 		return attachmentId.toString();
 	}
 
-	public void download(String attachmentId, String destinationPath) throws Exception{
+	public boolean download(String attachmentId, String destinationPath) throws Exception{
+		boolean downloadedSuccessfully = true;
+		try {
 		File outputFile = new File(destinationPath);
 		InputStream dbStoredFile = fileAttachmentDao.downloadFileAttachment(attachmentId);
 		FileUtils.copyInputStreamToFile(dbStoredFile, outputFile);
+		} catch (IOException e) {
+			throw new IllegalArgumentException("Please check destination path.");
+		}
+		return downloadedSuccessfully;
 	}
 }

@@ -24,7 +24,7 @@ public class ModifyUserRoleTest {
 
 	@Before
 	public void init() {
-		iRoleMngmntPersistenceOps = new MenuItemsByRoleDBMock();
+		iRoleMngmntPersistenceOps = new RoleManagementDaoMock();
 		modifyUserRole = new ModifyUserRole(iRoleMngmntPersistenceOps);
 	}
 
