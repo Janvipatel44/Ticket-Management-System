@@ -8,46 +8,40 @@ import java.sql.SQLException;
 import DBConnection.DBConn;
 import database.ConnectionManager;
 import database.IConnectionManager;
+import displayTickets.IdisplayTicket;
+import displayTickets.displayTicket;
 
-public class searchTicketG implements IsearchTicket{
-	//Database connectoion
-	
-	
+public class searchTicket implements IsearchTicket
+{
 	private Connection connect=null;
 	private CallableStatement SPstatement=null;
 	private ResultSet resultSet=null;
 	private boolean hasResult=false;
 	private String ConfigurationFile = "ConfigurationFile";
-	private searchedOutput callObj=new searchedOutput();
 	
-	IConnectionManager IConnectionMng = new ConnectionManager(ConfigurationFile);
+	private IdisplayTicket callObj=new displayTicket();
+	private IConnectionManager IConnectionMng = new ConnectionManager(ConfigurationFile);
 	@Override
-	public boolean searchbyTicket(int choice, String searchtype) {
-		try {
+	public void searchbyTicket(int choice, String searchInput) 
+	{
+		try 
+		{
 			connect = IConnectionMng.establishConnection();
-			//Stored Procedure call that finds tickets from the system as per the user requirement 
 			SPstatement = connect.prepareCall("{call searchTicket(?,?)}");
-			//first parameter decided search option 
 			SPstatement.setLong(1,choice);
-			//second parameter passes search value
-			SPstatement.setString(2,searchtype);
+			SPstatement.setString(2,searchInput);
 			hasResult=SPstatement.execute();
 			if(hasResult) {
-				//store tickets that matches with user requirement
 			    resultSet = SPstatement.getResultSet();
 			    System.out.println("hasresult:"+hasResult + "resultset:"+resultSet );
-			    //pass string to display tickets on user screen
-				boolean result=callObj.displaySearchedOutput(resultSet);
-				return result;
+				callObj.displaySearchedOutput(resultSet);
 			}
-			
-			//close DB connection
+	
 			IConnectionMng.closeConnection();
-			
 		} 
-		catch (SQLException e) {
+		catch (SQLException e)
+		{
 				e.printStackTrace();
 		}
-		return false;
 	}
 }

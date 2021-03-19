@@ -2,12 +2,16 @@ package searchingFunctionality;
 
 import java.util.Scanner;
 
-public class mainUIS {
-	public static void main(String args[]) throws ClassNotFoundException {
-		 
-		 int choice=0;
-		 String searchInput=null;
+public class mainUIS 
+{
+	public static void main(String args[]) throws ClassNotFoundException 
+	{
+		int choice=0;
+		String searchInput=null;
 		Scanner sc=new Scanner(System.in);
+		
+		//searchTicket class object
+		IsearchTicket obj=new searchTicket();
 		
 		//Available options for user 
 		System.out.println("1. Ticket ID");
@@ -18,42 +22,48 @@ public class mainUIS {
 		System.out.println("6. keyword	");
 		System.out.println("7. exit	");
 			
-		//searchTicket class object
-		IsearchTicket obj=new searchTicketG(); 
-		do {
+		do 
+		{
 			System.out.println("Please Provide your choice:");
 			choice=sc.nextInt();
 			
-			if(choice==1) {
+			if(choice==1) 
+			{
 				System.out.println("Please Provide TicketID:");
 				searchInput=sc.next();
 				obj.searchbyTicket(choice, searchInput);
 			}
-			else if(choice==2) {
+			else if(choice==2)
+			{
 				System.out.println("Please Provide name of Ticket Assignee:");
 				searchInput=sc.next();
 				obj.searchbyTicket(choice, searchInput);
 			}
-			else if(choice==3) {
+			else if(choice==3) 
+			{
 				System.out.println("Please Provide Ticket Type:");
 				searchInput=sc.next();
 				obj.searchbyTicket(choice, searchInput);
 			}
-			else if(choice==4) {
+			else if(choice==4) 
+			{
 				System.out.println("All Tickets:");
 				obj.searchbyTicket(choice, searchInput);
 			}
-			else if(choice==5) {
+			else if(choice==5) 
+			{
 				System.out.println("Please Provide Name of Ticket Creator:");
 				searchInput=sc.next();
 				obj.searchbyTicket(choice, searchInput);
 			}
-			else if(choice==6) {
+			else if(choice==6) 
+			{
 				System.out.println("Please Provide Keyword:");
 				searchInput=sc.next();
 				obj.searchbyTicket(choice, searchInput);
 			}
-			else {
+			else 
+			{
 				System.out.println("You have provided wrong input.Please choose the correct input value");
 			}
 		}
