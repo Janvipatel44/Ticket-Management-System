@@ -24,17 +24,16 @@ public class userInput
 		
 		IcheckTicketExists checkticketexists=new checkTicketExists();
 		IcommentOnTicket postComment = new commentOnTicket();
-		IgetListOfTickets tickets = new getListOfTickets();
+		IgetListOfTickets getalltickets = new getListOfTickets();
 		IdisplayTickets displaytickets = new displayTickets();
 		
-		tickets.listOfTickets();
+		getalltickets.listOfTickets();
 		System.out.println("Enter Ticket Id you want to post comment on.:");
 		ticketId = sc.next();
 		result=checkticketexists.ticketExists(ticketId);
 		sc.nextLine();
 		if(result == true)
 		{
-			
 			System.out.println("Write comment you want to post");
 			commentString = sc.nextLine();
 			commentPostResult=postComment.postCommentOnticket(ticketId,UserName, commentString);
