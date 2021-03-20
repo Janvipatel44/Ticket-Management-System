@@ -6,6 +6,8 @@ import checkTicketExists.IcheckTicketExists;
 import checkTicketExists.checkTicketExists;
 import commentOnTicket.IcommentOnTicket;
 import commentOnTicket.commentOnTicket;
+import displayTickets.IdisplayTickets;
+import displayTickets.displayTickets;
 import getListOfTickets.IgetListOfTickets;
 import getListOfTickets.getListOfTickets;
 
@@ -23,6 +25,7 @@ public class userInput
 		IcheckTicketExists checkticketexists=new checkTicketExists();
 		IcommentOnTicket postComment = new commentOnTicket();
 		IgetListOfTickets tickets = new getListOfTickets();
+		IdisplayTickets displaytickets = new displayTickets();
 		
 		tickets.listOfTickets();
 		System.out.println("Enter Ticket Id you want to post comment on.:");

@@ -36,7 +36,8 @@ public class getListOfTickets implements IgetListOfTickets
 			
 			while(resultSet.next())
 			{
-				listOfTicketsId.add(resultSet.getString("ticketId"));
+				String ticket=resultSet.getString("ticketId") +"\n"+"\t"+"\t"+"Description:"+resultSet.getString("description");
+				listOfTicketsId.add(ticket);
 			}
 			displaytickets.displayTickets(listOfTicketsId);
 		}
