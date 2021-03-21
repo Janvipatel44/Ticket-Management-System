@@ -13,8 +13,13 @@ public interface ICreateTicket {
     public int getPriority();
     public int getUrgency(); 
     public int getImpact();
-    public String getComments(); 
-    
+    public String getTicketLevel(); 
+	public String getCreatorName();
+	public String getAttachmentID();
+	public int getRating();
+	public String getCustomerName();
+	
+	
     public void setTicketId(String ticketId);
     public void setDescription(String description);
     public void setStartDate(String startDate);
@@ -26,5 +31,9 @@ public interface ICreateTicket {
     public void setPriority(int priority);
     public void setUrgency(int urgency);
     public void setImpact(int impact);  
-    public void setComments(String comments);
+	public void setTicketLevel(String ticketLevel);
+	public void setCustomerName(String customerName);
+	public void setRating(int rating);
+	public void setCreatorName(String creatorName);
+	public void setAttchmentID(String attachmentID);
 }
