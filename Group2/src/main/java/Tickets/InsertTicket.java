@@ -39,7 +39,12 @@ public class InsertTicket implements IInsertTicket{
 		    int priority = 0;
 		    int urgency = 0;
 		    int impact = 0;
-		    String comments = null;
+		    String ticketLevel = null;
+		    String customerName = null;
+		    int rating = 0;
+		    String creatorName = null;
+		    String attachmentID = null;
+
 		
 			System.out.println("Please enter ticket Id:");
 		    ticketId = sc.nextLine();
@@ -85,11 +90,30 @@ public class InsertTicket implements IInsertTicket{
 		    impact =  sc.nextInt();
 		    createTicket.setImpact(impact);
 
-			System.out.println("Please enter comments:");
-		    comments = sc.nextLine();
-		    comments = sc.nextLine();
-		    createTicket.setComments(comments);
+			System.out.println("Please Ticket Level:");
+			ticketLevel = sc.nextLine();
+			ticketLevel = sc.nextLine();
 
+		    createTicket.setTicketLevel(ticketLevel);
+		   		    
+		    System.out.println("Please Customer Name:");
+		    customerName = sc.nextLine();
+		    createTicket.setCustomerName(customerName);
+		    
+		    System.out.println("Please Rating:");
+		    rating = sc.nextInt();
+		    createTicket.setRating(rating);
+		    
+		    System.out.println("Please creator Name:");
+		    creatorName = sc.nextLine();
+		    creatorName = sc.nextLine();
+		    createTicket.setCreatorName(creatorName);
+		    
+		    System.out.println("Please attachment ID:");
+		    attachmentID = sc.nextLine();
+		    attachmentID = sc.nextLine();
+		    createTicket.setAttchmentID(attachmentID);
+		    
 		    if(validateInsertion()==true) {
 		    	successfulInsertion();
 		    }
@@ -117,7 +141,7 @@ public class InsertTicket implements IInsertTicket{
 	    int priority = createTicket.getPriority();
 	    int urgency = createTicket.getUrgency();
 	    int impact = createTicket.getImpact();
-	    String comments = createTicket.getComments();
+	    String ticketLevel = createTicket.getTicketLevel();
 	    
 		int i = 0;
 		stringNullValidationList.add(ticketId);
