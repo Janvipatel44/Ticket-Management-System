@@ -1,4 +1,4 @@
-package database;
+package Tickets;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.CallableStatement;
 
 import Tickets.ICreateTicket;
+import database.ConnectionManager;
+import database.IConnectionManager;
 
 public class TicketOperationsDB implements ITicketOperationsDB{
 
@@ -22,7 +24,7 @@ public class TicketOperationsDB implements ITicketOperationsDB{
 		connection = IConnectionMng.establishConnection();
         boolean success=false;
 		try {
-			CallableStatement statement = (CallableStatement) connection.prepareCall("{call insertTicket(?, ?, ?,?,?,?,?,?,?,?,?,?)}");
+			CallableStatement statement = (CallableStatement) connection.prepareCall("{call insertTicket(?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
 			
 			statement.setString(1, createTicket.getTicketId());
             statement.setString(2, createTicket.getDescription() );
@@ -35,7 +37,11 @@ public class TicketOperationsDB implements ITicketOperationsDB{
             statement.setInt(9, createTicket.getPriority() );
             statement.setInt(10, createTicket.getUrgency() );
             statement.setInt(11, createTicket.getImpact() );
-            statement.setString(12, createTicket.getComments() );
+            statement.setString(12, createTicket.getTicketLevel() );
+            statement.setString(13, createTicket.getCustomerName() );
+            statement.setInt(14, createTicket.getRating() );
+            statement.setString(15, createTicket.getCreatorName() );
+            statement.setString(16, createTicket.getAttachmentID() );
 
 	        statement.execute();
 	        success = true;
@@ -53,7 +59,7 @@ public class TicketOperationsDB implements ITicketOperationsDB{
 		int duplicate_ticket = 0;
         boolean success=false;
 		try {
-			CallableStatement statement = (CallableStatement) connection.prepareCall("{call duplicateTicket(?, ?, ?,?,?,?,?,?,?,?,?,?,?)}");
+			CallableStatement statement = (CallableStatement) connection.prepareCall("{call duplicateTicket(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
 
 			statement.setString(1, createTicket.getTicketId());
             statement.setString(2, createTicket.getDescription() );
@@ -66,11 +72,15 @@ public class TicketOperationsDB implements ITicketOperationsDB{
             statement.setInt(9, createTicket.getPriority() );
             statement.setInt(10, createTicket.getUrgency() );
             statement.setInt(11, createTicket.getImpact() );
-            statement.setString(12, createTicket.getComments() );
-            statement.setInt(13, java.sql.Types.INTEGER);  
+            statement.setString(12, createTicket.getTicketLevel() );
+            statement.setString(13, createTicket.getCustomerName() );
+            statement.setInt(14, createTicket.getRating() );
+            statement.setString(15, createTicket.getCreatorName() );
+            statement.setString(16, createTicket.getAttachmentID() );
+            statement.setInt(17, java.sql.Types.INTEGER);  
 
             statement.execute();
-            duplicate_ticket = statement.getInt(13);
+            duplicate_ticket = statement.getInt(17);
             System.out.print("duplicate_ticket:" +duplicate_ticket);
 			if(duplicate_ticket==0) {
 			    success = false;

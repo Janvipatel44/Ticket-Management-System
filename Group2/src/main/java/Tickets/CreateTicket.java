@@ -13,8 +13,12 @@ public class CreateTicket implements ICreateTicket
     private int priority = 0;
     private int urgency = 0;
     private int impact = 0;
-    private String comments = null;
-
+    private String ticketLevel = null;
+    private String customerName = null;
+    private int rating = 0;
+    private String creatorName = null;
+    private String attachmentID = null;
+   
    
     public String getTicketId() {
         return ticketId;
@@ -63,10 +67,32 @@ public class CreateTicket implements ICreateTicket
     	return impact;
     }
     
-    public String getComments() {
-    	return comments;
+    public String getTicketLevel() 
+    {
+    	return ticketLevel;
     }
- 
+  
+    public String getCustomerName() 
+    {
+    	return customerName;
+    }
+    
+    public int getRating() 
+    {
+    	return rating;
+    }
+    
+    public String getCreatorName() 
+    {
+    	return creatorName;
+    }
+    
+    public String getattchmentID() 
+    {
+    	return attachmentID;
+    }
+    
+   
     public void setTicketId(String ticketId) {
         this.ticketId = ticketId;
     }
@@ -120,8 +146,33 @@ public class CreateTicket implements ICreateTicket
     	this.impact=impact;
     }
     
-    public void setComments(String comments) 
+    public void setTicketLevel(String ticketLevel) 
     {
-    	this.comments = comments;
+    	this.ticketLevel = ticketLevel;
     }
+    
+    public void setCustomerName(String customerName) 
+    {
+    	this.customerName = customerName;
+    }
+    
+    public void setRating(int rating) 
+    {
+    	this.rating = rating;
+    }
+    public void setCreatorName(String creatorName) 
+    {
+    	this.creatorName = creatorName;
+    }
+   
+	public String getAttachmentID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setAttchmentID(String attachmentID) {
+		// TODO Auto-generated method stub
+		
+	}
 }

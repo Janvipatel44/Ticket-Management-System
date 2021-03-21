@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import Tickets.CreateTicket;
 import Tickets.ICreateTicket;
+import Tickets.ITicketOperationsDB;
+import Tickets.TicketOperationsDB;
 import validations.IInputDateValidation;
 import validations.IInputRangeValidation;
 import validations.IInputStringValidation;
 import validations.InputDateValidationMock;
 import validations.InputRangeValidationMock;
 import validations.InputStringValidationMock;
-import database.ITicketOperationsDB;
-import database.TicketOperationsDB;
  
 public class InsertTicketsMock {
 	ITicketOperationsDB ticketOperationDB = null;
@@ -20,7 +20,7 @@ public class InsertTicketsMock {
     IInputDateValidation dateValidation = new InputDateValidationMock();
     IInputRangeValidation rangeValidation = new InputRangeValidationMock();
     ICreateTicket createTicket = new CreateTicket();
-	
+ 	
 	public boolean validateInsertion(ICreateTicket createTicket) throws ParseException {
 		
 		List<String> stringNullValidationList = new ArrayList<String>();

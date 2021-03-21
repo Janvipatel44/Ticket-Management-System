@@ -1,4 +1,4 @@
-package database;
+package Tickets;
 
 public interface ITicketOperationsDB {
 
