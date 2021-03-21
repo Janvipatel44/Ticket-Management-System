@@ -29,8 +29,7 @@ public class InputValidationTest {
 	    createTicket.setPriority(1);
 	    createTicket.setUrgency(2);
 	    createTicket.setImpact(4);
-	    createTicket.setComments("");
-		assertFalse(insertTickets.validateInsertion(createTicket));
+	    assertFalse(insertTickets.validateInsertion(createTicket));
 	}
 	
 	@Test
@@ -49,7 +48,6 @@ public class InputValidationTest {
 	    createTicket.setPriority(1);
 	    createTicket.setUrgency(2);
 	    createTicket.setImpact(4);
-	    createTicket.setComments("");
 		assertFalse(insertTickets.validateInsertion(createTicket));
 	}
 	
@@ -69,7 +67,6 @@ public class InputValidationTest {
 	    createTicket.setPriority(1);
 	    createTicket.setUrgency(2);
 	    createTicket.setImpact(4);
-	    createTicket.setComments("");
 		assertFalse(insertTickets.validateInsertion(createTicket));
 	}
 
@@ -89,7 +86,6 @@ public class InputValidationTest {
 	    createTicket.setPriority(1);
 	    createTicket.setUrgency(2);
 	    createTicket.setImpact(4);
-	    createTicket.setComments("");
 		assertFalse(insertTickets.validateInsertion(createTicket));
 	}
 	
@@ -109,7 +105,6 @@ public class InputValidationTest {
 	    createTicket.setPriority(1);
 	    createTicket.setUrgency(2);
 	    createTicket.setImpact(4);
-	    createTicket.setComments("");
 		assertTrue(insertTickets.validateInsertion(createTicket));
 	}
 	
@@ -129,7 +124,6 @@ public class InputValidationTest {
 	    createTicket.setPriority(1);
 	    createTicket.setUrgency(2);
 	    createTicket.setImpact(4);
-	    createTicket.setComments("We can also add authentication featur");
 		assertFalse(insertTickets.validateInsertion(createTicket));
 	}
 	
@@ -149,7 +143,6 @@ public class InputValidationTest {
 	    createTicket.setPriority(1);
 	    createTicket.setUrgency(2);
 	    createTicket.setImpact(4);
-	    createTicket.setComments("We can also add authentication featur");
 		assertFalse(insertTickets.validateInsertion(createTicket));
 	}
 
@@ -169,7 +162,6 @@ public class InputValidationTest {
 	    createTicket.setPriority(1);
 	    createTicket.setUrgency(2);
 	    createTicket.setImpact(4);
-	    createTicket.setComments("We can also add authentication featur");
 		assertFalse(insertTickets.validateInsertion(createTicket));
 	}
 
@@ -189,7 +181,6 @@ public class InputValidationTest {
 	    createTicket.setPriority(1);
 	    createTicket.setUrgency(2);
 	    createTicket.setImpact(4);
-	    createTicket.setComments("We can also add authentication featur");
 		assertFalse(insertTickets.validateInsertion(createTicket));
 	}
 	
@@ -209,7 +200,6 @@ public class InputValidationTest {
 	    createTicket.setPriority(1);
 	    createTicket.setUrgency(2);
 	    createTicket.setImpact(4);
-	    createTicket.setComments("We can also add authentication featur");
 		assertFalse(insertTickets.validateInsertion(createTicket));
 	}
 	
@@ -229,7 +219,6 @@ public class InputValidationTest {
 	    createTicket.setPriority(1);
 	    createTicket.setUrgency(2);
 	    createTicket.setImpact(4);
-	    createTicket.setComments("We can also add authentication featur");
 		assertTrue(insertTickets.validateInsertion(createTicket));
 	}
 	
@@ -249,7 +238,6 @@ public class InputValidationTest {
 	    createTicket.setPriority(1);
 	    createTicket.setUrgency(2);
 	    createTicket.setImpact(4);
-	    createTicket.setComments("We can also add authentication feature");
 		assertFalse(insertTickets.validateInsertion(createTicket));
 	}
 	
@@ -269,7 +257,6 @@ public class InputValidationTest {
 	    createTicket.setPriority(1);
 	    createTicket.setUrgency(2);
 	    createTicket.setImpact(4);
-	    createTicket.setComments("We can also add authentication feature");
 		assertFalse(insertTickets.validateInsertion(createTicket));
 	}
 	
@@ -289,7 +276,6 @@ public class InputValidationTest {
 	    createTicket.setPriority(1);
 	    createTicket.setUrgency(2);
 	    createTicket.setImpact(4);
-	    createTicket.setComments("We can also add authentication feature");
 		assertFalse(insertTickets.validateInsertion(createTicket));
 	}
 	
@@ -309,7 +295,6 @@ public class InputValidationTest {
 	    createTicket.setPriority(1);
 	    createTicket.setUrgency(2);
 	    createTicket.setImpact(4);
-	    createTicket.setComments("We can also add authentication feature");
 		assertFalse(insertTickets.validateInsertion(createTicket));
 	}
 	
@@ -329,7 +314,6 @@ public class InputValidationTest {
 	    createTicket.setPriority(1);
 	    createTicket.setUrgency(2);
 	    createTicket.setImpact(4);
-	    createTicket.setComments("We can also add authentication feature");
 		assertTrue(insertTickets.validateInsertion(createTicket));
 	}
 	
@@ -349,7 +333,6 @@ public class InputValidationTest {
 	    createTicket.setPriority(1);
 	    createTicket.setUrgency(2);
 	    createTicket.setImpact(7);
-	    createTicket.setComments("We can also add authentication feature");
 		assertFalse(insertTickets.validateInsertion(createTicket));
 	}
 	 
@@ -369,7 +352,6 @@ public class InputValidationTest {
 	    createTicket.setPriority(1);
 	    createTicket.setUrgency(2);
 	    createTicket.setImpact(4);
-	    createTicket.setComments("We can also add authentication feature");
 		assertFalse(insertTickets.validateInsertion(createTicket));
 		
 	    createTicket.setTicketId("891");
@@ -383,7 +365,6 @@ public class InputValidationTest {
 	    createTicket.setPriority(1);
 	    createTicket.setUrgency(2);
 	    createTicket.setImpact(4);
-	    createTicket.setComments("We can also add authentication feature");
 		assertTrue(insertTickets.validateInsertion(createTicket));
 	}
 	
@@ -404,7 +385,6 @@ public class InputValidationTest {
 	    createTicket.setPriority(1);
 	    createTicket.setUrgency(2);
 	    createTicket.setImpact(4);
-	    createTicket.setComments("We can also add authentication feature");
 		assertTrue(insertTickets.validateInsertion(createTicket));
 		
 		//end date is less than start date
@@ -419,7 +399,6 @@ public class InputValidationTest {
 	    createTicket.setPriority(1);
 	    createTicket.setUrgency(2);
 	    createTicket.setImpact(4);
-	    createTicket.setComments("We can also add authentication feature");
 		assertFalse(insertTickets.validateInsertion(createTicket));
 	}
 }
