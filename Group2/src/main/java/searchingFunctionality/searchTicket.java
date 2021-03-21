@@ -1,11 +1,10 @@
 package searchingFunctionality;
 
 import java.sql.CallableStatement;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import DBConnection.DBConn;
 import database.ConnectionManager;
 import database.IConnectionManager;
 import displayTickets.IdisplayTicket;
