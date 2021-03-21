@@ -1,16 +1,17 @@
 package sortTickets;
 
 import java.sql.CallableStatement;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import DBConnection.DBConn;
 import database.ConnectionManager;
 import database.IConnectionManager;
+import displayTickets.IdisplayTickets;
+import displayTickets.displayTicket;
 
-public class sortTicket implements IsortTicket {
-	DBConn obj=new DBConn();
+public class sortTicket implements IsortTicket 
+{
 	
 	private Connection connect=null;
 	private CallableStatement SPstatement=null;
@@ -19,9 +20,12 @@ public class sortTicket implements IsortTicket {
 	private String ConfigurationFile = "ConfigurationFile";
 	
 	IConnectionManager IConnectionMng = new ConnectionManager(ConfigurationFile);
+	IdisplayTickets displaytickettouser = new displayTicket();
 	@Override
-	public void sortTickets(int choice) {
-		try {
+	public void sortTickets(int choice) 
+	{
+		try 
+		{
 			connect = IConnectionMng.establishConnection();
 			
 			//Stored Procedure call that finds tickets from the system as per the user requirement 
@@ -30,27 +34,15 @@ public class sortTicket implements IsortTicket {
 			SPstatement.setLong(1,choice);
 			hasResult=SPstatement.execute();
 			ResultSet resultSet=SPstatement.getResultSet();
-			while (resultSet.next()) {	
-			  	System.out.println(resultSet.getString("ticketId")+ " "
-			   		+resultSet.getString("description")+ " "
-			   		+resultSet.getString("startDate")+ " "
-			   		+resultSet.getString("endDate")+ " "
-			   		+resultSet.getString("reporterId")+ " "
-			  		+resultSet.getString("employeeId")+ " "
-			   		+resultSet.getString("assigneeName")+ " "
-			   		+resultSet.getString("ticketType")+ " "
-			   		+resultSet.getString("priority")+ " "
-			   		+resultSet.getString("urgency")+ " "
-			   		+resultSet.getString("impact")+ " "
-			   		+resultSet.getString("comments"));
-			}
+			displaytickettouser.displaySearchedOutput(resultSet);
 			IConnectionMng.closeConnection();
-		} catch (SQLException e) {
+		} 
+		catch (SQLException e)
+		{
 			
 			e.printStackTrace();
 		}
 		
 	}
-	
-	
+
 }
