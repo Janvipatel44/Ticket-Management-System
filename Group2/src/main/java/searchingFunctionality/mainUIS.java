@@ -2,13 +2,17 @@ package searchingFunctionality;
 
 import java.util.Scanner;
 
+import openTicketOption.IopenTicket;
+import openTicketOption.openTicket;
+
 public class mainUIS 
 {
+	static Scanner sc=new Scanner(System.in);
 	public static void main(String args[]) throws ClassNotFoundException 
 	{
 		int choice=0;
 		String searchInput=null;
-		Scanner sc=new Scanner(System.in);
+		
 		
 		//searchTicket class object
 		IsearchTicket obj=new searchTicket();
@@ -66,7 +70,29 @@ public class mainUIS
 			{
 				System.out.println("You have provided wrong input.Please choose the correct input value");
 			}
+			
+			open();
 		}
 		while(choice!=7);
+	}
+
+	private static void open() {
+		int choice=0;
+		String ticketID=null;
+		IopenTicket openticket = new openTicket();
+		
+		System.out.println("1. open Ticket");
+		System.out.println("2. exit");
+		
+		do 
+		{
+			System.out.println("Choose Operation you want to perform");
+			choice=sc.nextInt();
+			sc.nextLine();
+			System.out.println("Enter Ticket ID:");
+			ticketID = sc.nextLine();
+			openticket.openTicket(ticketID);
+		}
+		while(choice==1);
 	}
 }
