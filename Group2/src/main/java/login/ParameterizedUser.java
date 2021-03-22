@@ -1,5 +1,8 @@
 package login;
-public class User {
+
+import login.Interfaces.IParameterizedUser;
+
+public class ParameterizedUser implements IParameterizedUser {
 
 	private String employeeID;
 	private String firstName;
@@ -7,7 +10,7 @@ public class User {
 	private String email;
 	private String user_type;
 	
-	User(String employeeID, String firstName, String lastName, String email, String user_type)
+	ParameterizedUser(String employeeID, String firstName, String lastName, String email, String user_type)
 	{
 		this.employeeID = employeeID;
 		this.firstName = firstName;
@@ -26,38 +29,18 @@ public class User {
 		return firstName;
 	}
 	
-	public void setFirstName(String firstName)
-	{
-		this.firstName = firstName;
-	}
-	
 	public String getLastName()
 	{
 		return lastName;
-	}
-	
-	public void setLastName(String lastName)
-	{
-		this.lastName = lastName;
 	}
 	
 	public String getEmail()
 	{
 		return email;
 	}
-	
-	public void setEmail(String email)
-	{
-		this.email = email;
-	}
-	
+
 	public String getUserType()
 	{
 		return user_type;
-	}
-	
-	public void setUserType(String user_type)
-	{
-		this.user_type = user_type;
 	}
 }

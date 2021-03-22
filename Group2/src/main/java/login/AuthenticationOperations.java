@@ -1,5 +1,6 @@
 package login;
 import database.IConnectionManager;
+import login.Interfaces.*;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -14,8 +15,6 @@ public class AuthenticationOperations implements IAuthenticationOperations
     }
     public String getPassword(String employeeID)
     {
-        final int one = 1;
-        final int two = 2;
         final Object nullObject = null;
         String procedureName = "getPassword";
         Connection dummyConnection=null;
@@ -23,10 +22,10 @@ public class AuthenticationOperations implements IAuthenticationOperations
         try {
             dummyConnection = connection.establishConnection();
             procedureCall =	dummyConnection.prepareCall("{call "+procedureName+"(?,?)}");
-            procedureCall.setString(one,employeeID);
-            procedureCall.registerOutParameter(two, Types.VARCHAR);
+            procedureCall.setString(1,employeeID);
+            procedureCall.registerOutParameter(2, Types.VARCHAR);
             procedureCall.execute();
-            String result=procedureCall.getString(two);
+            String result=procedureCall.getString(2);
             if(result.equals(nullObject))
             {
             	return null;
@@ -39,6 +38,10 @@ public class AuthenticationOperations implements IAuthenticationOperations
         catch (SQLException throwables)
         {
             return null;
+        }
+        finally
+        {
+            connection.closeConnection();
         }
     }
 }

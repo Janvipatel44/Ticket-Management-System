@@ -1,4 +1,4 @@
-package login;
+package login.Interfaces;
 public interface IAuthenticationOperations
 {
     String getPassword(String employeeID);

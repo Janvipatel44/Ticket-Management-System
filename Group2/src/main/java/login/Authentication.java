@@ -1,5 +1,5 @@
 package login;
-import login.IAuthenticationOperations;
+import login.Interfaces.*;
 import userinterface.IInputOutputHandler;
 public class Authentication implements IAuthentication
 {
