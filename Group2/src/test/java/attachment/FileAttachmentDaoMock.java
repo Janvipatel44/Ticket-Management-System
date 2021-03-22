@@ -1,10 +1,9 @@
 package attachment;
 
 import java.io.InputStream;
+import org.apache.commons.lang3.StringUtils;
 
-import validations.StringValidations;
-
-public class FileAttachmentDaoMock implements IFileAttachmentDao {
+public class FileAttachmentDaoMock implements IAttachmentDao {
 
 	private InputStream inputStream;
 	private String attachmentId;
@@ -18,10 +17,9 @@ public class FileAttachmentDaoMock implements IFileAttachmentDao {
 
 	@Override
 	public InputStream downloadFileAttachment(String attachmentId) throws Exception {
-		if(StringValidations.isStringValid(attachmentId) && attachmentId.trim().equalsIgnoreCase(this.attachmentId)) {
+		if(StringUtils.isNotBlank(attachmentId) && attachmentId.trim().equalsIgnoreCase(this.attachmentId)) {
 			return this.inputStream;
 		}
 		return null;
 	}
-
 }

@@ -2,23 +2,23 @@ package roles;
 
 import java.util.List;
 
-import validations.StringValidations;
+import org.apache.commons.lang3.StringUtils;
 
 public class MenuItemsByRole implements IMenuItemsByRole {	
 	
-	private IRoleManagementDao iRolePersistence;
+	private IRoleManagementDao roleManagementDao;
 
-	public MenuItemsByRole (IRoleManagementDao iRolePersistence) {
-		this.iRolePersistence = iRolePersistence;
+	public MenuItemsByRole (IRoleManagementDao roleManagementDao) {
+		this.roleManagementDao = roleManagementDao;
 	}
 	
 	@Override
 	public List<String>  fetchMenuItemsByRole(String userType) throws Exception {
 		
-		List<String> menuItemsByRole  = null;
+		List<String> menuItemsByRole = null;
 		
-		if (StringValidations.isStringValid(userType)) {
-			menuItemsByRole  = iRolePersistence.accessMenuItemsByRole(userType);
+		if (StringUtils.isNotBlank(userType)) {
+			menuItemsByRole  = roleManagementDao.accessMenuItemsByRole(userType);
 			return menuItemsByRole;
 		}
 		
