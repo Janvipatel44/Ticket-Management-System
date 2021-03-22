@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.group2.userinterface.IInputOutputHandler;
+import userinterface.IInputOutputHandler;
 public class ConnectionManager implements IConnectionManager{
 	
     private static String driverName = "com.mysql.cj.jdbc.Driver";   
@@ -60,7 +60,7 @@ public class ConnectionManager implements IConnectionManager{
 	}
 	public void closeConnection() {
 		// TODO Auto-generated method stub
-			
+			 
 		try {
 			connection.close();
 		} catch (SQLException e) {
