@@ -1,21 +1,21 @@
 package login;
-import login.IDatabaseUserRegistrationOperations;
 import userinterface.IInputOutputHandler;
+import login.Interfaces.*;
 public class Registration implements IRegister
 {
-    private final IDatabaseUserRegistrationOperations userRegistrationOperations;
+    private final IPersistenceUserRegistrationOperations userRegistrationOperations;
     private final IInputOutputHandler inputOutputHandler;
     private final IEncryption encryption;
     private boolean result = false;
 
-    public Registration(IDatabaseUserRegistrationOperations userRegistrationOperations, IInputOutputHandler inputOutputHandler, IEncryption encryption)
+    public Registration(IPersistenceUserRegistrationOperations userRegistrationOperations, IInputOutputHandler inputOutputHandler, IEncryption encryption)
     {
         this.userRegistrationOperations = userRegistrationOperations;
         this.inputOutputHandler = inputOutputHandler;
         this.encryption = encryption;
     }
 
-    public boolean registerUser(User user, String user_password)
+    public boolean registerUser(IParameterizedUser user, String user_password)
     {
         if(userRegistrationOperations.checkDuplicateEmployeeID(user.getEmployeeID()))
         {
@@ -34,12 +34,7 @@ public class Registration implements IRegister
             }
             else
             {
-				System.out.println(checkUpperCaseRule(user_password));
-				System.out.println(checkLowerCaseRule(user_password));
-				System.out.println(checkNumberRule(user_password));
-				System.out.println(checkSpecialCharacterRule(user_password));
-				System.out.println(checkLengthRule(user_password));
-                inputOutputHandler.displayMethod("Error: Password does not match the requirements. \nA password must be at least 8 characters, must contain a special character (@,!,#,$,%,&,*), must be 8 to 100 characters in length, must contain at least one lower case and one upper case letter");
+            	inputOutputHandler.displayMethod("Error: Password does not match the requirements. \nA password must be at least 8 characters, must contain a special character (@,!,#,$,%,&,*), must be 8 to 100 characters in length, must contain at least one lower case and one upper case letter");
                 return result = false;
             }
         }
