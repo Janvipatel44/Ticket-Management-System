@@ -21,7 +21,7 @@ public class RegistrationTest
 	@Test
 	public void registerUserTestUnsuccessfull_Duplicate()
 	{
-		ParameterizedUser user = new ParameterizedUser("112", "Daniel", "Howards", "custom@gmail.com", "End_User");
+		IParameterizedUser user = new ParameterizedUser("112", "Daniel", "Howards", "custom@gmail.com", "End_User");
 		IRegister registration = new Registration(databaseUserMock, inputOutputHandler, encryption);
 		assertFalse("Test failed.", registration.registerUser(user, "Abcd@123"));
 	}
@@ -29,20 +29,20 @@ public class RegistrationTest
 	@Test
 	public void checkPasswordRules()
 	{
-		ParameterizedUser user_one = new ParameterizedUser("114", "Daniel", "Howards", "custom@gmail.com", "End_User");
-		ParameterizedUser user_two = new ParameterizedUser("115", "Daniel", "Howards", "custom@gmail.com", "End_User");
-		ParameterizedUser user_three = new ParameterizedUser("116", "Daniel", "Howards", "custom@gmail.com", "End_User");
+		IParameterizedUser user_one = new ParameterizedUser("114", "Daniel", "Howards", "custom@gmail.com", "End_User");
+		IParameterizedUser user_two = new ParameterizedUser("115", "Daniel", "Howards", "custom@gmail.com", "End_User");
+		IParameterizedUser user_three = new ParameterizedUser("116", "Daniel", "Howards", "custom@gmail.com", "End_User");
 		IRegister registration = new Registration(databaseUserMock, inputOutputHandler, encryption);
 
-		assertFalse("Test failed.", registration.registerUser(user_two, "abcd@123"));
+		assertFalse("Test failed.", registration.registerUser(user_one, "abcd@123"));
 		
-		assertFalse("Test failed.", registration.registerUser(user_three, "ABCD@123"));
+		assertFalse("Test failed.", registration.registerUser(user_one, "ABCD@123"));
 		
-		assertFalse("Test failed.", registration.registerUser(user_three, "ABCD@abcd"));
+		assertFalse("Test failed.", registration.registerUser(user_one, "ABCD@abcd"));
 		
-		assertFalse("Test failed.", registration.registerUser(user_three, "ADa1@"));
+		assertFalse("Test failed.", registration.registerUser(user_one, "ADa1@"));
 		
-		assertFalse("Test failed.", registration.registerUser(user_three, "ADa112349"));
+		assertFalse("Test failed.", registration.registerUser(user_one, "ADa112349"));
 
 	}
 }

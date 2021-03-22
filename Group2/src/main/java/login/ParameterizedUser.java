@@ -1,5 +1,8 @@
 package login;
-public class ParameterizedUser {
+
+import login.Interfaces.IParameterizedUser;
+
+public class ParameterizedUser implements IParameterizedUser {
 
 	private String employeeID;
 	private String firstName;
