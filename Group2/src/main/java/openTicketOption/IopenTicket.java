@@ -2,5 +2,6 @@ package openTicketOption;
 
 public interface IopenTicket 
 {
-	public void openTicket(String ticketID);
+	public void openticket(String ticketId);
+		
 }

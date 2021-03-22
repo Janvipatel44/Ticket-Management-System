@@ -4,50 +4,43 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
 public class displayTicket implements IdisplayTicket
 {
-	static Map<String,ArrayList<String>> ticketData = new HashMap<String,ArrayList<String>>();
-	ArrayList <String> ticketsData = new ArrayList <String>();
-	//Display searched tickets to a user
-	public void displaySearchedOutput(ResultSet resultSet)
+	
+	public void printTicketsDetails(Map<String,ArrayList<String>> ticketData)
 	{ 
-		
-		try {
-			int i=0;
-			while (resultSet.next()) 
-			{
-				ticketData.put(resultSet.getString("ticketId"), new ArrayList<String>());
-				ticketData.get(resultSet.getString("ticketId")).add("description:"+resultSet.getString("description"));
-				ticketData.get(resultSet.getString("ticketId")).add("startDate:"+resultSet.getString("startDate"));
-				ticketData.get(resultSet.getString("ticketId")).add("endDate:"+resultSet.getString("endDate"));
-				ticketData.get(resultSet.getString("ticketId")).add("reporterId:"+resultSet.getString("reporterId"));
-				ticketData.get(resultSet.getString("ticketId")).add("employeeId:"+resultSet.getString("employeeId"));
-				ticketData.get(resultSet.getString("ticketId")).add("assigneeName:"+resultSet.getString("assigneeName"));
-				ticketData.get(resultSet.getString("ticketId")).add("ticketType:"+resultSet.getString("ticketType"));
-				ticketData.get(resultSet.getString("ticketId")).add("priority:"+resultSet.getString("priority"));
-				ticketData.get(resultSet.getString("ticketId")).add("urgency:"+resultSet.getString("urgency"));
-				ticketData.get(resultSet.getString("ticketId")).add("impact:"+resultSet.getString("impact"));
-				
-			}
-			System.out.println(ticketData);
-		} 
-		catch (SQLException e)
+		System.out.println("..............TICKET..............");
+		for(String key : ticketData.keySet()) 
 		{
-			e.printStackTrace();
+			System.out.println("Ticket ID:" + key);
+			System.out.println("................................");
+			for(int i=0 ; i < ticketData.get(key).size() ; i++)
+			{
+				System.out.println(ticketData.get(key).get(i));
+			}
+			System.out.println("................................ \n");
 		}
 	}
 	
-	public void openTicket(String ticketID)
+	
+	
+    public void printSignleTicketDetails(List<String> singleTicketData, List<String> comments)
 	{
-		System.out.println("Details for Ticket: " + ticketID);
-		ticketsData = ticketData.get(ticketID);
-		for(int i = 0; i < ticketsData.size(); i++)
+		
+		for(int i = 0; i < singleTicketData.size(); i++)
 		{
-			System.out.println(ticketsData.get(i));
+			System.out.println(" "+singleTicketData.get(i));
+		}
+		System.out.println(" "+ "Comments...");
+		for(int i = 0; i < comments.size() ; i++)
+		{
+			System.out.println("   "+comments.get(i));
 		}
 	}
+
 }
 	

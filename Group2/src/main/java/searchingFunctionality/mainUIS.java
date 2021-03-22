@@ -2,20 +2,33 @@ package searchingFunctionality;
 
 import java.util.Scanner;
 
+import StoreTicketData.IstoreTicketData;
+import StoreTicketData.storeTicketData;
+import database.ConnectionManager;
+import database.IConnectionManager;
+import displayTickets.IdisplayTicket;
+import displayTickets.displayTicket;
 import openTicketOption.IopenTicket;
 import openTicketOption.openTicket;
 
 public class mainUIS 
 {
 	static Scanner sc=new Scanner(System.in);
+	static String ConfigurationFile = "ConfigurationFile";
+	static IstoreTicketData storeTicketData = new storeTicketData();
+	static IdisplayTicket displayUser = new displayTicket();
+	static IConnectionManager ConnectionMng = new ConnectionManager(ConfigurationFile);
+
 	public static void main(String args[]) throws ClassNotFoundException 
 	{
 		int choice=0;
 		String searchInput=null;
 		
 		
+		
 		//searchTicket class object
-		IsearchTicket obj=new searchTicket();
+		IsearchTicket obj=new searchTicket(storeTicketData,displayUser,ConnectionMng);
+		
 		
 		//Available options for user 
 		System.out.println("1. Ticket ID");
@@ -79,7 +92,7 @@ public class mainUIS
 	private static void open() {
 		int choice=0;
 		String ticketID=null;
-		IopenTicket openticket = new openTicket();
+		IopenTicket openticket = new openTicket(storeTicketData,displayUser,ConnectionMng);
 		
 		System.out.println("1. open Ticket");
 		System.out.println("2. exit");
@@ -89,9 +102,13 @@ public class mainUIS
 			System.out.println("Choose Operation you want to perform");
 			choice=sc.nextInt();
 			sc.nextLine();
-			System.out.println("Enter Ticket ID:");
-			ticketID = sc.nextLine();
-			openticket.openTicket(ticketID);
+			if(choice == 1)
+			{
+				System.out.println("Enter Ticket ID:");
+				ticketID = sc.nextLine();
+				openticket.openticket(ticketID) ;
+			}
+			
 		}
 		while(choice==1);
 	}
