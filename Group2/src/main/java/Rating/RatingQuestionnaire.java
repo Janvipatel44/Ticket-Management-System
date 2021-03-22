@@ -17,26 +17,6 @@ public class RatingQuestionnaire implements IRatingQuestionnaire
         this.userRecommendationRating = userRecommendationRating;
     }
 
-    public int getUserSatisfactionRating()
-    {
-        return userSatisfactionRating;
-    }
-
-    public int getUserFeedbackRating()
-    {
-        return userFeedbackRating;
-    }
-
-    public int getUserExperienceRating()
-    {
-        return userExperienceRating;
-    }
-
-    public int getUserRecommendationRating()
-    {
-        return userRecommendationRating;
-    }
-
     public boolean checkRatingQuestionnaire()
     {
         int highestRating = 25;
