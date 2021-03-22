@@ -12,8 +12,8 @@ public class FileAttachmentTest {
 
 	private final String NULL_OBJECT = null;
 	private final String EMPTY = "";
-	private final String SOURCE_PATH = "src\\test\\java\\attachment\\source.txt";
-	private final String DESTINATION_PATH = "src\\test\\java\\attachment\\destination.txt";
+	private final String SOURCE_PATH = "src\\test\\java\\attachment\\sourceFile.txt";
+	private final String DESTINATION_PATH = "src\\test\\java\\attachment\\destinationFile.txt";
 	
 	private IAttachmentDao fileAttachmentDao;
 	private IAttachment attachment;
