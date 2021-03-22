@@ -10,7 +10,7 @@ import com.mysql.cj.jdbc.Blob;
 
 import database.IConnectionManager;
 
-public class FileAttachmentDao implements IFileAttachmentDao {
+public class FileAttachmentDao implements IAttachmentDao {
 
 	private final String uploadAttachment = "upload_attachment";
 	private final String downloadAttachment = "download_attachment";
@@ -22,6 +22,11 @@ public class FileAttachmentDao implements IFileAttachmentDao {
 	
 	@Override
 	public boolean uploadFileAttachment(String attachmentId, InputStream inputStream) throws Exception{
+		
+		if(connectionManager == null) {
+			throw new Exception("Error while creating connection to DB. Please contact admin.");	
+		}
+		
 		Connection connection = connectionManager.establishConnection();
 		CallableStatement procedureCall;
 		try {
@@ -42,6 +47,11 @@ public class FileAttachmentDao implements IFileAttachmentDao {
 	
 	@Override
 	public InputStream downloadFileAttachment(String attachmentId) throws Exception {
+		
+		if(connectionManager == null) {
+			throw new Exception("Error while creating connection to DB. Please contact admin.");	
+		}
+		
 		InputStream inputStream = null;
 		Connection connection = connectionManager.establishConnection();
 		CallableStatement procedureCall;
