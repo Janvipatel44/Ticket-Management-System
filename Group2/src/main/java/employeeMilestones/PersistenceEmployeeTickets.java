@@ -1,28 +1,45 @@
 package employeeMilestones;
 import database.IConnectionManager;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
-public class PersistenceEmployeeTickets
+public class PersistenceEmployeeTickets implements  IPersistenceEmployeeTickets
 {
-    IConnectionManager connection;
+    private final IConnectionManager connection;
     PersistenceEmployeeTickets(IConnectionManager connection)
     {
         this.connection = connection;
     }
 
-    List<IEmployeeTicket> getEmployeeTickets(String employeeID)
+    public List<IEmployeeTicket> getEmployeeTickets(String employeeID)
     {
-        Connection dummyConnection=null;
+        String ticketID;
+        String customerID;
+        Date startDate;
+        Date endDate;
+        int rating;
+        List<IEmployeeTicket> employeeTicketList = new ArrayList<>();
+
+        Connection dummyConnection;
         CallableStatement procedureCall;
         try {
             String procedureName = "ticketsByEmployee";
             dummyConnection = connection.establishConnection();
             procedureCall = dummyConnection.prepareCall("{call "+procedureName+"(?)}");
             procedureCall.setString(1, employeeID);
+            ResultSet resultSet = procedureCall.executeQuery();
+            while(resultSet.next())
+            {
+                ticketID = resultSet.getString("tiketId");
+                customerID = resultSet.getString("customerID");
+                startDate = resultSet.getDate("startDate");
+                endDate = resultSet.getDate("endDate");
+                rating = resultSet.getInt("rating");
+                IEmployeeTicket employeeTicket = new EmployeeTicket(ticketID, employeeID, customerID, startDate, endDate, rating);
+                employeeTicketList.add(employeeTicket);
+            }
 
-            return null;
+            return employeeTicketList;
         }
         catch (SQLException throwables)
         {

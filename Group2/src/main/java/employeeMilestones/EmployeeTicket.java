@@ -1,6 +1,6 @@
 package employeeMilestones;
 import java.sql.Date;
-public class EmployeeTicket
+public class EmployeeTicket implements IEmployeeTicket
 {
     private String ticketID;
     private String employeeID;
