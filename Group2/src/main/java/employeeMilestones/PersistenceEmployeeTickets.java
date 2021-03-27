@@ -1,24 +1,29 @@
 package employeeMilestones;
+import database.ConnectionManager;
 import database.IConnectionManager;
+import employeeMilestones.abstractFactory.*;
+import employeeMilestones.interfaces.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-public class PersistenceEmployeeTickets implements  IPersistenceEmployeeTickets
+public class PersistenceEmployeeTickets implements IPersistenceEmployeeTickets
 {
-    private final IConnectionManager connection;
-    PersistenceEmployeeTickets(IConnectionManager connection)
-    {
-        this.connection = connection;
-    }
+    private final EmployeeMilestoneFactory employeeMilestoneFactory = new EmployeeMilestoneFactoryImplementation();
+    private final String configurationFile = "ConfigurationFile.txt";
+    private final IConnectionManager connection = new ConnectionManager(configurationFile);
 
-    public List<IEmployeeTicket> getEmployeeTickets(String employeeID)
+    public List<IParameterizedEmployeeTicket> getEmployeeTickets(String employeeID)
     {
         String ticketID;
         String customerID;
+        String ticketType;
         Date startDate;
         Date endDate;
         int rating;
-        List<IEmployeeTicket> employeeTicketList = new ArrayList<>();
+        int priority;
+        int impact;
+        int urgency;
+        List<IParameterizedEmployeeTicket> employeeTicketList = new ArrayList<>();
 
         Connection dummyConnection;
         CallableStatement procedureCall;
@@ -35,7 +40,11 @@ public class PersistenceEmployeeTickets implements  IPersistenceEmployeeTickets
                 startDate = resultSet.getDate("startDate");
                 endDate = resultSet.getDate("endDate");
                 rating = resultSet.getInt("rating");
-                IEmployeeTicket employeeTicket = new EmployeeTicket(ticketID, employeeID, customerID, startDate, endDate, rating);
+                priority = resultSet.getInt("priority");
+                impact = resultSet.getInt("impact");
+                urgency = resultSet.getInt("urgency");
+                ticketType = resultSet.getString("ticketType");
+                IParameterizedEmployeeTicket employeeTicket = employeeMilestoneFactory.getParameterizedEmployeeTicket(ticketID, employeeID, customerID, startDate, endDate, rating, priority, impact, urgency, ticketType);
                 employeeTicketList.add(employeeTicket);
             }
 
