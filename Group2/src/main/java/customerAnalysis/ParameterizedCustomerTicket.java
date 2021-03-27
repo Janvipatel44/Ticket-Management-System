@@ -4,6 +4,7 @@ import java.sql.Date;
 public class ParameterizedCustomerTicket implements IParameterizedCustomerTicket
 {
     private final String ticketID;
+    private final String customerID;
     private final Date startDate;
     private final Date endDate;
     private final String ticketType;
@@ -15,9 +16,10 @@ public class ParameterizedCustomerTicket implements IParameterizedCustomerTicket
     private final String employeeID;
     private final int rating;
 
-    public ParameterizedCustomerTicket(String ticketID, Date startDate, Date endDate, String ticketType, int priority, int urgency, int impact, String ticketLevel, String creatorID, String employeeID, int rating)
+    public ParameterizedCustomerTicket(String ticketID, String customerID, Date startDate, Date endDate, String ticketType, int priority, int urgency, int impact, String ticketLevel, String creatorID, String employeeID, int rating)
     {
         this.ticketID = ticketID;
+        this.customerID = customerID;
         this.startDate = startDate;
         this.endDate = endDate;
         this.ticketType = ticketType;
@@ -33,6 +35,11 @@ public class ParameterizedCustomerTicket implements IParameterizedCustomerTicket
     public String getTicketID()
     {
         return ticketID;
+    }
+
+    public String getCustomerID()
+    {
+        return customerID;
     }
 
     public Date getStartDate()

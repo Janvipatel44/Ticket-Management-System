@@ -47,7 +47,7 @@ public class PersistenceCustomer implements IPersistenceCustomer
                 creatorID = resultSet.getString("creatorID");
                 employeeID = resultSet.getString("employeeId");
                 rating = resultSet.getInt("rating");
-                IParameterizedCustomerTicket ticket = customerAnalysisFactory.getParameterizedCustomerTicket(ticketID, startDate, endDate, ticketType, priority, urgency, impact, ticketLevel, creatorID, employeeID, rating);
+                IParameterizedCustomerTicket ticket = customerAnalysisFactory.getParameterizedCustomerTicket(ticketID, customerID, startDate, endDate, ticketType, priority, urgency, impact, ticketLevel, creatorID, employeeID, rating);
                 tickets.add(ticket);
             }
             return tickets;

@@ -3,6 +3,7 @@ import java.sql.Date;
 public interface IParameterizedCustomerTicket
 {
     String getTicketID();
+    String getCustomerID();
     Date getStartDate();
     Date getEndDate();
     String getTicketType();

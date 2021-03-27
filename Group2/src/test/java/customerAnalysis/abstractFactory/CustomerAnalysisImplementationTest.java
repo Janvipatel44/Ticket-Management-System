@@ -1,7 +1,7 @@
 package customerAnalysis.abstractFactory;
 import customerAnalysis.Interfaces.IPersistenceCustomer;
 import customerAnalysis.PersistenceCustomerMock;
-public class CustomerAnalysisImplementation
+public class CustomerAnalysisImplementationTest extends CustomerAnalysisFactoryTest
 {
     public IPersistenceCustomer getPersistenceCustomerMock()
     {

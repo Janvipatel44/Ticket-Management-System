@@ -167,7 +167,7 @@ public class ComputeCustomerProperties implements IComputeCustomerProperties
 
         for (IParameterizedCustomerTicket tempTicket : tickets)
         {
-            total = total + tempTicket.getPriority();
+            total = total + tempTicket.getRating();
         }
 
         averageRating = (float)total/tickets.size();

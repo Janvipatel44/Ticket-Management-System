@@ -15,9 +15,9 @@ public class CustomerAnalysisFactoryImplementation extends CustomerAnalysisFacto
         return new CustomerAnalysis();
     }
 
-    public IParameterizedCustomerTicket getParameterizedCustomerTicket(String ticketID, Date startDate, Date endDate, String ticketType, int priority, int urgency, int impact, String ticketLevel, String creatorID, String employeeID, int rating)
+    public IParameterizedCustomerTicket getParameterizedCustomerTicket(String ticketID, String customerID, Date startDate, Date endDate, String ticketType, int priority, int urgency, int impact, String ticketLevel, String creatorID, String employeeID, int rating)
     {
-        return new ParameterizedCustomerTicket(ticketID, startDate, endDate, ticketType, priority, urgency, impact, ticketLevel, creatorID, employeeID, rating);
+        return new ParameterizedCustomerTicket(ticketID, customerID, startDate, endDate, ticketType, priority, urgency, impact, ticketLevel, creatorID, employeeID, rating);
     }
 
     public IPersistenceCustomer getPersistenceCustomer()
