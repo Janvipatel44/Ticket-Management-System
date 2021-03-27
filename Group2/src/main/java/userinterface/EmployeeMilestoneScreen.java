@@ -2,26 +2,35 @@ package userinterface;
 import employeeMilestones.abstractFactory.*;
 import employeeMilestones.interfaces.IEmployeeMilestone;
 import java.util.Map;
-
 public class EmployeeMilestoneScreen implements IEmployeeMilestoneScreen
 {
-    InputOutputHandler inputOutputHandler;
-    EmployeeMilestoneFactory employeeMilestoneFactory = new EmployeeMilestoneFactoryImplementation();
-    Map<String, String> output;
+    private final IInputOutputHandler inputOutputHandler;
+    private final EmployeeMilestoneFactory employeeMilestoneFactory = new EmployeeMilestoneFactoryImplementation();
 
-    public  EmployeeMilestoneScreen(InputOutputHandler inputOutputHandler)
+    public  EmployeeMilestoneScreen(IInputOutputHandler inputOutputHandler)
     {
         this.inputOutputHandler = inputOutputHandler;
     }
-    public void displayEmployeeMileStoneScreen()
-    {
+    public void displayEmployeeMileStoneScreen() {
+        String employeeID;
+        Map<String, String> output;
+
         inputOutputHandler.displayMethod("Enter employee ID:\n");
-        String employeeID = inputOutputHandler.input();
+        employeeID = inputOutputHandler.input();
         IEmployeeMilestone employeeMilestone = employeeMilestoneFactory.getEmployeeMilestone();
         output = employeeMilestone.getEmployeeMilestone(employeeID);
-        for(Map.Entry<String, String> outputRecord : output.entrySet())
+
+        if (output == null)
         {
-            inputOutputHandler.displayMethod(outputRecord.getKey() +"\n"+outputRecord.getValue()+"\n");
+            inputOutputHandler.displayMethod("No data found for " + employeeID+"\n");
+        }
+        else
+        {
+            for(Map.Entry<String, String> outputRecord : output.entrySet())
+            {
+                inputOutputHandler.displayMethod(outputRecord.getKey() +"\n"+outputRecord.getValue()+"\n");
+            }
+            inputOutputHandler.displayMethod("\n");
         }
     }
 }
