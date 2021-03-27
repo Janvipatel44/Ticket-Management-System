@@ -1,5 +1,6 @@
 package customerAnalysis.Interfaces;
+import java.util.Map;
 public interface ICustomerAnalysis
 {
-    String getCustomerAnalysis(String customerID);
+    Map<String, String> getCustomerAnalysis(String customerID);
 }

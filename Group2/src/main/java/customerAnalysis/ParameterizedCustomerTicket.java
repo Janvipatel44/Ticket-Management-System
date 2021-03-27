@@ -1,22 +1,21 @@
 package customerAnalysis;
-import customerAnalysis.Interfaces.IParameterizedCustomerTicket;
-
+import customerAnalysis.Interfaces.*;
 import java.sql.Date;
 public class ParameterizedCustomerTicket implements IParameterizedCustomerTicket
 {
-    private String ticketID;
-    private Date startDate;
-    private Date endDate;
-    private String ticketType;
-    private int priority;
-    private int urgency;
-    private int impact;
-    private String ticketLevel;
-    private String creatorID;
-    private String employeeID;
-    private int rating;
+    private final String ticketID;
+    private final Date startDate;
+    private final Date endDate;
+    private final String ticketType;
+    private final int priority;
+    private final int urgency;
+    private final int impact;
+    private final String ticketLevel;
+    private final String creatorID;
+    private final String employeeID;
+    private final int rating;
 
-    ParameterizedCustomerTicket(String ticketID, Date startDate, Date endDate, String ticketType, int priority, int urgency, int impact, String ticketLevel, String creatorID, String employeeID, int rating)
+    public ParameterizedCustomerTicket(String ticketID, Date startDate, Date endDate, String ticketType, int priority, int urgency, int impact, String ticketLevel, String creatorID, String employeeID, int rating)
     {
         this.ticketID = ticketID;
         this.startDate = startDate;

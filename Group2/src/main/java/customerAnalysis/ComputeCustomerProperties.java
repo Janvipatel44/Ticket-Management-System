@@ -1,19 +1,15 @@
 package customerAnalysis;
-import customerAnalysis.Interfaces.IComputeCustomerProperties;
-import customerAnalysis.Interfaces.IParameterizedCustomerTicket;
-
+import customerAnalysis.Interfaces.*;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 public class ComputeCustomerProperties implements IComputeCustomerProperties
 {
-    private String customerID;
     private List<IParameterizedCustomerTicket> tickets;
 
-    ComputeCustomerProperties(String customerID, List<IParameterizedCustomerTicket> tickets)
+    public ComputeCustomerProperties(List<IParameterizedCustomerTicket> tickets)
     {
-        this.customerID = customerID;
         this.tickets = tickets;
     }
 
@@ -67,7 +63,7 @@ public class ComputeCustomerProperties implements IComputeCustomerProperties
         {
             if (ticketTypeCounter.containsKey(tempTicket.getTicketType())) {
                 int incrementer = ticketTypeCounter.get(tempTicket.getTicketType());
-                ticketTypeCounter.replace(tempTicket.getTicketType(), incrementer + 1);
+                ticketTypeCounter.put(tempTicket.getTicketType(), incrementer + 1);
             }
             else
             {
@@ -86,7 +82,7 @@ public class ComputeCustomerProperties implements IComputeCustomerProperties
         {
             if (ticketCreatorCounter.containsKey(tempTicket.getCreatorID())) {
                 int incrementer = ticketCreatorCounter.get(tempTicket.getCreatorID());
-                ticketCreatorCounter.replace(tempTicket.getCreatorID(), incrementer + 1);
+                ticketCreatorCounter.put(tempTicket.getCreatorID(), incrementer + 1);
             }
             else
             {
@@ -105,7 +101,7 @@ public class ComputeCustomerProperties implements IComputeCustomerProperties
         {
             if (ticketLevelCounter.containsKey(tempTicket.getTicketLevel())) {
                 int incrementer = ticketLevelCounter.get(tempTicket.getTicketLevel());
-                ticketLevelCounter.replace(tempTicket.getTicketLevel(), incrementer + 1);
+                ticketLevelCounter.put(tempTicket.getTicketLevel(), incrementer + 1);
             }
             else
             {
@@ -154,7 +150,7 @@ public class ComputeCustomerProperties implements IComputeCustomerProperties
             if (customerTicketAssigneeStatistics.containsKey(tempTicket.getEmployeeID()))
             {
                 int incrementer = customerTicketAssigneeStatistics.get(tempTicket.getEmployeeID());
-                customerTicketAssigneeStatistics.replace(tempTicket.getEmployeeID(), incrementer + 1);
+                customerTicketAssigneeStatistics.put(tempTicket.getEmployeeID(), incrementer + 1);
             }
             else
             {

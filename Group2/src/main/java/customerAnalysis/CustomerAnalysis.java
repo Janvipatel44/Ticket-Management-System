@@ -1,46 +1,66 @@
 package customerAnalysis;
-import customerAnalysis.Interfaces.IComputeCustomerProperties;
-import customerAnalysis.Interfaces.ICustomerAnalysis;
-import customerAnalysis.Interfaces.IParameterizedCustomerTicket;
-import customerAnalysis.Interfaces.IPersistenceCustomer;
+import customerAnalysis.Interfaces.*;
+import customerAnalysis.abstractFactory.CustomerAnalysisFactory;
+import customerAnalysis.abstractFactory.CustomerAnalysisFactoryImplementation;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 public class CustomerAnalysis implements ICustomerAnalysis
 {
-    IPersistenceCustomer persistenceCustomer = new PersistenceCustomer();
-    List<IParameterizedCustomerTicket> tickets;
-    IComputeCustomerProperties computeCustomerProperties;
+    private CustomerAnalysisFactory customerAnalysisFactory = new CustomerAnalysisFactoryImplementation();
+    private IPersistenceCustomer persistenceCustomer = customerAnalysisFactory.getPersistenceCustomer();
+    private List<IParameterizedCustomerTicket> tickets;
+    private IComputeCustomerProperties computeCustomerProperties;
 
-    public String getCustomerAnalysis(String customerID)
+    public Map<String, String> getCustomerAnalysis(String customerID)
     {
-        String customerAnalysis = customerID + "\n";
-        String failureResult = "No data found for "+ customerID;
+        Map<String, String> customerAnalysis = new HashMap<>();
         tickets = persistenceCustomer.getTicketsOfCustomer(customerID);
-        Map<String, Integer> assigneeStatistics = new HashMap<>();
-        String ticketRating[] = {"Good", "Bad"};
+        Map<String, Integer> assigneeStatistics;
+        String[] ticketRating = {"Good", "Bad"};
+        String modeTicketType;
+        String modeCreatedBy;
+        String modeTicketLevel;
+        String assigneeStatisticsRecords = "";
+        float averageResponseTime;
         float ratingThreshold = 3.5f;
+        float priority;
+        float impact;
+        float urgency;
 
         if(tickets.size() == 0 || tickets == null)
         {
-            return failureResult;
+            return null;
         }
-        computeCustomerProperties = new ComputeCustomerProperties(customerID, tickets);
-        customerAnalysis = customerAnalysis.concat("Average tickets priority : "+computeCustomerProperties.getMeanPriority()+"\n");
-        customerAnalysis = customerAnalysis.concat("Average tickets urgency : "+computeCustomerProperties.getMeanUrgency()+"\n");
-        customerAnalysis = customerAnalysis.concat("Average tickets impact : "+computeCustomerProperties.getMeanImpact()+"\n");
-        customerAnalysis = customerAnalysis.concat("Most tickets of type : "+computeCustomerProperties.getModeTicketType()+"\n");
-        customerAnalysis = customerAnalysis.concat("Most tickets created by : "+computeCustomerProperties.getModeCreator()+"\n");
-        customerAnalysis = customerAnalysis.concat("Most tickets of level : "+computeCustomerProperties.getModeTicketLevel()+"\n");
-        customerAnalysis = customerAnalysis.concat("Average tickets priority : "+computeCustomerProperties.getMeanPriority()+"\n");
-        customerAnalysis = customerAnalysis.concat("Average respinse time (in days) : "+computeCustomerProperties.getAverageResolutionDays()+"\n");
-        customerAnalysis = customerAnalysis.concat("Tickets assignee statistics : \n");
-        assigneeStatistics = computeCustomerProperties.getCustomerTicketAssigneeStatistics();
 
+        computeCustomerProperties = new ComputeCustomerProperties(tickets);
+
+        priority = computeCustomerProperties.getMeanPriority();
+        customerAnalysis.put("Average tickets priority : ", Float.toString(priority));
+
+        urgency = computeCustomerProperties.getMeanUrgency();
+        customerAnalysis.put("Average tickets urgency : ", Float.toString(urgency));
+
+        impact = computeCustomerProperties.getMeanImpact();
+        customerAnalysis.put("Average tickets impact : ", Float.toString(impact));
+
+        modeTicketType = computeCustomerProperties.getModeTicketType();
+        customerAnalysis.put("Most tickets of type : ", modeTicketType);
+
+        modeCreatedBy = computeCustomerProperties.getModeCreator();
+        customerAnalysis.put("Most tickets created by : ", modeCreatedBy);
+
+        modeTicketLevel = computeCustomerProperties.getModeTicketLevel();
+        customerAnalysis.put("Most tickets of level : ", modeTicketLevel);
+
+        averageResponseTime = computeCustomerProperties.getAverageResolutionDays();
+        customerAnalysis.put("Average response time (in days) : ", Float.toString(averageResponseTime));
+
+        assigneeStatistics = computeCustomerProperties.getCustomerTicketAssigneeStatistics();
         if(assigneeStatistics.isEmpty())
         {
-            customerAnalysis = customerAnalysis.concat("No assignee details found.\n");
+            customerAnalysis.put("Tickets assignee statistics : \n", "No assignee details found.\n");
         }
         else
         {
@@ -48,17 +68,18 @@ public class CustomerAnalysis implements ICustomerAnalysis
             {
                 int value = assigneeStats.getValue();
                 String valueString = Integer.toString(value);
-                customerAnalysis = customerAnalysis.concat("\t"+assigneeStats.getKey()+" : "+valueString+"\n");
+                assigneeStatisticsRecords = assigneeStatisticsRecords.concat("\t"+assigneeStats.getKey()+" : "+valueString+"\n");
             }
+            customerAnalysis.put("Tickets assignee statistics : \n", assigneeStatisticsRecords);
         }
 
         if(computeCustomerProperties.getMeanRating() >= ratingThreshold)
         {
-            customerAnalysis = customerAnalysis.concat("Overall user rating : "+ticketRating[0]+"\n");
+            customerAnalysis.put("Overall user rating : ", ticketRating[0]+"\n");
         }
         else
         {
-            customerAnalysis = customerAnalysis.concat("Overall user rating : "+ticketRating[1]+"\n");
+            customerAnalysis.put("Overall user rating : ", ticketRating[1]+"\n");
         }
 
         return customerAnalysis;

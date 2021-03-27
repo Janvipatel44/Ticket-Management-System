@@ -1,18 +1,17 @@
 package customerAnalysis;
-import customerAnalysis.Interfaces.IParameterizedCustomerTicket;
-import customerAnalysis.Interfaces.IPersistenceCustomer;
-import database.ConnectionManager;
-import database.IConnectionManager;
-
+import customerAnalysis.Interfaces.*;
+import customerAnalysis.abstractFactory.*;
+import database.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 public class PersistenceCustomer implements IPersistenceCustomer
 {
-    private String configurationFile = "ConfigurationFile.txt";
-    IConnectionManager connection = new ConnectionManager(configurationFile);
+    private final CustomerAnalysisFactory customerAnalysisFactory = new CustomerAnalysisFactoryImplementation();
+    private final String configurationFile = "ConfigurationFile.txt";
+    private final IConnectionManager connection = new ConnectionManager(configurationFile);
 
-    public List getTicketsOfCustomer(String customerID)
+    public List<IParameterizedCustomerTicket> getTicketsOfCustomer(String customerID)
     {
         List<IParameterizedCustomerTicket> tickets = new ArrayList<>();
         String ticketID;
@@ -26,7 +25,7 @@ public class PersistenceCustomer implements IPersistenceCustomer
         String creatorID;
         String employeeID;
         int rating;
-        Connection dummyConnection=null;
+        Connection dummyConnection;
         CallableStatement procedureCall;
 
         try {
@@ -48,12 +47,12 @@ public class PersistenceCustomer implements IPersistenceCustomer
                 creatorID = resultSet.getString("creatorID");
                 employeeID = resultSet.getString("employeeId");
                 rating = resultSet.getInt("rating");
-                IParameterizedCustomerTicket ticket = new ParameterizedCustomerTicket(ticketID, startDate, endDate, ticketType, priority, urgency, impact, ticketLevel, creatorID, employeeID, rating);
+                IParameterizedCustomerTicket ticket = customerAnalysisFactory.getParameterizedCustomerTicket(ticketID, startDate, endDate, ticketType, priority, urgency, impact, ticketLevel, creatorID, employeeID, rating);
                 tickets.add(ticket);
             }
             return tickets;
         }
-        catch (SQLException throwables)
+        catch (SQLException throwable)
         {
             return null;
         }
