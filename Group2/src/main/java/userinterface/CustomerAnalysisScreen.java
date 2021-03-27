@@ -5,12 +5,14 @@ import customerAnalysis.abstractFactory.CustomerAnalysisFactoryImplementation;
 import java.util.Map;
 public class CustomerAnalysisScreen implements ICustomerAnalysisScreen
 {
-    CustomerAnalysisFactory customerAnalysisFactory = new CustomerAnalysisFactoryImplementation();
-    IInputOutputHandler inputOutputHandler;
+    private final CustomerAnalysisFactory customerAnalysisFactory = new CustomerAnalysisFactoryImplementation();
+    private final IInputOutputHandler inputOutputHandler;
+
     public CustomerAnalysisScreen(IInputOutputHandler inputOutputHandler)
     {
         this.inputOutputHandler = inputOutputHandler;
     }
+
     public void displayCustomerAnalysisScreen()
     {
         String customerID;
@@ -29,8 +31,9 @@ public class CustomerAnalysisScreen implements ICustomerAnalysisScreen
         {
             for(Map.Entry<String, String> outputRecord : outputResult.entrySet())
             {
-                inputOutputHandler.displayMethod(outputRecord.getKey()+"\n"+outputRecord.getValue()+"\n\n");
+                inputOutputHandler.displayMethod(outputRecord.getKey()+"\n"+outputRecord.getValue()+"\n");
             }
+            inputOutputHandler.displayMethod("\n");
         }
     }
 }
