@@ -14,10 +14,11 @@ public class EmployeeMilestoneScreen implements IEmployeeMilestoneScreen
     public void displayEmployeeMileStoneScreen() {
         String employeeID;
         Map<String, String> output;
+        IEmployeeMilestone employeeMilestone;
 
         inputOutputHandler.displayMethod("Enter employee ID:\n");
         employeeID = inputOutputHandler.input();
-        IEmployeeMilestone employeeMilestone = employeeMilestoneFactory.getEmployeeMilestone();
+        employeeMilestone = employeeMilestoneFactory.getEmployeeMilestone();
         output = employeeMilestone.getEmployeeMilestone(employeeID);
 
         if (output == null)
