@@ -2,7 +2,6 @@ package userinterface;
 public class LoginScreen implements ILoginScreen
 {
     private final IInputOutputHandler inputOutputHandler;
-
     LoginScreen(IInputOutputHandler inputOutputHandler)
     {
         this.inputOutputHandler = inputOutputHandler;

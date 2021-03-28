@@ -1,9 +1,6 @@
 package userinterface;
-
 import java.util.Scanner;
-
 import validations.StringValidations;
-
 public class InputOutputHandler implements IInputOutputHandler {
 
 	public void displayMethod(String printMessage) {
