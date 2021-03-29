@@ -4,35 +4,34 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.text.ParseException;
-import java.util.ArrayList;
-
-import com.mysql.cj.protocol.Resultset;
+import java.util.HashMap;
 
 import database.ConnectionManager;
 import database.IConnectionManager;
 
-public class EmployeeDetailsDB implements IEmployeeDetailsDB {
+public class EmployeePerformanceDB implements IEmployeePerformanceDB {
 
 	private Connection connection;
-	private String ConfigurationFile = "ConfigurationFile.txt";
+	private String ConfigurationFile = "ConfigurationFile.txt"; 
  
 	IConnectionManager IConnectionMng = new ConnectionManager(ConfigurationFile);
-	IGenerateEfficiencyReport efficiencyReport = new GenerateEfficiencyReport();
-    EmployeeEfficiencyCalculation employeeEfficiency = new EmployeeEfficiencyCalculation();
+	EmployeeEfficiencyCalculator employeeEfficiency;
+	EmployeeProductivityCalculator employeeProductivity;
+	
+	private IInputEmployeeDetails employeeDetails = null;
 
-	private final IInputEmployeeDetails employeeDetails;
-
-	public EmployeeDetailsDB(IInputEmployeeDetails employeeDetails)
+	public EmployeePerformanceDB(IInputEmployeeDetails employeeDetails)
     {
         this.employeeDetails = employeeDetails;
     }
 	
-	public boolean ticketCounts()
+	IDisplayEmployeePerformance displayEmployeePerformance;
+
+	public boolean getticketCountsDB() throws ParseException
 	{
 		connection = IConnectionMng.establishConnection();
-        boolean success=false;
+        boolean success = false;
         boolean hasResult = false;
         ResultSet resultset = null;
 
@@ -43,49 +42,87 @@ public class EmployeeDetailsDB implements IEmployeeDetailsDB {
             statement.setDate(2, java.sql.Date.valueOf(employeeDetails.getDate()) );
             hasResult = statement.execute();
            
-	        System.out.print(hasResult); 
             if(hasResult)  
             {  
             	resultset = statement.getResultSet();
-            	while(resultset.next()) {
-            		System.out.println("Ticket Level:" +resultset.getString("ticketLevel"));
-            		System.out.println("Count:" +resultset.getString("count"));
-		        } 
+            	displayEmployeePerformance = new DisplayEmployeePerformance(employeeDetails);
+            	displayEmployeePerformance.displayEmployeeDetailsAndTicketCount(resultset);
             }
 			return true;
 		
-		} catch (SQLException e) {
+		} 
+		catch (SQLException e) 
+		{
 			System.out.print("SQL Exception");
 			e.printStackTrace();
 		}
         return success;
-	}	
-	public boolean employee_Efficiency() throws ParseException
+	}
+	
+	public boolean getemployeeEfficiencyDB() throws ParseException
 	{
 		connection = IConnectionMng.establishConnection();
         boolean success=false;
         boolean hasResult = false;
         ResultSet resultset = null;
-		try {  
-			CallableStatement statement = (CallableStatement) connection.prepareCall("{call efficiency_Employee(?, ?)}");
+        HashMap<Integer,Integer> calculatedEmployeeEfficiency = null;
+		try 
+		{  
+			CallableStatement statement = (CallableStatement) connection.prepareCall("{call employeeEfficiency(?, ?)}");
 			
 			statement.setString(1, employeeDetails.getEmployeeId());
             statement.setDate(2, java.sql.Date.valueOf(employeeDetails.getDate()) );
             hasResult = statement.execute();
-           
+                        
 	        System.out.print(hasResult); 
             if(hasResult)  
             {  
             	resultset = statement.getResultSet();
-            	employeeEfficiency.employee_Efficiency(resultset);
+            	employeeEfficiency = new EmployeeEfficiencyCalculator(resultset);
+            	calculatedEmployeeEfficiency = employeeEfficiency.calculateEmployeeEfficiency();
+            	displayEmployeePerformance.displayEmployeeEfficiency(calculatedEmployeeEfficiency);
             }
 			return true;
-		
-		} catch (SQLException e) {
+		} 
+		catch (SQLException e) 
+		{
 			System.out.print("SQL Exception");
 			e.printStackTrace();
 		}
         return success;
-	}	
+	}
 
+	public boolean getemployeeProductivityDB() throws ParseException
+	{
+		connection = IConnectionMng.establishConnection();
+        boolean success=false;
+        boolean hasResult = false;
+        ResultSet resultset = null;
+        HashMap<Integer, Integer> calculatedEmployeeProductivity = null;
+        
+		try 
+		{  
+			CallableStatement statement = (CallableStatement) connection.prepareCall("{call employeeProductivity(?, ?)}");
+			
+			statement.setString(1, employeeDetails.getEmployeeId());
+            statement.setDate(2, java.sql.Date.valueOf(employeeDetails.getDate()) );
+            hasResult = statement.execute();
+                        
+	        System.out.print(hasResult); 
+            if(hasResult)  
+            {  
+            	resultset = statement.getResultSet();
+            	employeeProductivity = new EmployeeProductivityCalculator(resultset);
+            	calculatedEmployeeProductivity = employeeProductivity.calculateEmployeeProductivity();
+            	displayEmployeePerformance.displayEmployeeProductivity(calculatedEmployeeProductivity);
+            }
+			return true;
+		} 
+		catch (SQLException e) 
+		{
+			System.out.print("SQL Exception");
+			e.printStackTrace();
+		}
+        return success;
+	}
 }
