@@ -1,13 +1,24 @@
 package userinterface;
 public class LoginScreen implements ILoginScreen
 {
-    private final IInputOutputHandler inputOutputHandler;
-    LoginScreen(IInputOutputHandler inputOutputHandler)
+    IInputOutputHandler inputOutputHandler;
+
+    public LoginScreen(InputOutputHandler inputOutputHandler)
     {
         this.inputOutputHandler = inputOutputHandler;
     }
+
     public void displayLoginScreen()
     {
-        inputOutputHandler.displayMethod("Welcome to ServiceNow Mock application\n\n Press 1 to login\n Press 2 to register as a new user");
+        String employeeID;
+        String password;
+
+        inputOutputHandler.displayMethod("Enter employeeID:\n");
+        employeeID = inputOutputHandler.input();
+
+        inputOutputHandler.displayMethod("Enter password:\n");
+        password = inputOutputHandler.input();
+
+
     }
 }

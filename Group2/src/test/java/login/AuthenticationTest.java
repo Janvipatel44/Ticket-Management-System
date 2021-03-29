@@ -1,13 +1,15 @@
 package login;
+import org.junit.Before;
 import org.junit.Test;
 import userinterface.*;
 import static org.junit.Assert.*;
 import login.Interfaces.*;
 public class AuthenticationTest
 {
-	IInputOutputHandler inputOutputHandler = new InputOutputHandler();
-	IEncryption encryption= new Encryption();
-	IAuthenticationOperations authenticationOperations = new AuthenticationOperationsMock();
+    IInputOutputHandler inputOutputHandler = new InputOutputHandler();
+    IEncryption encryption= new Encryption();
+    IAuthenticationOperations authenticationOperations = new AuthenticationOperationsMock();
+
 
     @Test
     public void authenticateUserTestSuccessfull()

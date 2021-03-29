@@ -11,10 +11,15 @@ public class ForgotPassword implements IForgotPassword
     private int otp;
     private String employeeID;
     private final FactoryMethodMail factoryMethodMail = new FactoryMethodMail();
-    private final IMail mail = factoryMethodMail.getMailObject("GMAIL");
+    private final IMail mail;
     private final IMailMessage mailMessage = new MailMessage();
-    private final IPersistenceForgotPasswordOperations forgotPasswordOperations = new PersistenceForgotPasswordOperations();
+    private final IPersistenceForgotPasswordOperations persistenceForgotPasswordOperations;
 
+    public ForgotPassword(IMail mail, IPersistenceForgotPasswordOperations persistenceForgotPasswordOperations)
+    {
+        this.mail = mail;
+        this.persistenceForgotPasswordOperations = persistenceForgotPasswordOperations;
+    }
     public boolean sendOTP(String employeeID)
     {
         final String mailConfiguration = "MailConfiguration.properties";
@@ -35,7 +40,7 @@ public class ForgotPassword implements IForgotPassword
             otp = otp * minimum;
         }
 
-        email = forgotPasswordOperations.getEmail(employeeID);
+        email = persistenceForgotPasswordOperations.getEmail(employeeID);
         subject = "Mock Service Now: OTP Request";
         message = "Hello,\nThe OTP to update password is : "+otp+"\nThanks & Regards,\nMock Service Now Team";
 
@@ -63,7 +68,7 @@ public class ForgotPassword implements IForgotPassword
             passwordValidations.checkLengthRule(newPassword) &&
             this.otp == otp)
         {
-            return forgotPasswordOperations.updatePassword(this.employeeID, newPassword);
+            return persistenceForgotPasswordOperations.updatePassword(this.employeeID, newPassword);
         }
         return false;
     }
