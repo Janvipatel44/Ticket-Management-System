@@ -1,8 +1,13 @@
 package employeeEfficiency;
 
-import com.mysql.cj.protocol.Resultset;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.HashMap;
 
-public interface IGenerateEfficiencyReport 
+public interface IDisplayEmployeePerformance 
 {
-	public boolean displayEmployeeDetails(Resultset resultSet);
+	public boolean displayEmployeeDetailsAndTicketCount(ResultSet resultset) throws SQLException, ParseException;
+	public void displayEmployeeEfficiency(HashMap<Integer, Integer> calculatedEmployeeEfficiency);
+	public void displayEmployeeProductivity(HashMap <Integer, Integer> calculatedEmployeeProductivity);
 }
