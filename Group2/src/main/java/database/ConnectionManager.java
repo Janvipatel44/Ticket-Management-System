@@ -19,9 +19,8 @@ public class ConnectionManager implements IConnectionManager{
 		this.configurationFile = ConfigurationFile;
 	}
      
-	public Connection establishConnection() {
-		// TODO Auto-generated method stub	try {
-
+	public Connection establishConnection() 
+	{
         List<String> details = new ArrayList<>();								
 		try {
 	    if(configurationFile.equals(null) || configurationFile.equals("")) {	
