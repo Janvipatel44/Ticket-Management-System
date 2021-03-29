@@ -30,7 +30,7 @@ public class InputValidationTest {
 	    createTicket.setUrgency(2);
 	    createTicket.setImpact(4);
 		assertFalse(insertTickets.validateInsertion(createTicket));
-	}
+	} 
 	
 	@Test
 	public void isTicketIdNull() throws ParseException 

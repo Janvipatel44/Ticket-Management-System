@@ -1,5 +1,6 @@
 package validations;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
@@ -9,10 +10,10 @@ import java.util.Date;
 import java.util.Locale;
 
 public class InputDateValidationMock implements IInputDateValidation{
-	
+	 
 	public boolean isDurationValid (String startDate, String endDate) throws ParseException 
 	{	
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 	    Date firstDate = format.parse(startDate);
 	    Date secondDate = format.parse(endDate);
 
