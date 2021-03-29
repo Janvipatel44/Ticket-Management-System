@@ -1,5 +1,7 @@
 package employeeEfficiency;
 
-public class IExportEmployeePerformanceReport {
+public interface IExportEmployeePerformanceReport 
+{
+	public void exportTicket();
 
 }

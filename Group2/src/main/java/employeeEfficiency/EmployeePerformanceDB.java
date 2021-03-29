@@ -26,7 +26,7 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB {
         this.employeeDetails = employeeDetails;
     }
 	
-	IDisplayEmployeePerformance displayEmployeePerformance;
+	IGenerateEmployeePerformanceReport displayEmployeePerformance;
 
 	public boolean getticketCountsDB() throws ParseException
 	{
@@ -45,7 +45,7 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB {
             if(hasResult)  
             {  
             	resultset = statement.getResultSet();
-            	displayEmployeePerformance = new DisplayEmployeePerformance(employeeDetails);
+            	displayEmployeePerformance = new GenerateEmployeePerformanceReport(employeeDetails);
             	displayEmployeePerformance.displayEmployeeDetailsAndTicketCount(resultset);
             }
 			return true;

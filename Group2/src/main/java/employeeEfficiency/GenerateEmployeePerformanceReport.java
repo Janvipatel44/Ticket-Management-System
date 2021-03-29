@@ -8,13 +8,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class DisplayEmployeePerformance implements IDisplayEmployeePerformance
+public class GenerateEmployeePerformanceReport implements IGenerateEmployeePerformanceReport
 {	
 		private ArrayList <String> employeeDetailsString = new ArrayList<String>();
 		private IInputEmployeeDetails employeeDetails = null;
 		private ExportEmployeePerformanceReport employeePerformanceReport = new ExportEmployeePerformanceReport(employeeDetailsString) ;
+		private BarChartGeneration barchart = new BarChartGeneration();
 		
-		public DisplayEmployeePerformance(IInputEmployeeDetails employeeDetails)
+		public GenerateEmployeePerformanceReport(IInputEmployeeDetails employeeDetails)
 		{
 			this.employeeDetails = employeeDetails;
 		}
@@ -82,11 +83,11 @@ public class DisplayEmployeePerformance implements IDisplayEmployeePerformance
 	    	
 	        System.out.println(tableGeneratorEmployeeEfficiency.generateTable(headersList, rowsList));
 	        employeeDetailsString.add(tableGeneratorEmployeeEfficiency.generateTable(headersList, rowsList));
-
-			return;
+	        employeeDetailsString.add(barchart.Displaybarchart(calculatedEmployeeEfficiency));
+			return ;
 		}
 		
-		public void displayEmployeeProductivity(HashMap <Integer, Integer> calculatedEmployeeProductivity) 
+		public void displayEmployeeProductivity(HashMap <Integer, Integer> calculatedEmployeeProductivity)  
 		{
 			System.out.print("################ Month Wise Productivity ################");
 			TableGenerator tableGeneratorEmployeeProductivity = new TableGenerator();
@@ -112,12 +113,9 @@ public class DisplayEmployeePerformance implements IDisplayEmployeePerformance
 	        employeeDetailsString.add(tableGeneratorEmployeeProductivity.generateTable(headersList, rowsList));
 	        
 			System.out.print(calculatedEmployeeProductivity);
-			try {
-				employeePerformanceReport.exportTicket();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			employeeDetailsString.add(barchart.Displaybarchart(calculatedEmployeeProductivity));
+			employeePerformanceReport.exportTicket();
+
 			return;
 		}
 }

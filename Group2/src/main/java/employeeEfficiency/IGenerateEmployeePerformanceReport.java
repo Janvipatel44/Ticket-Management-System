@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.HashMap;
 
-public interface IDisplayEmployeePerformance 
+public interface IGenerateEmployeePerformanceReport 
 {
 	public boolean displayEmployeeDetailsAndTicketCount(ResultSet resultset) throws SQLException, ParseException;
 	public void displayEmployeeEfficiency(HashMap<Integer, Integer> calculatedEmployeeEfficiency);
