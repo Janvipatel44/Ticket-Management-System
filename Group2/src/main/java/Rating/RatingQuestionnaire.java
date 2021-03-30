@@ -1,7 +1,6 @@
 package Rating;
-
 import static java.lang.Math.floor;
-
+import Rating.interfaces.*;
 public class RatingQuestionnaire implements IRatingQuestionnaire
 {
     protected int userSatisfactionRating;
@@ -9,7 +8,7 @@ public class RatingQuestionnaire implements IRatingQuestionnaire
     protected int userExperienceRating;
     protected int userRecommendationRating;
 
-    RatingQuestionnaire(int userSatisfactionRating, int userFeedbackRating, int userExperienceRating, int userRecommendationRating)
+    public RatingQuestionnaire(int userSatisfactionRating, int userFeedbackRating, int userExperienceRating, int userRecommendationRating)
     {
         this.userSatisfactionRating = userSatisfactionRating;
         this.userFeedbackRating = userFeedbackRating;
@@ -35,11 +34,10 @@ public class RatingQuestionnaire implements IRatingQuestionnaire
 
     public int calculateRating()
     {
-        int ratingDivision = 20;
         int totalRating;
 
         totalRating = userExperienceRating + userFeedbackRating + userSatisfactionRating + userRecommendationRating;
-        totalRating = (int)floor(totalRating/5);
+        totalRating = (int)floor(totalRating/4);
 
         return totalRating;
     }
