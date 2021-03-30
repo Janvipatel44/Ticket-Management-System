@@ -1,4 +1,4 @@
-package Rating;
+package Rating.interfaces;
 public interface IPersistenceRating
 {
     public String getPersistenceCreatorID(String ticketID);
