@@ -5,11 +5,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import StoreTicketData.IstoreTicketData;
+import StoreTicketData.storeTicketData;
 import database.ConnectionManager;
 import database.IConnectionManager;
-import displayTickets.IdisplayTickets;
-import displayTickets.displayTickets;
+import displayTickets.IdisplayTicket;
+import displayTickets.displayTicket;
 
 public class getListOfTickets implements IgetListOfTickets
 {
@@ -21,7 +24,14 @@ public class getListOfTickets implements IgetListOfTickets
 	private List<String> listOfTicketsId = new ArrayList<String>();
 	
 	private IConnectionManager IConnectionMng = new ConnectionManager(ConfigurationFile);
-	private IdisplayTickets displaytickets = new displayTickets();
+	private IstoreTicketData storeTicketData = new storeTicketData();
+	private IdisplayTicket displayTicket = new displayTicket();
+	public getListOfTickets(IstoreTicketData storeTicketData,IdisplayTicket displayTicket,IConnectionManager IConnectionMng)
+	{
+		this.IConnectionMng = IConnectionMng;
+		this.storeTicketData = storeTicketData;
+		this.displayTicket = displayTicket;
+	}
 	
 	public void listOfTickets()
 	{
@@ -33,13 +43,10 @@ public class getListOfTickets implements IgetListOfTickets
 			SPstatement.setString(2, null);
 			SPstatement.execute();
 			resultSet = SPstatement.getResultSet();
-			
-			while(resultSet.next())
-			{
-				String ticket=resultSet.getString("ticketId") +"\n"+"\t"+"\t"+"Description:"+resultSet.getString("description");
-				listOfTicketsId.add(ticket);
-			}
-			displaytickets.displayTickets(listOfTicketsId);
+			resultSet = SPstatement.getResultSet();
+			Map<String, ArrayList <String>> ticketsData = storeTicketData.addFetchedTickets(resultSet);
+			displayTicket.printTicketsDetails(ticketsData);
+			IConnectionMng.closeConnection();
 		}
 		catch (SQLException e)
 		{

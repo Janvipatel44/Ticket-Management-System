@@ -2,17 +2,22 @@ package userInput;
 
 import java.util.Scanner;
 
+import StoreTicketData.IstoreTicketData;
+import StoreTicketData.storeTicketData;
 import checkTicketExists.IcheckTicketExists;
 import checkTicketExists.checkTicketExists;
 import commentOnTicket.IcommentOnTicket;
 import commentOnTicket.commentOnTicket;
-import displayTickets.IdisplayTickets;
-import displayTickets.displayTickets;
+import database.ConnectionManager;
+import database.IConnectionManager;
+import displayTickets.IdisplayTicket;
+import displayTickets.displayTicket;
 import getListOfTickets.IgetListOfTickets;
 import getListOfTickets.getListOfTickets;
 
 public class userInput 
 {
+	
 	public static void main(String args[])
 	{
 		String ticketId = null;
@@ -21,11 +26,14 @@ public class userInput
 		boolean commentPostResult=false;
 		String UserName = "Machaj";
 		Scanner sc = new Scanner(System.in);
-		
+		final String ConfigurationFile = null;
+
 		IcheckTicketExists checkticketexists=new checkTicketExists();
-		IcommentOnTicket postComment = new commentOnTicket();
-		IgetListOfTickets getalltickets = new getListOfTickets();
-		IdisplayTickets displaytickets = new displayTickets();
+		IConnectionManager ConnectionMng = new ConnectionManager(ConfigurationFile);
+		IstoreTicketData storeTicketData = new storeTicketData();
+		IdisplayTicket displaytickets = new displayTicket();
+		IgetListOfTickets getalltickets = new getListOfTickets(storeTicketData,displaytickets,ConnectionMng);
+		IcommentOnTicket postComment = new commentOnTicket(ConnectionMng);
 		
 		getalltickets.listOfTickets();
 		System.out.println("Enter Ticket Id you want to post comment on.:");

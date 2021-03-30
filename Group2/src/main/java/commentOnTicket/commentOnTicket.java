@@ -3,11 +3,9 @@ package commentOnTicket;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
-import database.ConnectionManager;
 import database.IConnectionManager;
 
 public class commentOnTicket implements IcommentOnTicket
@@ -19,9 +17,13 @@ public class commentOnTicket implements IcommentOnTicket
 	private CallableStatement SPstatement=null;
 	private String ConfigurationFile = "ConfigurationFile";
 	
-	private IConnectionManager IConnectionMng = new ConnectionManager(ConfigurationFile);
+	private IConnectionManager IConnectionMng;
 	
-
+	public commentOnTicket(IConnectionManager IConnectionMng )
+	{
+		this.IConnectionMng = IConnectionMng; 
+	}
+	
 	public boolean postCommentOnticket(String ticketId, String UserName, String comment)
 	{
 		String dateInfo = formatter.format(date);
