@@ -50,9 +50,9 @@ public class EmployeeEfficiencyCalculator
     	    durationTaken = ChronoUnit.DAYS.between(startDate,closeDate);
     	    
     	    //System.out.print("\nDifference duration taken:" +durationTaken);
-    	    durationTaken++;
-    	    durationGiven++;
-    	    
+    	    durationTaken++;	//close 2020-01-11
+    	    durationGiven++;	//start - 2020-01-01 end - 2020-01-07
+
     	    
 	    	if(durationTaken < ((int) durationGiven/2)) {
     	    	if(durationGiven>10) {
