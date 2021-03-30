@@ -1,6 +1,6 @@
 package login;
 import login.Interfaces.IPersistenceForgotPasswordOperations;
-public class PersistenceForgotPasswordMock implements IPersistenceForgotPasswordOperations
+public class PersistenceForgotPasswordOperationsMock implements IPersistenceForgotPasswordOperations
 {
     public String getEmail(String employeeID)
     {
@@ -9,6 +9,6 @@ public class PersistenceForgotPasswordMock implements IPersistenceForgotPassword
 
     public boolean updatePassword(String employeeID, String newPassword)
     {
-        return true;
+        return false;
     }
 }

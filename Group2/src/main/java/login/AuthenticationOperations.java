@@ -1,4 +1,5 @@
 package login;
+import database.ConnectionManager;
 import database.IConnectionManager;
 import login.Interfaces.*;
 import java.sql.CallableStatement;
@@ -7,12 +8,9 @@ import java.sql.SQLException;
 import java.sql.Types;
 public class AuthenticationOperations implements IAuthenticationOperations
 {
-    private final IConnectionManager connection;
+    private String configurationFile = "ConfigurationFile.txt";
+    IConnectionManager connection = new ConnectionManager(configurationFile);
 
-    public AuthenticationOperations(IConnectionManager connection)
-    {
-        this.connection = connection;
-    }
     public String getPassword(String employeeID)
     {
         final Object nullObject = null;

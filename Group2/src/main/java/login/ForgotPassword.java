@@ -20,6 +20,7 @@ public class ForgotPassword implements IForgotPassword
         this.mail = mail;
         this.persistenceForgotPasswordOperations = persistenceForgotPasswordOperations;
     }
+
     public boolean sendOTP(String employeeID)
     {
         final String mailConfiguration = "MailConfiguration.properties";

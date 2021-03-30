@@ -1,11 +1,15 @@
 package userinterface;
+import userinterface.abstractFactory.*;
 public class ServiceNowWelcomeScreen implements IServiceNowWelcomeScreen
 {
+    UserInterfaceFactory userInterfaceFactory = new UserInterfaceFactoryImplementation();
     private final IInputOutputHandler inputOutputHandler;
-    ServiceNowWelcomeScreen(IInputOutputHandler inputOutputHandler)
+
+    public ServiceNowWelcomeScreen(IInputOutputHandler inputOutputHandler)
     {
         this.inputOutputHandler = inputOutputHandler;
     }
+
     public void displayLoginScreen()
     {
         int choice;
@@ -13,7 +17,15 @@ public class ServiceNowWelcomeScreen implements IServiceNowWelcomeScreen
         choice = inputOutputHandler.inputInt();
         if(choice == 1)
         {
-
+            ILoginScreen loginScreen = userInterfaceFactory.getLoginScreen(inputOutputHandler);
+        }
+        else if(choice == 2)
+        {
+            IRegistrationScreen registrationScreen = userInterfaceFactory.getRegistrationScreen(inputOutputHandler);
+        }
+        else if(choice == 3)
+        {
+            IForgotPasswordScreen forgotPasswordScreen = userInterfaceFactory.getForgotPasswordScreen(inputOutputHandler);
         }
     }
 }

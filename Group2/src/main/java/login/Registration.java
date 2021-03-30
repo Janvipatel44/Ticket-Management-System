@@ -1,19 +1,21 @@
 package login;
+import login.abstractFactory.LoginFactory;
+import login.abstractFactory.LoginFactoryImplementation;
 import userinterface.IInputOutputHandler;
 import login.Interfaces.*;
 public class Registration implements IRegister
 {
+    private final LoginFactory loginFactory = new LoginFactoryImplementation();
     private final IPersistenceUserRegistrationOperations userRegistrationOperations;
     private final IInputOutputHandler inputOutputHandler;
-    private final IEncryption encryption;
+    private final IEncryption encryption = loginFactory.getEncryption();
     private boolean result = false;
-    private IPasswordValidations passwordValidations = new PasswordValidations();
+    private IPasswordValidations passwordValidations = loginFactory.getPasswordValidations();
 
-    public Registration(IPersistenceUserRegistrationOperations userRegistrationOperations, IInputOutputHandler inputOutputHandler, IEncryption encryption)
+    public Registration(IPersistenceUserRegistrationOperations userRegistrationOperations, IInputOutputHandler inputOutputHandler)
     {
         this.userRegistrationOperations = userRegistrationOperations;
         this.inputOutputHandler = inputOutputHandler;
-        this.encryption = encryption;
     }
 
     public boolean registerUser(IParameterizedUser user, String user_password)
