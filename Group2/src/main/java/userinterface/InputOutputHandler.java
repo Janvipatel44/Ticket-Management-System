@@ -17,4 +17,12 @@ public class InputOutputHandler implements IInputOutputHandler {
 		scanner.close();
 		return nextLine;
 	}
+
+	public int inputInt()
+	{
+		Scanner scanner = new Scanner(System.in);
+		int input = scanner.nextInt();
+		scanner.close();
+		return input;
+	}
 }

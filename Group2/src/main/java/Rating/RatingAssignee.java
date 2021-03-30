@@ -1,17 +1,19 @@
 package Rating;
-import login.Interfaces.IParameterizedUser;
+import Rating.abstractFactory.RatingAbstractImplementation;
+import Rating.abstractFactory.RatingFactory;
+import Rating.interfaces.*;
 public class RatingAssignee implements IRatingAssignee
 {
+    RatingFactory ratingFactory = new RatingAbstractImplementation();
     IRatingQuestionnaire questionnaire;
-    IPersistenceRating persistenceRating;
+    IPersistenceRating persistenceRating = ratingFactory.getPersistenceRating();
 
-    public RatingAssignee(IRatingQuestionnaire questionnaire, IPersistenceRating persistenceRating)
+    public RatingAssignee(IRatingQuestionnaire questionnaire)
     {
         this.questionnaire = questionnaire;
-        this.persistenceRating = persistenceRating;
     }
 
-    public boolean provideRating(IParameterizedUser user, String ticketID)
+    public boolean provideRating(String employeeID, String ticketID)
     {
         if(questionnaire.checkRatingQuestionnaire())
         {
@@ -21,11 +23,11 @@ public class RatingAssignee implements IRatingAssignee
             {
                 return false;
             }
-            else if(creatorID == user.getEmployeeID())
+            else if(creatorID.equalsIgnoreCase(employeeID))
             {
                 persistenceRating.insertRating(ticketID, finalRating);
             }
-            return false;
+            return true;
         }
         return false;
     }

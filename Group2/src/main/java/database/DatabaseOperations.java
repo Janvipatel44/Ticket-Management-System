@@ -1,7 +1,7 @@
 package database;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
-public class DatabaseOperations
+public class DatabaseOperations implements IDatabaseOperations
 {
     public boolean executeCommand(CallableStatement procedureCall)
     {
