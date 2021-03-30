@@ -1,5 +1,6 @@
 package login;
-import com.group2.userinterface.IInputOutputHandler;
+import login.Interfaces.*;
+import userinterface.IInputOutputHandler;
 public class Authentication implements IAuthentication
 {
     private final IAuthenticationOperations authenticationOperations;

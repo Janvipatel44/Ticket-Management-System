@@ -1,8 +1,8 @@
 package login;
-import com.group2.userinterface.IInputOutputHandler;
-import com.group2.userinterface.InputOutputHandler;
 import org.junit.Test;
+import userinterface.*;
 import static org.junit.Assert.*;
+import login.Interfaces.*;
 public class AuthenticationTest
 {
 	IInputOutputHandler inputOutputHandler = new InputOutputHandler();
