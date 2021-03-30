@@ -3,10 +3,9 @@ package roles;
 import java.util.ArrayList;
 import java.util.List;
 
-import roles.IRoleManagementDao;
 import validations.StringValidations;
 
-public class MenuItemsByRoleDBMock implements IRoleManagementDao {
+public class RoleManagementDaoMock implements IRoleManagementDao {
 
 	
 	private final String USER_TYPE = "End_User";
@@ -22,24 +21,19 @@ public class MenuItemsByRoleDBMock implements IRoleManagementDao {
 				
 		List<String> menuItemsList = null;
 		if(StringValidations.isStringValid(role) && role.trim().equalsIgnoreCase(USER_TYPE)) {
-			
 			menuItemsList = new ArrayList<String>();
-			
 			menuItemsList.add(CREATE_TICKET);
 			menuItemsList.add(UPDATE_TICKET);
 			menuItemsList.add(REOPEN);
 			menuItemsList.add(SEARCH_TICKETS);
-			menuItemsList.add(RATING_FEATURE);
-			
+			menuItemsList.add(RATING_FEATURE);			
 			return menuItemsList;
 		}
-			
 		return menuItemsList;
 	}
 
 	@Override
 	public boolean updateUserRole(String empId, String role) {
-		
 		boolean isUserUpadted = false;
 		
 		if (StringValidations.isStringValid(empId) && StringValidations.isStringValid(role)) {

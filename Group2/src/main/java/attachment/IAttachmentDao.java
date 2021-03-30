@@ -2,7 +2,7 @@ package attachment;
 
 import java.io.InputStream;
 
-public interface IFileAttachmentDao {
+public interface IAttachmentDao {
 	
 	public boolean uploadFileAttachment(String attachmentId, InputStream inputStream) throws Exception;
 

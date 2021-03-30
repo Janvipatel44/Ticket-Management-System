@@ -20,7 +20,7 @@ public class HomePageScreen implements IHomePageScreen {
 		this.inputOutputHandler = inputOutputHandler;
 	}
 
-	public void handleHomePageMenu(String empName, String userType) throws Exception {
+	public void handleHomePageMenu(String empId, String empName, String userType) throws Exception {
 
 		if (StringValidations.isStringValid(empName) && StringValidations.isStringValid(userType)) {
 			String welcomeUser = "Hello " + empName + "\n\nMenu\n";
