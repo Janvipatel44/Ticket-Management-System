@@ -1,16 +1,19 @@
 package getTickets;
 import java.sql.CallableStatement;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import StoreTicketData.IstoreTicketData;
+import StoreTicketData.storeTicketData;
 import database.ConnectionManager;
 import database.IConnectionManager;
-import displayTicket.IdisplayTickets;
-import displayTicket.displayTickets;
+import displayTickets.IdisplayTicket;
+import displayTickets.displayTicket;
 
 public class getListOfTickets implements IgetListOfTickets
 {
@@ -22,8 +25,8 @@ public class getListOfTickets implements IgetListOfTickets
 	private List<String> listOfTicketsId = new ArrayList<String>();
 	
 	private IConnectionManager IConnectionMng = new ConnectionManager(ConfigurationFile);
-	private IdisplayTickets displaytickets = new displayTickets();
-	
+	private IdisplayTicket displayUser = new displayTicket();
+	private IstoreTicketData storeTicketData= new storeTicketData();
 	public void listOfTickets()
 	{
 		try 
@@ -34,13 +37,11 @@ public class getListOfTickets implements IgetListOfTickets
 			SPstatement.setString(2, null);
 			SPstatement.execute();
 			resultSet = SPstatement.getResultSet();
-			
-			while(resultSet.next())
-			{
-				String ticket=resultSet.getString("ticketId") +"\n"+"\t"+"\t"+"Description:"+resultSet.getString("description");
-				listOfTicketsId.add(ticket);
-			}
-			displaytickets.displayTickets(listOfTicketsId);
+			ResultSetMetaData tableMetaData = resultSet.getMetaData();
+		    storeTicketData.addFetchedTickets(resultSet,tableMetaData);
+		    Map<String, ArrayList <String>> ticketsData = storeTicketData.getTableData();
+		    List<String> columnOfTable = storeTicketData.getTicketColumns();
+		    displayUser.printTicketsDetails(ticketsData,columnOfTable);
 		}
 		catch (SQLException e)
 		{
