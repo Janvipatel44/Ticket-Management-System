@@ -1,15 +1,15 @@
 package searchingFunctionality;
 
 import java.sql.CallableStatement;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import StoreTicketData.IstoreTicketData;
-import database.ConnectionManager;
 import database.IConnectionManager;
 import displayTickets.IdisplayTicket;
 import displayTickets.displayTicket;
@@ -25,10 +25,10 @@ public class searchTicket implements IsearchTicket
 	private IdisplayTicket displayUser;
 	private IConnectionManager ConnectionMng;
 	
-	public searchTicket(IstoreTicketData storeTicketData, IdisplayTicket displayUser, IConnectionManager ConnectionMng)
+	public searchTicket(IstoreTicketData storeTicketData, IConnectionManager ConnectionMng)
 	{
 		this.storeTicketData = storeTicketData; 
-		this.displayUser = displayUser;
+		this.displayUser = new displayTicket();
 		this.ConnectionMng = ConnectionMng;
 	}
 	public void searchbyTicket(int choice, String searchInput) 
@@ -43,9 +43,12 @@ public class searchTicket implements IsearchTicket
 			if(hasResult)
 			{
 			    resultSet = SPstatement.getResultSet();
+			    ResultSetMetaData tableMetaData = resultSet.getMetaData();
 			    System.out.println("hasresult:"+hasResult + "resultset:"+resultSet );
-			    Map<String, ArrayList <String>> ticketsData = storeTicketData.addFetchedTickets(resultSet);
-			    displayUser.printTicketsDetails(ticketsData);
+			    storeTicketData.addFetchedTickets(resultSet,tableMetaData);
+			    Map<String, ArrayList <String>> ticketsData = storeTicketData.getTableData();
+			    List<String> columnOfTable = storeTicketData.getTicketColumns();
+			    displayUser.printTicketsDetails(ticketsData,columnOfTable);
 			}
 	
 			ConnectionMng.closeConnection();

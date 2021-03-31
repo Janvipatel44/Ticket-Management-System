@@ -1,27 +1,30 @@
 package searchTicket;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
-import StoreTicketData.IstoreTicketData;
-import database.IConnectionManager;
 import displayTickets.IdisplayTicket;
+import displayTickets.displayTicket;
 import searchingFunctionality.IsearchTicket;
 
 public class searchTicketMock implements IsearchTicket
 {
 	private IdisplayTicket displayUser;
 	Map<String, ArrayList<String>> ticketsData ;
-	public searchTicketMock(IdisplayTicket displayUser)
+	List<String> columnOfTable;
+	
+	public searchTicketMock()
 	{
-		this.displayUser = displayUser;
+		displayUser = new displayTicket();
 		ticketsData = new LinkedHashMap<String, ArrayList<String>>();
+		columnOfTable = new ArrayList<String>();
 	}
 	
 	public void searchbyTicket(int choice, String searchInput) 
 	{
+		addColumnsOfTable();
 		if(choice==1)
 		{
 			if(searchInput.equals("111")) 
@@ -107,17 +110,31 @@ public class searchTicketMock implements IsearchTicket
 			if(searchInput.contains("login"))
 			{
 				ticketsData.put("111", new ArrayList<String>());
-				ticketsData.get("111").add("description: develope bugd free"+ searchInput +"functionality");
-				ticketsData.get("111").add("startDate:2021-03-15");
-				ticketsData.get("111").add("endDate:2021-03-30");
-				ticketsData.get("111").add("reporterId:EMP12");
-				ticketsData.get("111").add("employeeId:EMP123");
-				ticketsData.get("111").add("assigneeName:"+searchInput);
-				ticketsData.get("111").add("ticketType: bug");
-				ticketsData.get("111").add("priority:1");
-				ticketsData.get("111").add("urgency:3");
+				ticketsData.get("111").add("develope bugd free"+ searchInput +"functionality");
+				ticketsData.get("111").add("2021-03-15");
+				ticketsData.get("111").add("2021-03-30");
+				ticketsData.get("111").add("EMP12");
+				ticketsData.get("111").add("EMP123");
+				ticketsData.get("111").add(searchInput);
+				ticketsData.get("111").add("bug");
+				ticketsData.get("111").add("1");
+				ticketsData.get("111").add("");
 			}
 		}
-		displayUser.printTicketsDetails(ticketsData);
+		displayUser.printTicketsDetails(ticketsData,columnOfTable);
+	}
+
+	private void addColumnsOfTable() {
+		columnOfTable.add("ticketId");
+		columnOfTable.add("description");
+		columnOfTable.add("startDate");
+		columnOfTable.add("endDate");
+		columnOfTable.add("reporterId");
+		columnOfTable.add("employeeId");
+		columnOfTable.add("assigneeName");
+		columnOfTable.add("ticketType");
+		columnOfTable.add("priority");
+		columnOfTable.add("urgency");
+		
 	}	
 }

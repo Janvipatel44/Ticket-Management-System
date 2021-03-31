@@ -1,9 +1,11 @@
 package StoreTicketData;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class storeTicketData implements IstoreTicketData
@@ -11,43 +13,42 @@ public class storeTicketData implements IstoreTicketData
 	
 	static Map<String,ArrayList<String>> ticketData ; 
 	static ArrayList<String> commentsOntickets;
+	static List<String> columnsOfTable;
 			
 	public storeTicketData()
 	{
 		ticketData = new HashMap<String,ArrayList<String>>();; 
 		commentsOntickets = new ArrayList<String>();
+		columnsOfTable = new ArrayList<String>();
 	}
 
-	public Map<String,ArrayList<String>> addFetchedTickets(ResultSet resultSet) 
+	public void addFetchedTickets(ResultSet resultSet,ResultSetMetaData tableMetaData) 
 	{
 		try {
-			int i=0;
+			System.out.println("col:"+tableMetaData.getColumnCount());
+			for(int i=1;i<=tableMetaData.getColumnCount();i++)
+			{
+				String columnName = tableMetaData.getColumnName(i);
+				columnsOfTable.add(columnName);
+			}
 			while (resultSet.next()) 
 			{
-				ticketData.put(resultSet.getString("ticketId"), new ArrayList<String>());
-				ticketData.get(resultSet.getString("ticketId")).add("description:"+resultSet.getString("description"));
-				ticketData.get(resultSet.getString("ticketId")).add("startDate:"+resultSet.getString("startDate"));
-				ticketData.get(resultSet.getString("ticketId")).add("endDate:"+resultSet.getString("endDate"));
-				ticketData.get(resultSet.getString("ticketId")).add("reporterId:"+resultSet.getString("reporterId"));
-				ticketData.get(resultSet.getString("ticketId")).add("employeeId:"+resultSet.getString("employeeId"));
-				ticketData.get(resultSet.getString("ticketId")).add("assigneeName:"+resultSet.getString("assigneeName"));
-				ticketData.get(resultSet.getString("ticketId")).add("ticketType:"+resultSet.getString("ticketType"));
-				ticketData.get(resultSet.getString("ticketId")).add("priority:"+resultSet.getString("priority"));
-				ticketData.get(resultSet.getString("ticketId")).add("urgency:"+resultSet.getString("urgency"));
-				ticketData.get(resultSet.getString("ticketId")).add("impact:"+resultSet.getString("impact"));
-				
+				ticketData.put(resultSet.getString(columnsOfTable.get(0)), new ArrayList<String>());
+				for(int i=1;i<columnsOfTable.size();i++)
+				{
+					ticketData.get(resultSet.getString(columnsOfTable.get(0))).add(resultSet.getString(columnsOfTable.get(i)));					
+				}
 			}
-			return ticketData;
 		} 
 		catch (SQLException e)
 		{
-			return ticketData;
+			e.printStackTrace();
 		}
 		
 	}
 
 	
-	public ArrayList<String> addFetchedComments(ResultSet resultSet) 
+	public void addFetchedComments(ResultSet resultSet) 
 	{
 		try 
 		{
@@ -58,15 +59,13 @@ public class storeTicketData implements IstoreTicketData
 									 "\n"+resultSet.getString("text");
 				commentsOntickets.add(commentData);
 			}
-			return commentsOntickets;
 		}
 		catch (SQLException e)
 		{
 			e.printStackTrace();
-			return commentsOntickets;
 		}
 	}
-
+	
 	public ArrayList<String> getSingleTicketData(String TicketID)
 	{
 		ArrayList<String> singleTicketData = new ArrayList<String>();
@@ -81,4 +80,20 @@ public class storeTicketData implements IstoreTicketData
 		}
 		
 	}
+	
+	public Map<String,ArrayList<String>> getTableData()
+	{
+		return ticketData;
+	}
+	
+	public List<String> getTicketColumns()
+	{
+		return columnsOfTable;
+	}
+	
+	public List<String> getcommentsOnTicket()
+	{
+		return commentsOntickets;
+	}
+	
 }

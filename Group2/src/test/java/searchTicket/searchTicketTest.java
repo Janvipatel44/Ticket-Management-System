@@ -2,14 +2,11 @@ package searchTicket;
 
 import org.junit.Test;
 
-import displayTickets.IdisplayTicket;
-import displayTickets.displayTicket;
 import searchingFunctionality.IsearchTicket;
 
 public class searchTicketTest 
 {
-	IdisplayTicket displayUser = new displayTicket();
-	IsearchTicket searchticket = new searchTicketMock(displayUser);
+	IsearchTicket searchticket = new searchTicketMock();
 	
 	@Test
 	public void searchbyTicketIDTest()

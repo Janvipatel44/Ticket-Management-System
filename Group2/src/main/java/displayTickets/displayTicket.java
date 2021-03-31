@@ -19,71 +19,35 @@ public class displayTicket implements IdisplayTicket
 		tableFormate = new TableGenerator();
 	}
 	
-	public void printTicketsDetails(Map<String,ArrayList<String>> ticketData)
+	public void printTicketsDetails(Map<String,ArrayList<String>> ticketData,List<String> columnsOfTable)
 	{ 
-		boolean  result = addRowsValues(ticketData);
-		result = addTableAttributes();
-		
-		System.out.println(tableFormate.generateTable(tableHeader, rowOfTable));
-//		System.out.print("\033[31m");
-//		System.out.println("+-------------------------TICKET-------------------------+");
-//		for(String key : ticketData.keySet()) 
-//		{
-//			System.out.println("Ticket ID:" + key);
-//			System.out.println("................................");
-//			for(int i=0 ; i < ticketData.get(key).size() ; i++)
-//			{
-//				System.out.println(ticketData.get(key).get(i));
-//			}
-//			System.out.println("................................ \n");
-//		}
-	}
-	
-	
-	private boolean addRowsValues(Map<String, ArrayList<String>> ticketData) {
-		List<String> rowData = new ArrayList<>();
+		tableHeader.add(columnsOfTable.get(0));
+		tableHeader.add(columnsOfTable.get(1));
 		for(String key : ticketData.keySet())
 		{
+			ArrayList<String> rowData = new ArrayList<>();
 			rowData.add(key);
-			for(int i=0 ; i < ticketData.get(key).size() ; i++)
-				{
-					rowData.add(ticketData.get(key).get(i));
-				}
+			String element = ticketData.get(key).get(0);
+			rowData.add(element);
 			rowOfTable.add(rowData);
+			
+			
 		}
-		return false;
-	}
 
-	public void printSignleTicketDetails(List<String> singleTicketData, List<String> comments)
+		System.out.println(tableFormate.generateTable(tableHeader, rowOfTable));
+	}
+	
+	
+	public void printSignleTicketDetails(List<String> singleTicketData,List<String> columnsOfTable, List<String> comments)
 	{
-		
-		for(int i = 0; i < singleTicketData.size(); i++)
-		{
-			System.out.println(" "+singleTicketData.get(i));
-		}
+		tableHeader = columnsOfTable;
+		rowOfTable.add(singleTicketData);
+		System.out.println(tableFormate.generateTable(tableHeader, rowOfTable));
 		System.out.println(" "+ "Comments...");
 		for(int i = 0; i < comments.size() ; i++)
 		{
 			System.out.println("   "+comments.get(i));
 		}
 	}
-    
-
-    private boolean addTableAttributes() 
-    {
-       tableHeader.add("ticketId");
-       tableHeader.add("description");
-       tableHeader.add("startDate");
-       tableHeader.add("endDate");
-       tableHeader.add("reporterId");
-       tableHeader.add("employeeId");
-       tableHeader.add("assigneeName");
-       tableHeader.add("ticketType");
-       tableHeader.add("priority");
-       tableHeader.add("urgency");
-       tableHeader.add("impact");
-       
-       return true;
-    }
 }
 	

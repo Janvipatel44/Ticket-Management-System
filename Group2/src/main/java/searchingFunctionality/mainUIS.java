@@ -8,6 +8,8 @@ import database.ConnectionManager;
 import database.IConnectionManager;
 import displayTickets.IdisplayTicket;
 import displayTickets.displayTicket;
+import exportTicket.IexportTicket;
+import exportTicket.exportTicket;
 import openTicketOption.IopenTicket;
 import openTicketOption.openTicket;
 
@@ -27,7 +29,7 @@ public class mainUIS
 		
 		
 		//searchTicket class object
-		IsearchTicket obj=new searchTicket(storeTicketData,displayUser,ConnectionMng);
+		IsearchTicket obj=new searchTicket(storeTicketData,ConnectionMng);
 		
 		
 		//Available options for user 
@@ -92,10 +94,10 @@ public class mainUIS
 	private static void open() {
 		int choice=0;
 		String ticketID=null;
-		IopenTicket openticket = new openTicket(storeTicketData,displayUser,ConnectionMng);
-		
+				
 		System.out.println("1. open Ticket");
-		System.out.println("2. exit");
+		System.out.println("2. Export Ticket");
+		System.out.println("3. exit");
 		
 		do 
 		{
@@ -104,12 +106,21 @@ public class mainUIS
 			sc.nextLine();
 			if(choice == 1)
 			{
+				IopenTicket openticket = new openTicket(storeTicketData,ConnectionMng);
 				System.out.println("Enter Ticket ID:");
 				ticketID = sc.nextLine();
 				openticket.openticket(ticketID) ;
 			}
-			
+			else if(choice == 2)
+			{
+				IexportTicket exportTicketData = new exportTicket(storeTicketData);
+				String FileName = "";
+				System.out.println("Enter FileName with Path:");
+				FileName = sc.nextLine();
+				exportTicketData.exportTicket(FileName);
+				
+			}
 		}
-		while(choice==1);
+		while(choice!=3);
 	}
 }

@@ -1,9 +1,10 @@
 package searchTicket;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import StoreTicketData.IstoreTicketData;
 import displayTickets.IdisplayTicket;
+import displayTickets.displayTicket;
 import openTicketOption.IopenTicket;
 
 public class openTicketMock implements IopenTicket
@@ -11,12 +12,14 @@ public class openTicketMock implements IopenTicket
 	ArrayList<String> singleTicketData;
 	ArrayList<String> comments;
 	private IdisplayTicket displayUser;
+	List<String> columnOfTable;
 		
-	public openTicketMock(IdisplayTicket displayUser)
+	public openTicketMock()
 	{
-		this.displayUser = displayUser;
+		displayUser = new displayTicket();
 		singleTicketData = new 	ArrayList<String>();
 		comments = new 	ArrayList<String>();
+		columnOfTable = new ArrayList<String>();
 	}
 
 	public void openticket(String ticketId)
@@ -24,6 +27,7 @@ public class openTicketMock implements IopenTicket
 		String ticketID = "111";
 		if(ticketId.equals(ticketID))
 		{
+			singleTicketData.add("111");
 			singleTicketData.add("description: develope bugd free login functionality");
 			singleTicketData.add("startDate:2021-03-15");
 			singleTicketData.add("endDate:2021-03-30");
@@ -34,8 +38,9 @@ public class openTicketMock implements IopenTicket
 			singleTicketData.add("priority:1");
 			singleTicketData.add("urgency:3");
 		}
+		addColumnsOfTable();
 		comments = commentOnTicket(ticketId);
-		displayUser.printSignleTicketDetails(singleTicketData,comments);
+		displayUser.printSignleTicketDetails(singleTicketData,columnOfTable,comments);
 			
 	}
 	
@@ -50,4 +55,18 @@ public class openTicketMock implements IopenTicket
 		}
 		return comment;
 	}
+	
+	private void addColumnsOfTable() {
+		columnOfTable.add("ticketId");
+		columnOfTable.add("description");
+		columnOfTable.add("startDate");
+		columnOfTable.add("endDate");
+		columnOfTable.add("reporterId");
+		columnOfTable.add("employeeId");
+		columnOfTable.add("assigneeName");
+		columnOfTable.add("ticketType");
+		columnOfTable.add("priority");
+		columnOfTable.add("urgency");
+		
+	}	
 }

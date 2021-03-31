@@ -2,14 +2,11 @@ package searchTicket;
 
 import org.junit.Test;
 
-import displayTickets.IdisplayTicket;
-import displayTickets.displayTicket;
 import openTicketOption.IopenTicket;
 
 public class openTicketTest
 {
-	IdisplayTicket displayUser = new displayTicket();
-	IopenTicket openticket = new openTicketMock(displayUser);
+	IopenTicket openticket = new openTicketMock();
 	
 	@Test
 	public void openTicketTest()
