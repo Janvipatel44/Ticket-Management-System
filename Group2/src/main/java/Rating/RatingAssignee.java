@@ -1,10 +1,9 @@
 package Rating;
-import Rating.abstractFactory.RatingAbstractImplementation;
-import Rating.abstractFactory.RatingFactory;
+import Rating.abstractfactory.*;
 import Rating.interfaces.*;
 public class RatingAssignee implements IRatingAssignee
 {
-    RatingFactory ratingFactory = new RatingAbstractImplementation();
+    IRatingFactory ratingFactory = RatingFactory.instance();
     IRatingQuestionnaire questionnaire;
     IPersistenceRating persistenceRating = ratingFactory.getPersistenceRating();
 

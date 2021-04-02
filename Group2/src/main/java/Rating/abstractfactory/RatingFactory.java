@@ -1,8 +1,24 @@
-package Rating.abstractFactory;
+package Rating.abstractfactory;
 import Rating.*;
 import Rating.interfaces.*;
-public class RatingAbstractImplementation extends RatingFactory
+public class RatingFactory implements IRatingFactory
 {
+    private static IRatingFactory uniqueInstance = null;
+
+    private RatingFactory()
+    {
+
+    }
+
+    public static IRatingFactory instance()
+    {
+        if(null == uniqueInstance)
+        {
+            uniqueInstance = new RatingFactory();
+        }
+        return uniqueInstance;
+    }
+
     public IRatingAssignee getRatingAssignee(IRatingQuestionnaire questionnaire)
     {
         return new RatingAssignee(questionnaire);

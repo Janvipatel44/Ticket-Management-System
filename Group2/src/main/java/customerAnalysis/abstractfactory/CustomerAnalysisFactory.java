@@ -1,10 +1,26 @@
-package customerAnalysis.abstractFactory;
+package customerAnalysis.abstractfactory;
 import customerAnalysis.Interfaces.*;
 import customerAnalysis.*;
 import java.sql.Date;
 import java.util.List;
-public class CustomerAnalysisFactoryImplementation extends CustomerAnalysisFactory
+public class CustomerAnalysisFactory implements ICustomerAnalysisFactory
 {
+    private static ICustomerAnalysisFactory uniqueInstance = null;
+
+    private CustomerAnalysisFactory()
+    {
+
+    }
+
+    public static ICustomerAnalysisFactory instance()
+    {
+        if(null == uniqueInstance)
+        {
+            uniqueInstance = new CustomerAnalysisFactory();
+        }
+        return uniqueInstance;
+    }
+
     public IComputeCustomerProperties getComputeCustomerProperties(List<IParameterizedCustomerTicket> tickets)
     {
         return new ComputeCustomerProperties(tickets);

@@ -1,12 +1,11 @@
 package Rating;
 import org.junit.Test;
-import Rating.abstractFactory.RatingAbstractImplementation;
-import Rating.abstractFactory.RatingFactory;
+import Rating.abstractfactory.*;
 import static org.junit.Assert.*;
 import Rating.interfaces.*;
 public class RatingQuestionnaireTest
 {
-    RatingFactory ratingFactory = new RatingAbstractImplementation();
+    IRatingFactory ratingFactory = RatingFactory.instance();
 
     @Test
     public void checkRatingQuestionnaireSuccessfulTest()

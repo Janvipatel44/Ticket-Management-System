@@ -1,11 +1,12 @@
 package userinterface;
 import customerAnalysis.Interfaces.ICustomerAnalysis;
-import customerAnalysis.abstractFactory.CustomerAnalysisFactory;
-import customerAnalysis.abstractFactory.CustomerAnalysisFactoryImplementation;
+import customerAnalysis.abstractfactory.CustomerAnalysisFactory;
+import customerAnalysis.abstractfactory.ICustomerAnalysisFactory;
+
 import java.util.Map;
 public class CustomerAnalysisScreen implements ICustomerAnalysisScreen
 {
-    private final CustomerAnalysisFactory customerAnalysisFactory = new CustomerAnalysisFactoryImplementation();
+    private final ICustomerAnalysisFactory customerAnalysisFactory = CustomerAnalysisFactory.instance();
     private final IInputOutputHandler inputOutputHandler;
 
     public CustomerAnalysisScreen(IInputOutputHandler inputOutputHandler)

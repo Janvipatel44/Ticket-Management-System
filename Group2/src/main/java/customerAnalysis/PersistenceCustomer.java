@@ -1,13 +1,13 @@
 package customerAnalysis;
 import customerAnalysis.Interfaces.*;
-import customerAnalysis.abstractFactory.*;
+import customerAnalysis.abstractfactory.*;
 import database.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 public class PersistenceCustomer implements IPersistenceCustomer
 {
-    private final CustomerAnalysisFactory customerAnalysisFactory = new CustomerAnalysisFactoryImplementation();
+    private final ICustomerAnalysisFactory customerAnalysisFactory = CustomerAnalysisFactory.instance();
     private final String configurationFile = "ConfigurationFile.txt";
     private final IConnectionManager connection = new ConnectionManager(configurationFile);
 

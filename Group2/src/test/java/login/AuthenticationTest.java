@@ -1,14 +1,12 @@
 package login;
-import login.abstractFactory.LoginFactoryTest;
-import login.abstractFactory.LoginFactoryTestImplementation;
+import login.abstractfactory.*;
 import org.junit.Before;
 import org.junit.Test;
-import userinterface.*;
 import static org.junit.Assert.*;
 import login.Interfaces.*;
 public class AuthenticationTest
 {
-    LoginFactoryTest loginFactoryTest = new LoginFactoryTestImplementation();
+    ILoginFactoryTest loginFactoryTest = LoginFactoryTest.instance();
     IAuthenticationOperations authenticationOperations;
 
     @Before
@@ -16,8 +14,6 @@ public class AuthenticationTest
     {
         authenticationOperations = loginFactoryTest.getAuthenticationOperationsMock();
     }
-
-
 
     @Test
     public void authenticateUserTestSuccessfull()

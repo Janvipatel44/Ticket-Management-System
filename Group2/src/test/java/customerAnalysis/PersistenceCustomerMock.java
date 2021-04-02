@@ -1,12 +1,12 @@
 package customerAnalysis;
 import customerAnalysis.Interfaces.*;
-import customerAnalysis.abstractFactory.*;
+import customerAnalysis.abstractfactory.*;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 public class PersistenceCustomerMock implements IPersistenceCustomer
 {
-    CustomerAnalysisFactory customerAnalysisFactory = new CustomerAnalysisFactoryImplementation();
+    ICustomerAnalysisFactory customerAnalysisFactory = CustomerAnalysisFactory.instance();
     public List<IParameterizedCustomerTicket> getTicketsOfCustomer(String customerID)
     {
         List<IParameterizedCustomerTicket> customerTickets = new ArrayList<>();

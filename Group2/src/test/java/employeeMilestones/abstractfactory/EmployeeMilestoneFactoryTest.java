@@ -1,4 +1,4 @@
-package employeeMilestones.abstractFactory;
+package employeeMilestones.abstractfactory;
 import employeeMilestones.interfaces.IPersistenceEmployeeTickets;
 public abstract class EmployeeMilestoneFactoryTest
 {

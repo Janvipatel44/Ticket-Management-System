@@ -1,5 +1,5 @@
 package employeeMilestones;
-import employeeMilestones.abstractFactory.*;
+import employeeMilestones.abstractfactory.*;
 import employeeMilestones.interfaces.*;
 import java.util.HashMap;
 import java.util.List;
@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Set;
 public class EmployeeMilestone implements IEmployeeMilestone
 {
-    private final EmployeeMilestoneFactory employeeMilestoneFactory = new EmployeeMilestoneFactoryImplementation();
+    private final IEmployeeMilestoneFactory employeeMilestoneFactory = EmployeeMilestoneFactory.instance();
     private final IPersistenceEmployeeTickets persistenceEmployeeTickets = employeeMilestoneFactory.getPersistenceEmployeeTickets();
 
     public Map<String, String> getEmployeeMilestone(String employeeID)

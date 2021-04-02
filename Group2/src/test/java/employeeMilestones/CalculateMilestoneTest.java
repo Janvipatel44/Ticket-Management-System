@@ -1,5 +1,5 @@
 package employeeMilestones;
-import employeeMilestones.abstractFactory.*;
+import employeeMilestones.abstractfactory.*;
 import employeeMilestones.interfaces.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,7 +10,7 @@ public class CalculateMilestoneTest
     ICalculateMilestone calculateMilestone;
     @Before public void initialize()
     {
-        EmployeeMilestoneFactory employeeMilestoneFactory = new EmployeeMilestoneFactoryImplementation();
+        IEmployeeMilestoneFactory employeeMilestoneFactory = EmployeeMilestoneFactory.instance();
         EmployeeMilestoneFactoryTest employeeMilestoneFactoryTest = new EmployeeMilestoneFactoryTestImplementation();
         IPersistenceEmployeeTickets persistenceEmployeeTickets = employeeMilestoneFactoryTest.getPersistenceEmployeeTicketsMock();
         calculateMilestone = employeeMilestoneFactory.getCalculateMilestone(persistenceEmployeeTickets.getEmployeeTickets("EMP_123"));

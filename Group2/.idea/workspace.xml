@@ -4,7 +4,53 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f28691a5-4a90-4179-9ccd-4b69dd2ee204" name="Default Changelist" comment="" />
+    <list default="true" id="74e0b3c0-b815-448a-a6b0-f49829c01fc2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_28_2021_10_27_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_28_2021_10_27_PM__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Rating/RatingAssignee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rating/RatingAssignee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Rating/abstractFactory/RatingAbstractImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rating/abstractfactory/RatingFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Rating/abstractFactory/RatingFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/customerAnalysis/ComputeCustomerProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/customerAnalysis/ComputeCustomerProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/customerAnalysis/CustomerAnalysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/customerAnalysis/CustomerAnalysis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/customerAnalysis/PersistenceCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/customerAnalysis/PersistenceCustomer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/customerAnalysis/abstractFactory/CustomerAnalysisFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/customerAnalysis/abstractFactory/CustomerAnalysisFactoryImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/customerAnalysis/abstractfactory/CustomerAnalysisFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeMilestones/EmployeeMilestone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employeeMilestones/EmployeeMilestone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeMilestones/ParameterizedEmployeeTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employeeMilestones/ParameterizedEmployeeTicket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeMilestones/PersistenceEmployeeTickets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employeeMilestones/PersistenceEmployeeTickets.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeMilestones/abstractFactory/EmployeeMilestoneFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeMilestones/abstractFactory/EmployeeMilestoneFactoryImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employeeMilestones/abstractfactory/EmployeeMilestoneFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/login/Authentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/Authentication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/login/ForgotPassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/ForgotPassword.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/login/ParameterizedUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/ParameterizedUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/login/Registration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/Registration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/login/abstractFactory/LoginFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/abstractfactory/LoginFactoryAbs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/login/abstractFactory/LoginFactoryImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/abstractfactory/LoginFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/CustomerAnalysisScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/CustomerAnalysisScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/EmployeeMilestoneScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/EmployeeMilestoneScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/ForgotPasswordScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/ForgotPasswordScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/LoginScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/LoginScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/RatingScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/RatingScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/RegistrationScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/RegistrationScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Rating/RatingQuestionnaireTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Rating/RatingQuestionnaireTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/customerAnalysis/ComputeCustomerPropertiesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/customerAnalysis/ComputeCustomerPropertiesTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/customerAnalysis/PersistenceCustomerMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/customerAnalysis/PersistenceCustomerMock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/customerAnalysis/abstractFactory/CustomerAnalysisFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/customerAnalysis/abstractfactory/CustomerAnalysisFactoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/customerAnalysis/abstractFactory/CustomerAnalysisImplementationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/customerAnalysis/abstractfactory/CustomerAnalysisImplementationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/employeeMilestones/CalculateMilestoneTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/employeeMilestones/CalculateMilestoneTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/employeeMilestones/PersistenceEmployeeTicketsMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/employeeMilestones/PersistenceEmployeeTicketsMock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/employeeMilestones/abstractFactory/EmployeeMilestoneFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/employeeMilestones/abstractfactory/EmployeeMilestoneFactoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/employeeMilestones/abstractFactory/EmployeeMilestoneFactoryTestImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/employeeMilestones/abstractfactory/EmployeeMilestoneFactoryTestImplementation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/login/AuthenticationOperationsMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/login/AuthenticationOperationsMock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/login/AuthenticationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/login/AuthenticationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/login/EncryptionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/login/EncryptionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/login/ForgotPasswordTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/login/ForgotPasswordTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/login/MailMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/login/MailMock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/login/PersistenceForgotPasswordOperationsMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/login/PersistenceForgotPasswordOperationsMock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/login/RegistrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/login/RegistrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/login/abstractFactory/LoginFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/login/abstractfactory/LoginFactoryTestAbs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/login/abstractFactory/LoginFactoryTestImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/login/abstractfactory/LoginFactoryTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,21 +59,14 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit4 Test Class" />
         <option value="Interface" />
-        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$/.." value="login" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="1qPUSUSvy60Wm7KGcj4pFjraMaj" />
+  <component name="ProjectId" id="1qdAlXcs7RIKyhvJpazMCKrWqiA" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -36,22 +75,19 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../group2/group-2" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="login" />
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="login.abstractfactory" />
+      <recent name="Rating.abstractfactory" />
+      <recent name="employeeMilestones.abstractfactory" />
+      <recent name="customerAnalysis.abstractfactory" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in Group2">
+  <component name="RunManager">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -63,62 +99,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="All in Group2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Group2" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="EmployeeMilestoneTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Group2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="employeeMilestones.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="employeeMilestones" />
-      <option name="MAIN_CLASS_NAME" value="employeeMilestones.EmployeeMilestoneTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="EmployeeMilestoneTest.getEmployeeMilestoneTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Group2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="employeeMilestones.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="employeeMilestones" />
-      <option name="MAIN_CLASS_NAME" value="employeeMilestones.EmployeeMilestoneTest" />
-      <option name="METHOD_NAME" value="getEmployeeMilestoneTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="JUnit.All in Group2" />
-        <item itemvalue="JUnit.EmployeeMilestoneTest" />
-        <item itemvalue="JUnit.EmployeeMilestoneTest.getEmployeeMilestoneTest" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f28691a5-4a90-4179-9ccd-4b69dd2ee204" name="Default Changelist" comment="" />
-      <created>1616980719879</created>
+      <changelist id="74e0b3c0-b815-448a-a6b0-f49829c01fc2" name="Default Changelist" comment="" />
+      <created>1617399287304</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1616980719879</updated>
-      <workItem from="1616980721000" duration="11937000" />
+      <updated>1617399287304</updated>
+      <workItem from="1617399325682" duration="3395000" />
     </task>
     <servers />
   </component>
@@ -130,26 +120,10 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="staffMilestones" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>

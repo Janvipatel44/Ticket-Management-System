@@ -1,15 +1,13 @@
 package userinterface;
-import login.Interfaces.IAuthentication;
-import login.Interfaces.IAuthenticationOperations;
-import login.abstractFactory.LoginFactory;
-import login.abstractFactory.LoginFactoryImplementation;
+import login.Interfaces.*;
+import login.abstractfactory.*;
 import userinterface.abstractFactory.UserInterfaceFactory;
 import userinterface.abstractFactory.UserInterfaceFactoryImplementation;
 public class LoginScreen implements ILoginScreen
 {
     IInputOutputHandler inputOutputHandler;
     UserInterfaceFactory userInterfaceFactory = new UserInterfaceFactoryImplementation();
-    LoginFactory loginFactory = new LoginFactoryImplementation();
+    ILoginFactory loginFactory = LoginFactory.instance();
 
     public LoginScreen(IInputOutputHandler inputOutputHandler)
     {

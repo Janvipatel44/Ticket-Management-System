@@ -1,15 +1,13 @@
 package customerAnalysis;
 import customerAnalysis.Interfaces.*;
-import customerAnalysis.abstractFactory.CustomerAnalysisFactory;
-import customerAnalysis.abstractFactory.CustomerAnalysisFactoryImplementation;
-
+import customerAnalysis.abstractfactory.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 public class CustomerAnalysis implements ICustomerAnalysis
 {
-    private CustomerAnalysisFactory customerAnalysisFactory = new CustomerAnalysisFactoryImplementation();
-    private IPersistenceCustomer persistenceCustomer = customerAnalysisFactory.getPersistenceCustomer();
+    private final ICustomerAnalysisFactory customerAnalysisFactory = CustomerAnalysisFactory.instance();
+    private final IPersistenceCustomer persistenceCustomer = customerAnalysisFactory.getPersistenceCustomer();
     private List<IParameterizedCustomerTicket> tickets;
     private IComputeCustomerProperties computeCustomerProperties;
 
@@ -17,6 +15,7 @@ public class CustomerAnalysis implements ICustomerAnalysis
     {
         Map<String, String> customerAnalysis = new HashMap<>();
         tickets = persistenceCustomer.getTicketsOfCustomer(customerID);
+        computeCustomerProperties = customerAnalysisFactory.getComputeCustomerProperties(tickets);
         Map<String, Integer> assigneeStatistics;
         String[] ticketRating = {"Good", "Bad"};
         String modeTicketType;
@@ -33,8 +32,6 @@ public class CustomerAnalysis implements ICustomerAnalysis
         {
             return null;
         }
-
-        computeCustomerProperties = new ComputeCustomerProperties(tickets);
 
         priority = computeCustomerProperties.getMeanPriority();
         customerAnalysis.put("Average tickets priority : ", Float.toString(priority));

@@ -6,7 +6,6 @@ public class PersistenceForgotPasswordOperationsMock implements IPersistenceForg
     {
         return "dummy@gmail.com";
     }
-
     public boolean updatePassword(String employeeID, String newPassword)
     {
         return false;

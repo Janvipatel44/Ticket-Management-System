@@ -1,4 +1,4 @@
-package employeeMilestones.abstractFactory;
+package employeeMilestones.abstractfactory;
 import employeeMilestones.PersistenceEmployeeTicketsMock;
 import employeeMilestones.interfaces.IPersistenceEmployeeTickets;
 public class EmployeeMilestoneFactoryTestImplementation extends EmployeeMilestoneFactoryTest

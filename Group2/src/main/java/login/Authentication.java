@@ -1,12 +1,11 @@
 package login;
 import login.Interfaces.*;
-import login.abstractFactory.LoginFactory;
-import login.abstractFactory.LoginFactoryImplementation;
+import login.abstractfactory.*;
 import userinterface.IInputOutputHandler;
 import userinterface.InputOutputHandler;
 public class Authentication implements IAuthentication
 {
-    LoginFactory loginFactory = new LoginFactoryImplementation();
+    ILoginFactory loginFactory = LoginFactory.instance();
     private final IAuthenticationOperations authenticationOperations;
     private final IEncryption encryption = loginFactory.getEncryption();
     private final IInputOutputHandler inputOutputHandler = new InputOutputHandler();

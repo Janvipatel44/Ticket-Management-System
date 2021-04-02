@@ -1,16 +1,15 @@
 package userinterface;
-import Rating.abstractFactory.*;
-import Rating.*;
+import Rating.abstractfactory.*;
 import Rating.interfaces.*;
 public class RatingScreen
 {
     private final IInputOutputHandler inputOutputHandler;
-    private final RatingFactory ratingFactory;
+    private final IRatingFactory ratingFactory;
 
     public RatingScreen(IInputOutputHandler inputOutputHandler)
     {
         this.inputOutputHandler = inputOutputHandler;
-        ratingFactory = new RatingAbstractImplementation();
+        ratingFactory = RatingFactory.instance();
     }
 
     public void displayRatingScreen(String employeeID)

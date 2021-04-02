@@ -1,12 +1,12 @@
 package employeeMilestones;
-import employeeMilestones.abstractFactory.*;
+import employeeMilestones.abstractfactory.*;
 import employeeMilestones.interfaces.*;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 public class PersistenceEmployeeTicketsMock implements IPersistenceEmployeeTickets
 {
-    EmployeeMilestoneFactory employeeMilestoneFactory = new EmployeeMilestoneFactoryImplementation();
+    IEmployeeMilestoneFactory employeeMilestoneFactory = EmployeeMilestoneFactory.instance();
 
     public List<IParameterizedEmployeeTicket> getEmployeeTickets(String employeeID)
     {
