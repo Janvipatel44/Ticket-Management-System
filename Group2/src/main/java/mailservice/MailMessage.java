@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import mailservice.interfaces.IMailMessage;
+
 public class MailMessage implements IMailMessage {
 
 	private List<String> recipients;

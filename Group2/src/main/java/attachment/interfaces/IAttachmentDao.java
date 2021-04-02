@@ -1,4 +1,4 @@
-package attachment;
+package attachment.interfaces;
 
 import java.io.InputStream;
 

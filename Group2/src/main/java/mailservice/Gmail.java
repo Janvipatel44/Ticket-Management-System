@@ -15,6 +15,9 @@ import javax.mail.internet.MimeMessage;
 
 import org.apache.commons.lang3.StringUtils;
 
+import mailservice.interfaces.IMail;
+import mailservice.interfaces.IMailMessage;
+
 public class Gmail implements IMail {
 
 	private final String WRONG_FILE_PATH_MESSAGE = "Please check configuration files path.";

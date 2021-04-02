@@ -3,6 +3,8 @@ package attachment;
 import java.io.InputStream;
 import org.apache.commons.lang3.StringUtils;
 
+import attachment.interfaces.IAttachmentDao;
+
 public class FileAttachmentDaoMock implements IAttachmentDao {
 
 	private InputStream inputStream;
