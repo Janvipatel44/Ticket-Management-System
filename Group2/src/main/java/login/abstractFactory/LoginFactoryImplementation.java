@@ -1,7 +1,7 @@
 package login.abstractFactory;
 import login.*;
 import login.Interfaces.*;
-import mailservice.IMail;
+import mailservice.interfaces.IMail;
 import userinterface.IInputOutputHandler;
 public class LoginFactoryImplementation extends LoginFactory
 {

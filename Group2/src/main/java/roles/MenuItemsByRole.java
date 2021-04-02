@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import roles.interfaces.IMenuItemsByRole;
+import roles.interfaces.IRoleManagementDao;
+
 public class MenuItemsByRole implements IMenuItemsByRole {	
 	
 	private IRoleManagementDao roleManagementDao;

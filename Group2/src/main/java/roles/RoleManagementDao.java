@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import database.IConnectionManager;
+import roles.interfaces.IRoleManagementDao;
 
 public class RoleManagementDao implements IRoleManagementDao {
 

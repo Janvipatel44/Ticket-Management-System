@@ -4,16 +4,12 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Types;
+import Rating.interfaces.*;
 public class PersistenceRating implements IPersistenceRating
 {
-    IConnectionManager connection;
-    IDatabaseOperations databaseOperations;
-
-    public PersistenceRating(IConnectionManager connection, IDatabaseOperations databaseOperations)
-    {
-        this.connection = connection;
-        this.databaseOperations = databaseOperations;
-    }
+    private final String configurationFile = "ConfigurationFile.txt";
+    private final IConnectionManager connection = new ConnectionManager(configurationFile);
+    IDatabaseOperations databaseOperations = new DatabaseOperations();
 
     public String getPersistenceCreatorID(String ticketID)
     {

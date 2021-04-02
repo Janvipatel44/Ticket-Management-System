@@ -1,6 +1,6 @@
 package login;
-import mailservice.IMail;
-import mailservice.IMailMessage;
+import mailservice.interfaces.IMail;
+import mailservice.interfaces.IMailMessage;
 public class MailMock implements IMail
 {
 

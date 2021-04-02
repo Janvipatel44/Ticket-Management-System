@@ -3,7 +3,7 @@ import login.Interfaces.IForgotPassword;
 import login.Interfaces.IPersistenceForgotPasswordOperations;
 import login.abstractFactory.*;
 import mailservice.Gmail;
-import mailservice.IMail;
+import mailservice.interfaces.IMail;
 import userinterface.abstractFactory.*;
 public class ForgotPasswordScreen implements IForgotPasswordScreen
 {

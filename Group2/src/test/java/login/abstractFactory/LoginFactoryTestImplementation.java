@@ -3,10 +3,10 @@ import login.AuthenticationOperationsMock;
 import login.Interfaces.IAuthenticationOperations;
 import login.Interfaces.IPersistenceForgotPasswordOperations;
 import login.Interfaces.IPersistenceUserRegistrationOperations;
+import mailservice.interfaces.IMail;
 import login.MailMock;
 import login.PersistenceForgotPasswordOperationsMock;
 import login.PersistenceUserRegistrationOperationsMock;
-import mailservice.IMail;
 public class LoginFactoryTestImplementation extends LoginFactoryTest
 {
     public IAuthenticationOperations getAuthenticationOperationsMock()

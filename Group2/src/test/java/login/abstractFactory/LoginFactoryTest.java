@@ -2,7 +2,7 @@ package login.abstractFactory;
 import login.Interfaces.IAuthenticationOperations;
 import login.Interfaces.IPersistenceForgotPasswordOperations;
 import login.Interfaces.IPersistenceUserRegistrationOperations;
-import mailservice.IMail;
+import mailservice.interfaces.IMail;
 public abstract class LoginFactoryTest
 {
     public abstract IAuthenticationOperations getAuthenticationOperationsMock();

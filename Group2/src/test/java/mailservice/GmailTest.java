@@ -6,6 +6,9 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import mailservice.interfaces.IMail;
+import mailservice.interfaces.IMailMessage;
+
 public class GmailTest {
 	
 	private final IMailMessage MAIL_MESSAGE_NULL_OBJECT = null;

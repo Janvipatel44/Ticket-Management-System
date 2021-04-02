@@ -2,6 +2,8 @@ package login;
 import login.Interfaces.IForgotPassword;
 import login.Interfaces.IPersistenceForgotPasswordOperations;
 import mailservice.*;
+import mailservice.interfaces.IMail;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 public class ForgotPasswordTest

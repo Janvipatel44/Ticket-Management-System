@@ -2,15 +2,16 @@ package login;
 import login.Interfaces.IForgotPassword;
 import login.Interfaces.IPasswordValidations;
 import login.Interfaces.IPersistenceForgotPasswordOperations;
-import mailservice.FactoryMethodMail;
-import mailservice.IMail;
-import mailservice.IMailMessage;
 import mailservice.MailMessage;
+import mailservice.abstractfactory.IMailFactory;
+import mailservice.abstractfactory.MailFactory;
+import mailservice.interfaces.IMail;
+import mailservice.interfaces.IMailMessage;
 public class ForgotPassword implements IForgotPassword
 {
     private int otp;
     private String employeeID;
-    private final FactoryMethodMail factoryMethodMail = new FactoryMethodMail();
+    private final IMailFactory factoryMethodMail = MailFactory.instance();
     private final IMail mail;
     private final IMailMessage mailMessage = new MailMessage();
     private final IPersistenceForgotPasswordOperations persistenceForgotPasswordOperations;

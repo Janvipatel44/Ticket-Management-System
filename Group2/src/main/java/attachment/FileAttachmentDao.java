@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 import com.mysql.cj.jdbc.Blob;
 
+import attachment.interfaces.IAttachmentDao;
 import database.IConnectionManager;
 
 public class FileAttachmentDao implements IAttachmentDao {
