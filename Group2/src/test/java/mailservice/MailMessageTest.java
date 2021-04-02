@@ -6,6 +6,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import mailservice.interfaces.IMailMessage;
+
 public class MailMessageTest {
 	
 	private final String RECIPIENT = "abc@gmail.com";

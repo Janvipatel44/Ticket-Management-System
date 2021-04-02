@@ -8,6 +8,9 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import attachment.interfaces.IAttachment;
+import attachment.interfaces.IAttachmentDao;
+
 public class FileAttachmentTest {
 
 	private final String NULL_OBJECT = null;

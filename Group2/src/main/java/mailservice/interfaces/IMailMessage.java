@@ -1,4 +1,4 @@
-package mailservice;
+package mailservice.interfaces;
 
 import java.util.List;
 

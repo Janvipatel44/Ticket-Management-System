@@ -1,4 +1,4 @@
-package attachment;
+package attachment.interfaces;
 
 public interface IAttachment {
 	
