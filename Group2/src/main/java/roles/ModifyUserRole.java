@@ -2,6 +2,9 @@ package roles;
 
 import org.apache.commons.lang3.StringUtils;
 
+import roles.interfaces.IModifyUserRole;
+import roles.interfaces.IRoleManagementDao;
+
 public class ModifyUserRole implements IModifyUserRole {
 
 	private IRoleManagementDao roleManagementDao;

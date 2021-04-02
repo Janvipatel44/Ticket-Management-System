@@ -9,6 +9,7 @@ import java.util.List;
 import Tickets.CreateTicket;
 import Tickets.ICreateTicket;
 import database.IConnectionManager;
+import managerfeatures.interfaces.IManagerFeaturesDao;
 
 public class ManagerFeaturesDao implements IManagerFeaturesDao {
 
