@@ -1,6 +1,6 @@
 package com.group2.roles;
 
-import validations.StringValidations;
+import insertTicket.StringValidations;
 
 public class ModifyUserRole implements IModifyUserRole {
 

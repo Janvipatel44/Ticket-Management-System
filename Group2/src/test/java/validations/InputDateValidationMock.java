@@ -8,6 +8,8 @@ import java.time.format.ResolverStyle;
 import java.util.Date;
 import java.util.Locale;
 
+import insertTicket.Interfaces.IInputDateValidation;
+
 public class InputDateValidationMock implements IInputDateValidation{
 	
 	public boolean isDurationValid (String startDate, String endDate) throws ParseException 

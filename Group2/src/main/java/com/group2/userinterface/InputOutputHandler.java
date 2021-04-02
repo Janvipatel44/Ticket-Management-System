@@ -2,7 +2,7 @@ package com.group2.userinterface;
 
 import java.util.Scanner;
 
-import validations.StringValidations;
+import insertTicket.StringValidations;
 
 public class InputOutputHandler implements IInputOutputHandler {
 

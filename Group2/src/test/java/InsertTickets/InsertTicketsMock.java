@@ -3,16 +3,17 @@ package InsertTickets;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-import Tickets.CreateTicket;
-import Tickets.ICreateTicket;
-import validations.IInputDateValidation;
-import validations.IInputRangeValidation;
-import validations.IInputStringValidation;
+
 import validations.InputDateValidationMock;
 import validations.InputRangeValidationMock;
 import validations.InputStringValidationMock;
 import database.ITicketOperationsDB;
 import database.TicketOperationsDB;
+import insertTicket.CreateTicket;
+import insertTicket.Interfaces.ICreateTicket;
+import insertTicket.Interfaces.IInputDateValidation;
+import insertTicket.Interfaces.IInputRangeValidation;
+import insertTicket.Interfaces.IInputStringValidation;
  
 public class InsertTicketsMock {
 	ITicketOperationsDB ticketOperationDB = null;

@@ -1,5 +1,7 @@
 package validations;
 
+import insertTicket.Interfaces.IInputStringValidation;
+
 public class InputStringValidationMock implements IInputStringValidation{
 
 	protected static String validationString = null;

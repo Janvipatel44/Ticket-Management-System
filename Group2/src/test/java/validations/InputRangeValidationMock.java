@@ -1,5 +1,6 @@
 package validations;
 
+import insertTicket.Interfaces.IInputRangeValidation;
 
 public class InputRangeValidationMock implements IInputRangeValidation {
 

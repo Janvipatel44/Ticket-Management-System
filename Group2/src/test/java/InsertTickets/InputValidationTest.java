@@ -6,8 +6,8 @@ import java.text.ParseException;
 
 import org.junit.Test;
 
-import Tickets.CreateTicket;
-import Tickets.ICreateTicket;
+import insertTicket.CreateTicket;
+import insertTicket.Interfaces.ICreateTicket;
 
 public class InputValidationTest {
 

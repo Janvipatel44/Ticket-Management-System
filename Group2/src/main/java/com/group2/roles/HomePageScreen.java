@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.group2.userinterface.IInputOutputHandler;
 
-import validations.StringValidations;
+import insertTicket.StringValidations;
 
 public class HomePageScreen implements IHomePageScreen {
 

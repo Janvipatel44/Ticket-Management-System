@@ -2,7 +2,7 @@ package com.group2.roles;
 
 import java.util.List;
 
-import validations.StringValidations;
+import insertTicket.StringValidations;
 
 public class MenuItemsByRole implements IMenuItemsByRole {	
 	

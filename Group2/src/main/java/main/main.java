@@ -4,8 +4,8 @@ import java.text.ParseException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-import Tickets.IInsertTicket;
-import Tickets.InsertTicket;
+import insertTicket.InsertTicket;
+import insertTicket.Interfaces.IInsertTicket;
 
 public class main {
 	
