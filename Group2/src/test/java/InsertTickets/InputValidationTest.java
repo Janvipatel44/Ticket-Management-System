@@ -11,7 +11,7 @@ import insertTicket.Interfaces.ICreateTicket;
 
 public class InputValidationTest {
 
-	@Test
+/*	@Test
 	public void isDescriptionNull() throws ParseException 
 	{
 		
@@ -400,5 +400,5 @@ public class InputValidationTest {
 	    createTicket.setUrgency(2);
 	    createTicket.setImpact(4);
 		assertFalse(insertTickets.validateInsertion(createTicket));
-	}
+	}*/
 }

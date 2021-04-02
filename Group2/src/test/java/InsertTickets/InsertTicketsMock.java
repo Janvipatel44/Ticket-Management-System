@@ -16,7 +16,7 @@ import insertTicket.Interfaces.IInputRangeValidation;
 import insertTicket.Interfaces.IInputStringValidation;
  
 public class InsertTicketsMock {
-	ITicketOperationsDB ticketOperationDB = null;
+	/*ITicketOperationsDB ticketOperationDB = null;
     IInputStringValidation ticketStringValidation = new InputStringValidationMock();
     IInputDateValidation dateValidation = new InputDateValidationMock();
     IInputRangeValidation rangeValidation = new InputRangeValidationMock();
@@ -171,5 +171,5 @@ public class InsertTicketsMock {
 			System.out.print("Hello");
 			e.printStackTrace();
 		}
-	}
+	}*/
 }
