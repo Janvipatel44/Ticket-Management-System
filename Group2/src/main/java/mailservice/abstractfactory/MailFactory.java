@@ -1,7 +1,9 @@
 package mailservice.abstractfactory;
 
 import mailservice.Gmail;
+import mailservice.MailMessage;
 import mailservice.interfaces.IMail;
+import mailservice.interfaces.IMailMessage;
 
 public class MailFactory implements IMailFactory {
 	
@@ -10,7 +12,6 @@ public class MailFactory implements IMailFactory {
 	private static IMailFactory uniqueInstance = null;	
 	
 	private MailFactory() {
-
 	}
 
 	public static IMailFactory instance() {
@@ -32,5 +33,10 @@ public class MailFactory implements IMailFactory {
 		} 
 		
 		return null;
+	}
+	
+	@Override
+	public IMailMessage makeMailMessageObject() {
+		return new MailMessage();
 	}
 }

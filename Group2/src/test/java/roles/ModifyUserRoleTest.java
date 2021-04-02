@@ -6,6 +6,9 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import roles.interfaces.IModifyUserRole;
+import roles.interfaces.IRoleManagementDao;
+
 public class ModifyUserRoleTest {
 
 	private final String USER_TYPE = "End_User";

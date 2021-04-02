@@ -1,4 +1,4 @@
-package managerfeatures;
+package managerfeatures.interfaces;
 
 public interface IManagerTeamTracking {
 	

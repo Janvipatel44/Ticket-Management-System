@@ -3,6 +3,7 @@ package roles;
 import java.util.ArrayList;
 import java.util.List;
 
+import roles.interfaces.IRoleManagementDao;
 import validations.StringValidations;
 
 public class RoleManagementDaoMock implements IRoleManagementDao {

@@ -1,4 +1,4 @@
-package roles;
+package roles.interfaces;
 
 public interface IModifyUserRole {
 	
