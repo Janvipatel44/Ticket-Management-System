@@ -46,26 +46,17 @@ public class InsertTicket implements IInsertTicket{
 		    String customerName = null;
 		    String creatorID = null;
 		    String creatorName = null;
-		    int rating = 0;
-		    String attachmentID = null;  
-		    long workingHours = 0;
-		    long ticketOnHoldHours = 0;
-		    long ticketInProgressHours= 0;
-		    int count = 1;
 		   		 
 			System.out.println("Please enter ticket Id:");
 			ticketID = sc.nextLine();
-			ticketID = sc.nextLine();
-		    createTicket.setTicketID(ticketID);
-		    if(validation(description,EnumValidation.validateTicketID)) {
+		    if(validation(ticketID,EnumValidation.validateTicketID)) {
 		    	inputsHandler.put("ticketID", ticketID);
 		    }
 
 			System.out.println("Please enter description:");
 		    description = sc.nextLine();
-		    createTicket.setDescription(description);
 		    if(validation(description,EnumValidation.validateDescription)) {
-		    	inputsHandler.put("description", ticketID);
+		    	inputsHandler.put("description", description);
 		    }
 
 			System.out.println("Start Date of Project is(YYYY-MM-DD):");
@@ -73,100 +64,98 @@ public class InsertTicket implements IInsertTicket{
 		    LocalDateTime now = LocalDateTime.now();  
 		    System.out.println(dtf.format(now)); 
 		    startDate = dtf.format(now);
-		    createTicket.setStartDate(startDate);
 	    	inputsHandler.put("startDate", startDate);
-
 
 			System.out.println("Please enter expected end Date (YYYY-MM-DD):");
 			expectedEndDate = sc.nextLine();
-		    createTicket.setEndDate(expectedEndDate);
-		    if(validation(description,EnumValidation.validateEndDate)) {
+		    if(validation(expectedEndDate,EnumValidation.validateEndDate)) {
 		    	inputsHandler.put("expectedEndDate", expectedEndDate);
 		    }
 		    
 			System.out.println("Please enter reporter Id (EMPxxxx):");
 		    reporterID = sc.nextLine();
-		    createTicket.setReporterID(reporterID);
-//
-//			System.out.println("Please enter employee Id (EMPxxxx):");
-//		    employeeId = sc.nextLine();
-//		    createTicket.setEmployeeID(employeeId);
+		    if(validation(reporterID,EnumValidation.validateReporterID)) {
+		    	inputsHandler.put("reporterID", reporterID);
+		    }
+
+			System.out.println("Please enter employee Id (EMPxxxx):");
+		    employeeID = sc.nextLine();
+		    if(validation(employeeID,EnumValidation.validateEmployeeID)) {
+		    	inputsHandler.put("employeeID", employeeID);
+		    }
 
 			System.out.println("Please enter assignee Name:");
 		    assigneeName = sc.nextLine();
-		    createTicket.setAssigneeName(assigneeName);
-
+		    if(validation(assigneeName,EnumValidation.validateAssigneeName)) {
+		    	inputsHandler.put("assigneeName", assigneeName);
+		    }
+		    
 			System.out.println("Please enter ticket Type (Bug/Feature/Research/Testing):");
 		    ticketType = sc.nextLine();
-		    createTicket.setTicketType(ticketType);
-
+		    if(validation(ticketType,EnumValidation.validateTicketType)) {
+		    	inputsHandler.put("ticketType", ticketType);
+		    }
+		  		
+		    System.out.println("Please enter ticket Status:");
+		    ticketStatus = sc.nextLine();
+		    if(validation(ticketStatus,EnumValidation.validateTicketStatus)) {
+		    	inputsHandler.put("ticketStatus", ticketStatus);
+		    }		    
+		    
 			System.out.println("Please enter priority (1-5):");
 		    priority = sc.nextInt();
-		    createTicket.setPriority(priority);
+		    if(validation(Integer.toString(priority),EnumValidation.validatePriority)) {
+		    	inputsHandler.put("priority", Integer.toString(priority));
+		    }
 		    
 			System.out.println("Please enter urgency (1-5):");
 		    urgency = sc.nextInt();
-		    createTicket.setUrgency(urgency);
-
+		    if(validation(Integer.toString(urgency),EnumValidation.validateUrgency)) {
+		    	inputsHandler.put("urgency", Integer.toString(urgency));
+		    }
+		    
 			System.out.println("Please enter impact (1-5):");
 		    impact =  sc.nextInt();
-		    createTicket.setImpact(impact);
-
+		    if(validation(Integer.toString(impact),EnumValidation.validateImpact)) {
+		    	inputsHandler.put("impact", Integer.toString(impact));
+		    }
+		    		    
 			System.out.println("Please Ticket Level:");
 			ticketLevel = sc.nextLine();
-			ticketLevel = sc.nextLine();
-
-		    createTicket.setTicketLevel(ticketLevel);
-		   		    
+			if(validation(ticketLevel,EnumValidation.validateTicketLevel)) {
+			    inputsHandler.put("ticketLevel",ticketLevel);
+			}
+			
+			System.out.println("Please Customer ID:");
+			customerID = sc.nextLine();
+			if(validation(customerID,EnumValidation.validateCustomerID)) {
+			    inputsHandler.put("customerID",customerID);
+			}
+			
 		    System.out.println("Please Customer Name:");
 		    customerName = sc.nextLine();
-		    createTicket.setCustomerName(customerName);
+		    if(validation(customerName,EnumValidation.validateCustomerName)) {
+			    inputsHandler.put("customerName",customerName);
+			}		    
 		    
-		    System.out.println("Please Rating:");
-		    rating = sc.nextInt();
-		    createTicket.setRating(rating);
+		    System.out.println("Please Creator ID:");
+		    creatorID = sc.nextLine();
+		    if(validation(creatorID,EnumValidation.validateCreatorID)) {
+			    inputsHandler.put("creatorID",creatorID);
+			}	
 		    
 		    System.out.println("Please creator Name:");
 		    creatorName = sc.nextLine();
-		    creatorName = sc.nextLine();
-		    createTicket.setCreatorName(creatorName);
-		    
-		    System.out.println("Please attachment ID:");
-		    attachmentID = sc.nextLine();
-		    attachmentID = sc.nextLine();
-		    createTicket.setAttchmentID(attachmentID);
-		    
-		    
+		    if(validation(creatorName,EnumValidation.validateCreatorName)) {
+			    inputsHandler.put("creatorName",creatorName);
+			}
 		    
 			sc.close();
 			return inputsHandler;
 	}
 	
 	public boolean validation(String validationString, EnumValidation input) 
-	{
-		//null & special character, length
-/*	    validateStartDate,		//automatically generated
-	    validateExpectedEndDate,	//	range
-	    validateEndDate,			//range	    
-	    validateReporterID,			//employeeReporterPrefix , range, special character
-	    validateEmployeeID,			//employeeReporterPrefix , range, special character
-	    validateAssigneeName,		//range, special character
-	    validateTicketType,			//not null, special character, range, 
-	    validateTicketStatus,		// special character
-	    validatePriority,			//range
-	    validateImpact,				//range
-	    validateUrgency,			//range
-	    validateCustomerID,			//special character
-	    validateCustomerName,		//special character
-	    validateTicketLevel,		//not null
-	    validateCreatorID,			//not null, special character, range
-	    validateCreatorName,		//not null, special character, range
-	    validateRating,				//range
-	    validateAttachmentID,		
-	    validateWorkingHours,		//non negative
-	    validateTicketOnHoldHours,	//non negative 
-	    validateTicketProgressHours	//non negative
-*/	    
+	{	
 	    HashMap<String, Integer> stringLength = new HashMap<String, Integer>();
 	    stringLength.put("ticketID", 30 );
 	    stringLength.put("expectedEndDate", 10 );
@@ -176,106 +165,147 @@ public class InsertTicket implements IInsertTicket{
 	    stringLength.put("assigneeName", 45 );
 	    stringLength.put("ticketType", 25 );
 		boolean success = false;
-            switch (input) 
-            {
-                case validateTicketID:
-                	
-            	    if(ticketStringValidation.isStringNull(validationString)==true) {
-                   		success = false;
-                        break;
-            	    }
-               	    if(ticketStringValidation.isStringContainsSpecialCharacters(validationString)==true) {
-                   		System.err.println("String contains Special Characters");
-                   		success = false;
-                        break;
-            	    }
-            	    if(ticketStringValidation.isStringLengthValid(validationString,stringLength.get("ticketID"))==false) {
-                   		System.err.println("Invalid String Length");
-                   		success = false;
-                        break;
-            	    }
-               		success = true;
+        switch (input) 
+        {
+            case validateTicketID:
+            	
+        	    if(ticketStringValidation.isStringNull(validationString)==true) {
+               		success = false;
+                    break;
+        	    }
+           	    if(ticketStringValidation.isStringContainsSpecialCharacters(validationString)==true) {
+               		System.err.println("String contains Special Characters");
+               		success = false;
+                    break;
+        	    }
+        	    if(ticketStringValidation.isStringLengthValid(validationString,stringLength.get("ticketID"))==false) {
+               		System.err.println("Invalid String Length");
+               		success = false;
+                    break;
+        	    }
+           		success = true;
+            break;
+            
+            case validateDescription:
+            	
+            	 if(ticketStringValidation.isStringNull(validationString)==true) {
+                		success = false;
+                     break;
+         	    }
+            	    if(ticketStringValidation.isStringContainsSpecialCharacters(validationString)==true) {
+                		System.err.println("String contains Special Characters");
+                		success = false;
+                     break;
+         	    }
+            	success = true;
+            break;
+            case validateStartDate:
+            	success = true;
+
+           		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
                 break;
-                
-                case validateDescription:
-                	
-                	 if(ticketStringValidation.isStringNull(validationString)==true) {
-                    		success = false;
-                         break;
-             	    }
-                	    if(ticketStringValidation.isStringContainsSpecialCharacters(validationString)==true) {
-                    		System.err.println("String contains Special Characters");
-                    		success = false;
-                         break;
-             	    }
-                	success = true;
+            case validateExpectedEndDate:
+            	success = true;
+
+           		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
                 break;
-                case validateStartDate:
-               		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
-                    break;
-                case validateExpectedEndDate:
-               		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
-                    break;
-                case validateEndDate:
-               		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
-                    break;
-                case validateReporterID:
-               		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
-                    break;
-                case validateEmployeeID:
-               		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
-                    break;
-                case validateAssigneeName:
-               		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
-                    break;
-                case validateTicketType:
-               		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
-                    break;
-                case validateTicketStatus:
-               		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
-                    break;
-                case validatePriority:
-               		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
-                    break;
-                case validateImpact:
-               		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
-                    break;
-                case validateUrgency:
-               		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
-                    break;
-                case validateCustomerID:
-               		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
-                    break;
-                case validateCustomerName:
-               		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
-                    break;
-                case validateTicketLevel:
-               		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
-                    break;
-                case validateCreatorID:
-               		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
-                    break;
-                case validateCreatorName:
-               		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
-                    break;
-                case validateRating:
-               		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
-                    break;
-                case validateAttachmentID:
-               		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
-                    break;
-                case validateWorkingHours:
-               		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
-                    break;
-                case validateTicketOnHoldHours:
-               		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
-                    break;
-                case validateTicketProgressHours:
-               		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
-                    break;
-            }
-			return false;
-           
+            case validateEndDate:
+            	success = true;
+
+           		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
+                break;
+            case validateReporterID:
+            	success = true;
+
+           		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
+                break;
+            case validateEmployeeID:
+            	success = true;
+
+           		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
+                break;
+            case validateAssigneeName:
+            	success = true;
+
+           		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
+                break;
+            case validateTicketType:
+            	success = true;
+
+           		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
+                break;
+            case validateTicketStatus:
+            	success = true;
+
+           		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
+                break;
+            case validatePriority:
+            	success = true;
+
+           		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
+                break;
+            case validateImpact:
+            	success = true;
+
+           		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
+                break;
+            case validateUrgency:
+            	success = true;
+
+           		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
+                break;
+            case validateCustomerID:
+            	success = true;
+
+           		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
+                break;
+            case validateCustomerName:
+            	success = true;
+
+           		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
+                break;
+            case validateTicketLevel:
+            	success = true;
+
+           		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
+                break;
+            case validateCreatorID:
+            	success = true;
+
+           		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
+                break;
+            case validateCreatorName:
+            	success = true;
+
+           		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
+                break;
+            case validateRating:
+            	success = true;
+
+           		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
+                break;
+            case validateAttachmentID:
+            	success = true;
+
+           		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
+                break;
+            case validateWorkingHours:
+            	success = true;
+
+           		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
+                break;
+            case validateTicketOnHoldHours:
+            	success = true;
+
+           		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
+                break;
+            case validateTicketProgressHours:
+            	success = true;
+
+           		System.err.println("Today is Monday learn example of How to use Java Enum in Switch");
+                break;
+        }
+		return success;   
 	}
 	public boolean validateInsertion() throws ParseException {
 		
@@ -414,21 +444,20 @@ public class InsertTicket implements IInsertTicket{
 	{
 		boolean result = false;
 	    HashMap<String, String> inputsHandler = new HashMap<String, String>();
+		System.out.print("Here I m in successfulInsertion");
 
 		try {
 			
 			inputsHandler = userInputTicketDetails();
 			ticketOperationDB = new TicketOperationsDB(inputsHandler);
-			result = ticketOperationDB.duplicateTicket();
-			if(result==false) {
+			//result = ticketOperationDB.duplicateTicket();
 				result = ticketOperationDB.insertTicket();
-				System.out.print(result);
-			}
+			//	System.out.print(result);
+			//}
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			System.out.print("Hello");
 			e.printStackTrace();
 		}
 	}
-	
 }

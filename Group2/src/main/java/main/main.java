@@ -33,7 +33,7 @@ public class main {
 		       
 		            case 1:
 		            	try {
-							insert_tickets.userInputTicketDetails();
+							insert_tickets.successfulInsertion();
 						} catch (ParseException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
