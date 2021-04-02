@@ -1,11 +1,10 @@
 package login;
-import login.abstractFactory.LoginFactory;
-import login.abstractFactory.LoginFactoryImplementation;
+import login.abstractfactory.*;
 import userinterface.IInputOutputHandler;
 import login.Interfaces.*;
 public class Registration implements IRegister
 {
-    private final LoginFactory loginFactory = new LoginFactoryImplementation();
+    private final ILoginFactory loginFactory = LoginFactory.instance();
     private final IPersistenceUserRegistrationOperations userRegistrationOperations;
     private final IInputOutputHandler inputOutputHandler;
     private final IEncryption encryption = loginFactory.getEncryption();

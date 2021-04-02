@@ -2,15 +2,14 @@ package userinterface;
 import login.Interfaces.IParameterizedUser;
 import login.Interfaces.IPersistenceUserRegistrationOperations;
 import login.Interfaces.IRegister;
-import login.abstractFactory.LoginFactory;
-import login.abstractFactory.LoginFactoryImplementation;
+import login.abstractfactory.*;
 import userinterface.abstractFactory.UserInterfaceFactory;
 import userinterface.abstractFactory.UserInterfaceFactoryImplementation;
 public class RegistrationScreen implements IRegistrationScreen
 {
     IInputOutputHandler inputOutputHandler;
     UserInterfaceFactory userInterfaceFactory = new UserInterfaceFactoryImplementation();
-    LoginFactory loginFactory = new LoginFactoryImplementation();
+    ILoginFactory loginFactory = LoginFactory.instance();
 
     public RegistrationScreen(IInputOutputHandler inputOutputHandler)
     {

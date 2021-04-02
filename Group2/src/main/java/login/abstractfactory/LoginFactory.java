@@ -1,10 +1,26 @@
-package login.abstractFactory;
+package login.abstractfactory;
 import login.*;
 import login.Interfaces.*;
 import mailservice.interfaces.IMail;
 import userinterface.IInputOutputHandler;
-public class LoginFactoryImplementation extends LoginFactory
+public class LoginFactory implements ILoginFactory
 {
+    private static ILoginFactory uniqueInstance = null;
+
+    private LoginFactory()
+    {
+
+    }
+
+    public static ILoginFactory instance()
+    {
+        if(null == uniqueInstance)
+        {
+            uniqueInstance = new LoginFactory();
+        }
+        return uniqueInstance;
+    }
+
     public IAuthentication getAuthentication(IAuthenticationOperations authenticationOperations)
     {
         return new Authentication(authenticationOperations);

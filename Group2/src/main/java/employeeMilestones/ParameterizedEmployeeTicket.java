@@ -1,6 +1,5 @@
 package employeeMilestones;
 import employeeMilestones.interfaces.IParameterizedEmployeeTicket;
-
 import java.sql.Date;
 public class ParameterizedEmployeeTicket implements IParameterizedEmployeeTicket
 {

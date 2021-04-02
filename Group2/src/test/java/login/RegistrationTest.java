@@ -1,14 +1,22 @@
 package login;
 import static org.junit.Assert.*;
+
+import login.abstractfactory.ILoginFactory;
+import login.abstractfactory.ILoginFactoryTest;
+import login.abstractfactory.LoginFactory;
+import login.abstractfactory.LoginFactoryTest;
 import org.junit.Test;
 import userinterface.*;
 import login.Interfaces.*;
+import userinterface.abstractFactory.UserInterfaceFactory;
+import userinterface.abstractFactory.UserInterfaceFactoryImplementation;
+
 public class RegistrationTest
 {
-
-	IInputOutputHandler inputOutputHandler = new InputOutputHandler();
-	IEncryption encryption= new Encryption();
-	IPersistenceUserRegistrationOperations databaseUserMock = new PersistenceUserRegistrationOperationsMock();
+	ILoginFactoryTest loginFactoryTest = LoginFactoryTest.instance();
+	UserInterfaceFactory userInterfaceFactory = new UserInterfaceFactoryImplementation();
+	IInputOutputHandler inputOutputHandler = userInterfaceFactory.getInputOutputHandler();
+	IPersistenceUserRegistrationOperations databaseUserMock = loginFactoryTest.getPersistenceUserRegistrationOperationsMock();
 
 	@Test
 	public void registerUserTestSuccessfull()

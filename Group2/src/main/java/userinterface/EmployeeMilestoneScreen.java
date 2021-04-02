@@ -1,11 +1,11 @@
 package userinterface;
-import employeeMilestones.abstractFactory.*;
+import employeeMilestones.abstractfactory.*;
 import employeeMilestones.interfaces.IEmployeeMilestone;
 import java.util.Map;
 public class EmployeeMilestoneScreen implements IEmployeeMilestoneScreen
 {
     private final IInputOutputHandler inputOutputHandler;
-    private final EmployeeMilestoneFactory employeeMilestoneFactory = new EmployeeMilestoneFactoryImplementation();
+    private final IEmployeeMilestoneFactory employeeMilestoneFactory = EmployeeMilestoneFactory.instance();
 
     public  EmployeeMilestoneScreen(IInputOutputHandler inputOutputHandler)
     {

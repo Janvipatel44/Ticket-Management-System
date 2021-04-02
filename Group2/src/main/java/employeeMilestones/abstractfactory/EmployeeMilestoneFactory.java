@@ -1,10 +1,26 @@
-package employeeMilestones.abstractFactory;
+package employeeMilestones.abstractfactory;
 import employeeMilestones.*;
 import employeeMilestones.interfaces.*;
 import java.sql.Date;
 import java.util.List;
-public class EmployeeMilestoneFactoryImplementation extends EmployeeMilestoneFactory
-{
+public class EmployeeMilestoneFactory implements IEmployeeMilestoneFactory {
+
+    private static IEmployeeMilestoneFactory uniqueInstance = null;
+
+    private EmployeeMilestoneFactory()
+    {
+
+    }
+
+    public static IEmployeeMilestoneFactory instance()
+    {
+        if(null == uniqueInstance)
+        {
+            uniqueInstance = new EmployeeMilestoneFactory();
+        }
+        return uniqueInstance;
+    }
+
     public ICalculateMilestone getCalculateMilestone(List<IParameterizedEmployeeTicket> employeeTicketList)
     {
         return new CalculateMilestone(employeeTicketList);

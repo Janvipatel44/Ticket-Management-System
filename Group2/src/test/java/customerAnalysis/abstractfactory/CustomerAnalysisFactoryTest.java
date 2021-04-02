@@ -1,4 +1,4 @@
-package customerAnalysis.abstractFactory;
+package customerAnalysis.abstractfactory;
 import customerAnalysis.Interfaces.IPersistenceCustomer;
 public abstract class CustomerAnalysisFactoryTest
 {

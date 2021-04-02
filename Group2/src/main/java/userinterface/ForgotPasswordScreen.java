@@ -1,14 +1,14 @@
 package userinterface;
 import login.Interfaces.IForgotPassword;
 import login.Interfaces.IPersistenceForgotPasswordOperations;
-import login.abstractFactory.*;
+import login.abstractfactory.*;
 import mailservice.Gmail;
 import mailservice.interfaces.IMail;
 import userinterface.abstractFactory.*;
 public class ForgotPasswordScreen implements IForgotPasswordScreen
 {
     IInputOutputHandler inputOutputHandler;
-    LoginFactory loginFactory = new LoginFactoryImplementation();
+    ILoginFactory loginFactory = LoginFactory.instance();
     UserInterfaceFactory userInterfaceFactory = new UserInterfaceFactoryImplementation();
 
     public ForgotPasswordScreen(IInputOutputHandler inputOutputHandler)

@@ -13,7 +13,7 @@ public class ForgotPassword implements IForgotPassword
     private String employeeID;
     private final IMailFactory factoryMethodMail = MailFactory.instance();
     private final IMail mail;
-    private final IMailMessage mailMessage = new MailMessage();
+    private final IMailMessage mailMessage = factoryMethodMail.makeMailMessageObject();
     private final IPersistenceForgotPasswordOperations persistenceForgotPasswordOperations;
 
     public ForgotPassword(IMail mail, IPersistenceForgotPasswordOperations persistenceForgotPasswordOperations)

@@ -1,6 +1,6 @@
 package customerAnalysis;
 import customerAnalysis.Interfaces.*;
-import customerAnalysis.abstractFactory.*;
+import customerAnalysis.abstractfactory.*;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 public class ComputeCustomerPropertiesTest
 {
-    CustomerAnalysisFactory customerAnalysisFactory;
+    ICustomerAnalysisFactory customerAnalysisFactory;
     CustomerAnalysisFactoryTest customerAnalysisFactoryTest;
     IPersistenceCustomer persistenceCustomer;
     IComputeCustomerProperties computeCustomerProperties;
@@ -17,7 +17,7 @@ public class ComputeCustomerPropertiesTest
     public void initialize()
     {
         List<IParameterizedCustomerTicket> customerTicketList;
-        customerAnalysisFactory = new CustomerAnalysisFactoryImplementation();
+        customerAnalysisFactory = CustomerAnalysisFactory.instance();
         customerAnalysisFactoryTest = new CustomerAnalysisImplementationTest();
         persistenceCustomer = customerAnalysisFactoryTest.getPersistenceCustomerMock();
         customerTicketList = persistenceCustomer.getTicketsOfCustomer("CUST_DAL");

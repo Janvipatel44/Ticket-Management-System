@@ -1,9 +1,9 @@
-package login.abstractFactory;
+package login.abstractfactory;
 import login.Interfaces.*;
 import mailservice.interfaces.IMail;
 import userinterface.IInputOutputHandler;
 
-public abstract class LoginFactory
+public abstract class LoginFactoryAbs
 {
     public abstract IAuthentication getAuthentication(IAuthenticationOperations authenticationOperations);
     public abstract IAuthenticationOperations getAuthenticationOperations();
