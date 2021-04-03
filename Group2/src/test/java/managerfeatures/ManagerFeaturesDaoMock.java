@@ -25,7 +25,7 @@ public class ManagerFeaturesDaoMock implements IManagerFeaturesDao {
 			createTicket.setDescription(DESCRIPTION);
 			createTickets.add(createTicket);
 		}
-		return null;
+		return createTickets;
 	}
 
 }
