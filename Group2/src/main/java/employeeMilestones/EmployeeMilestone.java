@@ -8,7 +8,12 @@ import java.util.Set;
 public class EmployeeMilestone implements IEmployeeMilestone
 {
     private final IEmployeeMilestoneFactory employeeMilestoneFactory = EmployeeMilestoneFactory.instance();
-    private final IPersistenceEmployeeTickets persistenceEmployeeTickets = employeeMilestoneFactory.getPersistenceEmployeeTickets();
+    private final IPersistenceEmployeeTickets persistenceEmployeeTickets;
+
+    public EmployeeMilestone(IPersistenceEmployeeTickets persistenceEmployeeTickets)
+    {
+        this.persistenceEmployeeTickets = persistenceEmployeeTickets;
+    }
 
     public Map<String, String> getEmployeeMilestone(String employeeID)
     {

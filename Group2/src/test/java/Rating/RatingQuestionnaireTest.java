@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import Rating.interfaces.*;
 public class RatingQuestionnaireTest
 {
-    IRatingFactory ratingFactory = RatingFactory.instance();
+    IRatingFactoryTest ratingFactory = RatingFactoryTest.instance();
 
     @Test
     public void checkRatingQuestionnaireSuccessfulTest()

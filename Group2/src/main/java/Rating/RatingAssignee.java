@@ -1,15 +1,14 @@
 package Rating;
-import Rating.abstractfactory.*;
 import Rating.interfaces.*;
 public class RatingAssignee implements IRatingAssignee
 {
-    IRatingFactory ratingFactory = RatingFactory.instance();
     IRatingQuestionnaire questionnaire;
-    IPersistenceRating persistenceRating = ratingFactory.getPersistenceRating();
+    IPersistenceRating persistenceRating;
 
-    public RatingAssignee(IRatingQuestionnaire questionnaire)
+    public RatingAssignee(IRatingQuestionnaire questionnaire, IPersistenceRating persistenceRating)
     {
         this.questionnaire = questionnaire;
+        this.persistenceRating = persistenceRating;
     }
 
     public boolean provideRating(String employeeID, String ticketID)

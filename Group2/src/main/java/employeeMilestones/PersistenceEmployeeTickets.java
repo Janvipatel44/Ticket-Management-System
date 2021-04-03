@@ -1,6 +1,6 @@
 package employeeMilestones;
-import database.ConnectionManager;
 import database.IConnectionManager;
+import database.abstractfactory.*;
 import employeeMilestones.abstractfactory.*;
 import employeeMilestones.interfaces.*;
 import java.sql.*;
@@ -10,7 +10,8 @@ public class PersistenceEmployeeTickets implements IPersistenceEmployeeTickets
 {
     private final IEmployeeMilestoneFactory employeeMilestoneFactory = EmployeeMilestoneFactory.instance();
     private final String configurationFile = "ConfigurationFile.txt";
-    private final IConnectionManager connection = new ConnectionManager(configurationFile);
+    private final IDatabaseFactory databaseFactory = DatabaseFactory.instance();
+    private final IConnectionManager connection = databaseFactory.getConnectionManager(configurationFile);
 
     public List<IParameterizedEmployeeTicket> getEmployeeTickets(String employeeID)
     {

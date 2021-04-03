@@ -5,11 +5,13 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Types;
 import Rating.interfaces.*;
+import database.abstractfactory.*;
 public class PersistenceRating implements IPersistenceRating
 {
+    private final IDatabaseFactory databaseFactory = DatabaseFactory.instance();
     private final String configurationFile = "ConfigurationFile.txt";
-    private final IConnectionManager connection = new ConnectionManager(configurationFile);
-    IDatabaseOperations databaseOperations = new DatabaseOperations();
+    private final IConnectionManager connection = databaseFactory.getConnectionManager(configurationFile);
+    IDatabaseOperations databaseOperations = databaseFactory.getDatabaseOperations();
 
     public String getPersistenceCreatorID(String ticketID)
     {

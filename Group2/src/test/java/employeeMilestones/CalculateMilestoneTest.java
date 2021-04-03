@@ -11,7 +11,7 @@ public class CalculateMilestoneTest
     @Before public void initialize()
     {
         IEmployeeMilestoneFactory employeeMilestoneFactory = EmployeeMilestoneFactory.instance();
-        EmployeeMilestoneFactoryTest employeeMilestoneFactoryTest = new EmployeeMilestoneFactoryTestImplementation();
+        IEmployeeMilestoneFactoryTest employeeMilestoneFactoryTest = EmployeeMilestoneFactoryTest.instance();
         IPersistenceEmployeeTickets persistenceEmployeeTickets = employeeMilestoneFactoryTest.getPersistenceEmployeeTicketsMock();
         calculateMilestone = employeeMilestoneFactory.getCalculateMilestone(persistenceEmployeeTickets.getEmployeeTickets("EMP_123"));
     }

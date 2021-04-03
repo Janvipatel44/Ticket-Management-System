@@ -1,7 +1,7 @@
-package database.abstractFactory;
+package database.abstractfactory;
 import Tickets.ICreateTicket;
 import database.*;
-public abstract class DatabaseFactory
+public abstract class DatabaseFactoryAbs
 {
     public abstract IConnectionManager getConnectionManager(String configurationFile);
     public abstract IDatabaseOperations getDatabaseOperations();
