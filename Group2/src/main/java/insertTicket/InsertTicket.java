@@ -5,6 +5,7 @@ import java.util.Scanner;
 import database.ITicketOperationsDB;
 import database.TicketOperationsDB;
 import insertTicket.Interfaces.IParameterizedTicket;
+import insertTicket.Interfaces.IUserInputValidation;
 import insertTicket.Interfaces.IInputDateValidation;
 import insertTicket.Interfaces.IInputRangeValidation;
 import insertTicket.Interfaces.IInputStringValidation;

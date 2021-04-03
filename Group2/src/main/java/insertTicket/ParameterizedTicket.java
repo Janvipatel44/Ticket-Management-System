@@ -1,14 +1,18 @@
 package insertTicket;
 
-import insertTicket.Interfaces.ICreateTicket;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
-public class CreateTicket implements ICreateTicket
+import insertTicket.Interfaces.IParameterizedTicket;
+
+public class ParameterizedTicket implements IParameterizedTicket
 {
-
 	private String ticketID = null;
     private String description = null;
     private String startDate = null;
-    private String expectedEndDate = null;
     private String endDate = null;
     private String reporterID = null;
     private String employeeID = null;
@@ -23,12 +27,33 @@ public class CreateTicket implements ICreateTicket
     private String customerName = null;
     private String creatorID = null;
     private String creatorName = null;
-    private int rating = 0;
-    private long workingHours = 0;
-    private long ticketOnHoldHours = 0;
-    private long ticketInProgressHours= 0;
-    private String attachmentID = null;
-
+	private String expectedEndDateString;
+	private Date expectedEndDate;
+	
+	public ParameterizedTicket(String ticketID, String description,  String expectedEndDate, String reporterID,
+			String employeeID,  String assigneeName, String ticketType, String ticketStatus, int priority, int urgency, int impact,
+			String ticketLevel, String customerID, String customerName, String creatorID, String creatorName) {
+		
+		this.ticketID = ticketID;
+	    this.description = description;
+	    this.expectedEndDateString = expectedEndDate;
+	    this.reporterID = reporterID;
+	    this.employeeID = employeeID;
+	    this.assigneeName = assigneeName;
+	    this.ticketType = ticketType;
+	    this.ticketStatus = ticketStatus;
+	    this.priority = priority;
+	    this.urgency = urgency;
+	    this.impact = impact;
+	    this.ticketLevel = ticketLevel;
+	    this.customerID = customerID;
+	    this.customerName = customerName;
+	    this.creatorID = creatorID;
+	    this.creatorName = creatorName;
+	  
+	}
+	
+    
     public String getTicketID() {
         return ticketID;
     }
@@ -38,12 +63,20 @@ public class CreateTicket implements ICreateTicket
         return description;
     }
     
-    public String getStartDate() {
+    public String generateStartDate() {
+    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+	    LocalDateTime now = LocalDateTime.now();  
+	    System.out.println(dtf.format(now)); 
+	    startDate = dtf.format(now);
         return startDate;
     }
     
-    public String getExpectedEndDate() {
-        return expectedEndDate;
+    public Date getExpectedEndDate() throws ParseException {
+    	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+
+    	expectedEndDateString =formatter.format(formatter.parse(expectedEndDateString));
+    	expectedEndDate = (Date)formatter.parseObject(expectedEndDateString);
+    	return expectedEndDate;
     }
     
     public String getEndDate() {
@@ -109,146 +142,4 @@ public class CreateTicket implements ICreateTicket
     {
     	return creatorName;
     }
-    
-    public int getRating() 
-    {
-    	return rating;
-    }
-    
-    public long getWorkingHours() 
-    {
-    	return workingHours;
-    }
-
-    public long getTicketOnHoldHours() 
-    {
-    	return ticketOnHoldHours;
-    }
-
-    public long getTicketInProgressHours() 
-    {
-    	return ticketInProgressHours;
-    }
-   
-    public String getAttachmentID() {
-		// TODO Auto-generated method stub
-		return attachmentID;
-	}
-    
-    public void setTicketID(String ticketID) {
-        this.ticketID = ticketID;
-    }
-
-    public void setDescription(String description) {
-        this.description= description;
-    }
-    
-    public void setStartDate(String startDate)
-    {
-        this.startDate= startDate;
-    }
-    
-    public void setExpectedEndDate(String expectedEndDate) 
-    {
-        this.expectedEndDate = expectedEndDate;
-    }
-    
-    public void setEndDate(String endDate) 
-    {
-        this.endDate = endDate;
-    }
-    
-    public void setReporterID(String reporterID) 
-    {
-        this.reporterID = reporterID;
-    }
-
-    public void setEmployeeID(String employeeID) 
-    {
-        this.employeeID = employeeID;
-    }
-
-    public void setAssigneeName(String assigneeName) 
-    {
-        this.assigneeName = assigneeName;
-    }
-    
-    public void setTicketType(String ticketType) 
-    {
-        this.ticketType = ticketType;
-    }
-    
-    
-    public void setTicketStatus(String ticketStatus) 
-    {
-        this.ticketStatus = ticketStatus;
-    }
-    
-    public void setPriority(int priority) 
-    {
-    	this.priority = priority;
-    }
-
-    public void setUrgency(int urgency) 
-    {
-    	this.urgency =urgency;
-    }
-    
-    public void setImpact(int impact) 
-    {
-    	this.impact=impact;
-    }
-    
-  
-    
-
-    
-    
-    public void setTicketLevel(String ticketLevel) 
-    {
-    	this.ticketLevel = ticketLevel;
-    }
-    
-    public void setCustomeID(String customerID) 
-    {
-    	this.customerID = customerID;
-    }
-    public void setCustomerName(String customerName) 
-    {
-    	this.customerName = customerName;
-    }
-    public void setCreatorID(String creatorID) 
-    {
-    	this.creatorID = creatorID;
-    }
-    
-    public void setCreatorName(String creatorName) 
-    {
-    	this.creatorName = creatorName;
-    }
-   
-    public void setRating(int rating) 
-    {
-    	this.rating = rating;
-    }
-    
-    public void setWorkingHours(long workingHours) 
-    {
-    	this.workingHours = workingHours;
-    }
-    
-    public void setTicketOnHoldHours(long ticketOnHoldHours) 
-    {
-    	this.ticketOnHoldHours = ticketOnHoldHours;
-    }
-    
-    public void setTicketInProgressHours(long ticketInProgressHours) 
-    {
-    	this.ticketInProgressHours = ticketInProgressHours;
-    }
-       
-	public void setAttchmentID(String attachmentID) 
-	{
-    	this.attachmentID = attachmentID;
-	}
 }

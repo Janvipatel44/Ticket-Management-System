@@ -1,4 +1,6 @@
-package insertTicket;
+package insertTicket.Interfaces;
+
+import insertTicket.EnumValidation;
 
 public interface IUserInputValidation {
 

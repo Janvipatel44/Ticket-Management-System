@@ -5,6 +5,7 @@ import java.util.HashMap;
 import insertTicket.Interfaces.IInputDateValidation;
 import insertTicket.Interfaces.IInputRangeValidation;
 import insertTicket.Interfaces.IInputStringValidation;
+import insertTicket.Interfaces.IUserInputValidation;
 
 public class UserInputValidation implements IUserInputValidation {
 	
