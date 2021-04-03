@@ -1,17 +1,19 @@
 package login;
 import login.Interfaces.*;
+import login.abstractFactory.LoginFactory;
+import login.abstractFactory.LoginFactoryImplementation;
 import userinterface.IInputOutputHandler;
+import userinterface.InputOutputHandler;
 public class Authentication implements IAuthentication
 {
+    LoginFactory loginFactory = new LoginFactoryImplementation();
     private final IAuthenticationOperations authenticationOperations;
-    private final IEncryption encryption;
-    private final IInputOutputHandler inputOutputHandler;
+    private final IEncryption encryption = loginFactory.getEncryption();
+    private final IInputOutputHandler inputOutputHandler = new InputOutputHandler();
 
-    public Authentication(IAuthenticationOperations authenticationOperations, IEncryption encryption, IInputOutputHandler inputOutputHandler)
+    public Authentication(IAuthenticationOperations authenticationOperations)
     {
         this.authenticationOperations = authenticationOperations;
-        this.encryption = encryption;
-        this.inputOutputHandler = inputOutputHandler;
     }
 
     public boolean authenticateUser(String employeeID, String user_password)

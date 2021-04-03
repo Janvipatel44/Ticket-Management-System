@@ -6,9 +6,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import roles.IModifyUserRole;
-import roles.IRoleManagementDao;
-import roles.ModifyUserRole;
+import roles.interfaces.IModifyUserRole;
+import roles.interfaces.IRoleManagementDao;
 
 public class ModifyUserRoleTest {
 
@@ -24,7 +23,7 @@ public class ModifyUserRoleTest {
 
 	@Before
 	public void init() {
-		iRoleMngmntPersistenceOps = new MenuItemsByRoleDBMock();
+		iRoleMngmntPersistenceOps = new RoleManagementDaoMock();
 		modifyUserRole = new ModifyUserRole(iRoleMngmntPersistenceOps);
 	}
 

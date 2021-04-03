@@ -8,11 +8,8 @@ import java.sql.SQLException;
 public class PersistenceUserRegistrationOperations implements IPersistenceUserRegistrationOperations
 {
     private boolean result=false;
-    private final IConnectionManager connection;
-    public PersistenceUserRegistrationOperations(IConnectionManager connection)
-    {
-        this.connection = connection;
-    }
+    private String configurationFile = "ConfigurationFile.txt";
+    IConnectionManager connection = new ConnectionManager(configurationFile);
 
     public boolean registerUserDatabase(IParameterizedUser user, String user_password)
     {

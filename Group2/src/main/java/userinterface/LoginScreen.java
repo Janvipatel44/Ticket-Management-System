@@ -1,14 +1,42 @@
 package userinterface;
+import login.Interfaces.IAuthentication;
+import login.Interfaces.IAuthenticationOperations;
+import login.abstractFactory.LoginFactory;
+import login.abstractFactory.LoginFactoryImplementation;
+import userinterface.abstractFactory.UserInterfaceFactory;
+import userinterface.abstractFactory.UserInterfaceFactoryImplementation;
 public class LoginScreen implements ILoginScreen
 {
-    private final IInputOutputHandler inputOutputHandler;
+    IInputOutputHandler inputOutputHandler;
+    UserInterfaceFactory userInterfaceFactory = new UserInterfaceFactoryImplementation();
+    LoginFactory loginFactory = new LoginFactoryImplementation();
 
-    LoginScreen(IInputOutputHandler inputOutputHandler)
+    public LoginScreen(IInputOutputHandler inputOutputHandler)
     {
         this.inputOutputHandler = inputOutputHandler;
     }
+
     public void displayLoginScreen()
     {
-        inputOutputHandler.displayMethod("Welcome to ServiceNow Mock application\n\n Press 1 to login\n Press 2 to register as a new user");
+        IServiceNowWelcomeScreen serviceNowWelcomeScreen = userInterfaceFactory.getServiceNowWelcomeScreen(inputOutputHandler);;
+        IAuthenticationOperations authenticationOperations = loginFactory.getAuthenticationOperations();;
+        IAuthentication authentication = loginFactory.getAuthentication(authenticationOperations);;
+        String employeeID;
+        String password;
+
+        inputOutputHandler.displayMethod("Enter employeeID:\n");
+        employeeID = inputOutputHandler.input();
+
+        inputOutputHandler.displayMethod("Enter password:\n");
+        password = inputOutputHandler.input();
+
+        if(authentication.authenticateUser(employeeID, password))
+        {
+
+        }
+        else
+        {
+            serviceNowWelcomeScreen.displayLoginScreen();
+        }
     }
 }
