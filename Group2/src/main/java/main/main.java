@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+import database.ITicketStatusOperationsDB;
+import database.TicketStatusOperationsDB;
 import insertTicket.InsertTicket;
 import insertTicket.Interfaces.IInsertTicket;
 
@@ -14,6 +16,7 @@ public class main {
 			int input = 0;
 		    Scanner sc1 = new Scanner(System.in);
 		    IInsertTicket insert_tickets = new InsertTicket();
+		    ITicketStatusOperationsDB ticketStatus = new TicketStatusOperationsDB();
 		    String employeeId = null;
 		    String date = null;
 		    while(input != -1){
@@ -49,12 +52,13 @@ public class main {
 					
 					System.out.println("Please provide date from when reports needs to be generated:");
 					date = sc.nextLine();
-        	
+					break;
+		            case 3:
+		            	ticketStatus.inProgress();
+						        	
 //					employee_details.setDate(date);
 //					employee_details.setEmployeeId(employeeId);
-					sc.close();
 		            break;
-		            
 		        }
 			    
 		    }
