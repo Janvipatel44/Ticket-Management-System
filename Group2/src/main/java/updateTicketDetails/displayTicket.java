@@ -1,10 +1,10 @@
-package displayTickets;
+package updateTicketDetails;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import GenerateTable.TableGenerator;
+import interfacs.IdisplayTicket;
 
 public class displayTicket implements IdisplayTicket
 {
@@ -21,13 +21,19 @@ public class displayTicket implements IdisplayTicket
 	
 	public void printTicketsDetails(Map<String,ArrayList<String>> ticketData,List<String> columnsOfTable)
 	{ 
-		tableHeader.add(columnsOfTable.get(0));
-		tableHeader.add(columnsOfTable.get(1));
+		int indexForTicketID = columnsOfTable.indexOf("ticketID");
+		int indexForTicketDescription = columnsOfTable.indexOf("description");
+		int indexForTicketStatus = columnsOfTable.indexOf("ticketStatus");
+		tableHeader.add(columnsOfTable.get(indexForTicketID));
+		tableHeader.add(columnsOfTable.get(indexForTicketDescription));
+		tableHeader.add(columnsOfTable.get(indexForTicketStatus));
 		for(String key : ticketData.keySet())
 		{
 			ArrayList<String> rowData = new ArrayList<>();
 			rowData.add(key);
-			String element = ticketData.get(key).get(0);
+			String element = ticketData.get(key).get(indexForTicketDescription-1);
+			rowData.add(element);
+			element = ticketData.get(key).get(indexForTicketStatus-1);
 			rowData.add(element);
 			rowOfTable.add(rowData);
 			

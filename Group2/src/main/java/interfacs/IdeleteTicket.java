@@ -1,4 +1,4 @@
-package deleteTicket;
+package interfacs;
 
 public interface IdeleteTicket 
 {

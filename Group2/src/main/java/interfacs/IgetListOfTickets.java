@@ -1,4 +1,4 @@
-package getTickets;
+package interfacs;
 
 import java.util.List;
 

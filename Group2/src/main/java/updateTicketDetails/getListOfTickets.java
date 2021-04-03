@@ -1,4 +1,4 @@
-package getTickets;
+package updateTicketDetails;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,12 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import StoreTicketData.IstoreTicketData;
-import StoreTicketData.storeTicketData;
-import database.ConnectionManager;
-import database.IConnectionManager;
-import displayTickets.IdisplayTicket;
-import displayTickets.displayTicket;
+import interfacs.IConnectionManager;
+import interfacs.IdisplayTicket;
+import interfacs.IgetListOfTickets;
+import interfacs.IstoreTicketData;
 
 public class getListOfTickets implements IgetListOfTickets
 {

@@ -1,4 +1,4 @@
-package StoreTicketData;
+package interfacs;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;

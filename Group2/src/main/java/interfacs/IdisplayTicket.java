@@ -1,4 +1,4 @@
-package displayTickets;
+package interfacs;
 
 import java.util.ArrayList;
 import java.util.List;
