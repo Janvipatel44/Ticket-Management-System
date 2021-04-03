@@ -7,9 +7,14 @@ import java.util.Map;
 public class CustomerAnalysis implements ICustomerAnalysis
 {
     private final ICustomerAnalysisFactory customerAnalysisFactory = CustomerAnalysisFactory.instance();
-    private final IPersistenceCustomer persistenceCustomer = customerAnalysisFactory.getPersistenceCustomer();
+    private final IPersistenceCustomer persistenceCustomer;
     private List<IParameterizedCustomerTicket> tickets;
     private IComputeCustomerProperties computeCustomerProperties;
+
+    public CustomerAnalysis(IPersistenceCustomer persistenceCustomer)
+    {
+        this.persistenceCustomer = persistenceCustomer;
+    }
 
     public Map<String, String> getCustomerAnalysis(String customerID)
     {

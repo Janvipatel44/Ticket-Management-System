@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 public class ComputeCustomerPropertiesTest
 {
     ICustomerAnalysisFactory customerAnalysisFactory;
-    CustomerAnalysisFactoryTest customerAnalysisFactoryTest;
+    ICustomerAnalysisFactoryTest customerAnalysisFactoryTest;
     IPersistenceCustomer persistenceCustomer;
     IComputeCustomerProperties computeCustomerProperties;
 
@@ -18,7 +18,7 @@ public class ComputeCustomerPropertiesTest
     {
         List<IParameterizedCustomerTicket> customerTicketList;
         customerAnalysisFactory = CustomerAnalysisFactory.instance();
-        customerAnalysisFactoryTest = new CustomerAnalysisImplementationTest();
+        customerAnalysisFactoryTest = CustomerAnalysisFactoryTest.instance();
         persistenceCustomer = customerAnalysisFactoryTest.getPersistenceCustomerMock();
         customerTicketList = persistenceCustomer.getTicketsOfCustomer("CUST_DAL");
         computeCustomerProperties = customerAnalysisFactory.getComputeCustomerProperties(customerTicketList);
@@ -88,5 +88,4 @@ public class ComputeCustomerPropertiesTest
     {
         assertEquals("Mean rating failed.", 3.00, Math.round(computeCustomerProperties.getMeanRating()), 0.0);
     }
-
 }

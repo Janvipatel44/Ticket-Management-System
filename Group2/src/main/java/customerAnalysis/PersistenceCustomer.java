@@ -2,14 +2,16 @@ package customerAnalysis;
 import customerAnalysis.Interfaces.*;
 import customerAnalysis.abstractfactory.*;
 import database.*;
+import database.abstractfactory.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 public class PersistenceCustomer implements IPersistenceCustomer
 {
+    private final IDatabaseFactory databaseFactory = DatabaseFactory.instance();
     private final ICustomerAnalysisFactory customerAnalysisFactory = CustomerAnalysisFactory.instance();
     private final String configurationFile = "ConfigurationFile.txt";
-    private final IConnectionManager connection = new ConnectionManager(configurationFile);
+    private final IConnectionManager connection = databaseFactory.getConnectionManager(configurationFile);
 
     public List<IParameterizedCustomerTicket> getTicketsOfCustomer(String customerID)
     {
