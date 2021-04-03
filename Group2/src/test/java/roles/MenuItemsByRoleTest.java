@@ -8,8 +8,9 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import roles.interfaces.IMenuItemsByRole;
-import roles.interfaces.IRoleManagementDao;
+import roles.IMenuItemsByRole;
+import roles.IRoleManagementDao;
+import roles.MenuItemsByRole;
 
 public class MenuItemsByRoleTest {
 	
@@ -20,12 +21,12 @@ public class MenuItemsByRoleTest {
 	private final String INVALID_USER_TYPE = "ABC";
 	
 	private IMenuItemsByRole menuItemsByRole;
-	private IRoleManagementDao roleManagementDao;
+	private IRoleManagementDao iRoleMngmntPersistenceOps;
 
 	@Before
 	public void init() {
-		roleManagementDao = new RoleManagementDaoMock();
-		menuItemsByRole = new MenuItemsByRole(roleManagementDao);
+		iRoleMngmntPersistenceOps = new MenuItemsByRoleDBMock();
+		menuItemsByRole = new MenuItemsByRole(iRoleMngmntPersistenceOps);
 	}
 
 	@Test

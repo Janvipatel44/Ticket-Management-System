@@ -4,11 +4,19 @@ public class PersistenceUserRegistrationOperationsMock implements IPersistenceUs
 {
     public boolean registerUserDatabase(IParameterizedUser user, String user_password)
     {
-        return user.getEmployeeID().equals("111");
+        if(user.getEmployeeID().equals("111"))
+        {
+            return true;
+        }
+        return false;
     }
 
     public boolean checkDuplicateEmployeeID(String employeeID)
     {
-        return !employeeID.equals("111");
+        if(employeeID.equals("111"))
+        {
+            return false;
+        }
+        return true;
     }
 }

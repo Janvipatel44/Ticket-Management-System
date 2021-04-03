@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import database.IConnectionManager;
-import roles.interfaces.IRoleManagementDao;
 
 public class RoleManagementDao implements IRoleManagementDao {
 
@@ -22,11 +21,6 @@ public class RoleManagementDao implements IRoleManagementDao {
 
 	@Override
 	public List<String> accessMenuItemsByRole(String role) throws Exception {
-		
-		if(connectionManager == null) {
-			throw new Exception("Error while creating connection to DB. Please contact admin.");	
-		}
-		
 		List<String> menuItemsList = null;
 		Connection connection = connectionManager.establishConnection();
 		CallableStatement procedureCall;
@@ -54,11 +48,6 @@ public class RoleManagementDao implements IRoleManagementDao {
 	
 	@Override
 	public boolean updateUserRole(String empId, String role) throws Exception {
-		
-		if(connectionManager == null) {
-			throw new Exception("Error while creating connection to DB. Please contact admin.");	
-		}
-		
 		Connection connection = connectionManager.establishConnection();
 		CallableStatement procedureCall;
 		try {

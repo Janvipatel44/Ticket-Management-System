@@ -30,7 +30,7 @@ public class InputStringValidationMock implements IInputStringValidation{
 		
 		String prefix = "EMP";
 		if(validationString.substring(0, 3).equalsIgnoreCase(prefix) ) {
-			if(validationString.substring(3).matches("[0-9]+"))
+			if(validationString.substring(3, validationString.length()).matches("[0-9]+"))
 			{
 				return true;
 			}

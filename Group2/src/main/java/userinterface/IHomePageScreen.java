@@ -1,5 +1,5 @@
 package userinterface;
 
 public interface IHomePageScreen {
-	public void handleHomePageMenu(String empId, String empName, String userType) throws Exception;
+	public void handleHomePageMenu(String empName, String userType) throws Exception;
 }
