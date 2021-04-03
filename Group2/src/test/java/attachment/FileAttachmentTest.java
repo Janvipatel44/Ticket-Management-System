@@ -8,8 +8,9 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import attachment.abstractfactory.AttachmentMockFactory;
+import attachment.abstractfactory.IAttachmentFactory;
 import attachment.interfaces.IAttachment;
-import attachment.interfaces.IAttachmentDao;
 
 public class FileAttachmentTest {
 
@@ -17,14 +18,14 @@ public class FileAttachmentTest {
 	private final String EMPTY = "";
 	private final String SOURCE_PATH = "src/test/java/attachment/sourceFile.txt";
 	private final String DESTINATION_PATH = "src/test/java/attachment/destinationFile.txt";
+	private final String ATTACHMENT_TYPE = "file";
 	
-	private IAttachmentDao fileAttachmentDao;
 	private IAttachment attachment;
 
 	@Before
 	public void init() {
-		fileAttachmentDao = new FileAttachmentDaoMock();
-		attachment = new FileAttachment(fileAttachmentDao);
+		IAttachmentFactory attachmentFactory = AttachmentMockFactory.instance();
+		attachment = attachmentFactory.makeAttachmentObject(ATTACHMENT_TYPE, null);
 	}
 	
 	@Test

@@ -6,6 +6,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import mailservice.abstractfactory.IMailFactory;
+import mailservice.abstractfactory.MailFactory;
 import mailservice.interfaces.IMail;
 import mailservice.interfaces.IMailMessage;
 
@@ -20,14 +22,16 @@ public class GmailTest {
 	private final String RECIPIENT = "csci5308gp2@gmail.com";
 	private final String SUBJECT = "TEST";
 	private final String BODY = "Testing MailMessage class";
+	private final String MAIL_TYPE = "gmail";
 	
 	private IMail gmail;
 	private IMailMessage mailMessage;
 	
 	@Before
 	public void init() {
-		gmail = new Gmail();
-		mailMessage = new MailMessage();
+		IMailFactory mailFactory = MailFactory.instance();
+		gmail = mailFactory.makeMailObject(MAIL_TYPE);
+		mailMessage = mailFactory.makeMailMessageObject();
 		mailMessage.addRecipient(RECIPIENT);
 		mailMessage.addSubject(SUBJECT);
 		mailMessage.addBody(BODY);

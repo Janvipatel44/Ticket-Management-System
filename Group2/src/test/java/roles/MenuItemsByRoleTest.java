@@ -2,14 +2,12 @@ package roles;
 
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-
 import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
-
+import roles.abstractfactory.IRoleFactory;
+import roles.abstractfactory.RoleMockFactory;
 import roles.interfaces.IMenuItemsByRole;
-import roles.interfaces.IRoleManagementDao;
 
 public class MenuItemsByRoleTest {
 	
@@ -20,12 +18,11 @@ public class MenuItemsByRoleTest {
 	private final String INVALID_USER_TYPE = "ABC";
 	
 	private IMenuItemsByRole menuItemsByRole;
-	private IRoleManagementDao roleManagementDao;
 
 	@Before
 	public void init() {
-		roleManagementDao = new RoleManagementDaoMock();
-		menuItemsByRole = new MenuItemsByRole(roleManagementDao);
+		IRoleFactory roleFactory = RoleMockFactory.instance();
+		menuItemsByRole = roleFactory.makeMenuItemsByRoleObject(null);
 	}
 
 	@Test
