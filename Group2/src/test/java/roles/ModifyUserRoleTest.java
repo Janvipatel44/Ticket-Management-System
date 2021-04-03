@@ -2,12 +2,11 @@ package roles;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
 import org.junit.Before;
 import org.junit.Test;
-
+import roles.abstractfactory.IRoleFactory;
+import roles.abstractfactory.RoleMockFactory;
 import roles.interfaces.IModifyUserRole;
-import roles.interfaces.IRoleManagementDao;
 
 public class ModifyUserRoleTest {
 
@@ -19,12 +18,11 @@ public class ModifyUserRoleTest {
 	private final String INVALID_EMP_ID = "16751";
 	
 	private IModifyUserRole modifyUserRole;
-	private IRoleManagementDao iRoleMngmntPersistenceOps;
 
 	@Before
 	public void init() {
-		iRoleMngmntPersistenceOps = new RoleManagementDaoMock();
-		modifyUserRole = new ModifyUserRole(iRoleMngmntPersistenceOps);
+		IRoleFactory roleFactory = RoleMockFactory.instance();
+		modifyUserRole = roleFactory.makeModifyUserRoleObject(null);
 	}
 
 	@Test
