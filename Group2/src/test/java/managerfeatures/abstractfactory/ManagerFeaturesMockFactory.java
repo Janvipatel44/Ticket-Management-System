@@ -1,31 +1,28 @@
 package managerfeatures.abstractfactory;
 
 import database.ConnectionManager;
-import managerfeatures.ManagerFeaturesDao;
+import managerfeatures.ManagerFeaturesDaoMock;
 import managerfeatures.ManagerTeamTracking;
 import managerfeatures.interfaces.IManagerFeaturesDao;
 import managerfeatures.interfaces.IManagerTeamTracking;
 
-public class ManagerFeaturesFactory implements IManagerFeaturesFactory {
+public class ManagerFeaturesMockFactory implements IManagerFeaturesFactory {
 
 	private static IManagerFeaturesFactory uniqueInstance = null;		
 	
-	private ManagerFeaturesFactory() {
+	private ManagerFeaturesMockFactory() {
 	}
 
 	public static IManagerFeaturesFactory instance() {
 		if(null == uniqueInstance) {
-			uniqueInstance = new ManagerFeaturesFactory();
+			uniqueInstance = new ManagerFeaturesMockFactory();
 		}
 		return uniqueInstance;
 	}
 	
 	@Override
 	public IManagerTeamTracking makeManagerFeaturesFactoryObject(ConnectionManager connectionManager) {
-		if(connectionManager == null) {
-			return null;
-		}
-		IManagerFeaturesDao managerFeaturesDao = new ManagerFeaturesDao(connectionManager);
+		IManagerFeaturesDao managerFeaturesDao = new ManagerFeaturesDaoMock();
 		return new ManagerTeamTracking(managerFeaturesDao);
 	}
 }
