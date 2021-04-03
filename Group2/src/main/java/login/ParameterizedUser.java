@@ -10,7 +10,7 @@ public class ParameterizedUser implements IParameterizedUser {
 	private String email;
 	private String user_type;
 	
-	public ParameterizedUser(String employeeID, String firstName, String lastName, String email, String user_type)
+	ParameterizedUser(String employeeID, String firstName, String lastName, String email, String user_type)
 	{
 		this.employeeID = employeeID;
 		this.firstName = firstName;

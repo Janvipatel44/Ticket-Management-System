@@ -10,7 +10,7 @@ public class InputOutputHandler implements IInputOutputHandler {
 		System.out.println(printMessage);
 	}
 
-	public String input() {
+	public String input() {	
 		int i = -1;
 		Scanner scanner = new Scanner(System.in);
 		String nextLine = scanner.nextLine();

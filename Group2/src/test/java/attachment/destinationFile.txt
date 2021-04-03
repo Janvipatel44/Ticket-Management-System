@@ -1,1 +1,0 @@
-Testing Attachment Feature by copying data of this file to destination file in same folder.
