@@ -16,8 +16,7 @@ public class ManagerFeaturesDao implements IManagerFeaturesDao {
 	private final String MANAGER_TEAM_TICKETS = "managers_team_tickets";
 	private IConnectionManager connectionManager;
 
-	public ManagerFeaturesDao(IConnectionManager connectionManager) {
-		this.connectionManager = connectionManager;
+	public ManagerFeaturesDao() {
 	}
 	
 	

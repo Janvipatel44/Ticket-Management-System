@@ -1,13 +1,12 @@
 package roles.abstractfactory;
 
-import database.ConnectionManager;
 import roles.interfaces.IMenuItemsByRole;
 import roles.interfaces.IModifyUserRole;
 
 public interface IRoleFactory {
 
-	IMenuItemsByRole makeMenuItemsByRoleObject(ConnectionManager connectionManager);
+	IMenuItemsByRole makeMenuItemsByRoleObject();
 
-	IModifyUserRole makeModifyUserRoleObject(ConnectionManager connectionManager);
+	IModifyUserRole makeModifyUserRoleObject();
 
 }

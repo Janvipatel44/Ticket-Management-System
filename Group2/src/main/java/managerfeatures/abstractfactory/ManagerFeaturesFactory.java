@@ -1,6 +1,5 @@
 package managerfeatures.abstractfactory;
 
-import database.ConnectionManager;
 import managerfeatures.ManagerFeaturesDao;
 import managerfeatures.ManagerTeamTracking;
 import managerfeatures.interfaces.IManagerFeaturesDao;
@@ -21,11 +20,8 @@ public class ManagerFeaturesFactory implements IManagerFeaturesFactory {
 	}
 	
 	@Override
-	public IManagerTeamTracking makeManagerFeaturesFactoryObject(ConnectionManager connectionManager) {
-		if(connectionManager == null) {
-			return null;
-		}
-		IManagerFeaturesDao managerFeaturesDao = new ManagerFeaturesDao(connectionManager);
+	public IManagerTeamTracking makeManagerFeaturesFactoryObject() {
+		IManagerFeaturesDao managerFeaturesDao = new ManagerFeaturesDao();
 		return new ManagerTeamTracking(managerFeaturesDao);
 	}
 }

@@ -16,8 +16,7 @@ public class RoleManagementDao implements IRoleManagementDao {
 	private final String updateUserRoleProcedure = "update_user_role";
 	private IConnectionManager connectionManager;
 
-	public RoleManagementDao(IConnectionManager connectionManager) {
-		this.connectionManager = connectionManager;
+	public RoleManagementDao() {
 	}
 
 	@Override

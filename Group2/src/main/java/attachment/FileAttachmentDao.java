@@ -17,8 +17,7 @@ public class FileAttachmentDao implements IAttachmentDao {
 	private final String downloadAttachment = "download_attachment";
 	private IConnectionManager connectionManager;
 
-	public FileAttachmentDao(IConnectionManager connectionManager) {
-		this.connectionManager = connectionManager;
+	public FileAttachmentDao() {
 	}
 	
 	@Override

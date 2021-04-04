@@ -4,7 +4,6 @@ import attachment.FileAttachment;
 import attachment.FileAttachmentDao;
 import attachment.interfaces.IAttachment;
 import attachment.interfaces.IAttachmentDao;
-import database.ConnectionManager;
 
 public class AttachmentFactory implements IAttachmentFactory {
 	
@@ -24,14 +23,14 @@ public class AttachmentFactory implements IAttachmentFactory {
 	}
 	
 	@Override
-	public IAttachment makeAttachmentObject(String attachmentType, ConnectionManager connectionManager) {
+	public IAttachment makeAttachmentObject(String attachmentType) {
 		
-		if (attachmentType == null || connectionManager == null) {
+		if (attachmentType == null) {
 			return null;
 		}
 		
 		if (attachmentType.equalsIgnoreCase(FILE_ATTACHMENT)) {
-			IAttachmentDao attachmentDao = new FileAttachmentDao(connectionManager);
+			IAttachmentDao attachmentDao = new FileAttachmentDao();
 			return new FileAttachment(attachmentDao);
 		} 
 		

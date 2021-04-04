@@ -12,7 +12,7 @@ public class BackToHomePageOption implements IBackToHomePageScreen {
 	private IInputOutputHandler inputOutputHandler;
 	private IMenuHandler menuHandler;
 	
-	public BackToHomePageOption(IInputOutputHandler inputOutputHandler, IMenuHandler menuHandler) {
+	public BackToHomePageOption(IInputOutputHandler inputOutputHandler) {
 		this.inputOutputHandler = inputOutputHandler;
 		IMenuHandlerFactory menuHandlerFactory = MenuHandlerFactory.instance();
 		this.menuHandler = menuHandlerFactory.makeMenuHandlerObject();

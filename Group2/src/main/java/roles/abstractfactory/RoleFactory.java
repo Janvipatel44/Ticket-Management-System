@@ -1,6 +1,5 @@
 package roles.abstractfactory;
 
-import database.ConnectionManager;
 import roles.MenuItemsByRole;
 import roles.ModifyUserRole;
 import roles.RoleManagementDao;
@@ -22,20 +21,14 @@ public class RoleFactory implements IRoleFactory {
 	}
 	
 	@Override
-	public IModifyUserRole makeModifyUserRoleObject(ConnectionManager connectionManager) {
-		if(connectionManager == null) {
-			return null;
-		}
-		RoleManagementDao roleManagementDao = new RoleManagementDao(connectionManager);
+	public IModifyUserRole makeModifyUserRoleObject() {
+		RoleManagementDao roleManagementDao = new RoleManagementDao();
 		return new ModifyUserRole(roleManagementDao);
 	}
 
 	@Override
-	public IMenuItemsByRole makeMenuItemsByRoleObject(ConnectionManager connectionManager) {
-		if(connectionManager == null) {
-			return null;
-		}
-		RoleManagementDao roleManagementDao = new RoleManagementDao(connectionManager);
+	public IMenuItemsByRole makeMenuItemsByRoleObject() {
+		RoleManagementDao roleManagementDao = new RoleManagementDao();
 		return new MenuItemsByRole(roleManagementDao);
 	}
 }
