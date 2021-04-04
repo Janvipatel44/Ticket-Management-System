@@ -1,4 +1,4 @@
-package twitterPosting;
+package twitterPosting.Interfaces;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,5 +6,5 @@ import java.sql.SQLException;
 public interface ITwitterOperations 
 {
 	public boolean tweetTicket(String description);
-	public String generateTweetContent(ResultSet resultSet) throws SQLException; 
+	public String generateTweetContent() throws SQLException; 
 }

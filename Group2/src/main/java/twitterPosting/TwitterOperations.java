@@ -1,13 +1,11 @@
 package twitterPosting;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
+import twitterPosting.Interfaces.ITwitterOperations;
 
 public class TwitterOperations implements ITwitterOperations {
 
@@ -16,7 +14,11 @@ public class TwitterOperations implements ITwitterOperations {
 		static String accessTokenStr = "1363841955441090562-Br3xfe5mKLTWqF1cqq1K2CIfHv4yKc";
 		static String accessTokenSecretStr = "LuMAwH640LFId3mZCFLNbPhcjBubCoimzw3CJSTy2S5Fp";
 
-		public String generateTweetContent(ResultSet resultSet) throws SQLException 
+		ResultSet resultSet;
+		public TwitterOperations(ResultSet resultSet){
+			this.resultSet = resultSet;
+		}
+		public String generateTweetContent() throws SQLException 
 		{
 			String description = null;
 			String workingHours = null;
@@ -29,7 +31,7 @@ public class TwitterOperations implements ITwitterOperations {
 
 			while(resultSet.next()) {
     		System.out.println("\nDescription:" +resultSet.getString("description"));
-    		System.out.println("\nWorking Hours:" +resultSet.getString("workingHours"));
+    		System.out.println("\nWorking Hours:" +resultSet.getString("resolutionHours"));
     		System.out.println("\nStart Date:" +resultSet.getString("startDate"));
     		System.out.println("\nEnd Date:" +resultSet.getString("endDate"));
     		System.out.println("\nTicket Type:" +resultSet.getString("ticketType"));
@@ -37,7 +39,7 @@ public class TwitterOperations implements ITwitterOperations {
     		System.out.println("\nManager LastName:" +resultSet.getString("lastName"));
     		
     		description = resultSet.getString("description");
-    		workingHours = resultSet.getString("workingHours");
+    		workingHours = resultSet.getString("resolutionHours");
     		startDate = resultSet.getString("startDate");
     		endDate = resultSet.getString("endDate");
     		ticketType = resultSet.getString("ticketType");

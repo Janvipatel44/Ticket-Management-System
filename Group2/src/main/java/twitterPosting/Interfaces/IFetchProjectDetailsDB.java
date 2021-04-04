@@ -1,4 +1,4 @@
-package twitterPosting;
+package twitterPosting.Interfaces;
 
 import java.text.ParseException;
 

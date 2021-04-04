@@ -9,6 +9,11 @@ import java.util.HashMap;
 
 import database.ConnectionManager;
 import database.IConnectionManager;
+import twitterPosting.Interfaces.IFetchProjectDetailsDB;
+import twitterPosting.Interfaces.IInputPostingDetails;
+import twitterPosting.Interfaces.ITwitterOperations;
+import twitterPosting.abstractFactory.IPostHandlingFactory;
+import twitterPosting.abstractFactory.PostHandlingFactory;
 
 public class FetchProjectDetailsDB implements IFetchProjectDetailsDB {
 
@@ -16,7 +21,7 @@ public class FetchProjectDetailsDB implements IFetchProjectDetailsDB {
 	private String ConfigurationFile = "ConfigurationFile.txt"; 
  
 	IConnectionManager IConnectionMng = new ConnectionManager(ConfigurationFile);
-
+	IPostHandlingFactory posthandling = PostHandlingFactory.instance();
 	IInputPostingDetails postDetails;
 	ITwitterOperations twitterPost;
 	
@@ -40,13 +45,13 @@ public class FetchProjectDetailsDB implements IFetchProjectDetailsDB {
            
             if(hasResult)  
             {  
+            	System.out.print("In database");
             	resultset = statement.getResultSet();
-            	twitterPost = new TwitterOperations();
-            	postDescription = twitterPost.generateTweetContent(resultset);
+            	twitterPost = posthandling.getpostOperations(resultset);
+            	postDescription = twitterPost.generateTweetContent();
             	twitterPost.tweetTicket(postDescription); 
             }
 			return true;
-		
 		} 
 		catch (SQLException e) 
 		{
