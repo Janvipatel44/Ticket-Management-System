@@ -3,35 +3,43 @@ package UserInput;
 import java.text.ParseException;
 import java.util.Scanner;
 
-import interfacs.IcheckTicketExists;
-import interfacs.IgetListOfTickets;
-import updateTicketDetails.checkTicketExists;
-import updateTicketDetails.deleteTicket;
-import updateTicketDetails.getListOfTickets;
-import updateTicketDetails.updateTicket;
+import database.ConnectionManager;
+import database.IConnectionManager;
+import reuseablePackage.abstractFactory.IreuseableClassFactory;
+import reuseablePackage.abstractFactory.reuseableClassFactory;
+import reuseablePackage.interfaces.IcheckTicketExists;
+import reuseablePackage.interfaces.IdisplayTicket;
+import reuseablePackage.interfaces.IgetListOfTickets;
+import reuseablePackage.interfaces.IstoreTicketData;
+import updateTicketDetails.abstractfactory.IupdateTicketFactory;
+import updateTicketDetails.abstractfactory.updateTicketFactory;
 import updateTicketDetails.interfaces.IdeleteTicket;
 import updateTicketDetails.interfaces.IupdateTicket;
+import userinterface.IInputOutputHandler;
+import userinterface.InputOutputHandler;
 
 public class userInput 
 {
 	public static void main(String args[])
 	{
+		String configurationFile = "ConfigurationFile";
 		String ticketId = null;
 		String userRole = "manager";
 		String empployeeID = "emp123";
 		boolean result=false;
 		Scanner sc = new Scanner(System.in);
 		
-		IcheckTicketExists checkticketexists=new checkTicketExists();
-		IgetListOfTickets getalltickets = new getListOfTickets();
-		IdeleteTicket deleteticket = new deleteTicket();
-		IupdateTicket updateTicket = new updateTicket();
 		
-//		IupdateTicketFactory updateticketfactory = updateTicketFactory.instance(); 
-//		IcheckTicketExists checkticketexists = updateticketfactory.getcheckticketexists();
-//		IgetListOfTickets getalltickets = updateticketfactory.getalltickets();
-//		IdeleteTicket deleteticket = updateticketfactory.deleteticket();
-//		IupdateTicket updateTicket = updateticketfactory.updateTicket();
+		IupdateTicketFactory updateticketfactory = updateTicketFactory.instance(); 
+		IreuseableClassFactory reusableFactory = reuseableClassFactory.instance();
+		IcheckTicketExists checkticketexists = reusableFactory.checkticketexists();
+		IstoreTicketData storeticketdata = reusableFactory.storeTicketData();
+		IInputOutputHandler inputoutputhandler = new InputOutputHandler();
+		IConnectionManager ConnectionMng = new ConnectionManager(configurationFile);
+		IdisplayTicket displayticket = reusableFactory.displayUser(inputoutputhandler);
+		IgetListOfTickets getalltickets = reusableFactory.getalltickets(storeticketdata, displayticket, ConnectionMng);
+		IdeleteTicket deleteticket = updateticketfactory.deleteticket();
+		IupdateTicket updateTicket = updateticketfactory.updateTicket();
 		
 		System.out.println("Enter your role:");
 		String userenterRole = sc.nextLine();
@@ -47,7 +55,7 @@ public class userInput
 			{
 				System.out.println("Enter Ticket Id you want to update:");
 				ticketId = sc.next();
-				result=checkticketexists.ticketExistsForCreator(ticketId,empployeeID);
+				result=checkticketexists.ticketExists(ticketId);
 				if(result == true)
 				{
 					System.out.println("1. Expected Date");
@@ -85,7 +93,7 @@ public class userInput
 			{
 				System.out.println("Enter Ticket Id you want to update:");
 				ticketId = sc.next();
-				result = checkticketexists.ticketExistsForAssignee(ticketId,empployeeID);
+				result = checkticketexists.ticketExists(ticketId);
 				if(result == true)
 				{
 					System.out.println("Change Ticket Status");
@@ -112,7 +120,7 @@ public class userInput
 			
 			System.out.println("Enter Ticket Id you want to delete:");
 			ticketId = sc.nextLine();
-			result=checkticketexists.ticketExistsForCreator(ticketId, empployeeID);
+			result=checkticketexists.ticketExists(ticketId);
 			if(result == true)
 			{
 				result = deleteticket.deleteticket(ticketId);
