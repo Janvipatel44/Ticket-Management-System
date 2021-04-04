@@ -1,4 +1,4 @@
-package commentOnTicket.interfaces;
+package reuseablePackage.interfaces;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -14,5 +14,4 @@ public interface IstoreTicketData
 	public ArrayList<String> getSingleTicketData(String TicketID);
 	public List<String> getTicketColumns();
 	public List<String> getcommentsOnTicket();
-
 }

@@ -1,6 +1,6 @@
 package comments;
 
-import commentOnTicket.interfaces.IcheckTicketExists;
+import reuseablePackage.interfaces.IcheckTicketExists;
 
 public class CheckTicketExistsMock implements IcheckTicketExists
 {

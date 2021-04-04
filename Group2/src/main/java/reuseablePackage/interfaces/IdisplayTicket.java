@@ -1,4 +1,4 @@
-package commentOnTicket.interfaces;
+package reuseablePackage.interfaces;
 
 import java.util.ArrayList;
 import java.util.List;

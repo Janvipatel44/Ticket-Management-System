@@ -1,13 +1,13 @@
 package comments.abstractfactory;
 
 import commentOnTicket.displayTicket;
-import commentOnTicket.interfaces.IcheckTicketExists;
 import commentOnTicket.interfaces.IcommentOnTicket;
 import commentOnTicket.interfaces.IdisplayTicket;
-import commentOnTicket.interfaces.IgetListOfTickets;
 import comments.CheckTicketExistsMock;
 import comments.commentOnTicketMock;
 import comments.getListOfTicketsMock;
+import reuseablePackage.interfaces.IcheckTicketExists;
+import reuseablePackage.interfaces.IgetListOfTickets;
 
 public class commentOnTicketFactoryTest implements IcommentOnTicketFactoryTest
 {

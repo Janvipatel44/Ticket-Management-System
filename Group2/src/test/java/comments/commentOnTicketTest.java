@@ -4,12 +4,12 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import commentOnTicket.interfaces.IcheckTicketExists;
 import commentOnTicket.interfaces.IcommentOnTicket;
 import commentOnTicket.interfaces.IdisplayTicket;
-import commentOnTicket.interfaces.IgetListOfTickets;
 import comments.abstractfactory.IcommentOnTicketFactoryTest;
 import comments.abstractfactory.commentOnTicketFactoryTest;
+import reuseablePackage.interfaces.IcheckTicketExists;
+import reuseablePackage.interfaces.IgetListOfTickets;
 
 public class commentOnTicketTest 
 {

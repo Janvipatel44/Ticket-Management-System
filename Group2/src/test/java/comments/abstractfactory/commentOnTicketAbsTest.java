@@ -1,9 +1,9 @@
 package comments.abstractfactory;
 
-import commentOnTicket.interfaces.IcheckTicketExists;
 import commentOnTicket.interfaces.IcommentOnTicket;
 import commentOnTicket.interfaces.IdisplayTicket;
-import commentOnTicket.interfaces.IgetListOfTickets;
+import reuseablePackage.interfaces.IcheckTicketExists;
+import reuseablePackage.interfaces.IgetListOfTickets;
 
 public abstract class commentOnTicketAbsTest
 {

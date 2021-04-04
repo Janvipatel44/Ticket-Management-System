@@ -1,4 +1,4 @@
-package commentOnTicket;
+package reuseablePackage;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import commentOnTicket.interfaces.IConnectionManager;
-import commentOnTicket.interfaces.IcheckTicketExists;
+import reuseablePackage.interfaces.IcheckTicketExists;
 
 public class checkTicketExists  implements IcheckTicketExists
 {

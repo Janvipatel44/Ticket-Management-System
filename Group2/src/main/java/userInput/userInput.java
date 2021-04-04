@@ -5,11 +5,11 @@ import java.util.Scanner;
 import commentOnTicket.abstractfactory.IcommentOnTicketFactory;
 import commentOnTicket.abstractfactory.commentOnTicketFactory;
 import commentOnTicket.interfaces.IConnectionManager;
-import commentOnTicket.interfaces.IcheckTicketExists;
 import commentOnTicket.interfaces.IcommentOnTicket;
 import commentOnTicket.interfaces.IdisplayTicket;
-import commentOnTicket.interfaces.IgetListOfTickets;
 import commentOnTicket.interfaces.IstoreTicketData;
+import reuseablePackage.interfaces.IcheckTicketExists;
+import reuseablePackage.interfaces.IgetListOfTickets;
 
 public class userInput 
 {

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import commentOnTicket.interfaces.IdisplayTicket;
-import commentOnTicket.interfaces.IgetListOfTickets;
+import reuseablePackage.interfaces.IgetListOfTickets;
 
 public class getListOfTicketsMock implements IgetListOfTickets
 {

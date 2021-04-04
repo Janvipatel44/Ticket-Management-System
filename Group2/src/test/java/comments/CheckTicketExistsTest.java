@@ -5,9 +5,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import commentOnTicket.interfaces.IcheckTicketExists;
 import comments.abstractfactory.IcommentOnTicketFactoryTest;
 import comments.abstractfactory.commentOnTicketFactoryTest;
+import reuseablePackage.interfaces.IcheckTicketExists;
 
 public class CheckTicketExistsTest 
 {

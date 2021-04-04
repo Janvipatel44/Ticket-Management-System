@@ -1,32 +1,33 @@
-package commentOnTicket;
+package reuseablePackage;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import commentOnTicket.interfaces.IstoreTicketData;
+import reuseablePackage.interfaces.IstoreTicketData;
 
 public class storeTicketData implements IstoreTicketData
 {
-	
-
-	static Map<String,ArrayList<String>> ticketData ; 
+	static LinkedHashMap<String,ArrayList<String>> ticketData ; 
 	static ArrayList<String> commentsOntickets;
 	static List<String> columnsOfTable;
 			
 	public storeTicketData()
 	{
-		ticketData = new HashMap<String,ArrayList<String>>();; 
+		ticketData = new LinkedHashMap<String,ArrayList<String>>();; 
 		commentsOntickets = new ArrayList<String>();
 		columnsOfTable = new ArrayList<String>();
 	}
 
 	public void addFetchedTickets(ResultSet resultSet,ResultSetMetaData tableMetaData) 
 	{
+		ticketData.clear();
+		columnsOfTable.clear();
+		
 		try {
 			System.out.println("col:"+tableMetaData.getColumnCount());
 			for(int i=1;i<=tableMetaData.getColumnCount();i++)
@@ -75,6 +76,7 @@ public class storeTicketData implements IstoreTicketData
 		if(ticketData.containsKey(TicketID)) 
 		{
 			singleTicketData = ticketData.get(TicketID);
+			singleTicketData.add(0,TicketID);
 			return singleTicketData;
 		}
 		else

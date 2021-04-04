@@ -1,4 +1,4 @@
-package commentOnTicket;
+package reuseablePackage;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -10,8 +10,8 @@ import java.util.Map;
 
 import commentOnTicket.interfaces.IConnectionManager;
 import commentOnTicket.interfaces.IdisplayTicket;
-import commentOnTicket.interfaces.IgetListOfTickets;
 import commentOnTicket.interfaces.IstoreTicketData;
+import reuseablePackage.interfaces.IgetListOfTickets;
 
 public class getListOfTickets implements IgetListOfTickets
 {
