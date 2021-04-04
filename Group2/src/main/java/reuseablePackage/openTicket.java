@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import database.IConnectionManager;
 import reuseablePackage.interfaces.IdisplayTicket;
 import reuseablePackage.interfaces.IopenTicket;
 import reuseablePackage.interfaces.IstoreTicketData;
-import sortTickets.interfaces.IConnectionManager;
 
 public class openTicket implements IopenTicket
 {
@@ -41,6 +41,7 @@ public class openTicket implements IopenTicket
 
 		
 	}
+	
 	
 	private List<String> commentOnTicket(String ticketId) 
 	{
