@@ -1,6 +1,6 @@
 package login;
-import login.Interfaces.IAuthenticationOperations;
-public class AuthenticationOperationsMock implements IAuthenticationOperations
+import login.Interfaces.IPersistenceAuthenticationOperations;
+public class AuthenticationOperationsMock implements IPersistenceAuthenticationOperations
 {
     public String getPassword(String employeeID) {
         return "AcegD68:";

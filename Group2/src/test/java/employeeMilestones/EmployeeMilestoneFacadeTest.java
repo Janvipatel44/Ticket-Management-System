@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 import static org.junit.Assert.assertTrue;
-public class EmployeeMilestoneTest
+public class EmployeeMilestoneFacadeTest
 {
     IEmployeeMilestoneFactoryTest employeeMilestoneFactoryTest;
 

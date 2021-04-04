@@ -17,9 +17,10 @@ public class LoginScreen implements ILoginScreen
     public void displayLoginScreen()
     {
         IServiceNowWelcomeScreen serviceNowWelcomeScreen = userInterfaceFactory.getServiceNowWelcomeScreen(inputOutputHandler);;
-        IAuthenticationOperations authenticationOperations = loginFactory.getAuthenticationOperations();;
-        IAuthentication authentication = loginFactory.getAuthentication(authenticationOperations);;
-        String employeeID;
+        IPersistenceAuthenticationOperations authenticationOperations = loginFactory.getAuthenticationOperations();;
+        IAuthentication authentication = loginFactory.getAuthentication(authenticationOperations);
+        IParameterizedUser parameterizedUser;
+        String employeeID="";
         String password;
 
         inputOutputHandler.displayMethod("Enter employeeID:\n");
@@ -30,7 +31,7 @@ public class LoginScreen implements ILoginScreen
 
         if(authentication.authenticateUser(employeeID, password))
         {
-
+            parameterizedUser = authentication.getUserDetails(employeeID);
         }
         else
         {

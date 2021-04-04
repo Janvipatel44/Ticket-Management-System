@@ -29,7 +29,7 @@ public class CustomerAnalysisFactory implements ICustomerAnalysisFactory
     public ICustomerAnalysis getCustomerAnalysis()
     {
         IPersistenceCustomer persistenceCustomer = getPersistenceCustomer();
-        return new CustomerAnalysis(persistenceCustomer);
+        return new CustomerAnalysisFacade(persistenceCustomer);
     }
 
     public IParameterizedCustomerTicket getParameterizedCustomerTicket(String ticketID, String customerID, Date startDate, Date endDate, String ticketType, int priority, int urgency, int impact, String ticketLevel, String creatorID, String employeeID, int rating)

@@ -1,5 +1,7 @@
 package login;
 import database.*;
+import database.abstractfactory.DatabaseFactory;
+import database.abstractfactory.IDatabaseFactory;
 import login.Interfaces.*;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -9,7 +11,8 @@ public class PersistenceUserRegistrationOperations implements IPersistenceUserRe
 {
     private boolean result=false;
     private String configurationFile = "ConfigurationFile.txt";
-    IConnectionManager connection = new ConnectionManager(configurationFile);
+    private final IDatabaseFactory databaseFactory = DatabaseFactory.instance();
+    private final IConnectionManager connection = databaseFactory.getConnectionManager(configurationFile);
 
     public boolean registerUserDatabase(IParameterizedUser user, String user_password)
     {
