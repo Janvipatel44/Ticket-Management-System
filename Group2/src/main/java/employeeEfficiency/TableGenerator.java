@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 //https://stackoverflow.com/questions/2745206/output-in-a-table-format-in-javas-system-out
-public class TableGenerator {
+public class TableGenerator 
+{
 
 	    private int PADDING_SIZE = 2;
 	    private String NEW_LINE = "\n";

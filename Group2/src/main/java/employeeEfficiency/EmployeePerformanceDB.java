@@ -9,6 +9,13 @@ import java.util.HashMap;
 
 import database.ConnectionManager;
 import database.IConnectionManager;
+import employeeEfficiency.Interfaces.IEmployeeEfficiencyCalculator;
+import employeeEfficiency.Interfaces.IEmployeePerformanceDB;
+import employeeEfficiency.Interfaces.IEmployeeProductivityCalculator;
+import employeeEfficiency.Interfaces.IGenerateEmployeePerformanceReport;
+import employeeEfficiency.Interfaces.IInputEmployeeDetails;
+import employeeEfficiency.abstractFactory.EmployeePerformanceFactory;
+import employeeEfficiency.abstractFactory.IEmployeePerformanceFactory;
 
 public class EmployeePerformanceDB implements IEmployeePerformanceDB {
 
@@ -16,9 +23,12 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB {
 	private String ConfigurationFile = "ConfigurationFile.txt"; 
  
 	IConnectionManager IConnectionMng = new ConnectionManager(ConfigurationFile);
-	EmployeeEfficiencyCalculator employeeEfficiency;
-	EmployeeProductivityCalculator employeeProductivity;
-	
+	IEmployeePerformanceFactory  employeePerformanceFactory = EmployeePerformanceFactory.instance();
+
+	IEmployeeEfficiencyCalculator employeeEfficiency;
+	IEmployeeProductivityCalculator employeeProductivity;
+	IGenerateEmployeePerformanceReport displayEmployeePerformance;
+
 	private IInputEmployeeDetails employeeDetails = null;
 
 	public EmployeePerformanceDB(IInputEmployeeDetails employeeDetails)
@@ -26,7 +36,6 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB {
         this.employeeDetails = employeeDetails;
     }
 	
-	IGenerateEmployeePerformanceReport displayEmployeePerformance;
 
 	public boolean getticketCountsDB() throws ParseException
 	{
@@ -45,7 +54,7 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB {
             if(hasResult)  
             {  
             	resultset = statement.getResultSet();
-            	displayEmployeePerformance = new GenerateEmployeePerformanceReport(employeeDetails);
+            	displayEmployeePerformance = employeePerformanceFactory.getPerformanceReport(employeeDetails);
             	displayEmployeePerformance.displayEmployeeDetailsAndTicketCount(resultset);
             }
 			return true;
@@ -78,7 +87,7 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB {
             if(hasResult)  
             {  
             	resultset = statement.getResultSet();
-            	employeeEfficiency = new EmployeeEfficiencyCalculator(resultset);
+            	employeeEfficiency = employeePerformanceFactory.getEmployeeEfficiencyCalculator(resultset);
             	calculatedEmployeeEfficiency = employeeEfficiency.calculateEmployeeEfficiency();
             	displayEmployeePerformance.displayEmployeeEfficiency(calculatedEmployeeEfficiency);
             }
@@ -112,7 +121,7 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB {
             if(hasResult)  
             {  
             	resultset = statement.getResultSet();
-            	employeeProductivity = new EmployeeProductivityCalculator(resultset);
+            	employeeProductivity = employeePerformanceFactory.getEmployeeProductivityCalculator(resultset);
             	calculatedEmployeeProductivity = employeeProductivity.calculateEmployeeProductivity();
             	displayEmployeePerformance.displayEmployeeProductivity(calculatedEmployeeProductivity);
             }

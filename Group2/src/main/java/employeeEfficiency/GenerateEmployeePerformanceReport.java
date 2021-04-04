@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import employeeEfficiency.Interfaces.IGenerateEmployeePerformanceReport;
+import employeeEfficiency.Interfaces.IInputEmployeeDetails;
+
 public class GenerateEmployeePerformanceReport implements IGenerateEmployeePerformanceReport
 {	
 		private ArrayList <String> employeeDetailsString = new ArrayList<String>();

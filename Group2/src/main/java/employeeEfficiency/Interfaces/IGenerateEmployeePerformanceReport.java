@@ -1,4 +1,4 @@
-package employeeEfficiency;
+package employeeEfficiency.Interfaces;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

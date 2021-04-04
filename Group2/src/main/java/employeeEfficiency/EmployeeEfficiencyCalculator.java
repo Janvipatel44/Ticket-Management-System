@@ -7,7 +7,9 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 
-public class EmployeeEfficiencyCalculator 
+import employeeEfficiency.Interfaces.IEmployeeEfficiencyCalculator;
+
+public class EmployeeEfficiencyCalculator implements IEmployeeEfficiencyCalculator
 {
 	ResultSet resultSetEfficiency = null;
 	ResultSet resultSetProductivity = null;
@@ -37,16 +39,16 @@ public class EmployeeEfficiencyCalculator
 		 
 		while(resultSetEfficiency.next()) 
     	{
-    		//System.out.println("\nStart Date:" +resultSet.getString("startDate"));
+    		System.out.println("\nStart Date:" +resultSetEfficiency.getString("startDate"));
     		//System.out.println("\nEnd Date:" +resultSet.getString("endDate"));
     		//System.out.println("\nClose Date:" +resultSet.getString("closeDate"));
     		
     	    startDate = LocalDate.parse(resultSetEfficiency.getString("startDate"));
-    	    endDate = LocalDate.parse(resultSetEfficiency.getString("endDate"));
+    	    endDate = LocalDate.parse(resultSetEfficiency.getString("expectedEndDate"));
     	    durationGiven = ChronoUnit.DAYS.between(startDate,endDate);
     	    //System.out.print("\nDifference duration Given:" +durationGiven);
 
-    	    closeDate = LocalDate.parse(resultSetEfficiency.getString("closeDate"));
+    	    closeDate = LocalDate.parse(resultSetEfficiency.getString("endDate"));
     	    durationTaken = ChronoUnit.DAYS.between(startDate,closeDate);
     	    
     	    //System.out.print("\nDifference duration taken:" +durationTaken);

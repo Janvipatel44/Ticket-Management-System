@@ -1,4 +1,4 @@
-package employeeEfficiency;
+package employeeEfficiency.Interfaces;
 
 public interface IExportEmployeePerformanceReport 
 {

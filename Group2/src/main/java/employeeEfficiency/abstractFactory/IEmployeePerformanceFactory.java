@@ -1,0 +1,22 @@
+package employeeEfficiency.abstractFactory;
+
+import java.sql.ResultSet;
+
+import employeeEfficiency.EmployeeEfficiencyCalculator;
+import employeeEfficiency.Interfaces.IEmployeeEfficiencyCalculator;
+import employeeEfficiency.Interfaces.IEmployeePerformanceDB;
+import employeeEfficiency.Interfaces.IEmployeeProductivityCalculator;
+import employeeEfficiency.Interfaces.IGenerateEmployeePerformanceReport;
+import employeeEfficiency.Interfaces.IInputEmployeeDetails;
+import employeeEfficiency.Interfaces.IUserInputEmployeePerformance;
+
+public interface IEmployeePerformanceFactory 
+{
+	public IInputEmployeeDetails userInput(String date, String employeeId);
+	public IEmployeePerformanceDB employeedetailsDB ( IInputEmployeeDetails inputEmployeeDetails);
+	public IGenerateEmployeePerformanceReport getPerformanceReport(IInputEmployeeDetails employeeDetails);
+	public IEmployeeEfficiencyCalculator getEmployeeEfficiencyCalculator(ResultSet resultset);
+	public IEmployeeProductivityCalculator getEmployeeProductivityCalculator(ResultSet resultset);
+	public IUserInputEmployeePerformance userinputemployee();
+
+}

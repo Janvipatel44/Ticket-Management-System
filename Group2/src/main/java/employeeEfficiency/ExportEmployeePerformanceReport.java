@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import employeeEfficiency.Interfaces.IExportEmployeePerformanceReport;
+
 public class ExportEmployeePerformanceReport implements IExportEmployeePerformanceReport {
 	private String FileName = null;
 	private Scanner sc = new Scanner(System.in);

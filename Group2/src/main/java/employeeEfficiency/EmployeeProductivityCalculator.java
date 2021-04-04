@@ -7,7 +7,10 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 
-public class EmployeeProductivityCalculator {
+import employeeEfficiency.Interfaces.IEmployeeProductivityCalculator;
+
+public class EmployeeProductivityCalculator implements IEmployeeProductivityCalculator
+{
 
 	ResultSet resultSetProductivity = null;
 	public EmployeeProductivityCalculator(ResultSet resultset) {
@@ -35,14 +38,14 @@ public class EmployeeProductivityCalculator {
     	{
     		System.out.println("\nStart Date:" +resultSetProductivity.getString("startDate"));
     		System.out.println("\nEnd Date:" +resultSetProductivity.getString("endDate"));
-    		System.out.println("\nWorkingHours:" +resultSetProductivity.getInt("workingHours"));
+    		System.out.println("\nWorkingHours:" +resultSetProductivity.getInt("resolutionHours"));
     		
     	    startDate = LocalDate.parse(resultSetProductivity.getString("startDate"));
     	    endDate = LocalDate.parse(resultSetProductivity.getString("endDate"));
     	    totalHours = ChronoUnit.DAYS.between(startDate,endDate);
     	    totalHours = totalHours*officeHours;
     	    System.out.print("\nTotal hours per ticket:" +totalHours);
-    	    workingHours = resultSetProductivity.getInt("workingHours");
+    	    workingHours = resultSetProductivity.getInt("resolutionHours");
     	    if(totalHours > workingHours) 
     	    {
     	    	productivity= (int) ((workingHours*100)/totalHours);

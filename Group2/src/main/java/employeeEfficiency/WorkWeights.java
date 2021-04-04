@@ -1,6 +1,7 @@
 package employeeEfficiency;
 
-public enum WorkWeights {
+public enum WorkWeights 
+{
 	    
 		HIGH  (9),  //calls constructor with value 3
 	    MEDIUM(8),  //calls constructor with value 2

@@ -2,6 +2,8 @@ package employeeEfficiency;
 
 import java.util.HashMap;
 
+import employeeEfficiency.Interfaces.IBarChartGeneration;
+
 public class BarChartGeneration implements IBarChartGeneration
 {
 	public String Displaybarchart(HashMap <Integer, Integer> PatternGeneration ) 
