@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="74e0b3c0-b815-448a-a6b0-f49829c01fc2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/abstractFactory/UserInterfaceFactoryImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/abstractFactory/UserInterfaceFactoryImplementation.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+        <option value="JUnit4 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1qdAlXcs7RIKyhvJpazMCKrWqiA" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/test/java/Rating/abstractfactory" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\USER\Desktop\Vamsi\Canada\5308 ASDC\G2_M3\group-2\Group2\src\test\java\Rating\abstractfactory" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="customerAnalysis.abstractfactory" />
+      <recent name="employeeMilestones.abstractfactory" />
+      <recent name="database.abstractFactory" />
+      <recent name="login.abstractfactory" />
+      <recent name="Rating.abstractfactory" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="customerAnalysis" />
+      <recent name="employeeMilestones" />
+      <recent name="Rating" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.CustomerAnalysisTest">
+    <configuration name="CustomerAnalysisTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Group2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="customerAnalysis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="customerAnalysis" />
+      <option name="MAIN_CLASS_NAME" value="customerAnalysis.CustomerAnalysisTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EmployeeMilestoneTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Group2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="employeeMilestones.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="employeeMilestones" />
+      <option name="MAIN_CLASS_NAME" value="employeeMilestones.EmployeeMilestoneTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RatingAssigneeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Group2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Rating.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Rating" />
+      <option name="MAIN_CLASS_NAME" value="Rating.RatingAssigneeTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.CustomerAnalysisTest" />
+        <item itemvalue="JUnit.EmployeeMilestoneTest" />
+        <item itemvalue="JUnit.RatingAssigneeTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="74e0b3c0-b815-448a-a6b0-f49829c01fc2" name="Default Changelist" comment="" />
+      <created>1617399287304</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1617399287304</updated>
+      <workItem from="1617399325682" duration="15441000" />
+      <workItem from="1617561136836" duration="873000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

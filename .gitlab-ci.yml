@@ -44,13 +44,31 @@ test:
   tags:
     - ugrad
     
-deployJob:
+deployTest:
   stage: deploy
-  script:
-   - chmod og-rwx ${DEPLOY_SSH_KEY}
-   - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY}" ${EXECUTABLE_TO_DEPLOY} "${DEPLOY_USER}@timberlea.cs.dal.ca:${DEPLOY_DIR}/build5308.jar"
-  artifacts:
-   paths:
-    - Group2/target
   tags:
     - ugrad
+  artifacts:
+    paths:
+      - Group2/target
+  script:
+    - chmod og-rwx ${DEPLOY_SSH_KEY_P}
+    - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY_P}" ${EXECUTABLE_TO_DEPLOY} "${DEPLOY_USER_PROD}@${DEPLOY_HOST}:${DEPLOY_DIR}/"
+  environment:
+    name: Production
+  only:
+    - master
+
+deployProd:
+  stage: deploy
+  tags:
+    - ugrad
+  artifacts:
+    paths:
+      - Group2/target
+  script:
+    - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY}" ${EXECUTABLE_TO_DEPLOY} "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DIR}/"
+  environment:
+    name: Test
+  only:
+    - develop
