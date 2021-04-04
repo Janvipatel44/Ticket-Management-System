@@ -52,7 +52,6 @@ deployTest:
     paths:
       - Group2/target
   script:
-    - chmod 400 ${DEPLOY_SSH_KEY_PROD}
     - ll
     - cat ${DEPLOY_SSH_KEY_PROD}
     - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY_PROD}" ${EXECUTABLE_TO_DEPLOY} "${DEPLOY_USER_PROD}@${DEPLOY_HOST}:${DEPLOY_DIR}/"
