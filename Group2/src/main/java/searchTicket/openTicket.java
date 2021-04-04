@@ -1,4 +1,4 @@
-package openTicketOption;
+package searchTicket;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import StoreTicketData.IstoreTicketData;
-import database.IConnectionManager;
-import displayTickets.IdisplayTicket;
-import displayTickets.displayTicket;
+import searchTicket.interfaces.IConnectionManager;
+import searchTicket.interfaces.IdisplayTicket;
+import searchTicket.interfaces.IopenTicket;
+import searchTicket.interfaces.IstoreTicketData;
 
 public class openTicket implements IopenTicket
 {

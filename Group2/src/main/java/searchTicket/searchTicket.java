@@ -1,4 +1,4 @@
-package searchingFunctionality;
+package searchTicket;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import StoreTicketData.IstoreTicketData;
-import database.IConnectionManager;
-import displayTickets.IdisplayTicket;
-import displayTickets.displayTicket;
+import searchTicket.interfaces.IConnectionManager;
+import searchTicket.interfaces.IdisplayTicket;
+import searchTicket.interfaces.IsearchTicket;
+import searchTicket.interfaces.IstoreTicketData;
 
 public class searchTicket implements IsearchTicket
 {

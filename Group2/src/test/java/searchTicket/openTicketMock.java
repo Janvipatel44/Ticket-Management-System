@@ -3,20 +3,24 @@ package searchTicket;
 import java.util.ArrayList;
 import java.util.List;
 
-import displayTickets.IdisplayTicket;
-import displayTickets.displayTicket;
-import openTicketOption.IopenTicket;
+import abstarctfactory.IsearchFactoryTest;
+import abstarctfactory.searchFactoryTest;
+import searchTicket.interfaces.IdisplayTicket;
+import searchTicket.interfaces.IopenTicket;
 
 public class openTicketMock implements IopenTicket
 {
 	ArrayList<String> singleTicketData;
 	ArrayList<String> comments;
-	private IdisplayTicket displayUser;
+	
 	List<String> columnOfTable;
 		
+	IsearchFactoryTest  searchfactorytest =   searchFactoryTest.instance();
+	private IdisplayTicket displayUser;
+	
 	public openTicketMock()
 	{
-		displayUser = new displayTicket();
+		displayUser = searchfactorytest.displayUser();
 		singleTicketData = new 	ArrayList<String>();
 		comments = new 	ArrayList<String>();
 		columnOfTable = new ArrayList<String>();

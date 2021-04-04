@@ -1,4 +1,4 @@
-package exportTicket;
+package searchTicket;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import GenerateTable.TableGenerator;
-import StoreTicketData.IstoreTicketData;
+import searchTicket.interfaces.IexportTicket;
+import searchTicket.interfaces.IstoreTicketData;
 
 public class exportTicket implements  IexportTicket{
 	private Scanner sc=new Scanner(System.in);

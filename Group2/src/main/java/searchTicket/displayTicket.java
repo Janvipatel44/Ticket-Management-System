@@ -1,10 +1,10 @@
-package displayTickets;
+package searchTicket;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import GenerateTable.TableGenerator;
+import searchTicket.interfaces.IdisplayTicket;
 
 public class displayTicket implements IdisplayTicket
 {

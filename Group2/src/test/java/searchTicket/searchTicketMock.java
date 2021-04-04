@@ -5,19 +5,24 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import displayTickets.IdisplayTicket;
-import displayTickets.displayTicket;
-import searchingFunctionality.IsearchTicket;
+import abstarctfactory.IsearchFactoryTest;
+import abstarctfactory.searchFactoryTest;
+import searchTicket.interfaces.IdisplayTicket;
+import searchTicket.interfaces.IsearchTicket;
 
 public class searchTicketMock implements IsearchTicket
 {
-	private IdisplayTicket displayUser;
+	
 	Map<String, ArrayList<String>> ticketsData ;
 	List<String> columnOfTable;
 	
+	IsearchFactoryTest  searchfactorytest =   searchFactoryTest.instance();
+	private IdisplayTicket displayUser;
+	
+	
 	public searchTicketMock()
 	{
-		displayUser = new displayTicket();
+		displayUser = searchfactorytest.displayUser();
 		ticketsData = new LinkedHashMap<String, ArrayList<String>>();
 		columnOfTable = new ArrayList<String>();
 	}

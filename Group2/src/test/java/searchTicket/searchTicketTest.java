@@ -1,12 +1,23 @@
 package searchTicket;
 
+import org.junit.Before;
 import org.junit.Test;
 
-import searchingFunctionality.IsearchTicket;
+import abstarctfactory.IsearchFactoryTest;
+import abstarctfactory.searchFactoryTest;
+import searchTicket.interfaces.IsearchTicket;
 
 public class searchTicketTest 
 {
-	IsearchTicket searchticket = new searchTicketMock();
+	IsearchFactoryTest  searchfactorytest =   searchFactoryTest.instance();
+	IsearchTicket searchticket;
+	
+	@Before
+    public void initialize()
+    {
+		searchticket = searchfactorytest.searchticketMock();
+    }
+
 	
 	@Test
 	public void searchbyTicketIDTest()

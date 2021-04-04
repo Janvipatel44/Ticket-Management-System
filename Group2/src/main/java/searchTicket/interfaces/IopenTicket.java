@@ -1,4 +1,4 @@
-package openTicketOption;
+package searchTicket.interfaces;
 
 public interface IopenTicket 
 {

@@ -1,4 +1,4 @@
-package displayTickets;
+package searchTicket.interfaces;
 
 import java.util.ArrayList;
 import java.util.List;

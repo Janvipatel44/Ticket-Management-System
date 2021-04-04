@@ -2,25 +2,31 @@ package searchingFunctionality;
 
 import java.util.Scanner;
 
-import StoreTicketData.IstoreTicketData;
-import StoreTicketData.storeTicketData;
-import database.ConnectionManager;
-import database.IConnectionManager;
-import displayTickets.IdisplayTicket;
-import displayTickets.displayTicket;
-import exportTicket.IexportTicket;
-import exportTicket.exportTicket;
-import openTicketOption.IopenTicket;
-import openTicketOption.openTicket;
+import abstarctfactory.IsearchFactory;
+import abstarctfactory.searchFactory;
+import searchTicket.interfaces.IConnectionManager;
+import searchTicket.interfaces.IdisplayTicket;
+import searchTicket.interfaces.IexportTicket;
+import searchTicket.interfaces.IopenTicket;
+import searchTicket.interfaces.IsearchTicket;
+import searchTicket.interfaces.IstoreTicketData;
 
 public class mainUIS 
 {
 	static Scanner sc=new Scanner(System.in);
 	static String ConfigurationFile = "ConfigurationFile";
-	static IstoreTicketData storeTicketData = new storeTicketData();
-	static IdisplayTicket displayUser = new displayTicket();
-	static IConnectionManager ConnectionMng = new ConnectionManager(ConfigurationFile);
+//	static IstoreTicketData storeTicketData = new storeTicketData();
+//	static IdisplayTicket displayUser = new displayTicket();
+//	static IConnectionManager ConnectionMng = new ConnectionManager(ConfigurationFile);
 
+	static IsearchFactory searchticketfactory = searchFactory.instance(); 
+	static IstoreTicketData storeticketdata = searchticketfactory.storeTicketData();
+	static IdisplayTicket displayuser = searchticketfactory.displayUser();
+	static IConnectionManager connectionMng = searchticketfactory.ConnectionMng(ConfigurationFile);
+	static IsearchTicket searchticket= searchticketfactory.searchticket(storeticketdata, connectionMng);
+	static IopenTicket openticket = searchticketfactory.openticket(storeticketdata, connectionMng);
+	static IexportTicket exportTicketData = searchticketfactory.exportTicketData(storeticketdata);
+	
 	public static void main(String args[]) throws ClassNotFoundException 
 	{
 		int choice=0;
@@ -29,7 +35,7 @@ public class mainUIS
 		
 		
 		//searchTicket class object
-		IsearchTicket obj=new searchTicket(storeTicketData,ConnectionMng);
+		
 		
 		
 		//Available options for user 
@@ -50,36 +56,36 @@ public class mainUIS
 			{
 				System.out.println("Please Provide TicketID:");
 				searchInput=sc.next();
-				obj.searchbyTicket(choice, searchInput);
+				searchticket.searchbyTicket(choice, searchInput);
 			}
 			else if(choice==2)
 			{
 				System.out.println("Please Provide name of Ticket Assignee:");
 				searchInput=sc.next();
-				obj.searchbyTicket(choice, searchInput);
+				searchticket.searchbyTicket(choice, searchInput);
 			}
 			else if(choice==3) 
 			{
 				System.out.println("Please Provide Ticket Type:");
 				searchInput=sc.next();
-				obj.searchbyTicket(choice, searchInput);
+				searchticket.searchbyTicket(choice, searchInput);
 			}
 			else if(choice==4) 
 			{
 				System.out.println("All Tickets:");
-				obj.searchbyTicket(choice, searchInput);
+				searchticket.searchbyTicket(choice, searchInput);
 			}
 			else if(choice==5) 
 			{
 				System.out.println("Please Provide Name of Ticket Creator:");
 				searchInput=sc.next();
-				obj.searchbyTicket(choice, searchInput);
+				searchticket.searchbyTicket(choice, searchInput);
 			}
 			else if(choice==6) 
 			{
 				System.out.println("Please Provide Keyword:");
 				searchInput=sc.next();
-				obj.searchbyTicket(choice, searchInput);
+				searchticket.searchbyTicket(choice, searchInput);
 			}
 			else 
 			{
@@ -106,14 +112,13 @@ public class mainUIS
 			sc.nextLine();
 			if(choice == 1)
 			{
-				IopenTicket openticket = new openTicket(storeTicketData,ConnectionMng);
+				
 				System.out.println("Enter Ticket ID:");
 				ticketID = sc.nextLine();
 				openticket.openticket(ticketID) ;
 			}
 			else if(choice == 2)
 			{
-				IexportTicket exportTicketData = new exportTicket(storeTicketData);
 				String FileName = "";
 				System.out.println("Enter FileName with Path:");
 				FileName = sc.nextLine();
