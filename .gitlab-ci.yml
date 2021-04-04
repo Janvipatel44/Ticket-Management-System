@@ -23,6 +23,7 @@ stages:
 build:
   stage: build
   script:
+    - chmod 705 ${DEPLOY_SSH_KEY_PROD}
     - cd Group2
     - mvn clean compile
   artifacts:
@@ -34,7 +35,6 @@ build:
 test:
   stage: test
   script:
-    - chmod 705 ${DEPLOY_SSH_KEY_PROD}
     - cd Group2
     - mvn clean verify
   artifacts:
