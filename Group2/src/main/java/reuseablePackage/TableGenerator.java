@@ -1,4 +1,4 @@
-package searchTicket;
+package reuseablePackage;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -97,7 +97,7 @@ public class TableGenerator {
 
             for (int columnIndex = 0; columnIndex < row.size(); columnIndex++) {
 
-                if(row.get(columnIndex) != null && row.get(columnIndex).length() > columnMaxWidthMapping.get(columnIndex))
+                if(row.get(columnIndex).length() > columnMaxWidthMapping.get(columnIndex))
                 {
                     columnMaxWidthMapping.put(columnIndex, row.get(columnIndex).length());
                 }

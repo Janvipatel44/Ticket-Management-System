@@ -1,4 +1,4 @@
-package searchTicket;
+package reuseablePackage;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import searchTicket.interfaces.IConnectionManager;
-import searchTicket.interfaces.IdisplayTicket;
-import searchTicket.interfaces.IopenTicket;
-import searchTicket.interfaces.IstoreTicketData;
+import reuseablePackage.interfaces.IdisplayTicket;
+import reuseablePackage.interfaces.IopenTicket;
+import reuseablePackage.interfaces.IstoreTicketData;
+import sortTickets.interfaces.IConnectionManager;
 
 public class openTicket implements IopenTicket
 {
@@ -23,11 +23,12 @@ public class openTicket implements IopenTicket
 	private IdisplayTicket displayUser;
 	private IConnectionManager ConnectionMng;
 	
-	public openTicket(IstoreTicketData storeTicketData, IConnectionManager ConnectionMng)
+	public openTicket(IstoreTicketData storeTicketData,IdisplayTicket displayUser, IConnectionManager ConnectionMng)
 	{
 		this.storeTicketData = storeTicketData; 
-		displayUser = new displayTicket();
+		this.displayUser = displayUser;
 		this.ConnectionMng = ConnectionMng;
+		
 	}
 
 	public void openticket(String ticketId)
@@ -37,6 +38,7 @@ public class openTicket implements IopenTicket
 		List<String> comments = commentOnTicket(ticketId);
 		displayUser.printSignleTicketDetails(singleTicketData,columnOfTable,comments);
 		ConnectionMng.closeConnection();
+
 		
 	}
 	
@@ -65,5 +67,6 @@ public class openTicket implements IopenTicket
 			return null;
 		}
 	}
+
 
 }

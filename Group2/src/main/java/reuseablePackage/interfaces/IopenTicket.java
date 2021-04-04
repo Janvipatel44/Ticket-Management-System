@@ -1,4 +1,4 @@
-package searchTicket.interfaces;
+package reuseablePackage.interfaces;
 
 public interface IopenTicket 
 {

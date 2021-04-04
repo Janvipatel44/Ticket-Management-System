@@ -8,8 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import reuseablePackage.TableGenerator;
+import reuseablePackage.interfaces.IstoreTicketData;
 import searchTicket.interfaces.IexportTicket;
-import searchTicket.interfaces.IstoreTicketData;
 
 public class exportTicket implements  IexportTicket{
 	private Scanner sc=new Scanner(System.in);

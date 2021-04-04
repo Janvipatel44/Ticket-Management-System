@@ -1,4 +1,4 @@
-package searchTicket.interfaces;
+package reuseablePackage.interfaces;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;

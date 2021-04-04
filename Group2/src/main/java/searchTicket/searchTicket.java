@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import searchTicket.interfaces.IConnectionManager;
-import searchTicket.interfaces.IdisplayTicket;
+import reuseablePackage.displayTicket;
+import reuseablePackage.interfaces.IdisplayTicket;
+import reuseablePackage.interfaces.IstoreTicketData;
 import searchTicket.interfaces.IsearchTicket;
-import searchTicket.interfaces.IstoreTicketData;
 
 public class searchTicket implements IsearchTicket
 {
