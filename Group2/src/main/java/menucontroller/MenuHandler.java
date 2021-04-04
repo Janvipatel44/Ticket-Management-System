@@ -50,7 +50,7 @@ public class MenuHandler implements IMenuHandler {
 		case EXIT:
 			break;
 		}
-
+		
 		return menuTask;
 	}
 
