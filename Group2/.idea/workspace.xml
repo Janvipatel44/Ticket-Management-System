@@ -6,24 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="74e0b3c0-b815-448a-a6b0-f49829c01fc2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rating/PersistenceRating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rating/PersistenceRating.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rating/RatingAssignee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rating/RatingAssignee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rating/abstractfactory/RatingFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rating/abstractfactory/RatingFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/customerAnalysis/CustomerAnalysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/customerAnalysis/CustomerAnalysis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/customerAnalysis/PersistenceCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/customerAnalysis/PersistenceCustomer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/customerAnalysis/abstractfactory/CustomerAnalysisFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/customerAnalysis/abstractfactory/CustomerAnalysisFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/abstractFactory/DatabaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/abstractfactory/DatabaseFactoryAbs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/abstractFactory/DatabaseFactoryImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/abstractfactory/DatabaseFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/employeeMilestones/EmployeeMilestone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employeeMilestones/EmployeeMilestone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/employeeMilestones/PersistenceEmployeeTickets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employeeMilestones/PersistenceEmployeeTickets.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/employeeMilestones/abstractfactory/EmployeeMilestoneFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employeeMilestones/abstractfactory/EmployeeMilestoneFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Rating/RatingQuestionnaireTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Rating/RatingQuestionnaireTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/customerAnalysis/ComputeCustomerPropertiesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/customerAnalysis/ComputeCustomerPropertiesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/customerAnalysis/abstractfactory/CustomerAnalysisFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/customerAnalysis/abstractfactory/CustomerAnalysisFactoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/customerAnalysis/abstractfactory/CustomerAnalysisImplementationTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/employeeMilestones/CalculateMilestoneTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/employeeMilestones/CalculateMilestoneTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/employeeMilestones/abstractfactory/EmployeeMilestoneFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/employeeMilestones/abstractfactory/EmployeeMilestoneFactoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/employeeMilestones/abstractfactory/EmployeeMilestoneFactoryTestImplementation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/abstractfactory/DatabaseFactoryAbs.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/abstractfactory/IDatabaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/abstractfactory/IDatabaseFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/login/abstractfactory/LoginFactoryAbs.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +136,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1617399287304</updated>
-      <workItem from="1617399325682" duration="15441000" />
+      <workItem from="1617399325682" duration="17284000" />
     </task>
     <servers />
   </component>
