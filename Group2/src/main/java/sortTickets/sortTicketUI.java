@@ -2,24 +2,24 @@ package sortTickets;
 
 import java.util.Scanner;
 
-import StoreTicketData.IstoreTicketData;
-import StoreTicketData.storeTicketData;
-import database.ConnectionManager;
-import database.IConnectionManager;
-import displayTickets.IdisplayTicket;
-import displayTickets.displayTicket;
-import openTicketOption.IopenTicket;
-import openTicketOption.openTicket;
+import sortTickets.abstractfactory.ISortTicketFactory;
+import sortTickets.abstractfactory.SortTicketFactory;
+import sortTickets.interfaces.IConnectionManager;
+import sortTickets.interfaces.IdisplayTicket;
+import sortTickets.interfaces.IopenTicket;
+import sortTickets.interfaces.IsortTicketData;
+import sortTickets.interfaces.IstoreTicketData;
 
 public class sortTicketUI {
 	
 	static Scanner sc=new Scanner(System.in);
 	
 	static String ConfigurationFile = "ConfigurationFile";
-	static IstoreTicketData storeTicketData = new storeTicketData();
-	static IdisplayTicket displayUser = new displayTicket();
-	static IConnectionManager ConnectionMng = new ConnectionManager(ConfigurationFile);
 	
+	static ISortTicketFactory storeticketfactory = SortTicketFactory.instance();
+	static IstoreTicketData storeTicketData = storeticketfactory.storeTicketData();
+	static IdisplayTicket displayUser = storeticketfactory.displayUser();
+	static IConnectionManager ConnectionMng = storeticketfactory.ConnectionMng(ConfigurationFile);
 	public static void main(String args[]) {
 		int choice=0;
 		
@@ -29,7 +29,7 @@ public class sortTicketUI {
 		System.out.println("	3. impact");
 		System.out.println("Enter your choice:");
 		choice=sc.nextInt();
-		IsortTicket sortTicketobj=new sortTicket(storeTicketData,displayUser,ConnectionMng);
+		IsortTicketData sortTicketobj=new sortTicket(storeTicketData,displayUser,ConnectionMng);
 		if(choice<=3 || choice<=1) {
 			sortTicketobj.sortTickets(choice);
 		}
@@ -39,7 +39,7 @@ public class sortTicketUI {
 	private static void open() {
 		int choice=0;
 		String ticketID=null;
-		IopenTicket openticket = new openTicket(storeTicketData,displayUser,ConnectionMng);
+		IopenTicket openticket = storeticketfactory.openticket(storeTicketData,ConnectionMng);
 		
 		System.out.println("1. open Ticket");
 		System.out.println("2. exit");

@@ -1,4 +1,4 @@
-package database;
+package sortTickets;
 import java.io.BufferedReader;
 
 
@@ -10,6 +10,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import sortTickets.interfaces.IConnectionManager;
 
 public class ConnectionManager implements IConnectionManager{
 	 private static String driverName = "com.mysql.cj.jdbc.Driver";   

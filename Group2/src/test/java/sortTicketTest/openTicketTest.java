@@ -3,14 +3,14 @@ package sortTicketTest;
 
 import org.junit.Test;
 
-import displayTickets.IdisplayTicket;
-import displayTickets.displayTicket;
-import openTicketOption.IopenTicket;
+import sortTicketTest.abstractfactory.ISortTicketFactoryTest;
+import sortTicketTest.abstractfactory.SortTicketFactoryTest;
+import sortTickets.interfaces.IopenTicket;
 
 public class openTicketTest
 {
-	IdisplayTicket displayUser = new displayTicket();
-	IopenTicket openticket = new openTicketMock(displayUser);
+	ISortTicketFactoryTest sortticketfactory = SortTicketFactoryTest.instance();
+	IopenTicket openticket = sortticketfactory.openticketMock();
 	
 	@Test
 	public void openTicketTest()

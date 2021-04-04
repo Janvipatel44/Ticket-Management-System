@@ -2,14 +2,14 @@ package sortTicketTest;
 
 import org.junit.Test;
 
-import displayTickets.IdisplayTicket;
-import displayTickets.displayTicket;
-import sortTickets.IsortTicket;
+import sortTicketTest.abstractfactory.ISortTicketFactoryTest;
+import sortTicketTest.abstractfactory.SortTicketFactoryTest;
+import sortTickets.interfaces.IsortTicketData;
 
 public class sortTicketTest 
 {
-	IdisplayTicket displayUser = new displayTicket();
-	IsortTicket sortTicket = new sortTicketMock(displayUser);
+	ISortTicketFactoryTest sortticketfactory = SortTicketFactoryTest.instance();
+	IsortTicketData sortTicket = sortticketfactory.sortTicketMock();
 	
 	@Test
 	public void sortByPriority()

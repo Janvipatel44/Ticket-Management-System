@@ -3,15 +3,18 @@ package sortTickets;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
-import StoreTicketData.IstoreTicketData;
-import database.IConnectionManager;
-import displayTickets.IdisplayTicket;
+import sortTickets.interfaces.IConnectionManager;
+import sortTickets.interfaces.IdisplayTicket;
+import sortTickets.interfaces.IsortTicketData;
+import sortTickets.interfaces.IstoreTicketData;
 
-public class sortTicket implements IsortTicket 
+public class sortTicket implements IsortTicketData 
 {
 	
 	private Connection connect=null;
@@ -42,11 +45,18 @@ public class sortTicket implements IsortTicket
 			//first parameter decided search option 
 			SPstatement.setLong(1,choice);
 			SPstatement.execute();
-			ResultSet resultSet=SPstatement.getResultSet();
-			Map<String, ArrayList <String>> ticketsData = storeTicketData.addFetchedTickets(resultSet);
-			System.out.println(ticketsData);
-		    displayUser.printTicketsDetails(ticketsData);
-		    ConnectionMng.closeConnection();
+			hasResult=SPstatement.execute();
+			if(hasResult)
+			{
+			    resultSet = SPstatement.getResultSet();
+			    ResultSetMetaData tableMetaData = resultSet.getMetaData();
+			    storeTicketData.addFetchedTickets(resultSet,tableMetaData);
+			    Map<String, ArrayList <String>> ticketsData = storeTicketData.getTableData();
+			    List<String> columnOfTable = storeTicketData.getTicketColumns();
+			    displayUser.printTicketsDetails(ticketsData,columnOfTable);
+			}
+
+			ConnectionMng.closeConnection();
 		} 
 		catch (SQLException e)
 		{

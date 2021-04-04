@@ -1,4 +1,4 @@
-package openTicketOption;
+package sortTickets.interfaces;
 
 public interface IopenTicket 
 {

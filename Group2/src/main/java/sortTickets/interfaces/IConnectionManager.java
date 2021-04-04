@@ -1,4 +1,4 @@
-package database;
+package sortTickets.interfaces;
 
 import java.sql.Connection;
 import java.sql.Connection;

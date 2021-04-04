@@ -2,21 +2,28 @@ package sortTicketTest;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
-import displayTickets.IdisplayTicket;
-import openTicketOption.IopenTicket;
+import sortTicketTest.abstractfactory.ISortTicketFactoryTest;
+import sortTicketTest.abstractfactory.SortTicketFactoryTest;
+import sortTickets.interfaces.IdisplayTicket;
+import sortTickets.interfaces.IopenTicket;
 
 public class openTicketMock implements IopenTicket
 {
 	ArrayList<String> singleTicketData;
 	ArrayList<String> comments;
-	private IdisplayTicket displayUser;
+	
+	List<String> columnOfTable;
 		
-	public openTicketMock(IdisplayTicket displayUser)
+	ISortTicketFactoryTest sortticketfactory = SortTicketFactoryTest.instance();
+	IdisplayTicket displayuser;
+	public openTicketMock()
 	{
-		this.displayUser = displayUser;
+		displayuser = sortticketfactory.displayUser();
 		singleTicketData = new 	ArrayList<String>();
 		comments = new 	ArrayList<String>();
+		columnOfTable = new ArrayList<String>();
 	}
 
 	public void openticket(String ticketId)
@@ -24,20 +31,20 @@ public class openTicketMock implements IopenTicket
 		String ticketID = "111";
 		if(ticketId.equals(ticketID))
 		{
+			singleTicketData.add("111");
 			singleTicketData.add("develope bugd free login functionality");
 			singleTicketData.add("2021-03-15");
 			singleTicketData.add("2021-03-30");
 			singleTicketData.add("EMP12");
 			singleTicketData.add("EMP123");
 			singleTicketData.add("Tejasw");
-			singleTicketData.add(" bug");
+			singleTicketData.add("bug");
 			singleTicketData.add("1");
 			singleTicketData.add("3");
-			singleTicketData.add("3");
-			singleTicketData.add("3");
 		}
+		addColumnsOfTable();
 		comments = commentOnTicket(ticketId);
-		displayUser.printSignleTicketDetails(singleTicketData,comments);
+		displayuser.printSignleTicketDetails(singleTicketData,columnOfTable,comments);
 			
 	}
 	
@@ -52,4 +59,19 @@ public class openTicketMock implements IopenTicket
 		}
 		return comment;
 	}
+	
+	private void addColumnsOfTable() {
+		columnOfTable.add("ticketId");
+		columnOfTable.add("description");
+		columnOfTable.add("startDate");
+		columnOfTable.add("endDate");
+		columnOfTable.add("reporterId");
+		columnOfTable.add("employeeId");
+		columnOfTable.add("assigneeName");
+		columnOfTable.add("ticketType");
+		columnOfTable.add("priority");
+		columnOfTable.add("urgency");
+		
+	}	
+
 }

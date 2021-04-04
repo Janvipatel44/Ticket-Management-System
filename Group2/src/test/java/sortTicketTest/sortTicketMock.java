@@ -2,21 +2,30 @@ package sortTicketTest;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
-import displayTickets.IdisplayTicket;
-import sortTickets.IsortTicket;
+import sortTicketTest.abstractfactory.ISortTicketFactoryTest;
+import sortTicketTest.abstractfactory.SortTicketFactoryTest;
+import sortTickets.interfaces.IdisplayTicket;
+import sortTickets.interfaces.IsortTicketData;
 
-public class sortTicketMock implements IsortTicket
+public class sortTicketMock implements IsortTicketData
 {
-	private IdisplayTicket displayUser;
 	Map<String, ArrayList<String>> ticketsData ;
-	public sortTicketMock(IdisplayTicket displayUser)
+	List<String> columnOfTable;
+	
+	ISortTicketFactoryTest sortticketfactory = SortTicketFactoryTest.instance();
+	IdisplayTicket displayuser;
+	
+	
+	public sortTicketMock()
 	{
-		this.displayUser = displayUser;
+		displayuser = sortticketfactory.displayUser();
 		ticketsData = new LinkedHashMap<String, ArrayList<String>>();
+		columnOfTable = new ArrayList<String>();
 	}
-	@Override
+	
 	public void sortTickets(int choice)
 	{
 		if(choice ==1)
@@ -100,6 +109,21 @@ public class sortTicketMock implements IsortTicket
 			ticketsData.get("123").add("2");
 
 		}
-		displayUser.printTicketsDetails(ticketsData);
+		displayuser.printTicketsDetails(ticketsData,columnOfTable);
 	}
+	
+	private void addColumnsOfTable() {
+		columnOfTable.add("ticketId");
+		columnOfTable.add("description");
+		columnOfTable.add("startDate");
+		columnOfTable.add("endDate");
+		columnOfTable.add("reporterId");
+		columnOfTable.add("employeeId");
+		columnOfTable.add("assigneeName");
+		columnOfTable.add("ticketType");
+		columnOfTable.add("priority");
+		columnOfTable.add("urgency");
+		
+	}	
+
 }
