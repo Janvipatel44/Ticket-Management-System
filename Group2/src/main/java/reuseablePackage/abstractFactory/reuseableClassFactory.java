@@ -1,9 +1,13 @@
 package reuseablePackage.abstractFactory;
 
+import reuseablePackage.checkTicketExists;
 import reuseablePackage.displayTicket;
+import reuseablePackage.getListOfTickets;
 import reuseablePackage.openTicket;
 import reuseablePackage.storeTicketData;
+import reuseablePackage.interfaces.IcheckTicketExists;
 import reuseablePackage.interfaces.IdisplayTicket;
+import reuseablePackage.interfaces.IgetListOfTickets;
 import reuseablePackage.interfaces.IopenTicket;
 import reuseablePackage.interfaces.IstoreTicketData;
 import sortTickets.ConnectionManager;
@@ -54,4 +58,16 @@ public class reuseableClassFactory implements IreuseableClassFactory {
 		
 		return new InputOutputHandler();
 	}
+	
+	public IcheckTicketExists checkticketexists()
+	{
+		return new checkTicketExists();
+	}
+	
+
+	public IgetListOfTickets getalltickets(IstoreTicketData storeTicketData,IdisplayTicket displaytickets,IConnectionManager ConnectionMng)
+	{
+		return new getListOfTickets(storeTicketData,displaytickets,ConnectionMng);
+	}
+	
 }
