@@ -1,4 +1,4 @@
-package insertTicket.Interfaces;
+package validations;
 
 public interface IInputStringValidation {
 		
