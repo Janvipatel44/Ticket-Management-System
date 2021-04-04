@@ -44,7 +44,7 @@ test:
   tags:
     - ugrad
     
-deployJob:
+deployTest:
   stage: deploy
   tags:
     - ugrad
@@ -52,4 +52,22 @@ deployJob:
     paths:
       - Group2/target
   script:
-    - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY}" ${EXECUTABLE_TO_DEPLOY} "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DIR}/"
+    - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY_P}" ${EXECUTABLE_TO_DEPLOY} "${DEPLOY_USER_PROD}@${DEPLOY_HOST}:${DEPLOY_DIR}/"
+  environment:
+    name: Test
+  only:
+    - develop
+
+deployProd:
+  stage: deploy
+  tags:
+    - ugrad
+  artifacts:
+    paths:
+      - Group2/target
+  script:
+    - scp -r -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_KEY_PROD}" ${EXECUTABLE_TO_DEPLOY} "${DEPLOY_USER_PROD}@${DEPLOY_HOST}:${DEPLOY_DIR}/"
+  environment:
+    name: Production
+  only:
+    - master
