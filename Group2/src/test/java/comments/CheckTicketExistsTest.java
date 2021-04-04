@@ -5,11 +5,14 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import checkTicketExists.IcheckTicketExists;
+import commentOnTicket.interfaces.IcheckTicketExists;
+import comments.abstractfactory.IcommentOnTicketFactoryTest;
+import comments.abstractfactory.commentOnTicketFactoryTest;
 
 public class CheckTicketExistsTest 
 {
-	IcheckTicketExists checkticketexists = new CheckTicketExistsMock();
+	IcommentOnTicketFactoryTest commentonticketfactorytest = commentOnTicketFactoryTest.instance();
+	IcheckTicketExists checkticketexists =commentonticketfactorytest.checkticketexists();
 	@Test
 	public void ticketExistsTest()
 	{

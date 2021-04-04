@@ -1,18 +1,17 @@
-package getListOfTickets;
+package commentOnTicket;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import StoreTicketData.IstoreTicketData;
-import StoreTicketData.storeTicketData;
-import database.ConnectionManager;
-import database.IConnectionManager;
-import displayTickets.IdisplayTicket;
-import displayTickets.displayTicket;
+import commentOnTicket.interfaces.IConnectionManager;
+import commentOnTicket.interfaces.IdisplayTicket;
+import commentOnTicket.interfaces.IgetListOfTickets;
+import commentOnTicket.interfaces.IstoreTicketData;
 
 public class getListOfTickets implements IgetListOfTickets
 {
@@ -41,11 +40,18 @@ public class getListOfTickets implements IgetListOfTickets
 			SPstatement = connect.prepareCall("{call searchTicket(?,?)}");
 			SPstatement.setLong(1,choice);
 			SPstatement.setString(2, null);
-			SPstatement.execute();
-			resultSet = SPstatement.getResultSet();
-			resultSet = SPstatement.getResultSet();
-			Map<String, ArrayList <String>> ticketsData = storeTicketData.addFetchedTickets(resultSet);
-			displayTicket.printTicketsDetails(ticketsData);
+			boolean hasResult = SPstatement.execute();
+			if(hasResult)
+			{
+			    resultSet = SPstatement.getResultSet();
+			    ResultSetMetaData tableMetaData = resultSet.getMetaData();
+			    System.out.println("hasresult:"+hasResult + "resultset:"+resultSet );
+			    storeTicketData.addFetchedTickets(resultSet,tableMetaData);
+			    Map<String, ArrayList <String>> ticketsData = storeTicketData.getTableData();
+			    List<String> columnOfTable = storeTicketData.getTicketColumns();
+			    displayTicket.printTicketsDetails(ticketsData,columnOfTable);
+			}
+
 			IConnectionMng.closeConnection();
 		}
 		catch (SQLException e)

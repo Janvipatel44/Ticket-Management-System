@@ -1,4 +1,4 @@
-package commentOnTicket;
+package commentOnTicket.interfaces;
 
 public interface IcommentOnTicket
 {

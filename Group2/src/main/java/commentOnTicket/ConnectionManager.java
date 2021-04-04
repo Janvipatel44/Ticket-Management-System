@@ -1,4 +1,4 @@
-package database;
+package commentOnTicket;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -9,6 +9,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import commentOnTicket.interfaces.IConnectionManager;
 
 public class ConnectionManager implements IConnectionManager{
 	 private static String driverName = "com.mysql.cj.jdbc.Driver";   

@@ -2,16 +2,20 @@ package comments;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
-import displayTickets.IdisplayTicket;
-import getListOfTickets.IgetListOfTickets;
+import commentOnTicket.interfaces.IdisplayTicket;
+import commentOnTicket.interfaces.IgetListOfTickets;
 
 public class getListOfTicketsMock implements IgetListOfTickets
 {
 	
 	private IdisplayTicket displayTicket;
+	
 	Map<String, ArrayList<String>> ticketsData ;
+	List<String> columnOfTable;
+	
 	public getListOfTicketsMock(IdisplayTicket displayUser)
 	{
 		this.displayTicket = displayUser;
@@ -33,9 +37,25 @@ public class getListOfTicketsMock implements IgetListOfTickets
 		ticketsData.get("111").add("3");
 		ticketsData.get("111").add("3");
 		ticketsData.get("111").add("3");
-		displayTicket.printTicketsDetails(ticketsData);
+		
+		displayTicket.printTicketsDetails(ticketsData,columnOfTable);
 
 	}
+	
+	private void addColumnsOfTable() {
+		columnOfTable.add("ticketId");
+		columnOfTable.add("description");
+		columnOfTable.add("startDate");
+		columnOfTable.add("endDate");
+		columnOfTable.add("reporterId");
+		columnOfTable.add("employeeId");
+		columnOfTable.add("assigneeName");
+		columnOfTable.add("ticketType");
+		columnOfTable.add("priority");
+		columnOfTable.add("urgency");
+		
+	}	
+
 	
 
 }

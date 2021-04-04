@@ -3,7 +3,7 @@ package comments;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
-import commentOnTicket.IcommentOnTicket;
+import commentOnTicket.interfaces.IcommentOnTicket;
 
 public class commentOnTicketMock implements IcommentOnTicket 
 {

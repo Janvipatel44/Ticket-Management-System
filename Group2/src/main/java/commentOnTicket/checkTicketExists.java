@@ -1,12 +1,12 @@
-package checkTicketExists;
+package commentOnTicket;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import database.ConnectionManager;
-import database.IConnectionManager;
+import commentOnTicket.interfaces.IConnectionManager;
+import commentOnTicket.interfaces.IcheckTicketExists;
 
 public class checkTicketExists  implements IcheckTicketExists
 {

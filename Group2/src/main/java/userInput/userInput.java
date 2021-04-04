@@ -2,18 +2,14 @@ package userInput;
 
 import java.util.Scanner;
 
-import StoreTicketData.IstoreTicketData;
-import StoreTicketData.storeTicketData;
-import checkTicketExists.IcheckTicketExists;
-import checkTicketExists.checkTicketExists;
-import commentOnTicket.IcommentOnTicket;
-import commentOnTicket.commentOnTicket;
-import database.ConnectionManager;
-import database.IConnectionManager;
-import displayTickets.IdisplayTicket;
-import displayTickets.displayTicket;
-import getListOfTickets.IgetListOfTickets;
-import getListOfTickets.getListOfTickets;
+import commentOnTicket.abstractfactory.IcommentOnTicketFactory;
+import commentOnTicket.abstractfactory.commentOnTicketFactory;
+import commentOnTicket.interfaces.IConnectionManager;
+import commentOnTicket.interfaces.IcheckTicketExists;
+import commentOnTicket.interfaces.IcommentOnTicket;
+import commentOnTicket.interfaces.IdisplayTicket;
+import commentOnTicket.interfaces.IgetListOfTickets;
+import commentOnTicket.interfaces.IstoreTicketData;
 
 public class userInput 
 {
@@ -28,12 +24,13 @@ public class userInput
 		Scanner sc = new Scanner(System.in);
 		final String ConfigurationFile = null;
 
-		IcheckTicketExists checkticketexists=new checkTicketExists();
-		IConnectionManager ConnectionMng = new ConnectionManager(ConfigurationFile);
-		IstoreTicketData storeTicketData = new storeTicketData();
-		IdisplayTicket displaytickets = new displayTicket();
-		IgetListOfTickets getalltickets = new getListOfTickets(storeTicketData,displaytickets,ConnectionMng);
-		IcommentOnTicket postComment = new commentOnTicket(ConnectionMng);
+		IcommentOnTicketFactory commentonticketfactory = commentOnTicketFactory.instance();
+		IcheckTicketExists checkticketexists= commentonticketfactory.checkticketexists();
+		IConnectionManager ConnectionMng = commentonticketfactory.ConnectionMng(ConfigurationFile);
+		IstoreTicketData storeTicketData =commentonticketfactory.storeTicketData();
+		IdisplayTicket displaytickets = commentonticketfactory.displaytickets();
+		IgetListOfTickets getalltickets = commentonticketfactory.getalltickets(storeTicketData,displaytickets,ConnectionMng);
+		IcommentOnTicket postComment = commentonticketfactory.postComment(ConnectionMng);
 		
 		getalltickets.listOfTickets();
 		System.out.println("Enter Ticket Id you want to post comment on.:");

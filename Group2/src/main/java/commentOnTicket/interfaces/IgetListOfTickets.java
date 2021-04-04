@@ -1,4 +1,4 @@
-package getListOfTickets;
+package commentOnTicket.interfaces;
 
 import java.util.List;
 
