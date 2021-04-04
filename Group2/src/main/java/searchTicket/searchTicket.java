@@ -21,6 +21,7 @@ public class searchTicket implements IsearchTicket
 	private ResultSet resultSet=null;
 	private boolean hasResult=false;
 	
+	
 	private IstoreTicketData storeTicketData;
 	private IdisplayTicket displayUser;
 	private IConnectionManager ConnectionMng;

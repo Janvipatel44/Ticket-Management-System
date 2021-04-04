@@ -26,6 +26,9 @@ public class storeTicketData implements IstoreTicketData
 
 	public void addFetchedTickets(ResultSet resultSet,ResultSetMetaData tableMetaData) 
 	{
+		ticketData.clear();
+		columnsOfTable.clear();
+		
 		try {
 			System.out.println("col:"+tableMetaData.getColumnCount());
 			for(int i=1;i<=tableMetaData.getColumnCount();i++)
@@ -74,6 +77,7 @@ public class storeTicketData implements IstoreTicketData
 		if(ticketData.containsKey(TicketID)) 
 		{
 			singleTicketData = ticketData.get(TicketID);
+			singleTicketData.add(0,TicketID);
 			return singleTicketData;
 		}
 		else

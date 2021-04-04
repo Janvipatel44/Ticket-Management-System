@@ -18,11 +18,6 @@ public class openTicket implements IopenTicket
 	private CallableStatement SPstatement=null;
 	private ResultSet resultSet=null;
 	private boolean hasResult=false;
-	private String ConfigurationFile = "ConfigurationFile";
-	
-	ArrayList<String> singleTicketData;
-	List<String> comments;
-	List<String> columnOfTable;
 	
 	private IstoreTicketData storeTicketData;
 	private IdisplayTicket displayUser;
@@ -33,16 +28,13 @@ public class openTicket implements IopenTicket
 		this.storeTicketData = storeTicketData; 
 		displayUser = new displayTicket();
 		this.ConnectionMng = ConnectionMng;
-		singleTicketData = new 	ArrayList<String>();
-		comments = new 	ArrayList<String>();
-		columnOfTable = new ArrayList<String>();
 	}
 
 	public void openticket(String ticketId)
 	{
-		singleTicketData = storeTicketData.getSingleTicketData(ticketId);
-		columnOfTable = storeTicketData.getTicketColumns();
-		comments = commentOnTicket(ticketId);
+		ArrayList<String> singleTicketData = storeTicketData.getSingleTicketData(ticketId);
+		List<String> columnOfTable = storeTicketData.getTicketColumns();
+		List<String> comments = commentOnTicket(ticketId);
 		displayUser.printSignleTicketDetails(singleTicketData,columnOfTable,comments);
 		ConnectionMng.closeConnection();
 		

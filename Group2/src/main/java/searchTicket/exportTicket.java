@@ -31,16 +31,26 @@ public class exportTicket implements  IexportTicket{
 				FileWriter myWriter = new FileWriter(FileName);
 				  Map<String, ArrayList <String>> ticketsDatas = storeTicketData.getTableData();
 				  List<List<String>> allRowData = new ArrayList<>();
-				  List<String> rowData = new ArrayList<>();
+				  
+				  int index=0;
 				  for(String key : ticketsDatas.keySet())
 				  {
+					  List<String> rowData = new ArrayList<>();
 					  rowData.add(key);
 					  for(int i=0;i<ticketsDatas.get(key).size();i++)
 					  {
 						  String data =  ticketsDatas.get(key).get(i);
-						  rowData.add(data); 
+						  if(data == null)
+						  {
+							  rowData.add(""); 
+						  }
+						  else {
+							  rowData.add(data);  
+						  }
+						   
 					  }
-					  allRowData.add(rowData);
+					  allRowData.add(index,rowData);
+					  index++;
 				  }
 				  List<String> columnOfTable = storeTicketData.getTicketColumns();
 				  myWriter.write(tableFormate.generateTable(columnOfTable, allRowData));
