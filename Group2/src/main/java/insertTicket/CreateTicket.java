@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import insertTicket.Interfaces.ICreateTicket;
-
+ 
 public class CreateTicket implements ICreateTicket
 {
 	private String ticketID = null;
