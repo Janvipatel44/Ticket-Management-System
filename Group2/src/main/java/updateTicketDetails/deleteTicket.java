@@ -3,9 +3,9 @@ package updateTicketDetails;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 
-import interfacs.IConnectionManager;
+import database.ConnectionManager;
+import database.IConnectionManager;
 import updateTicketDetails.interfaces.IdeleteTicket;
 
 public class deleteTicket implements IdeleteTicket

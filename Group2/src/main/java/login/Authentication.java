@@ -6,11 +6,11 @@ import userinterface.InputOutputHandler;
 public class Authentication implements IAuthentication
 {
     ILoginFactory loginFactory = LoginFactory.instance();
-    private final IAuthenticationOperations authenticationOperations;
+    private final IPersistenceAuthenticationOperations authenticationOperations;
     private final IEncryption encryption = loginFactory.getEncryption();
     private final IInputOutputHandler inputOutputHandler = new InputOutputHandler();
 
-    public Authentication(IAuthenticationOperations authenticationOperations)
+    public Authentication(IPersistenceAuthenticationOperations authenticationOperations)
     {
         this.authenticationOperations = authenticationOperations;
     }
@@ -36,5 +36,10 @@ public class Authentication implements IAuthentication
             result = false;
             return result;
         }
+    }
+
+    public IParameterizedUser getUserDetails(String employeeID)
+    {
+        return authenticationOperations.getUserDetails(employeeID);
     }
 }

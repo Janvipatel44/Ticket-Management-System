@@ -1,5 +1,5 @@
 package employeeMilestones.abstractfactory;
-import employeeMilestones.EmployeeMilestone;
+import employeeMilestones.EmployeeMilestoneFacade;
 import employeeMilestones.PersistenceEmployeeTicketsMock;
 import employeeMilestones.interfaces.*;
 public class EmployeeMilestoneFactoryTest implements IEmployeeMilestoneFactoryTest
@@ -28,7 +28,7 @@ public class EmployeeMilestoneFactoryTest implements IEmployeeMilestoneFactoryTe
     public IEmployeeMilestone getEmployeeMilestone()
     {
         IPersistenceEmployeeTickets persistenceEmployeeTicketsMock = getPersistenceEmployeeTicketsMock();
-        return new EmployeeMilestone(persistenceEmployeeTicketsMock);
+        return new EmployeeMilestoneFacade(persistenceEmployeeTicketsMock);
     }
 }
 

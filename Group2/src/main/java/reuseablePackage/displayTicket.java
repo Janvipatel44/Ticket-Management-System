@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import reuseablePackage.interfaces.IdisplayTicket;
-import sortTickets.interfaces.IInputOutputHandler;
+import userinterface.IInputOutputHandler;
+
 
 public class displayTicket implements IdisplayTicket
 {

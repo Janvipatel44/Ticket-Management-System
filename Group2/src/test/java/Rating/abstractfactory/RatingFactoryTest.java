@@ -1,6 +1,6 @@
 package Rating.abstractfactory;
 import Rating.PersistenceRatingMock;
-import Rating.RatingAssignee;
+import Rating.RatingAssigneeFacade;
 import Rating.RatingQuestionnaire;
 import Rating.interfaces.*;
 public class RatingFactoryTest implements IRatingFactoryTest
@@ -24,7 +24,7 @@ public class RatingFactoryTest implements IRatingFactoryTest
     public IRatingAssignee getRatingAssignee(IRatingQuestionnaire questionnaire)
     {
         IPersistenceRating persistenceRatingMock = getPersistenceRatingMock();
-        return new RatingAssignee(questionnaire, persistenceRatingMock);
+        return new RatingAssigneeFacade(questionnaire, persistenceRatingMock);
     }
 
     public IPersistenceRating getPersistenceRatingMock()

@@ -49,5 +49,7 @@ public class RatingScreen
         {
             inputOutputHandler.displayMethod("Rating was not provided to the given ticket. Please check the information and try again.\n");
         }
+
+
     }
 }

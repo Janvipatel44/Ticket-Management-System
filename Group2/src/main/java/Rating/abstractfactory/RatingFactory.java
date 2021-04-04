@@ -22,7 +22,7 @@ public class RatingFactory implements IRatingFactory
     public IRatingAssignee getRatingAssignee(IRatingQuestionnaire questionnaire)
     {
         IPersistenceRating persistenceRating = getPersistenceRating();
-        return new RatingAssignee(questionnaire, persistenceRating);
+        return new RatingAssigneeFacade(questionnaire, persistenceRating);
     }
 
     public IPersistenceRating getPersistenceRating()

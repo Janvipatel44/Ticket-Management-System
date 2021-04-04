@@ -1,5 +1,7 @@
 package login;
 import database.*;
+import database.abstractfactory.DatabaseFactory;
+import database.abstractfactory.IDatabaseFactory;
 import login.Interfaces.IPersistenceForgotPasswordOperations;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -8,8 +10,9 @@ import java.sql.SQLException;
 public class PersistenceForgotPasswordOperations implements IPersistenceForgotPasswordOperations
 {
     private String configurationFile = "ConfigurationFile.txt";
-    IConnectionManager connection = new ConnectionManager(configurationFile);
-    IDatabaseOperations databaseOperations = new DatabaseOperations();
+    private final IDatabaseFactory databaseFactory = DatabaseFactory.instance();
+    private final IConnectionManager connection = databaseFactory.getConnectionManager(configurationFile);
+    IDatabaseOperations databaseOperations = databaseFactory.getDatabaseOperations();
 
     public String getEmail(String employeeID)
     {

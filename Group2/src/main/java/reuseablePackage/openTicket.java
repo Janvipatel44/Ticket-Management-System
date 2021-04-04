@@ -12,6 +12,7 @@ import reuseablePackage.interfaces.IdisplayTicket;
 import reuseablePackage.interfaces.IopenTicket;
 import reuseablePackage.interfaces.IstoreTicketData;
 
+
 public class openTicket implements IopenTicket
 {
 	private Connection connect=null;
@@ -41,7 +42,6 @@ public class openTicket implements IopenTicket
 
 		
 	}
-	
 	
 	private List<String> commentOnTicket(String ticketId) 
 	{

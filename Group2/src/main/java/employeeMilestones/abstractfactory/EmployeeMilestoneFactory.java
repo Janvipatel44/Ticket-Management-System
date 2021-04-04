@@ -29,7 +29,7 @@ public class EmployeeMilestoneFactory implements IEmployeeMilestoneFactory {
     public IEmployeeMilestone getEmployeeMilestone()
     {
         IPersistenceEmployeeTickets persistenceEmployeeTickets = getPersistenceEmployeeTickets();
-        return new EmployeeMilestone(persistenceEmployeeTickets);
+        return new EmployeeMilestoneFacade(persistenceEmployeeTickets);
     }
 
     public IParameterizedEmployeeTicket getParameterizedEmployeeTicket(String ticketID, String employeeID, String customerID, Date startDate, Date endDate, int rating, int priority, int impact, int urgency, String ticketType)

@@ -1,11 +1,11 @@
 package Rating;
 import Rating.interfaces.*;
-public class RatingAssignee implements IRatingAssignee
+public class RatingAssigneeFacade implements IRatingAssignee
 {
     IRatingQuestionnaire questionnaire;
     IPersistenceRating persistenceRating;
 
-    public RatingAssignee(IRatingQuestionnaire questionnaire, IPersistenceRating persistenceRating)
+    public RatingAssigneeFacade(IRatingQuestionnaire questionnaire, IPersistenceRating persistenceRating)
     {
         this.questionnaire = questionnaire;
         this.persistenceRating = persistenceRating;

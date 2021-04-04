@@ -23,7 +23,7 @@ public class LoginFactoryTest implements ILoginFactoryTest
         return uniqueInstance;
     }
 
-    public IAuthenticationOperations getAuthenticationOperationsMock()
+    public IPersistenceAuthenticationOperations getAuthenticationOperationsMock()
     {
         return new AuthenticationOperationsMock();
     }
