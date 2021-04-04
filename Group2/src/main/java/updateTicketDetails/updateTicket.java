@@ -6,7 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-import interfacs.IConnectionManager;
+import database.ConnectionManager;
+import database.IConnectionManager;
 import updateTicketDetails.interfaces.IticketStatusInProgress;
 import updateTicketDetails.interfaces.IupdateTicket;
 

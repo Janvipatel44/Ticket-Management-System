@@ -10,7 +10,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-import interfacs.IConnectionManager;
+import database.ConnectionManager;
+import database.IConnectionManager;
 import updateTicketDetails.interfaces.IticketStatusInProgress;
 
 public class ticketStatusInProgress implements IticketStatusInProgress 
