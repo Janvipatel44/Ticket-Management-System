@@ -4,8 +4,10 @@ import java.text.ParseException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-import insertTicket.InsertTicket;
-import insertTicket.Interfaces.IInsertTicket;
+import insertTicket.UserInputTicket;
+import insertTicket.Interfaces.IUserInputTicket;
+import insertTicket.abstractFactory.IInsertTicketFactory;
+import insertTicket.abstractFactory.InsertTicketFactory;
 
 public class main {
 	
@@ -13,9 +15,11 @@ public class main {
 	 		
 			int input = 0;
 		    Scanner sc1 = new Scanner(System.in);
-		    IInsertTicket insert_tickets = new InsertTicket();
+		    IUserInputTicket insert_tickets = new UserInputTicket();
 		    String employeeId = null;
 		    String date = null;
+			IInsertTicketFactory  insertTicketFactory = InsertTicketFactory.instance();
+			
 		    while(input != -1){
 		        System.out.println("Please enter your desired operation:");
 		        System.out.println("1: Create Tickets");
@@ -32,12 +36,8 @@ public class main {
 		            break;
 		       
 		            case 1:
-		            	try {
-							insert_tickets.successfulInsertion();
-						} catch (ParseException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+		            	insertTicketFactory.inputTicket().userInputTicketDetails();
+					
 		            break;
 		            
 		            case 2:

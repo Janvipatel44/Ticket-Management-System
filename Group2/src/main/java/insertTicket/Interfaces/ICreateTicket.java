@@ -3,7 +3,7 @@ package insertTicket.Interfaces;
 import java.text.ParseException;
 import java.util.Date;
 
-public interface IParameterizedTicket {
+public interface ICreateTicket {
     
 	public String getTicketID(); 
     public String getDescription();    

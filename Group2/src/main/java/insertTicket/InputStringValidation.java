@@ -2,7 +2,8 @@ package insertTicket;
 
 import insertTicket.Interfaces.IInputStringValidation;
 
-public class InputStringValidation implements IInputStringValidation{
+public class InputStringValidation implements IInputStringValidation
+{
 
 	protected static String validationString = null;
 	protected static int length = 0;

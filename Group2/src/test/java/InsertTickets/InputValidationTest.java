@@ -6,8 +6,8 @@ import java.text.ParseException;
 
 import org.junit.Test;
 
-import insertTicket.ParameterizedTicket;
-import insertTicket.Interfaces.IParameterizedTicket;
+import insertTicket.CreateTicket;
+import insertTicket.Interfaces.ICreateTicket;
 
 public class InputValidationTest {
 

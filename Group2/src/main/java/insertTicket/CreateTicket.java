@@ -6,9 +6,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-import insertTicket.Interfaces.IParameterizedTicket;
+import insertTicket.Interfaces.ICreateTicket;
 
-public class ParameterizedTicket implements IParameterizedTicket
+public class CreateTicket implements ICreateTicket
 {
 	private String ticketID = null;
     private String description = null;
@@ -30,7 +30,7 @@ public class ParameterizedTicket implements IParameterizedTicket
 	private String expectedEndDateString;
 	private Date expectedEndDate;
 	
-	public ParameterizedTicket(String ticketID, String description,  String expectedEndDate, String reporterID,
+	public CreateTicket(String ticketID, String description,  String expectedEndDate, String reporterID,
 			String employeeID,  String assigneeName, String ticketType, String ticketStatus, int priority, int urgency, int impact,
 			String ticketLevel, String customerID, String customerName, String creatorID, String creatorName) {
 		

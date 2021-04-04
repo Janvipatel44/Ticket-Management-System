@@ -6,14 +6,20 @@ import insertTicket.Interfaces.IInputDateValidation;
 import insertTicket.Interfaces.IInputRangeValidation;
 import insertTicket.Interfaces.IInputStringValidation;
 import insertTicket.Interfaces.IUserInputValidation;
+import insertTicket.abstractFactory.IInsertTicketFactory;
+import insertTicket.abstractFactory.InsertTicketFactory;
 
 public class UserInputValidation implements IUserInputValidation {
 	
-	public boolean validation(String validationString, EnumValidation input) {
+	public boolean validation(String validationString, EnumValidation input) 
+	{
 		
-		IInputStringValidation ticketStringValidation = new InputStringValidation();
-		IInputDateValidation dateValidation = new InputDateValidation();
-		IInputRangeValidation rangeValidation = new InputRangeValidation();
+		IInsertTicketFactory  insertTicketFactory = InsertTicketFactory.instance();
+
+		IInputStringValidation ticketStringValidation = insertTicketFactory.ticketStringValidation();
+		IInputDateValidation dateValidation = insertTicketFactory.dateValidation();
+		IInputRangeValidation rangeValidation = insertTicketFactory.rangeValidation();
+		
 		HashMap<String, Integer> stringLength = new HashMap<String, Integer>();
 		stringLength.put("ticketID", 30);
 		stringLength.put("expectedEndDate", 10);

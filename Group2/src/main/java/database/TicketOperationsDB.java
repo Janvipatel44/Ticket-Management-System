@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.HashMap;
 
-import insertTicket.Interfaces.IParameterizedTicket;
+import insertTicket.Interfaces.ICreateTicket;
 
 import java.sql.CallableStatement;
 
@@ -15,10 +15,10 @@ public class TicketOperationsDB implements ITicketOperationsDB{
 	private String ConfigurationFile = "ConfigurationFile.txt";
  
 	IConnectionManager IConnectionMng = new ConnectionManager(ConfigurationFile);
-	IParameterizedTicket createTicket = null;
+	ICreateTicket createTicket = null;
     HashMap<String, String> inputsHandler = new HashMap<String, String>();
 
-	public TicketOperationsDB(IParameterizedTicket createTicket) {
+	public TicketOperationsDB(ICreateTicket createTicket) {
 		this.createTicket = createTicket;
 	}
 	public boolean insertTicket() throws ParseException
