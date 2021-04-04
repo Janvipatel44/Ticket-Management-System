@@ -1,13 +1,9 @@
-package abstractfactory;
+package updateTicketDetails.abstractfactory;
 
-import interfacs.IcheckTicketExists;
-import interfacs.IdeleteTicket;
-import interfacs.IgetListOfTickets;
-import interfacs.IupdateTicket;
-import updateTicketDetails.checkTicketExists;
 import updateTicketDetails.deleteTicket;
-import updateTicketDetails.getListOfTickets;
 import updateTicketDetails.updateTicket;
+import updateTicketDetails.interfaces.IdeleteTicket;
+import updateTicketDetails.interfaces.IupdateTicket;
 
 
 public class updateTicketFactory implements IupdateTicketFactory
@@ -28,18 +24,6 @@ public class updateTicketFactory implements IupdateTicketFactory
         return uniqueInstance;
     }
 
-
-
-	public IcheckTicketExists getcheckticketexists()
-	{	
-		return new checkTicketExists();
-	}
-
-	
-	public IgetListOfTickets getalltickets() 
-	{
-		return new getListOfTickets();
-	}
 
 	public IdeleteTicket deleteticket()
 	{		

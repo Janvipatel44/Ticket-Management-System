@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import interfacs.IConnectionManager;
-import interfacs.IticketStatusInProgress;
+import updateTicketDetails.interfaces.IticketStatusInProgress;
 
 public class ticketStatusInProgress implements IticketStatusInProgress 
 {

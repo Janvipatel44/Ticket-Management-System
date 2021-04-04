@@ -4,13 +4,13 @@ import java.text.ParseException;
 import java.util.Scanner;
 
 import interfacs.IcheckTicketExists;
-import interfacs.IdeleteTicket;
 import interfacs.IgetListOfTickets;
-import interfacs.IupdateTicket;
 import updateTicketDetails.checkTicketExists;
 import updateTicketDetails.deleteTicket;
 import updateTicketDetails.getListOfTickets;
 import updateTicketDetails.updateTicket;
+import updateTicketDetails.interfaces.IdeleteTicket;
+import updateTicketDetails.interfaces.IupdateTicket;
 
 public class userInput 
 {

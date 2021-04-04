@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 import interfacs.IConnectionManager;
-import interfacs.IticketStatusInProgress;
-import interfacs.IupdateTicket;
+import updateTicketDetails.interfaces.IticketStatusInProgress;
+import updateTicketDetails.interfaces.IupdateTicket;
 
 public class updateTicket implements IupdateTicket
 {

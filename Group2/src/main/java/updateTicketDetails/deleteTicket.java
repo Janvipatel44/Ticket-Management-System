@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
 import interfacs.IConnectionManager;
-import interfacs.IdeleteTicket;
+import updateTicketDetails.interfaces.IdeleteTicket;
 
 public class deleteTicket implements IdeleteTicket
 {

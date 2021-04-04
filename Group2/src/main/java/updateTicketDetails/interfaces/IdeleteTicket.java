@@ -1,4 +1,4 @@
-package interfacs;
+package updateTicketDetails.interfaces;
 
 public interface IdeleteTicket 
 {
