@@ -1,10 +1,12 @@
 package sortTicketTest.abstractfactory;
 
+import reuseablePackage.displayTicket;
+import reuseablePackage.interfaces.IdisplayTicket;
+import reuseablePackage.interfaces.IopenTicket;
 import sortTicketTest.openTicketMock;
 import sortTicketTest.sortTicketMock;
-import sortTickets.displayTicket;
-import sortTickets.interfaces.IdisplayTicket;
-import sortTickets.interfaces.IopenTicket;
+import sortTickets.InputOutputHandler;
+import sortTickets.interfaces.IInputOutputHandler;
 import sortTickets.interfaces.IsortTicketData;
 
 public class SortTicketFactoryTest implements ISortTicketFactoryTest
@@ -26,10 +28,13 @@ public class SortTicketFactoryTest implements ISortTicketFactoryTest
         return uniqueInstance;
     }
 
-   
-	public IdisplayTicket displayUser()
+   public IInputOutputHandler inputoutputhandler()
+   {
+	   return new InputOutputHandler();
+   }
+	public IdisplayTicket displayUser(IInputOutputHandler inputoutputhandler)
 	{
-		return new displayTicket();
+		return new displayTicket(inputoutputhandler);
 	}
 	
 	public IopenTicket openticketMock() 

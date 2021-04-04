@@ -2,62 +2,72 @@ package sortTickets;
 
 import java.util.Scanner;
 
+import reuseablePackage.abstractFactory.IreuseableClassFactory;
+import reuseablePackage.abstractFactory.reuseableClassFactory;
+import reuseablePackage.interfaces.IdisplayTicket;
+import reuseablePackage.interfaces.IopenTicket;
+import reuseablePackage.interfaces.IstoreTicketData;
 import sortTickets.abstractfactory.ISortTicketFactory;
 import sortTickets.abstractfactory.SortTicketFactory;
 import sortTickets.interfaces.IConnectionManager;
-import sortTickets.interfaces.IdisplayTicket;
-import sortTickets.interfaces.IopenTicket;
+import sortTickets.interfaces.IInputOutputHandler;
 import sortTickets.interfaces.IsortTicketData;
-import sortTickets.interfaces.IstoreTicketData;
 
 public class sortTicketUI {
-	
-	static Scanner sc=new Scanner(System.in);
-	
+
+	static Scanner sc = new Scanner(System.in);
+
 	static String ConfigurationFile = "ConfigurationFile";
-	
+	static String printOnScreenString = "";
+
+	static IreuseableClassFactory resuableclassfactore = reuseableClassFactory.instance();
 	static ISortTicketFactory storeticketfactory = SortTicketFactory.instance();
-	static IstoreTicketData storeTicketData = storeticketfactory.storeTicketData();
-	static IdisplayTicket displayUser = storeticketfactory.displayUser();
-	static IConnectionManager ConnectionMng = storeticketfactory.ConnectionMng(ConfigurationFile);
+	static IstoreTicketData storeTicketData = resuableclassfactore.storeTicketData();
+	static IInputOutputHandler inputoutputhandler = resuableclassfactore.inputoutputhandler();
+	static IdisplayTicket displayUser = resuableclassfactore.displayUser(inputoutputhandler);
+	static IConnectionManager ConnectionMng = resuableclassfactore.ConnectionMng(ConfigurationFile);
+
 	public static void main(String args[]) {
-		int choice=0;
-		
-		System.out.println("Sort Ticket BY:");
-		System.out.println("	1. Priority");
-		System.out.println("	2. Urgency");
-		System.out.println("	3. impact");
-		System.out.println("Enter your choice:");
-		choice=sc.nextInt();
-		IsortTicketData sortTicketobj=new sortTicket(storeTicketData,displayUser,ConnectionMng);
-		if(choice<=3 || choice<=1) {
-			sortTicketobj.sortTickets(choice);
-		}
-		open();
-	}
-	
-	private static void open() {
-		int choice=0;
-		String ticketID=null;
-		IopenTicket openticket = storeticketfactory.openticket(storeTicketData,ConnectionMng);
-		
-		System.out.println("1. open Ticket");
-		System.out.println("2. exit");
-		
-		do 
-		{
-			System.out.println("Choose Operation you want to perform");
-			choice=sc.nextInt();
-			sc.nextLine();
-			if(choice == 1)
-			{
-				System.out.println("Enter Ticket ID:");
-				ticketID = sc.nextLine();
-				openticket.openticket(ticketID) ;
+		int choice = 0;
+		printOnScreenString = "Sort Ticket BY:" + "\n\n" + "1. Priority" + "\n" + "2. Urgency" + "\n" + "3. impact"
+				+ " \n" + "4. exit" + "\n";
+		inputoutputhandler.displayMethod(printOnScreenString);
+		do {
+			inputoutputhandler.displayMethod("Enter your choice:");
+			choice = inputoutputhandler.inputInt();
+			IsortTicketData sortTicketobj = new sortTicket(storeTicketData, displayUser, ConnectionMng);
+			if (choice <= 3 || choice <= 1) {
+				sortTicketobj.sortTickets(choice);
 			}
-			
-		}
-		while(choice==1);
+			open();
+		} while (choice != 4);
+
 	}
-	
+
+	private static void open() {
+		int choice = 1;
+		String ticketID = null;
+		IopenTicket openticket = resuableclassfactore.openticket(storeTicketData, displayUser, ConnectionMng);
+
+		printOnScreenString = "1. open Ticket" + " \n" + "2. exit";
+		inputoutputhandler.displayMethod(printOnScreenString);
+
+		do {
+			try {
+				inputoutputhandler.displayMethod("Choose Operation you want to perform");
+				inputoutputhandler.displayMethod("\n");
+				choice = inputoutputhandler.inputInt();
+
+				if (choice == 1) {
+					inputoutputhandler.displayMethod("Enter Ticket ID:");
+					inputoutputhandler.displayMethod("\n");
+					ticketID = inputoutputhandler.input();
+					openticket.openticket(ticketID);
+				}
+			} catch (NumberFormatException e) {
+
+			}
+		} while (choice != 2);
+	}
+
 }

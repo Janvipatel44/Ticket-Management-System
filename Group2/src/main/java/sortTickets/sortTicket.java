@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import reuseablePackage.interfaces.IdisplayTicket;
+import reuseablePackage.interfaces.IstoreTicketData;
 import sortTickets.interfaces.IConnectionManager;
-import sortTickets.interfaces.IdisplayTicket;
 import sortTickets.interfaces.IsortTicketData;
-import sortTickets.interfaces.IstoreTicketData;
 
 public class sortTicket implements IsortTicketData 
 {

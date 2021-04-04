@@ -3,9 +3,9 @@ package sortTicketTest;
 
 import org.junit.Test;
 
+import reuseablePackage.interfaces.IopenTicket;
 import sortTicketTest.abstractfactory.ISortTicketFactoryTest;
 import sortTicketTest.abstractfactory.SortTicketFactoryTest;
-import sortTickets.interfaces.IopenTicket;
 
 public class openTicketTest
 {

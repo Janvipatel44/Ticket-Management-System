@@ -1,4 +1,4 @@
-package sortTickets.interfaces;
+package reuseablePackage.interfaces;
 
 public interface IopenTicket 
 {

@@ -5,9 +5,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import sortTicketTest.abstractfactory.ISortTicketFactoryTest;
-import sortTicketTest.abstractfactory.SortTicketFactoryTest;
-import sortTickets.interfaces.IdisplayTicket;
+import reuseablePackage.abstractFactory.IreuseableClassFactory;
+import reuseablePackage.abstractFactory.reuseableClassFactory;
+import reuseablePackage.interfaces.IdisplayTicket;
+import sortTickets.interfaces.IInputOutputHandler;
 import sortTickets.interfaces.IsortTicketData;
 
 public class sortTicketMock implements IsortTicketData
@@ -15,19 +16,22 @@ public class sortTicketMock implements IsortTicketData
 	Map<String, ArrayList<String>> ticketsData ;
 	List<String> columnOfTable;
 	
-	ISortTicketFactoryTest sortticketfactory = SortTicketFactoryTest.instance();
+	static IreuseableClassFactory resuableclassfactore = reuseableClassFactory.instance();
+	IInputOutputHandler inputoutputhandler;
 	IdisplayTicket displayuser;
 	
 	
 	public sortTicketMock()
 	{
-		displayuser = sortticketfactory.displayUser();
+		inputoutputhandler = resuableclassfactore.inputoutputhandler();
+		displayuser = resuableclassfactore.displayUser(inputoutputhandler);
 		ticketsData = new LinkedHashMap<String, ArrayList<String>>();
 		columnOfTable = new ArrayList<String>();
 	}
 	
 	public void sortTickets(int choice)
 	{
+		addColumnsOfTable();
 		if(choice ==1)
 		{
 			ticketsData.put("111", new ArrayList<String>());
@@ -40,7 +44,7 @@ public class sortTicketMock implements IsortTicketData
 			ticketsData.get("111").add("bug");
 			ticketsData.get("111").add("1");
 			ticketsData.get("111").add("3");
-			ticketsData.get("111").add("3");
+			
 			
 			ticketsData.put("123", new ArrayList<String>());
 			ticketsData.get("123").add("develope bugd free login functionality");
@@ -52,7 +56,7 @@ public class sortTicketMock implements IsortTicketData
 			ticketsData.get("123").add("bug");
 			ticketsData.get("123").add("2");
 			ticketsData.get("123").add("3");
-			ticketsData.get("123").add("3");
+			
 
 		}
 		else if (choice ==2)
@@ -67,7 +71,7 @@ public class sortTicketMock implements IsortTicketData
 			ticketsData.get("111").add("bug");
 			ticketsData.get("111").add("1");
 			ticketsData.get("111").add("1");
-			ticketsData.get("111").add("3");
+			
 			
 			ticketsData.put("123", new ArrayList<String>());
 			ticketsData.get("123").add("develope bugd free login functionality");
@@ -79,7 +83,7 @@ public class sortTicketMock implements IsortTicketData
 			ticketsData.get("123").add("bug");
 			ticketsData.get("123").add("2");
 			ticketsData.get("123").add("2");
-			ticketsData.get("123").add("3");
+			
 
 		}
 		else if (choice ==3)
@@ -94,7 +98,7 @@ public class sortTicketMock implements IsortTicketData
 			ticketsData.get("111").add("bug");
 			ticketsData.get("111").add("1");
 			ticketsData.get("111").add("3");
-			ticketsData.get("111").add("1");
+			
 			
 			ticketsData.put("123", new ArrayList<String>());
 			ticketsData.get("123").add("develope bugd free login functionality");
@@ -106,7 +110,7 @@ public class sortTicketMock implements IsortTicketData
 			ticketsData.get("123").add("bug");
 			ticketsData.get("123").add("2");
 			ticketsData.get("123").add("3");
-			ticketsData.get("123").add("2");
+		
 
 		}
 		displayuser.printTicketsDetails(ticketsData,columnOfTable);

@@ -1,4 +1,4 @@
-package sortTickets.interfaces;
+package reuseablePackage.interfaces;
 
 import java.util.ArrayList;
 import java.util.List;

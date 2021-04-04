@@ -1,17 +1,11 @@
 package sortTickets.abstractfactory;
 
+import reuseablePackage.interfaces.IdisplayTicket;
+import reuseablePackage.interfaces.IstoreTicketData;
 import sortTickets.interfaces.IConnectionManager;
-import sortTickets.interfaces.IdisplayTicket;
-import sortTickets.interfaces.IopenTicket;
 import sortTickets.interfaces.IsortTicketData;
-import sortTickets.interfaces.IstoreTicketData;
 
-public interface ISortTicketFactory {
-
-	IstoreTicketData storeTicketData();
-	IdisplayTicket displayUser();
-	IConnectionManager ConnectionMng( String ConfigurationFile);
+public interface ISortTicketFactory
+{
 	IsortTicketData sortTicketobj(IstoreTicketData storeTicketData,IdisplayTicket displayUser,IConnectionManager ConnectionMng);
-	IopenTicket openticket(IstoreTicketData storeTicketData,IConnectionManager ConnectionMng);
-	
 }

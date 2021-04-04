@@ -1,12 +1,14 @@
 package sortTicketTest.abstractfactory;
 
-import sortTickets.interfaces.IdisplayTicket;
-import sortTickets.interfaces.IopenTicket;
+import reuseablePackage.interfaces.IdisplayTicket;
+import reuseablePackage.interfaces.IopenTicket;
+import sortTickets.interfaces.IInputOutputHandler;
 import sortTickets.interfaces.IsortTicketData;
 
 public interface ISortTicketFactoryTest {
 
-	IdisplayTicket displayUser();
+	IInputOutputHandler inputoutputhandler();
+	IdisplayTicket displayUser(IInputOutputHandler inputoutputhandler);
 	IopenTicket openticketMock();
 	IsortTicketData sortTicketMock();
 }

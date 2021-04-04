@@ -4,10 +4,11 @@ package sortTicketTest;
 import java.util.ArrayList;
 import java.util.List;
 
-import sortTicketTest.abstractfactory.ISortTicketFactoryTest;
-import sortTicketTest.abstractfactory.SortTicketFactoryTest;
-import sortTickets.interfaces.IdisplayTicket;
-import sortTickets.interfaces.IopenTicket;
+import reuseablePackage.abstractFactory.IreuseableClassFactory;
+import reuseablePackage.abstractFactory.reuseableClassFactory;
+import reuseablePackage.interfaces.IdisplayTicket;
+import reuseablePackage.interfaces.IopenTicket;
+import sortTickets.interfaces.IInputOutputHandler;
 
 public class openTicketMock implements IopenTicket
 {
@@ -16,11 +17,14 @@ public class openTicketMock implements IopenTicket
 	
 	List<String> columnOfTable;
 		
-	ISortTicketFactoryTest sortticketfactory = SortTicketFactoryTest.instance();
+	static IreuseableClassFactory resuableclassfactore = reuseableClassFactory.instance();
+	IInputOutputHandler inputoutputhandler;
 	IdisplayTicket displayuser;
+	
 	public openTicketMock()
 	{
-		displayuser = sortticketfactory.displayUser();
+		inputoutputhandler = resuableclassfactore.inputoutputhandler();
+		displayuser = resuableclassfactore.displayUser(inputoutputhandler);
 		singleTicketData = new 	ArrayList<String>();
 		comments = new 	ArrayList<String>();
 		columnOfTable = new ArrayList<String>();
@@ -28,6 +32,7 @@ public class openTicketMock implements IopenTicket
 
 	public void openticket(String ticketId)
 	{
+		addColumnsOfTable();
 		String ticketID = "111";
 		if(ticketId.equals(ticketID))
 		{

@@ -1,4 +1,4 @@
-package sortTickets;
+package reuseablePackage;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import reuseablePackage.interfaces.IdisplayTicket;
+import reuseablePackage.interfaces.IopenTicket;
+import reuseablePackage.interfaces.IstoreTicketData;
 import sortTickets.interfaces.IConnectionManager;
-import sortTickets.interfaces.IdisplayTicket;
-import sortTickets.interfaces.IopenTicket;
-import sortTickets.interfaces.IstoreTicketData;
 
 public class openTicket implements IopenTicket
 {
@@ -19,32 +19,26 @@ public class openTicket implements IopenTicket
 	private ResultSet resultSet=null;
 	private boolean hasResult=false;
 	
-	
-	ArrayList<String> singleTicketData;
-	List<String> comments;
-	List<String> columnOfTable;
-	
 	private IstoreTicketData storeTicketData;
 	private IdisplayTicket displayUser;
 	private IConnectionManager ConnectionMng;
 	
-	public openTicket(IstoreTicketData storeTicketData, IConnectionManager ConnectionMng)
+	public openTicket(IstoreTicketData storeTicketData,IdisplayTicket displayUser, IConnectionManager ConnectionMng)
 	{
 		this.storeTicketData = storeTicketData; 
-		displayUser = new displayTicket();
+		this.displayUser = displayUser;
 		this.ConnectionMng = ConnectionMng;
-		singleTicketData = new 	ArrayList<String>();
-		comments = new 	ArrayList<String>();
-		columnOfTable = new ArrayList<String>();
+		
 	}
 
 	public void openticket(String ticketId)
 	{
-		singleTicketData = storeTicketData.getSingleTicketData(ticketId);
-		columnOfTable = storeTicketData.getTicketColumns();
-		comments = commentOnTicket(ticketId);
+		ArrayList<String> singleTicketData = storeTicketData.getSingleTicketData(ticketId);
+		List<String> columnOfTable = storeTicketData.getTicketColumns();
+		List<String> comments = commentOnTicket(ticketId);
 		displayUser.printSignleTicketDetails(singleTicketData,columnOfTable,comments);
 		ConnectionMng.closeConnection();
+
 		
 	}
 	
