@@ -1,23 +1,34 @@
 package userinterface;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import menucontroller.MenuHandler;
+import menucontroller.abstractfactory.IMenuHandlerFactory;
+import menucontroller.abstractfactory.MenuHandlerFactory;
+import menucontroller.interfaces.IMenuHandler;
 import roles.interfaces.IMenuItemsByRole;
 import validations.StringValidations;
 
 public class HomePageScreen implements IHomePageScreen {
 
-	private IMenuItemsByRole iMenuItemsByRole;
-	IInputOutputHandler inputOutputHandler;
-
 	private final String INVALID_INPUT_MESSAGE = "Please provide valid value for emp name and user type";
 	private final String MENU_ITEMS_SELECTION_MESSAGE = "Please select the item from menu (provide corresponding menu item number) : ";
 	private final String ERROR_MESSAGE = "You have provided wrong input. Please choose the correct input from menu.";
 	private final int MINIMUM_MENU_ITEMS = 1;
+	
+	private IMenuItemsByRole iMenuItemsByRole;
+	private IInputOutputHandler inputOutputHandler;
+	private Map<Integer, String> menuMap;
+	private IMenuHandler menuHandler;
 
 	public HomePageScreen(IMenuItemsByRole iMenuItemsByRole, IInputOutputHandler inputOutputHandler) {
 		this.iMenuItemsByRole = iMenuItemsByRole;
 		this.inputOutputHandler = inputOutputHandler;
+		this.menuMap = new HashMap<Integer, String>();
+		IMenuHandlerFactory menuHandlerFactory = MenuHandlerFactory.instance();
+		this.menuHandler = menuHandlerFactory.makeMenuHandlerObject();
 	}
 
 	public void handleHomePageMenu(String empId, String empName, String userType) throws Exception {
@@ -30,9 +41,9 @@ public class HomePageScreen implements IHomePageScreen {
 
 			if (maximumMenuItems > 0) {
 
-				boolean hasSelectedValidMenuItem = false;
+				boolean isUserSelecting = true;
 
-				while (hasSelectedValidMenuItem == false) {
+				while (isUserSelecting) {
 					inputOutputHandler.displayMethod(MENU_ITEMS_SELECTION_MESSAGE);
 					String menuItemSelection = inputOutputHandler.input();
 
@@ -45,11 +56,14 @@ public class HomePageScreen implements IHomePageScreen {
 							throw new IllegalArgumentException();
 						}
 
+						MenuHandler.Menu menuItem = MenuHandler.Menu.valueOf(menuMap.get(selectedMenuItem));
+						
+						menuHandler.runMenuTask(menuItem, empId, userType);
+						
 					} catch (IllegalArgumentException e) {
 						inputOutputHandler.displayMethod(ERROR_MESSAGE);
 						continue;
 					}
-
 					break;
 				}
 			} else {
@@ -63,12 +77,14 @@ public class HomePageScreen implements IHomePageScreen {
 	private int displayMenuItems(String userType) throws Exception {
 		List<String> menuItemsList = iMenuItemsByRole.fetchMenuItemsByRole(userType);
 		int i = 0;
-
+				
 		for (; i < menuItemsList.size(); i++) {
-			String displayMenuItem = "" + (i + 1) + ". " + menuItemsList.get(i);
+			int menuoption = i + 1;
+			String menuItem = menuItemsList.get(i);
+			String displayMenuItem = "" + menuoption + ". " + menuItem;
 			inputOutputHandler.displayMethod(displayMenuItem + "\n");
+			menuMap.put(menuoption, menuItem);
 		}
-
 		return i;
 	}
 
