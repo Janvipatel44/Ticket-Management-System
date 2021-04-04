@@ -1,6 +1,5 @@
 package userinterface.abstractFactory;
 import userinterface.*;
-
 public class UserInterfaceFactoryImplementation extends UserInterfaceFactory
 {
     public IServiceNowWelcomeScreen getServiceNowWelcomeScreen(IInputOutputHandler inputOutputHandler)
