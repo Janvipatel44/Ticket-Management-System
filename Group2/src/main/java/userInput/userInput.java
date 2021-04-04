@@ -20,9 +20,9 @@ public class userInput
 		String commentString = null;
 		boolean result = false;
 		boolean commentPostResult=false;
-		String UserName = "Machaj";
+		String employeeID = "emp123";
 		Scanner sc = new Scanner(System.in);
-		final String ConfigurationFile = null;
+		final String ConfigurationFile = "ConfigurationFile";
 
 		IcommentOnTicketFactory commentonticketfactory = commentOnTicketFactory.instance();
 		IcheckTicketExists checkticketexists= commentonticketfactory.checkticketexists();
@@ -41,7 +41,7 @@ public class userInput
 		{
 			System.out.println("Write comment you want to post");
 			commentString = sc.nextLine();
-			commentPostResult=postComment.postCommentOnticket(ticketId,UserName, commentString);
+			commentPostResult=postComment.postCommentOnticket(ticketId,employeeID, commentString);
 			System.out.println(commentPostResult);
 		}
 		else

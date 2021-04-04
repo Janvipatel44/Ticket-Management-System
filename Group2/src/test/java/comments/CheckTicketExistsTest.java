@@ -12,7 +12,7 @@ import comments.abstractfactory.commentOnTicketFactoryTest;
 public class CheckTicketExistsTest 
 {
 	IcommentOnTicketFactoryTest commentonticketfactorytest = commentOnTicketFactoryTest.instance();
-	IcheckTicketExists checkticketexists =commentonticketfactorytest.checkticketexists();
+	IcheckTicketExists checkticketexists =commentonticketfactorytest.checkticketexistsMock();
 	@Test
 	public void ticketExistsTest()
 	{

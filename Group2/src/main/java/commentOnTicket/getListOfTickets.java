@@ -18,13 +18,13 @@ public class getListOfTickets implements IgetListOfTickets
 	private Connection connect=null;
 	private CallableStatement SPstatement=null;
 	private ResultSet resultSet=null;
-	private String ConfigurationFile = "ConfigurationFile";
 	private int choice=4;
 	private List<String> listOfTicketsId = new ArrayList<String>();
 	
-	private IConnectionManager IConnectionMng = new ConnectionManager(ConfigurationFile);
-	private IstoreTicketData storeTicketData = new storeTicketData();
-	private IdisplayTicket displayTicket = new displayTicket();
+	private IConnectionManager IConnectionMng;
+	private IstoreTicketData storeTicketData;
+	private IdisplayTicket displayTicket;
+	
 	public getListOfTickets(IstoreTicketData storeTicketData,IdisplayTicket displayTicket,IConnectionManager IConnectionMng)
 	{
 		this.IConnectionMng = IConnectionMng;

@@ -17,9 +17,9 @@ public class commentOnTicketTest
 	public void postCommentOnticket() 
 	{
 		IcommentOnTicketFactoryTest commentonticketfactorytest = commentOnTicketFactoryTest.instance();
-		IcheckTicketExists checkticketexists=commentonticketfactorytest.checkticketexists();
+		IcheckTicketExists checkticketexists=commentonticketfactorytest.checkticketexistsMock();
 		IdisplayTicket displaytickets = commentonticketfactorytest.displaytickets();
-		IgetListOfTickets getalltickets =commentonticketfactorytest.getalltickets(displaytickets);
+		IgetListOfTickets getalltickets =commentonticketfactorytest.getallticketsMock(displaytickets);
 		IcommentOnTicket postComment = commentonticketfactorytest. commentonticketMock();
 		assertTrue(checkticketexists.ticketExists("12456"));
 		getalltickets.listOfTickets();

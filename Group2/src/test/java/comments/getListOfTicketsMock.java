@@ -11,19 +11,21 @@ import commentOnTicket.interfaces.IgetListOfTickets;
 public class getListOfTicketsMock implements IgetListOfTickets
 {
 	
-	private IdisplayTicket displayTicket;
+	private IdisplayTicket displayticket;
 	
 	Map<String, ArrayList<String>> ticketsData ;
 	List<String> columnOfTable;
 	
 	public getListOfTicketsMock(IdisplayTicket displayUser)
 	{
-		this.displayTicket = displayUser;
+		this.displayticket = displayUser;
 		ticketsData = new LinkedHashMap<String, ArrayList<String>>();
+		columnOfTable = new ArrayList<String>();
 	}
 	
 	public void listOfTickets() 
 	{
+		addColumnsOfTable();
 		
 		ticketsData.put("111", new ArrayList<String>());
 		ticketsData.get("111").add(" develope bugd free login functionality");
@@ -35,10 +37,9 @@ public class getListOfTicketsMock implements IgetListOfTickets
 		ticketsData.get("111").add(" bug");
 		ticketsData.get("111").add("1");
 		ticketsData.get("111").add("3");
-		ticketsData.get("111").add("3");
-		ticketsData.get("111").add("3");
 		
-		displayTicket.printTicketsDetails(ticketsData,columnOfTable);
+		
+		displayticket.printTicketsDetails(ticketsData,columnOfTable);
 
 	}
 	

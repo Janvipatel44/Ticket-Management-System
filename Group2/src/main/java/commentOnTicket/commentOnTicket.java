@@ -25,7 +25,7 @@ public class commentOnTicket implements IcommentOnTicket
 		this.IConnectionMng = IConnectionMng; 
 	}
 	
-	public boolean postCommentOnticket(String ticketId, String UserName, String comment)
+	public boolean postCommentOnticket(String ticketId, String employeeID, String comment)
 	{
 		String dateInfo = formatter.format(date);
 
@@ -34,7 +34,7 @@ public class commentOnTicket implements IcommentOnTicket
 			connect = IConnectionMng.establishConnection();
 			SPstatement = connect.prepareCall("{call postCommentOnTicket(?,?,?,?)}");
 			SPstatement.setString(1,ticketId);
-			SPstatement.setString(2,UserName);
+			SPstatement.setString(2,employeeID);
 			SPstatement.setString(3,dateInfo);
 			SPstatement.setString(4,comment);
 			SPstatement.execute();
