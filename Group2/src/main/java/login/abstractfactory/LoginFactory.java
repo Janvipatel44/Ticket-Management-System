@@ -54,7 +54,7 @@ public class LoginFactory implements ILoginFactory
         return new PasswordValidations();
     }
 
-    public IPersistenceForgotPasswordOperations getPersistenceForgotPasswordOperations() throws IOException {
+    public IPersistenceForgotPasswordOperations getPersistenceForgotPasswordOperations()  {
         return new PersistenceForgotPasswordOperations();
     }
 

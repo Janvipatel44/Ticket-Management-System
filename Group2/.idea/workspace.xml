@@ -6,35 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="74e0b3c0-b815-448a-a6b0-f49829c01fc2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectConfiguration.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectConfiguration.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rating/RatingAssignee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rating/RatingAssigneeFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rating/abstractfactory/RatingFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rating/abstractfactory/RatingFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/customerAnalysis/CustomerAnalysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/customerAnalysis/CustomerAnalysisFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/customerAnalysis/abstractfactory/CustomerAnalysisFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/customerAnalysis/abstractfactory/CustomerAnalysisFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/employeeMilestones/EmployeeMilestone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employeeMilestones/EmployeeMilestoneFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/employeeMilestones/abstractfactory/EmployeeMilestoneFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employeeMilestones/abstractfactory/EmployeeMilestoneFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/login/Authentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/Authentication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/login/AuthenticationOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/PersistenceAuthenticationOperations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/login/Interfaces/IAuthentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/Interfaces/IAuthentication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/login/Interfaces/IAuthenticationOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/Interfaces/IPersistenceAuthenticationOperations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/login/PersistenceForgotPasswordOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/PersistenceForgotPasswordOperations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/login/PersistenceUserRegistrationOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/PersistenceUserRegistrationOperations.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/login/abstractfactory/ILoginFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/abstractfactory/ILoginFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/login/abstractfactory/LoginFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/abstractfactory/LoginFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/login/abstractfactory/LoginFactoryAbs.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/LoginScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/LoginScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/RatingScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/RatingScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Rating/RatingAssigneeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Rating/RatingAssigneeFacadeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Rating/abstractfactory/RatingFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Rating/abstractfactory/RatingFactoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/customerAnalysis/CustomerAnalysisTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/customerAnalysis/CustomerAnalysisFacadeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/customerAnalysis/abstractfactory/CustomerAnalysisFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/customerAnalysis/abstractfactory/CustomerAnalysisFactoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/employeeMilestones/EmployeeMilestoneTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/employeeMilestones/EmployeeMilestoneFacadeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/employeeMilestones/abstractfactory/EmployeeMilestoneFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/employeeMilestones/abstractfactory/EmployeeMilestoneFactoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/login/AuthenticationOperationsMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/login/AuthenticationOperationsMock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/login/AuthenticationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/login/AuthenticationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/login/abstractfactory/ILoginFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/login/abstractfactory/ILoginFactoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/login/abstractfactory/LoginFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/login/abstractfactory/LoginFactoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/login/abstractfactory/LoginFactoryTestAbs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/login/abstractfactory/LoginFactoryTestAbs.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +137,7 @@
       <updated>1617399287304</updated>
       <workItem from="1617399325682" duration="15441000" />
       <workItem from="1617561136836" duration="2504000" />
-      <workItem from="1617567203299" duration="3945000" />
+      <workItem from="1617567203299" duration="4266000" />
     </task>
     <servers />
   </component>

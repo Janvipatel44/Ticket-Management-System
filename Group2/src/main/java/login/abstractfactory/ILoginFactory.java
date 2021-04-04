@@ -13,7 +13,7 @@ public interface ILoginFactory
     IForgotPassword getForgotPassword(IMail mail, IPersistenceForgotPasswordOperations persistenceForgotPasswordOperations);
     IParameterizedUser getParameterizedUser(String employeeID, String firstName, String lastName, String email, String user_type);
     IPasswordValidations getPasswordValidations();
-    IPersistenceForgotPasswordOperations getPersistenceForgotPasswordOperations() throws IOException;
+    IPersistenceForgotPasswordOperations getPersistenceForgotPasswordOperations();
     IPersistenceUserRegistrationOperations getPersistenceUserRegistrationOperations();
     IRegister getRegister(IPersistenceUserRegistrationOperations userRegistrationOperations, IInputOutputHandler inputOutputHandler);
 }
