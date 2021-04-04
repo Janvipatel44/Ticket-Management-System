@@ -1,6 +1,8 @@
 package reuseablePackage.abstractFactory;
 
+import reuseablePackage.interfaces.IcheckTicketExists;
 import reuseablePackage.interfaces.IdisplayTicket;
+import reuseablePackage.interfaces.IgetListOfTickets;
 import reuseablePackage.interfaces.IopenTicket;
 import reuseablePackage.interfaces.IstoreTicketData;
 import sortTickets.interfaces.IConnectionManager;
@@ -13,4 +15,7 @@ public interface IreuseableClassFactory
 	IConnectionManager ConnectionMng( String ConfigurationFile);
 	IInputOutputHandler inputoutputhandler ();
 	IopenTicket openticket(IstoreTicketData storeTicketData,IdisplayTicket displayUser,IConnectionManager ConnectionMng);
+	IcheckTicketExists checkticketexists();
+	IgetListOfTickets getalltickets(IstoreTicketData storeTicketData,IdisplayTicket displaytickets,IConnectionManager ConnectionMng);
+		
 }
