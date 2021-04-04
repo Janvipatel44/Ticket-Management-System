@@ -4,7 +4,7 @@ import Rating.interfaces.*;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertTrue;
-public class RatingAssigneeTest {
+public class RatingAssigneeFacadeTest {
 
     IRatingFactory ratingFactory;
     IRatingFactoryTest ratingFactoryTest;

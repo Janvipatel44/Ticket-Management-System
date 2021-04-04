@@ -1,5 +1,5 @@
 package customerAnalysis.abstractfactory;
-import customerAnalysis.CustomerAnalysis;
+import customerAnalysis.CustomerAnalysisFacade;
 import customerAnalysis.Interfaces.ICustomerAnalysis;
 import customerAnalysis.Interfaces.IPersistenceCustomer;
 import customerAnalysis.PersistenceCustomerMock;
@@ -24,7 +24,7 @@ public class CustomerAnalysisFactoryTest implements ICustomerAnalysisFactoryTest
     public ICustomerAnalysis getCustomerAnalysis()
     {
         IPersistenceCustomer persistenceCustomerMock = getPersistenceCustomerMock();
-        return new CustomerAnalysis(persistenceCustomerMock);
+        return new CustomerAnalysisFacade(persistenceCustomerMock);
     }
 
     public IPersistenceCustomer getPersistenceCustomerMock()

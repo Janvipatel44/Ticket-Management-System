@@ -3,6 +3,9 @@ import login.*;
 import login.Interfaces.*;
 import mailservice.interfaces.IMail;
 import userinterface.IInputOutputHandler;
+
+import java.io.IOException;
+
 public class LoginFactory implements ILoginFactory
 {
     private static ILoginFactory uniqueInstance = null;
@@ -21,14 +24,14 @@ public class LoginFactory implements ILoginFactory
         return uniqueInstance;
     }
 
-    public IAuthentication getAuthentication(IAuthenticationOperations authenticationOperations)
+    public IAuthentication getAuthentication(IPersistenceAuthenticationOperations authenticationOperations)
     {
         return new Authentication(authenticationOperations);
     }
 
-    public IAuthenticationOperations getAuthenticationOperations()
+    public IPersistenceAuthenticationOperations getAuthenticationOperations()
     {
-        return new AuthenticationOperations();
+        return new PersistenceAuthenticationOperations();
     }
 
     public IEncryption getEncryption()
@@ -51,8 +54,7 @@ public class LoginFactory implements ILoginFactory
         return new PasswordValidations();
     }
 
-    public IPersistenceForgotPasswordOperations getPersistenceForgotPasswordOperations()
-    {
+    public IPersistenceForgotPasswordOperations getPersistenceForgotPasswordOperations()  {
         return new PersistenceForgotPasswordOperations();
     }
 

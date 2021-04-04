@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74e0b3c0-b815-448a-a6b0-f49829c01fc2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/abstractFactory/UserInterfaceFactoryImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/abstractFactory/UserInterfaceFactoryImplementation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/login/AuthenticationOperationsMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/login/AuthenticationOperationsMock.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,8 +60,19 @@
       <recent name="Rating" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CustomerAnalysisTest">
-    <configuration name="CustomerAnalysisTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.CustomerAnalysisFacadeTest">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomerAnalysisFacadeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Group2" />
       <extension name="coverage">
         <pattern>
@@ -70,13 +81,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="customerAnalysis" />
-      <option name="MAIN_CLASS_NAME" value="customerAnalysis.CustomerAnalysisTest" />
+      <option name="MAIN_CLASS_NAME" value="customerAnalysis.CustomerAnalysisFacadeTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EmployeeMilestoneTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EmployeeMilestoneFacadeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Group2" />
       <extension name="coverage">
         <pattern>
@@ -85,13 +96,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="employeeMilestones" />
-      <option name="MAIN_CLASS_NAME" value="employeeMilestones.EmployeeMilestoneTest" />
+      <option name="MAIN_CLASS_NAME" value="employeeMilestones.EmployeeMilestoneFacadeTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RatingAssigneeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RatingAssigneeFacadeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Group2" />
       <extension name="coverage">
         <pattern>
@@ -100,7 +111,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="Rating" />
-      <option name="MAIN_CLASS_NAME" value="Rating.RatingAssigneeTest" />
+      <option name="MAIN_CLASS_NAME" value="Rating.RatingAssigneeFacadeTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -108,9 +119,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CustomerAnalysisTest" />
-        <item itemvalue="JUnit.EmployeeMilestoneTest" />
-        <item itemvalue="JUnit.RatingAssigneeTest" />
+        <item itemvalue="JUnit.CustomerAnalysisFacadeTest" />
+        <item itemvalue="JUnit.EmployeeMilestoneFacadeTest" />
+        <item itemvalue="JUnit.RatingAssigneeFacadeTest" />
       </list>
     </recent_temporary>
   </component>
@@ -123,7 +134,8 @@
       <option name="presentableId" value="Default" />
       <updated>1617399287304</updated>
       <workItem from="1617399325682" duration="15441000" />
-      <workItem from="1617561136836" duration="873000" />
+      <workItem from="1617561136836" duration="2504000" />
+      <workItem from="1617567203299" duration="4414000" />
     </task>
     <servers />
   </component>

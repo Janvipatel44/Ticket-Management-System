@@ -4,14 +4,14 @@ import customerAnalysis.abstractfactory.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-public class CustomerAnalysis implements ICustomerAnalysis
+public class CustomerAnalysisFacade implements ICustomerAnalysis
 {
     private final ICustomerAnalysisFactory customerAnalysisFactory = CustomerAnalysisFactory.instance();
     private final IPersistenceCustomer persistenceCustomer;
     private List<IParameterizedCustomerTicket> tickets;
     private IComputeCustomerProperties computeCustomerProperties;
 
-    public CustomerAnalysis(IPersistenceCustomer persistenceCustomer)
+    public CustomerAnalysisFacade(IPersistenceCustomer persistenceCustomer)
     {
         this.persistenceCustomer = persistenceCustomer;
     }
