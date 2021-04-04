@@ -1,40 +1,53 @@
 package menucontroller;
 
-public class MenuHandler {
+import menucontroller.interfaces.IMenuHandler;
+import menucontroller.interfaces.IMenuTask;
 
-	private final String CREATE_TICKET = "Create ticket";
-	private final String EMPLOYEE_EFFICIENT_REPORT = "Employee efficient report";
-	private final String SEARCH_TICKETS = "Search tickets";
-	private final String UPDATE_TICKET = "Update ticket";
-	private final String RATING_FEATURE = "Rating feature";
-	private final String CUSTOMERS_HEALTH = "Check customers health";
-	private final String OPEN_TICKETS_WITH_TEAM = "Open tickets with team";
-	private final String PERSONAL_MILESTONES = "Personal Milestones";
+public class MenuHandler implements IMenuHandler {
 
-	public void runMenuTask(String menuTaskName, String empId) {
-		IMenuTask menuTask = createMenuTaskObject(menuTaskName);
-		menuTask.runMenuTask();
+	public enum Menu {
+		CREATE_TICKET, UPDATE_TICKET, SEARCH_TICKETS, RATING_FEATURE, EMPLOYEE_PERFORMANCE_REPORT, TWITTER_POSTING,
+		EMPLOYEE_EFFICENCY, CUSTOMERS_ANALYSIS, OPEN_TICKETS_WITH_TEAM, PERSONAL_MILESTONES, MODIFY_USER_ROLE,
+		HOME_PAGE, LOGOUT, EXIT
 	}
 
-	private IMenuTask createMenuTaskObject(String menuTaskName) {
+	@Override
+	public void runMenuTask(Menu menuTaskName, String empId, String userType) {
+		IMenuTask menuTask = createMenuTaskObject(menuTaskName);
+		menuTask.runMenuTask(empId, userType);
+	}
+
+	private IMenuTask createMenuTaskObject(Menu menuTaskName) {
 		IMenuTask menuTask = null;
 
 		switch (menuTaskName) {
 		case CREATE_TICKET:
 			break;
-		case EMPLOYEE_EFFICIENT_REPORT:
+		case UPDATE_TICKET:
 			break;
 		case SEARCH_TICKETS:
 			break;
-		case UPDATE_TICKET:
-			break;
 		case RATING_FEATURE:
 			break;
-		case CUSTOMERS_HEALTH:
+		case EMPLOYEE_PERFORMANCE_REPORT:
+			break;
+		case TWITTER_POSTING:
+			break;
+		case EMPLOYEE_EFFICENCY:
+			break;
+		case CUSTOMERS_ANALYSIS:
 			break;
 		case OPEN_TICKETS_WITH_TEAM:
 			break;
 		case PERSONAL_MILESTONES:
+			break;
+		case MODIFY_USER_ROLE:
+			break;
+		case HOME_PAGE:
+			break;
+		case LOGOUT:
+			break;
+		case EXIT:
 			break;
 		}
 
