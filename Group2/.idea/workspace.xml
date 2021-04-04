@@ -5,25 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74e0b3c0-b815-448a-a6b0-f49829c01fc2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rating/PersistenceRating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rating/PersistenceRating.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rating/RatingAssignee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rating/RatingAssignee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rating/abstractfactory/RatingFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rating/abstractfactory/RatingFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/customerAnalysis/CustomerAnalysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/customerAnalysis/CustomerAnalysis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/customerAnalysis/PersistenceCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/customerAnalysis/PersistenceCustomer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/customerAnalysis/abstractfactory/CustomerAnalysisFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/customerAnalysis/abstractfactory/CustomerAnalysisFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/abstractFactory/DatabaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/abstractfactory/DatabaseFactoryAbs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/abstractFactory/DatabaseFactoryImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/abstractfactory/DatabaseFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/employeeMilestones/EmployeeMilestone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employeeMilestones/EmployeeMilestone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/employeeMilestones/PersistenceEmployeeTickets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employeeMilestones/PersistenceEmployeeTickets.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/employeeMilestones/abstractfactory/EmployeeMilestoneFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employeeMilestones/abstractfactory/EmployeeMilestoneFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Rating/RatingQuestionnaireTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Rating/RatingQuestionnaireTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/customerAnalysis/ComputeCustomerPropertiesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/customerAnalysis/ComputeCustomerPropertiesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/customerAnalysis/abstractfactory/CustomerAnalysisFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/customerAnalysis/abstractfactory/CustomerAnalysisFactoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/customerAnalysis/abstractfactory/CustomerAnalysisImplementationTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/employeeMilestones/CalculateMilestoneTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/employeeMilestones/CalculateMilestoneTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/employeeMilestones/abstractfactory/EmployeeMilestoneFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/employeeMilestones/abstractfactory/EmployeeMilestoneFactoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/employeeMilestones/abstractfactory/EmployeeMilestoneFactoryTestImplementation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_protobuf_protobuf_java_3_11_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_2_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_activation_activation_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_mail_mail_1_5_0_b01.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_11.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_23.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_10_19.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_agent_1_10_19.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_12_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_core_3_7_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_inline_3_7_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_objenesis_objenesis_3_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_28_2021_10_27_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_28_2021_10_27_PM__Default_Changelist_.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
