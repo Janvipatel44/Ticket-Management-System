@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import login.Interfaces.IParameterizedUser;
 import menucontroller.MenuHandler;
 import menucontroller.abstractfactory.IMenuHandlerFactory;
 import menucontroller.abstractfactory.MenuHandlerFactory;
@@ -31,10 +32,13 @@ public class HomePageScreen implements IHomePageScreen {
 		this.menuHandler = menuHandlerFactory.makeMenuHandlerObject();
 	}
 
-	public void handleHomePageMenu(String empId, String empName, String userType) throws Exception {
+	public void handleHomePageMenu(IParameterizedUser user) throws Exception {
 
-		if (StringValidations.isStringValid(empName) && StringValidations.isStringValid(userType)) {
-			String welcomeUser = "Hello " + empName + "\n\nMenu\n";
+		String firstName = user.getfirstName();
+		String userType = user.getUserType();
+		
+		if (StringValidations.isStringValid(firstName) && StringValidations.isStringValid(userType)) {
+			String welcomeUser = "Hello " + firstName + "\n\nMenu\n";
 			inputOutputHandler.displayMethod(welcomeUser);
 
 			int maximumMenuItems = displayMenuItems(userType);

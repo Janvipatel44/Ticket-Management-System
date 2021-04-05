@@ -3,11 +3,10 @@ package userinterface;
 import java.util.List;
 
 import Tickets.ICreateTicket;
+import login.Interfaces.IParameterizedUser;
 import managerfeatures.interfaces.IManagerTeamTracking;
-import menucontroller.MenuHandler;
-import menucontroller.abstractfactory.IMenuHandlerFactory;
-import menucontroller.abstractfactory.MenuHandlerFactory;
-import menucontroller.interfaces.IMenuHandler;
+import userinterface.abstractFactory.IUserInterfaceFactory;
+import userinterface.abstractFactory.UserInterfaceFactory;
 
 public class ManagerTeamTrackingScreen implements IManagerTeamTrackingScreen {
 
@@ -17,19 +16,19 @@ public class ManagerTeamTrackingScreen implements IManagerTeamTrackingScreen {
 
 	private IInputOutputHandler inputOutputHandler;
 	private IManagerTeamTracking managerTeamTracking;
-	private IMenuHandler menuHandler;
+	IBackToHomePageScreen backToHomePageScreen;
+	IUserInterfaceFactory userInterfaceFactory;
 
 	public ManagerTeamTrackingScreen(IInputOutputHandler inputOutputHandler, IManagerTeamTracking managerTeamTracking) {
 		this.inputOutputHandler = inputOutputHandler;
 		this.managerTeamTracking = managerTeamTracking;
-		IMenuHandlerFactory menuHandlerFactory = MenuHandlerFactory.instance();
-		this.menuHandler = menuHandlerFactory.makeMenuHandlerObject();
 	}
 
 	@Override
-	public void displayManagerTrackingScreen(String managerId, String userType) {
+	public void displayManagerTrackingScreen(IParameterizedUser user) {
 
 		try {
+			String managerId = user.getEmployeeID();
 			List<ICreateTicket> teamsTickets = managerTeamTracking.fetchTeamsTicketDetails(managerId);
 
 			if (teamsTickets == null || teamsTickets.size() == 0) {
@@ -47,24 +46,8 @@ public class ManagerTeamTrackingScreen implements IManagerTeamTrackingScreen {
 			inputOutputHandler.displayMethod(UNSUCCESSFUL_DATA_FETCH);
 		}
 
-		boolean isUserSelecting = true;
-
-		while (isUserSelecting) {
-			try {
-				inputOutputHandler.displayMethod("\n\n");
-				inputOutputHandler.displayMethod("Press 1 to go back to HomePage ");
-
-				int choice = inputOutputHandler.inputInt();
-
-				if (choice == 1) {
-					MenuHandler.Menu menuTaskName = MenuHandler.Menu.HOME_PAGE;
-					menuHandler.runMenuTask(menuTaskName, managerId, userType);
-				} else {
-					inputOutputHandler.displayMethod(CHOSE_INVALID_OPTION_MESSAGE);
-				}
-			} catch (NumberFormatException e) {
-				inputOutputHandler.displayMethod(CHOSE_INVALID_OPTION_MESSAGE);
-			}
-		}
+		userInterfaceFactory = UserInterfaceFactory.instance();
+		backToHomePageScreen = userInterfaceFactory.getBackToHomePageScreen(inputOutputHandler);
+		backToHomePageScreen.displayGoBackToHomePageOption(user);
 	}
 }
