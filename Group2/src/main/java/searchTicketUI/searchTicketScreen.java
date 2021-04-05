@@ -1,8 +1,6 @@
 package searchTicketUI;
 
 
-import java.util.Scanner;
-
 import database.ConnectionManager;
 import database.IConnectionManager;
 import reuseablePackage.abstractFactory.IreuseableClassFactory;
@@ -17,28 +15,35 @@ import searchTicket.interfaces.IsearchTicket;
 import userinterface.IInputOutputHandler;
 import userinterface.InputOutputHandler;
 
-public class mainUIS 
+public class searchTicketScreen implements IsearchTicketScreen
 {
-	static Scanner sc=new Scanner(System.in);
 	static String ConfigurationFile = "ConfigurationFile";
-//	static IstoreTicketData storeTicketData = new storeTicketData();
-//	static IdisplayTicket displayUser = new displayTicket();
-//	static IConnectionManager ConnectionMng = new ConnectionManager(ConfigurationFile);
-
+	
 	static IConnectionManager connectionMng = new ConnectionManager(ConfigurationFile);
 	static IInputOutputHandler inputoutputhandler = new InputOutputHandler();
 	
-	static IreuseableClassFactory reuseablefactory = reuseableClassFactory.instance();
-	static IstoreTicketData storeticketdata = reuseablefactory.storeTicketData();
-	static IdisplayTicket displayuser = reuseablefactory.displayUser(inputoutputhandler);
-	static IopenTicket openticket = reuseablefactory.openticket(storeticketdata,displayuser, connectionMng);
+	static IreuseableClassFactory reuseablefactory;
+	static IstoreTicketData storeticketdata;
+	static IdisplayTicket displayuser;
+	static IopenTicket openticket;
 	
+	static IsearchTicketFactory searchticketfactory; 
+	static IsearchTicket searchticket;
+	static IexportTicket exportTicketData;
 	
-	static IsearchTicketFactory searchticketfactory = searchTicketFactory.instance(); 
-	static IsearchTicket searchticket= searchticketfactory.searchticket(storeticketdata,displayuser, connectionMng);
-	static IexportTicket exportTicketData = searchticketfactory.exportTicketData(storeticketdata);
+	public searchTicketScreen()
+	{
+		inputoutputhandler = new InputOutputHandler();
+		connectionMng = new ConnectionManager(ConfigurationFile);
+		
+		reuseablefactory = reuseableClassFactory.instance();
+		storeticketdata = reuseablefactory.storeTicketData();
+		displayuser = reuseablefactory.displayUser(inputoutputhandler);
+		searchticketfactory = searchTicketFactory.instance();
+		searchticket= searchticketfactory.searchticket(storeticketdata,displayuser, connectionMng);	
+	}
 	
-	public static void main(String args[]) throws ClassNotFoundException 
+	public void searchTicketScreen() throws ClassNotFoundException 
 	{
 		int choice=0;
 		String searchInput=null;
@@ -111,6 +116,7 @@ public class mainUIS
 			choice=inputoutputhandler.inputInt();
 			if(choice == 1)
 			{
+				openticket = reuseablefactory.openticket(storeticketdata,displayuser, connectionMng);
 				
 				inputoutputhandler.displayMethod("Enter Ticket ID:");
 				ticketID = inputoutputhandler.input();
@@ -118,6 +124,7 @@ public class mainUIS
 			}
 			else if(choice == 2)
 			{
+				IexportTicket exportTicketData = searchticketfactory.exportTicketData(storeticketdata);
 				String FileName = "";
 				inputoutputhandler.displayMethod("Enter FileName with Path:");
 				FileName = inputoutputhandler.input();

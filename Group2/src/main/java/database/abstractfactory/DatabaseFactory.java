@@ -1,8 +1,11 @@
 package database.abstractfactory;
 import Tickets.ICreateTicket;
-import database.*;
-import employeeMilestones.abstractfactory.EmployeeMilestoneFactory;
-import employeeMilestones.abstractfactory.IEmployeeMilestoneFactory;
+import database.ConnectionManager;
+import database.DatabaseOperations;
+import database.IConnectionManager;
+import database.IDatabaseOperations;
+import database.ITicketOperationsDB;
+import database.TicketOperationsDB;
 
 public class DatabaseFactory implements IDatabaseFactory {
 
