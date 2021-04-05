@@ -1,13 +1,18 @@
 package roles;
 
+import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import database.IConnectionManager;
+import database.abstractfactory.DatabaseFactory;
+import database.abstractfactory.IDatabaseFactory;
+import mailservice.ReadPropertiesFile;
 import roles.interfaces.IRoleManagementDao;
 
 public class RoleManagementDao implements IRoleManagementDao {
@@ -15,8 +20,14 @@ public class RoleManagementDao implements IRoleManagementDao {
 	private final String menuItemsByRoleProcedure = "menu_items_by_role";
 	private final String updateUserRoleProcedure = "update_user_role";
 	private IConnectionManager connectionManager;
-
-	public RoleManagementDao() {
+	private String projectConfigurationFile = "ProjectConfiguration.properties";
+	private String dbConfigurationKey = "DBConfiguration";
+	private final IDatabaseFactory databaseFactory = DatabaseFactory.instance();
+	
+	public RoleManagementDao() throws IOException {
+		Properties properties = ReadPropertiesFile.readConfigPropertyFile(projectConfigurationFile);
+		String configurationFile = (String)properties.get(dbConfigurationKey);
+		connectionManager = databaseFactory.getConnectionManager(configurationFile);
 	}
 
 	@Override

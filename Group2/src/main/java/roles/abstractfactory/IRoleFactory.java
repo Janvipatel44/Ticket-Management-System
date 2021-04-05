@@ -1,12 +1,14 @@
 package roles.abstractfactory;
 
+import java.io.IOException;
+
 import roles.interfaces.IMenuItemsByRole;
 import roles.interfaces.IModifyUserRole;
 
 public interface IRoleFactory {
 
-	IMenuItemsByRole makeMenuItemsByRoleObject();
+	IMenuItemsByRole makeMenuItemsByRoleObject() throws IOException;
 
-	IModifyUserRole makeModifyUserRoleObject();
+	IModifyUserRole makeModifyUserRoleObject() throws IOException;
 
 }

@@ -1,5 +1,7 @@
 package managerfeatures.abstractfactory;
 
+import java.io.IOException;
+
 import managerfeatures.ManagerFeaturesDao;
 import managerfeatures.ManagerTeamTracking;
 import managerfeatures.interfaces.IManagerFeaturesDao;
@@ -20,7 +22,7 @@ public class ManagerFeaturesFactory implements IManagerFeaturesFactory {
 	}
 	
 	@Override
-	public IManagerTeamTracking makeManagerFeaturesFactoryObject() {
+	public IManagerTeamTracking makeManagerFeaturesFactoryObject() throws IOException {
 		IManagerFeaturesDao managerFeaturesDao = new ManagerFeaturesDao();
 		return new ManagerTeamTracking(managerFeaturesDao);
 	}
