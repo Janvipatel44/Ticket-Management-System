@@ -3,15 +3,28 @@ import database.IConnectionManager;
 import database.abstractfactory.*;
 import employeeMilestones.abstractfactory.*;
 import employeeMilestones.interfaces.*;
+import mailservice.ReadPropertiesFile;
+
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+
 public class PersistenceEmployeeTickets implements IPersistenceEmployeeTickets
 {
     private final IEmployeeMilestoneFactory employeeMilestoneFactory = EmployeeMilestoneFactory.instance();
-    private final String configurationFile = "ConfigurationFile.txt";
+    private String projectConfigurationFile = "ProjectConfiguration.properties";
+    private String dbConfigurationKey = "DBConfiguration";
     private final IDatabaseFactory databaseFactory = DatabaseFactory.instance();
-    private final IConnectionManager connection = databaseFactory.getConnectionManager(configurationFile);
+    private IConnectionManager connection;
+
+    public PersistenceEmployeeTickets() throws IOException
+    {
+        Properties properties = ReadPropertiesFile.readConfigPropertyFile(projectConfigurationFile);
+        String configurationFile = (String)properties.get(dbConfigurationKey);
+        connection = databaseFactory.getConnectionManager(configurationFile);
+    }
 
     public List<IParameterizedEmployeeTicket> getEmployeeTickets(String employeeID)
     {
@@ -25,6 +38,11 @@ public class PersistenceEmployeeTickets implements IPersistenceEmployeeTickets
         int impact;
         int urgency;
         List<IParameterizedEmployeeTicket> employeeTicketList = new ArrayList<>();
+
+        if(connection == null)
+        {
+            return null;
+        }
 
         Connection dummyConnection;
         CallableStatement procedureCall;

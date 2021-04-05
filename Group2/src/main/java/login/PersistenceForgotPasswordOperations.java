@@ -1,24 +1,39 @@
 package login;
 import database.*;
-import database.abstractfactory.DatabaseFactory;
-import database.abstractfactory.IDatabaseFactory;
+import database.abstractfactory.*;
 import login.Interfaces.IPersistenceForgotPasswordOperations;
+import mailservice.ReadPropertiesFile;
+import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Properties;
 public class PersistenceForgotPasswordOperations implements IPersistenceForgotPasswordOperations
 {
-    private String configurationFile = "ConfigurationFile.txt";
+    private String projectConfigurationFile = "ProjectConfiguration.properties";
+    private String dbConfigurationKey = "DBConfiguration";
     private final IDatabaseFactory databaseFactory = DatabaseFactory.instance();
-    private final IConnectionManager connection = databaseFactory.getConnectionManager(configurationFile);
+    private final IConnectionManager connection;
     IDatabaseOperations databaseOperations = databaseFactory.getDatabaseOperations();
+
+    public PersistenceForgotPasswordOperations() throws IOException
+    {
+        Properties properties = ReadPropertiesFile.readConfigPropertyFile(projectConfigurationFile);
+        String configurationFile = (String)properties.get(dbConfigurationKey);
+        connection = databaseFactory.getConnectionManager(configurationFile);
+    }
 
     public String getEmail(String employeeID)
     {
         Connection dummyConnection=null;
         CallableStatement procedureCall;
         String email = "";
+
+        if(connection == null)
+        {
+            return null;
+        }
 
         try {
             String procedureName = "getEmail";
@@ -46,6 +61,11 @@ public class PersistenceForgotPasswordOperations implements IPersistenceForgotPa
     {
         Connection dummyConnection=null;
         CallableStatement procedureCall;
+
+        if(connection == null)
+        {
+            return false;
+        }
 
         try {
             String procedureName = "updatePassword";
