@@ -1,5 +1,7 @@
 package userinterface;
 
-public interface IModifyUserRoleScreen {
+import login.Interfaces.IParameterizedUser;
 
+public interface IModifyUserRoleScreen {
+	public void displayModifyUserRoleScreen(IParameterizedUser user);
 }

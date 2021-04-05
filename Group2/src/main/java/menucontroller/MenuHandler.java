@@ -1,5 +1,6 @@
 package menucontroller;
 
+import login.Interfaces.IParameterizedUser;
 import menucontroller.interfaces.IMenuHandler;
 import menucontroller.interfaces.IMenuTask;
 
@@ -12,9 +13,9 @@ public class MenuHandler implements IMenuHandler {
 	}
 
 	@Override
-	public void runMenuTask(Menu menuTaskName, String empId, String userType) {
+	public void runMenuTask(Menu menuTaskName, IParameterizedUser user) {
 		IMenuTask menuTask = createMenuTaskObject(menuTaskName);
-		menuTask.runMenuTask(empId, userType);
+		menuTask.runMenuTask(user);
 	}
 
 	private IMenuTask createMenuTaskObject(Menu menuTaskName) {

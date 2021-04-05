@@ -1,7 +1,9 @@
 package userinterface;
 
+import login.Interfaces.IParameterizedUser;
+
 public interface IBackToHomePageScreen {
 
-	void displayGoBackToHomePageOption(String empId, String userType);
+	void displayGoBackToHomePageOption(IParameterizedUser user);
 
 }
