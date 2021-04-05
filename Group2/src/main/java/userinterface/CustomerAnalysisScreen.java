@@ -1,7 +1,9 @@
 package userinterface;
 import customerAnalysis.Interfaces.ICustomerAnalysis;
+import customerAnalysis.Interfaces.IParameterizedCustomerTicket;
 import customerAnalysis.abstractfactory.CustomerAnalysisFactory;
 import customerAnalysis.abstractfactory.ICustomerAnalysisFactory;
+import login.Interfaces.IParameterizedUser;
 
 import java.util.Map;
 public class CustomerAnalysisScreen implements ICustomerAnalysisScreen
@@ -14,7 +16,7 @@ public class CustomerAnalysisScreen implements ICustomerAnalysisScreen
         this.inputOutputHandler = inputOutputHandler;
     }
 
-    public void displayCustomerAnalysisScreen()
+    public void displayCustomerAnalysisScreen(IParameterizedUser user)
     {
         String customerID;
         Map<String, String> outputResult;

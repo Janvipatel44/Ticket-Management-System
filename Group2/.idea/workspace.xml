@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74e0b3c0-b815-448a-a6b0-f49829c01fc2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/test/java/login/AuthenticationOperationsMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/login/AuthenticationOperationsMock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/CustomerAnalysisScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/CustomerAnalysisScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/EmployeeMilestoneScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/EmployeeMilestoneScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/ICustomerAnalysisScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/ICustomerAnalysisScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/IEmployeeMilestoneScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/IEmployeeMilestoneScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/IRatingScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/IRatingScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/LoginScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/LoginScreen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,17 +67,6 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.CustomerAnalysisFacadeTest">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="CustomerAnalysisFacadeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Group2" />
       <extension name="coverage">
@@ -136,6 +131,8 @@
       <workItem from="1617399325682" duration="15441000" />
       <workItem from="1617561136836" duration="2504000" />
       <workItem from="1617567203299" duration="4414000" />
+      <workItem from="1617590769794" duration="1470000" />
+      <workItem from="1617592280364" duration="261000" />
     </task>
     <servers />
   </component>
