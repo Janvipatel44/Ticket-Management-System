@@ -1,5 +1,6 @@
 package userinterface;
 
+import login.Interfaces.IParameterizedUser;
 import menucontroller.MenuHandler;
 import menucontroller.abstractfactory.IMenuHandlerFactory;
 import menucontroller.abstractfactory.MenuHandlerFactory;
@@ -19,7 +20,7 @@ public class BackToHomePageOption implements IBackToHomePageScreen {
 	}
 
 	@Override
-	public void displayGoBackToHomePageOption(String empId, String userType) {
+	public void displayGoBackToHomePageOption(IParameterizedUser user) {
 		boolean isUserSelecting = true;
 
 		while (isUserSelecting) {
@@ -31,7 +32,7 @@ public class BackToHomePageOption implements IBackToHomePageScreen {
 
 				if (choice == 1) {
 					MenuHandler.Menu menuTaskName = MenuHandler.Menu.HOME_PAGE;
-					menuHandler.runMenuTask(menuTaskName, empId, userType);
+					menuHandler.runMenuTask(menuTaskName, user, inputOutputHandler);
 				} else {
 					inputOutputHandler.displayMethod(CHOSE_INVALID_OPTION_MESSAGE);
 				}

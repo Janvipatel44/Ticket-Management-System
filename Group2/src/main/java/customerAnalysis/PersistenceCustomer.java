@@ -3,15 +3,29 @@ import customerAnalysis.Interfaces.*;
 import customerAnalysis.abstractfactory.*;
 import database.*;
 import database.abstractfactory.*;
+import employeeMilestones.PersistenceEmployeeTickets;
+import mailservice.ReadPropertiesFile;
+
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+
 public class PersistenceCustomer implements IPersistenceCustomer
 {
     private final IDatabaseFactory databaseFactory = DatabaseFactory.instance();
     private final ICustomerAnalysisFactory customerAnalysisFactory = CustomerAnalysisFactory.instance();
-    private final String configurationFile = "ConfigurationFile.txt";
-    private final IConnectionManager connection = databaseFactory.getConnectionManager(configurationFile);
+    private String projectConfigurationFile = "ProjectConfiguration.properties";
+    private String dbConfigurationKey = "DBConfiguration";
+    private IConnectionManager connection;
+
+    public PersistenceCustomer() throws IOException
+    {
+        Properties properties = ReadPropertiesFile.readConfigPropertyFile(projectConfigurationFile);
+        String configurationFile = (String)properties.get(dbConfigurationKey);
+        connection = databaseFactory.getConnectionManager(configurationFile);
+    }
 
     public List<IParameterizedCustomerTicket> getTicketsOfCustomer(String customerID)
     {
@@ -30,7 +44,13 @@ public class PersistenceCustomer implements IPersistenceCustomer
         Connection dummyConnection;
         CallableStatement procedureCall;
 
-        try {
+        if(connection == null)
+        {
+            return null;
+        }
+
+        try
+        {
             String procedureName = "getCustomerTickets";
             dummyConnection = connection.establishConnection();
             procedureCall = dummyConnection.prepareCall("{call "+procedureName+"(?)}");

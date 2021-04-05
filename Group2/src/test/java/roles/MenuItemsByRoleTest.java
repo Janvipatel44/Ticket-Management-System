@@ -22,7 +22,7 @@ public class MenuItemsByRoleTest {
 	@Before
 	public void init() {
 		IRoleFactory roleFactory = RoleMockFactory.instance();
-		menuItemsByRole = roleFactory.makeMenuItemsByRoleObject(null);
+		menuItemsByRole = roleFactory.makeMenuItemsByRoleObject();
 	}
 
 	@Test

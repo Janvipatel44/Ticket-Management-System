@@ -1,5 +1,7 @@
 package attachment.abstractfactory;
 
+import java.io.IOException;
+
 import attachment.FileAttachment;
 import attachment.FileAttachmentDao;
 import attachment.interfaces.IAttachment;
@@ -23,7 +25,7 @@ public class AttachmentFactory implements IAttachmentFactory {
 	}
 	
 	@Override
-	public IAttachment makeAttachmentObject(String attachmentType) {
+	public IAttachment makeAttachmentObject(String attachmentType) throws IOException {
 		
 		if (attachmentType == null) {
 			return null;

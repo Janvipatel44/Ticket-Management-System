@@ -25,7 +25,7 @@ public class FileAttachmentTest {
 	@Before
 	public void init() {
 		IAttachmentFactory attachmentFactory = AttachmentMockFactory.instance();
-		attachment = attachmentFactory.makeAttachmentObject(ATTACHMENT_TYPE, null);
+		attachment = attachmentFactory.makeAttachmentObject(ATTACHMENT_TYPE);
 	}
 	
 	@Test

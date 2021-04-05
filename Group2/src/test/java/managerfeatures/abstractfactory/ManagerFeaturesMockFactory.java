@@ -1,6 +1,5 @@
 package managerfeatures.abstractfactory;
 
-import database.ConnectionManager;
 import managerfeatures.ManagerFeaturesDaoMock;
 import managerfeatures.ManagerTeamTracking;
 import managerfeatures.interfaces.IManagerFeaturesDao;
@@ -21,7 +20,7 @@ public class ManagerFeaturesMockFactory implements IManagerFeaturesFactory {
 	}
 	
 	@Override
-	public IManagerTeamTracking makeManagerFeaturesFactoryObject(ConnectionManager connectionManager) {
+	public IManagerTeamTracking makeManagerFeaturesFactoryObject() {
 		IManagerFeaturesDao managerFeaturesDao = new ManagerFeaturesDaoMock();
 		return new ManagerTeamTracking(managerFeaturesDao);
 	}

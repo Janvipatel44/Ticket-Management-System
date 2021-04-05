@@ -5,7 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74e0b3c0-b815-448a-a6b0-f49829c01fc2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/test/java/login/AuthenticationOperationsMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/login/AuthenticationOperationsMock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/menucontroller/RatingMenuTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Rating/PersistenceRating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rating/PersistenceRating.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Rating/abstractfactory/IRatingFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rating/abstractfactory/IRatingFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Rating/abstractfactory/RatingFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rating/abstractfactory/RatingFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/customerAnalysis/PersistenceCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/customerAnalysis/PersistenceCustomer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/customerAnalysis/abstractfactory/CustomerAnalysisFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/customerAnalysis/abstractfactory/CustomerAnalysisFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/customerAnalysis/abstractfactory/ICustomerAnalysisFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/customerAnalysis/abstractfactory/ICustomerAnalysisFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/abstractfactory/DatabaseFactoryAbs.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeMilestones/PersistenceEmployeeTickets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employeeMilestones/PersistenceEmployeeTickets.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeMilestones/abstractfactory/EmployeeMilestoneFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employeeMilestones/abstractfactory/EmployeeMilestoneFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/employeeMilestones/abstractfactory/IEmployeeMilestoneFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employeeMilestones/abstractfactory/IEmployeeMilestoneFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/login/PersistenceAuthenticationOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/PersistenceAuthenticationOperations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/login/PersistenceForgotPasswordOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/PersistenceForgotPasswordOperations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/login/PersistenceUserRegistrationOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/PersistenceUserRegistrationOperations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/login/abstractfactory/ILoginFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/abstractfactory/ILoginFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/login/abstractfactory/LoginFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/abstractfactory/LoginFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/menucontroller/MenuHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/menucontroller/MenuHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/menucontroller/ModifyUserRoleMenuTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/menucontroller/ModifyUserRoleMenuTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/menucontroller/RatingFeatureMenuTask.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/CustomerAnalysisScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/CustomerAnalysisScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/EmployeeMilestoneScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/EmployeeMilestoneScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/ForgotPasswordScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/ForgotPasswordScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/LoginScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/LoginScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/RatingScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/RatingScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/RegistrationScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/RegistrationScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/ServiceNowWelcomeScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/ServiceNowWelcomeScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/abstractFactory/IUserInterfaceFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/abstractFactory/IUserInterfaceFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/abstractFactory/UserInterfaceFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/abstractFactory/UserInterfaceFactory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +86,9 @@
       <recent name="customerAnalysis" />
       <recent name="employeeMilestones" />
       <recent name="Rating" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="menucontroller" />
     </key>
   </component>
   <component name="RunManager" selected="JUnit.CustomerAnalysisFacadeTest">
@@ -136,6 +167,8 @@
       <workItem from="1617399325682" duration="15441000" />
       <workItem from="1617561136836" duration="2504000" />
       <workItem from="1617567203299" duration="4414000" />
+      <workItem from="1617590769794" duration="1470000" />
+      <workItem from="1617592280364" duration="9097000" />
     </task>
     <servers />
   </component>
