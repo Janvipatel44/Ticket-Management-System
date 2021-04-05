@@ -3,12 +3,12 @@ import login.Interfaces.IParameterizedUser;
 import login.Interfaces.IPersistenceUserRegistrationOperations;
 import login.Interfaces.IRegister;
 import login.abstractfactory.*;
+import userinterface.abstractFactory.IUserInterfaceFactory;
 import userinterface.abstractFactory.UserInterfaceFactory;
-import userinterface.abstractFactory.UserInterfaceFactoryImplementation;
 public class RegistrationScreen implements IRegistrationScreen
 {
     IInputOutputHandler inputOutputHandler;
-    UserInterfaceFactory userInterfaceFactory = new UserInterfaceFactoryImplementation();
+    IUserInterfaceFactory userInterfaceFactory = new UserInterfaceFactory();
     ILoginFactory loginFactory = LoginFactory.instance();
 
     public RegistrationScreen(IInputOutputHandler inputOutputHandler)

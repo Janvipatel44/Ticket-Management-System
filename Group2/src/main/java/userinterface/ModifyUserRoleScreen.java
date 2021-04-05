@@ -1,6 +1,8 @@
 package userinterface;
 
 import roles.interfaces.IModifyUserRole;
+import userinterface.abstractFactory.IUserInterfaceFactory;
+import userinterface.abstractFactory.UserInterfaceFactory;
 
 public class ModifyUserRoleScreen implements IModifyUserRoleScreen {
 	
@@ -12,7 +14,7 @@ public class ModifyUserRoleScreen implements IModifyUserRoleScreen {
 
 	public ModifyUserRoleScreen(IInputOutputHandler inputOutputHandler, IModifyUserRole modifyUserRole) {
 		this.inputOutputHandler = inputOutputHandler;
-		this.modifyUserRole = modifyUserRole;
+		this.modifyUserRole = modifyUserRole; 
 	}
 
 	public void displayModifyUserRoleScreen(String empId, String userType) {
@@ -31,6 +33,9 @@ public class ModifyUserRoleScreen implements IModifyUserRoleScreen {
 			inputOutputHandler.displayMethod(UNSUCCESSFUL_USER_ROLE_UPDATE);
 		}
 
+		IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
+		IBackToHomePageScreen backToHomePageScreen = userInterfaceFactory.getBackToHomePageScreen(inputOutputHandler);
+		backToHomePageScreen.displayGoBackToHomePageOption(empId, userType);
 	}
 
 }
