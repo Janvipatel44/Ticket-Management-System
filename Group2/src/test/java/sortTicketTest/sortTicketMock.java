@@ -5,32 +5,31 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import reuseablePackage.abstractFactory.IreuseableClassFactory;
+import reuseablePackage.abstractFactory.reuseableClassFactory;
+import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.IdisplayTicket;
-import sortTicketTest.abstractfactory.ISortTicketFactoryTest;
-import sortTicketTest.abstractfactory.SortTicketFactoryTest;
-import sortTickets.interfaces.IsortTicketData;
-import userinterface.IInputOutputHandler;
+import sortTickets.interfaces.IsortTicket;
 
-public class sortTicketMock implements IsortTicketData
+public class sortTicketMock implements IsortTicket
 {
 	Map<String, ArrayList<String>> ticketsData ;
 	List<String> columnOfTable;
 	
-	static ISortTicketFactoryTest sortticketfactorytest= SortTicketFactoryTest.instance();
-	IInputOutputHandler inputoutputhandler;
-	IdisplayTicket displayuser;
+	IreuseableClassFactory reuseableclassfactory = reuseableClassFactory.instance();
+	ITableGenerator tableformate = reuseableclassfactory.tableFormate();
+	IdisplayTicket displayuser=reuseableclassfactory.displayUser(tableformate);
 	
 	
 	public sortTicketMock()
 	{
-		inputoutputhandler = sortticketfactorytest.inputoutputhandler();
-		displayuser = sortticketfactorytest.displayUser(inputoutputhandler);
 		ticketsData = new LinkedHashMap<String, ArrayList<String>>();
 		columnOfTable = new ArrayList<String>();
 	}
 	
-	public void sortTickets(int choice)
+	public String sortTickets(int choice)
 	{
+		String output="";
 		addColumnsOfTable();
 		if(choice ==1)
 		{
@@ -113,7 +112,8 @@ public class sortTicketMock implements IsortTicketData
 		
 
 		}
-		displayuser.printTicketsDetails(ticketsData,columnOfTable);
+		output = displayuser.printTicketsDetails(ticketsData,columnOfTable);
+		return output;
 	}
 	
 	private void addColumnsOfTable() {

@@ -12,9 +12,9 @@ import java.util.Map;
 import database.IConnectionManager;
 import reuseablePackage.interfaces.IdisplayTicket;
 import reuseablePackage.interfaces.IstoreTicketData;
-import sortTickets.interfaces.IsortTicketData;
+import sortTickets.interfaces.IsortTicket;
 
-public class sortTicket implements IsortTicketData 
+public class sortTicket implements IsortTicket 
 {
 	
 	private Connection connect=null;
@@ -34,8 +34,9 @@ public class sortTicket implements IsortTicketData
 	}
 	
 	@Override
-	public void sortTickets(int choice) 
+	public String sortTickets(int choice) 
 	{
+		String output="";
 		try 
 		{
 			connect = ConnectionMng.establishConnection();
@@ -53,7 +54,7 @@ public class sortTicket implements IsortTicketData
 			    storeTicketData.addFetchedTickets(resultSet,tableMetaData);
 			    Map<String, ArrayList <String>> ticketsData = storeTicketData.getTableData();
 			    List<String> columnOfTable = storeTicketData.getTicketColumns();
-			    displayUser.printTicketsDetails(ticketsData,columnOfTable);
+			    output = displayUser.printTicketsDetails(ticketsData,columnOfTable);
 			}
 
 			ConnectionMng.closeConnection();
@@ -63,7 +64,7 @@ public class sortTicket implements IsortTicketData
 			
 			e.printStackTrace();
 		}
-		
+		return output;
 	}
 
 }

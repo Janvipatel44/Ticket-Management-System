@@ -4,7 +4,7 @@ import database.IConnectionManager;
 import reuseablePackage.interfaces.IdisplayTicket;
 import reuseablePackage.interfaces.IstoreTicketData;
 import sortTickets.sortTicket;
-import sortTickets.interfaces.IsortTicketData;
+import sortTickets.interfaces.IsortTicket;
 
 public class SortTicketFactory implements ISortTicketFactory
 {
@@ -27,7 +27,7 @@ public class SortTicketFactory implements ISortTicketFactory
 
 
 	
-	public IsortTicketData sortTicketobj(IstoreTicketData storeTicketData,IdisplayTicket displayUser,IConnectionManager ConnectionMng)
+	public IsortTicket sortTicketobj(IstoreTicketData storeTicketData,IdisplayTicket displayUser,IConnectionManager ConnectionMng)
 	{
 		return new sortTicket(storeTicketData,displayUser,ConnectionMng);
 	}

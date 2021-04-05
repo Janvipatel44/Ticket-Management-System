@@ -4,12 +4,14 @@ import org.junit.Test;
 
 import sortTicketTest.abstractfactory.ISortTicketFactoryTest;
 import sortTicketTest.abstractfactory.SortTicketFactoryTest;
-import sortTickets.interfaces.IsortTicketData;
+import sortTickets.interfaces.IsortTicket;
+import userinterface.IInputOutputHandler;
 
 public class sortTicketTest 
 {
+	IInputOutputHandler inputoutputhandler;
 	ISortTicketFactoryTest sortticketfactory = SortTicketFactoryTest.instance();
-	IsortTicketData sortTicket = sortticketfactory.sortTicketMock();
+	IsortTicket sortTicket = sortticketfactory.sortTicketMock();
 	
 	@Test
 	public void sortByPriority()

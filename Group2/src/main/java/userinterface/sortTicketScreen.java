@@ -1,20 +1,25 @@
-package sortTciketScreen;
+package userinterface;
 
 import java.util.Scanner;
 
 import database.ConnectionManager;
 import database.IConnectionManager;
+import login.Interfaces.IParameterizedUser;
+import managerfeatures.abstractfactory.IManagerFeaturesFactory;
 import reuseablePackage.abstractFactory.IreuseableClassFactory;
 import reuseablePackage.abstractFactory.reuseableClassFactory;
+import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.IdisplayTicket;
 import reuseablePackage.interfaces.IopenTicket;
 import reuseablePackage.interfaces.IstoreTicketData;
 import sortTickets.sortTicket;
 import sortTickets.abstractfactory.ISortTicketFactory;
 import sortTickets.abstractfactory.SortTicketFactory;
-import sortTickets.interfaces.IsortTicketData;
+import sortTickets.interfaces.IsortTicket;
+import userinterface.IBackToHomePageScreen;
 import userinterface.IInputOutputHandler;
-import userinterface.InputOutputHandler;
+import userinterface.abstractFactory.IUserInterfaceFactory;
+import userinterface.abstractFactory.UserInterfaceFactory;
 
 public class sortTicketScreen implements IsortTciketScreen{
 
@@ -22,41 +27,45 @@ public class sortTicketScreen implements IsortTciketScreen{
 	int choice = 0;
 	static String ConfigurationFile = "ConfigurationFile";
 	static String printOnScreenString = "";
+	
+	IBackToHomePageScreen backToHomePageScreen;
+	IUserInterfaceFactory userInterfaceFactory;
+	IManagerFeaturesFactory managerFeaturesFactory;
 
-	static IreuseableClassFactory resuableclassfactore;
-	static ISortTicketFactory storeticketfactory;
-	static IstoreTicketData storeTicketData;
+
 	static IInputOutputHandler inputoutputhandler;
-	static IdisplayTicket displayUser;
-	static IConnectionManager ConnectionMng;
+	
+	static IreuseableClassFactory resuableclassfactore = reuseableClassFactory.instance();
+	static ISortTicketFactory storeticketfactory = SortTicketFactory.instance();
+	static IstoreTicketData storeTicketData = resuableclassfactore.storeTicketData();
+	static ITableGenerator tableformate = resuableclassfactore.tableFormate();
+	static IdisplayTicket displayUser = resuableclassfactore.displayUser(tableformate);
+	static IConnectionManager ConnectionMng = new ConnectionManager(ConfigurationFile);
 
-	public sortTicketScreen()
+	public sortTicketScreen(IInputOutputHandler inputoutputhandler)
 	{
-		ConnectionMng = new ConnectionManager(ConfigurationFile);
-		inputoutputhandler = new InputOutputHandler();
-		
-		resuableclassfactore = reuseableClassFactory.instance();
-		storeticketfactory = SortTicketFactory.instance();
-		storeTicketData = resuableclassfactore.storeTicketData();
-		displayUser = resuableclassfactore.displayUser(inputoutputhandler);
+		this.inputoutputhandler = inputoutputhandler;		
 	}
 	
-	public void sortticketscreen()
+	public void sortticketscreen(IParameterizedUser user)
 	{
-		
+		String output="";
 		printOnScreenString = "Sort Ticket BY:" + "\n\n" + "1. Priority" + "\n" + "2. Urgency" + "\n" + "3. impact"
 				+ " \n" + "4. exit" + "\n";
 		inputoutputhandler.displayMethod(printOnScreenString);
 		do {
 			inputoutputhandler.displayMethod("Enter your choice:");
 			choice = inputoutputhandler.inputInt();
-			IsortTicketData sortTicketobj = new sortTicket(storeTicketData, displayUser, ConnectionMng);
+			IsortTicket sortTicketobj = new sortTicket(storeTicketData, displayUser, ConnectionMng);
 			if (choice <= 3 || choice <= 1) {
 				sortTicketobj.sortTickets(choice);
 			}
 			open();
 		} while (choice != 4);
-
+		
+		userInterfaceFactory = UserInterfaceFactory.instance();
+		backToHomePageScreen = userInterfaceFactory.getBackToHomePageScreen(inputoutputhandler);
+		backToHomePageScreen.displayGoBackToHomePageOption(user);
 	}
 
 	private static void open() {
@@ -87,6 +96,7 @@ public class sortTicketScreen implements IsortTciketScreen{
 
 			}
 		} while (choice != 2);
+	
 	}
 
 }

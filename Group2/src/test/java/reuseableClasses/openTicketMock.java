@@ -1,56 +1,55 @@
-package sortTicketTest;
-
+package reuseableClasses;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import reuseablePackage.abstractFactory.IreuseableClassFactory;
+import reuseablePackage.abstractFactory.reuseableClassFactory;
+import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.IdisplayTicket;
 import reuseablePackage.interfaces.IopenTicket;
-import sortTicketTest.abstractfactory.ISortTicketFactoryTest;
-import sortTicketTest.abstractfactory.SortTicketFactoryTest;
-import userinterface.IInputOutputHandler;
-
 
 public class openTicketMock implements IopenTicket
 {
+
 	ArrayList<String> singleTicketData;
 	ArrayList<String> comments;
 	
 	List<String> columnOfTable;
 		
-	static ISortTicketFactoryTest sortticketfactorytest= SortTicketFactoryTest.instance();
-	IInputOutputHandler inputoutputhandler;
-	IdisplayTicket displayuser;
+	private IreuseableClassFactory reuseableclassfactory = reuseableClassFactory.instance();
+	private ITableGenerator generateTable;
+	private IdisplayTicket displayticket;
 	
 	public openTicketMock()
 	{
-		inputoutputhandler = sortticketfactorytest.inputoutputhandler();
-		displayuser = sortticketfactorytest.displayUser(inputoutputhandler);
+		generateTable = reuseableclassfactory.tableFormate();
+		displayticket = reuseableclassfactory.displayUser(generateTable);
 		singleTicketData = new 	ArrayList<String>();
 		comments = new 	ArrayList<String>();
 		columnOfTable = new ArrayList<String>();
 	}
 
-	public void openticket(String ticketId)
+	public String openticket(String ticketId)
 	{
-		addColumnsOfTable();
 		String ticketID = "111";
 		if(ticketId.equals(ticketID))
 		{
 			singleTicketData.add("111");
-			singleTicketData.add("develope bugd free login functionality");
-			singleTicketData.add("2021-03-15");
-			singleTicketData.add("2021-03-30");
-			singleTicketData.add("EMP12");
-			singleTicketData.add("EMP123");
-			singleTicketData.add("Tejasw");
-			singleTicketData.add("bug");
-			singleTicketData.add("1");
-			singleTicketData.add("3");
+			singleTicketData.add("description: develope bugd free login functionality");
+			singleTicketData.add("startDate:2021-03-15");
+			singleTicketData.add("endDate:2021-03-30");
+			singleTicketData.add("reporterId:EMP12");
+			singleTicketData.add("employeeId:EMP123");
+			singleTicketData.add("assigneeName:Tejasw");
+			singleTicketData.add("ticketType: bug");
+			singleTicketData.add("priority:1");
+			singleTicketData.add("urgency:3");
 		}
 		addColumnsOfTable();
 		comments = commentOnTicket(ticketId);
-		displayuser.printSignleTicketDetails(singleTicketData,columnOfTable,comments);
+		String output= displayticket.printSignleTicketDetails(singleTicketData,columnOfTable,comments);
+		return output;
 			
 	}
 	
@@ -79,5 +78,4 @@ public class openTicketMock implements IopenTicket
 		columnOfTable.add("urgency");
 		
 	}	
-
 }
