@@ -9,7 +9,7 @@ public class ForgotPasswordScreen implements IForgotPasswordScreen
 {
     IInputOutputHandler inputOutputHandler;
     ILoginFactory loginFactory = LoginFactory.instance();
-    IUserInterfaceFactory userInterfaceFactory = new UserInterfaceFactory();
+    IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
 
     public ForgotPasswordScreen(IInputOutputHandler inputOutputHandler)
     {

@@ -8,7 +8,7 @@ import userinterface.abstractFactory.UserInterfaceFactory;
 public class RegistrationScreen implements IRegistrationScreen
 {
     IInputOutputHandler inputOutputHandler;
-    IUserInterfaceFactory userInterfaceFactory = new UserInterfaceFactory();
+    IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
     ILoginFactory loginFactory = LoginFactory.instance();
 
     public RegistrationScreen(IInputOutputHandler inputOutputHandler)

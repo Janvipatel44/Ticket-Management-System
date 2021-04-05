@@ -2,7 +2,7 @@ package userinterface;
 import userinterface.abstractFactory.*;
 public class ServiceNowWelcomeScreen implements IServiceNowWelcomeScreen
 {
-    IUserInterfaceFactory userInterfaceFactory = new UserInterfaceFactory();
+    IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
     private final IInputOutputHandler inputOutputHandler;
 
     public ServiceNowWelcomeScreen(IInputOutputHandler inputOutputHandler)
