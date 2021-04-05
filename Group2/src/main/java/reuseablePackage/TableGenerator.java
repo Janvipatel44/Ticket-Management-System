@@ -3,7 +3,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TableGenerator {
+import reuseablePackage.interfaces.ITableGenerator;
+
+public class TableGenerator implements ITableGenerator
+{
 	private int PADDING_SIZE = 2;
     private String NEW_LINE = "\n";
     private String TABLE_JOINT_SYMBOL = "+";

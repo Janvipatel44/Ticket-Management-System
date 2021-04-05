@@ -1,12 +1,11 @@
-package updateTicketDetails;
+package deleteTicket;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import database.ConnectionManager;
 import database.IConnectionManager;
-import updateTicketDetails.interfaces.IdeleteTicket;
+import deleteTicket.interfaces.IdeleteTicket;
 
 public class deleteTicket implements IdeleteTicket
 {
@@ -14,8 +13,12 @@ public class deleteTicket implements IdeleteTicket
 	private CallableStatement SPstatement=null;
 	private String ConfigurationFile = "ConfigurationFile";
 	
-	private IConnectionManager IConnectionMng = new ConnectionManager(ConfigurationFile);
+	private IConnectionManager IConnectionMng;
 	
+	public deleteTicket(IConnectionManager IConnectionMng)
+	{
+		this.IConnectionMng =IConnectionMng ;
+	}
 
 	public boolean deleteticket(String ticketId)
 	{
