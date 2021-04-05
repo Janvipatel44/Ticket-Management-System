@@ -22,7 +22,7 @@ public class ModifyUserRoleTest {
 	@Before
 	public void init() {
 		IRoleFactory roleFactory = RoleMockFactory.instance();
-		modifyUserRole = roleFactory.makeModifyUserRoleObject(null);
+		modifyUserRole = roleFactory.makeModifyUserRoleObject();
 	}
 
 	@Test

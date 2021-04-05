@@ -25,7 +25,7 @@ public class ManagerTeamTrackingTest {
 	@Before
 	public void init() {
 		IManagerFeaturesFactory managerFeaturesFactory = ManagerFeaturesMockFactory.instance();
-		managerTeamTracking = managerFeaturesFactory.makeManagerFeaturesFactoryObject(null);
+		managerTeamTracking = managerFeaturesFactory.makeManagerFeaturesFactoryObject();
 	}
 	
 	@Test

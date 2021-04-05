@@ -24,7 +24,7 @@ public class AttachmentMockFactory implements IAttachmentFactory {
 	}
 	
 	@Override
-	public IAttachment makeAttachmentObject(String attachmentType, ConnectionManager connectionManager) {
+	public IAttachment makeAttachmentObject(String attachmentType) {
 		
 		if (attachmentType == null) {
 			return null;
