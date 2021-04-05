@@ -1,4 +1,4 @@
-package commentOnTicketUI;
+package userinterface;
 
 import java.util.Scanner;
 
@@ -7,14 +7,17 @@ import commentOnTicket.abstractfactory.commentOnTicketFactory;
 import commentOnTicket.interfaces.IcommentOnTicket;
 import database.ConnectionManager;
 import database.IConnectionManager;
+import login.Interfaces.IParameterizedUser;
+import managerfeatures.abstractfactory.IManagerFeaturesFactory;
 import reuseablePackage.abstractFactory.IreuseableClassFactory;
 import reuseablePackage.abstractFactory.reuseableClassFactory;
+import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.IcheckTicketExists;
 import reuseablePackage.interfaces.IdisplayTicket;
 import reuseablePackage.interfaces.IgetListOfTickets;
 import reuseablePackage.interfaces.IstoreTicketData;
-import userinterface.IInputOutputHandler;
-import userinterface.InputOutputHandler;
+import userinterface.abstractFactory.IUserInterfaceFactory;
+import userinterface.abstractFactory.UserInterfaceFactory;
 
 public class commentOnTicketScreen implements IcommentOnTicketScreen
 {
@@ -27,39 +30,36 @@ public class commentOnTicketScreen implements IcommentOnTicketScreen
 	private String employeeID = "emp123";
 	private final String ConfigurationFile = "ConfigurationFile";
 
+	IBackToHomePageScreen backToHomePageScreen;
+	IUserInterfaceFactory userInterfaceFactory;
+	IManagerFeaturesFactory managerFeaturesFactory;
+
 	IConnectionManager ConnectionMng = new ConnectionManager(ConfigurationFile);
-	IInputOutputHandler inputoutputhandler = new InputOutputHandler();
+	IInputOutputHandler inputoutputhandler;
 	
-	IcommentOnTicketFactory commentonticketfactory;
-	IcommentOnTicket postcomment;
+	IcommentOnTicketFactory commentonticketfactory = commentOnTicketFactory.instance();
+	IcommentOnTicket postcomment = commentonticketfactory.postComment(ConnectionMng);
 	
-	IreuseableClassFactory reuseableclassfactory ;
-	IcheckTicketExists checkticketexists;
-	IstoreTicketData storeTicketData;
-	IdisplayTicket displaytickets;
-	IgetListOfTickets getalltickets;
+	IreuseableClassFactory reuseableclassfactory = reuseableClassFactory.instance();
+	IcheckTicketExists checkticketexists= reuseableclassfactory.checkticketexists();
+	IstoreTicketData storeTicketData =reuseableclassfactory.storeTicketData();
+	ITableGenerator tableformate = reuseableclassfactory.tableFormate();
+	IdisplayTicket displaytickets = reuseableclassfactory.displayUser(tableformate);
+	IgetListOfTickets getalltickets = reuseableclassfactory.getalltickets(storeTicketData,displaytickets,ConnectionMng);
 	
-	public commentOnTicketScreen()
+	public commentOnTicketScreen(IInputOutputHandler inputoutputhandler)
 	{
-		ConnectionMng = new ConnectionManager(ConfigurationFile);
-		inputoutputhandler = new InputOutputHandler();
-		
-		commentonticketfactory = commentOnTicketFactory.instance();
-		postcomment = commentonticketfactory.postComment(ConnectionMng);
-		
-		reuseableclassfactory = reuseableClassFactory.instance();
-		checkticketexists= reuseableclassfactory.checkticketexists();
-		storeTicketData =reuseableclassfactory.storeTicketData();
-		displaytickets = reuseableclassfactory.displayUser(inputoutputhandler);
-		getalltickets = reuseableclassfactory.getalltickets(storeTicketData,displaytickets,ConnectionMng);
+		this.inputoutputhandler = inputoutputhandler;
+	
 	}
 	
-	public  void commentonticketscreen()
+	public  void commentonticketscreen(IParameterizedUser user)
 	{
 		
+		String output="";
+		output=getalltickets.listOfTickets();
 		
-		getalltickets.listOfTickets();
-		
+		inputoutputhandler.displayMethod(output);
 		inputoutputhandler.displayMethod("Enter Ticket Id you want to post comment on.:");
 		
 		ticketId = inputoutputhandler.input();
@@ -85,6 +85,9 @@ public class commentOnTicketScreen implements IcommentOnTicketScreen
 			inputoutputhandler.displayMethod("Ticket with " + ticketId + "does not exists. Please provide valid ticketId.");
 		}
 		
-		 
+		userInterfaceFactory = UserInterfaceFactory.instance();
+		backToHomePageScreen = userInterfaceFactory.getBackToHomePageScreen(inputoutputhandler);
+		backToHomePageScreen.displayGoBackToHomePageOption(user);
+ 
 	}
 }

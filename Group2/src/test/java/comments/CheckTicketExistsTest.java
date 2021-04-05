@@ -5,14 +5,15 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import comments.abstractfactory.IcommentOnTicketFactoryTest;
-import comments.abstractfactory.commentOnTicketFactoryTest;
+import reuseableClasses.abstractfactory.IreuseableClassesFactoryTest;
+import reuseableClasses.abstractfactory.reuseableClassFactoryTest;
 import reuseablePackage.interfaces.IcheckTicketExists;
 
 public class CheckTicketExistsTest 
 {
-	IcommentOnTicketFactoryTest commentonticketfactorytest = commentOnTicketFactoryTest.instance();
-	IcheckTicketExists checkticketexists =commentonticketfactorytest.checkticketexistsMock();
+	IreuseableClassesFactoryTest reuseableclassfactorytest = reuseableClassFactoryTest.instance();
+	IcheckTicketExists checkticketexists =reuseableclassfactorytest.checkticketexistMock();
+	
 	@Test
 	public void ticketExistsTest()
 	{
