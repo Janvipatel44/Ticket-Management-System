@@ -1,23 +1,29 @@
-package deleteTicket;
+package reuseableClasses;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import reuseablePackage.abstractFactory.IreuseableClassFactory;
+import reuseablePackage.abstractFactory.reuseableClassFactory;
+import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.IdisplayTicket;
 import reuseablePackage.interfaces.IgetListOfTickets;
 
-public class getListOfTicketMock implements IgetListOfTickets
+public class getListOfTicketsMock implements IgetListOfTickets
 {
-private IdisplayTicket displayticket;
+	private IreuseableClassFactory reuseableclassfactory = reuseableClassFactory.instance();
+	private ITableGenerator generateTable;
+	private IdisplayTicket displayticket;
 	
 	Map<String, ArrayList<String>> ticketsData ;
 	List<String> columnOfTable;
 	
-	public getListOfTicketMock(IdisplayTicket displayUser)
+	public getListOfTicketsMock()
 	{
-		this.displayticket = displayUser;
+		generateTable = reuseableclassfactory.tableFormate() ;
+		displayticket =reuseableclassfactory.displayUser(generateTable);
 		ticketsData = new LinkedHashMap<String, ArrayList<String>>();
 		columnOfTable = new ArrayList<String>();
 	}
@@ -55,7 +61,6 @@ private IdisplayTicket displayticket;
 		columnOfTable.add("urgency");
 		
 	}	
-
 
 
 }

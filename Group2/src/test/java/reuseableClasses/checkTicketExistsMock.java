@@ -1,9 +1,8 @@
-package deleteTicket;
+package reuseableClasses;
 
 import reuseablePackage.interfaces.IcheckTicketExists;
 
 public class checkTicketExistsMock implements IcheckTicketExists
-
 {
 	int ticketExist = 0;
 
@@ -74,4 +73,5 @@ public class checkTicketExistsMock implements IcheckTicketExists
 		
 		
 	}
+
 }

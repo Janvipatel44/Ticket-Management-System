@@ -7,23 +7,24 @@ import org.junit.Test;
 import deleteTicket.abstractfactory.IdeleteTicketfactoryTest;
 import deleteTicket.abstractfactory.deleteTicketfactoryTest;
 import deleteTicket.interfaces.IdeleteTicket;
-import reuseablePackage.interfaces.ITableGenerator;
+import reuseableClasses.abstractfactory.IreuseableClassesFactoryTest;
+import reuseableClasses.abstractfactory.reuseableClassFactoryTest;
 import reuseablePackage.interfaces.IcheckTicketExists;
-import reuseablePackage.interfaces.IdisplayTicket;
 import reuseablePackage.interfaces.IgetListOfTickets;
 import userinterface.IInputOutputHandler;
+import userinterface.InputOutputHandler;
 
 public class deleteTicketTest 
 {
 	
-	
+	IInputOutputHandler inputoutputhandler = new InputOutputHandler();
 	IdeleteTicketfactoryTest deleteticketfactory = deleteTicketfactoryTest.instance();
-	IInputOutputHandler inputoutputhandler= deleteticketfactory.inputoutputhandler();
-	ITableGenerator tablegenerat = deleteticketfactory.tablegenerat();
-	IdisplayTicket displayuser = deleteticketfactory.displayuser(tablegenerat);
-	IgetListOfTickets getlistofticket = deleteticketfactory.getlistoftickets(displayuser);
-	IcheckTicketExists checkticketexist = deleteticketfactory.checkticketexistsMock();
 	IdeleteTicket deleteticket = deleteticketfactory.deleteTicketMock();
+	
+	IreuseableClassesFactoryTest resueableclassesfactory = reuseableClassFactoryTest.instance();
+	IgetListOfTickets getlistofticket = resueableclassesfactory.getlistofticketsMock();
+	IcheckTicketExists checkticketexist = resueableclassesfactory.checkticketexistMock();
+	
 	
 	@Test
 	public void deleteTicketWithValidTicketIdandEmployeeId()
