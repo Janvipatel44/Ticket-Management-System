@@ -71,22 +71,16 @@ public class UserInterfaceFactory implements IUserInterfaceFactory
     
     public IModifyUserRoleScreen getModifyUserRoleScreen(IInputOutputHandler inputOutputHandler)
     {
-    	IRoleFactory roleFactory = RoleFactory.instance();
-    	IModifyUserRole modifyUserRole = roleFactory.makeModifyUserRoleObject();
-        return new ModifyUserRoleScreen(inputOutputHandler, modifyUserRole);
+        return new ModifyUserRoleScreen(inputOutputHandler);
     }
     
     public IManagerTeamTrackingScreen getmangerTeamTrackingScreen(IInputOutputHandler inputOutputHandler)
     {
-    	IManagerFeaturesFactory managerFeaturesFactory = ManagerFeaturesFactory.instance();
-    	IManagerTeamTracking managerTeamTracking = managerFeaturesFactory.makeManagerFeaturesFactoryObject();
-        return new ManagerTeamTrackingScreen(inputOutputHandler, managerTeamTracking);
+        return new ManagerTeamTrackingScreen(inputOutputHandler);
     }
     
     public IHomePageScreen getHomePageScreen(IInputOutputHandler inputOutputHandler)
     {
-    	IRoleFactory roleFactory = RoleFactory.instance();
-    	IMenuItemsByRole menuItemsByRole = roleFactory.makeMenuItemsByRoleObject();
-        return new HomePageScreen(menuItemsByRole, inputOutputHandler);
+        return new HomePageScreen(inputOutputHandler);
     }
 }
