@@ -41,7 +41,7 @@ public class LoginScreen implements ILoginScreen
         {
             parameterizedUser = authentication.getUserDetails(employeeID);
             MenuHandler.Menu menuTaskName = MenuHandler.Menu.HOME_PAGE;
-            menuHandler.runMenuTask(parameterizedUser);
+            menuHandler.runMenuTask(menuTaskName, parameterizedUser);
         }
         else
         {
