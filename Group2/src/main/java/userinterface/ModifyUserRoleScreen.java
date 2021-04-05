@@ -1,23 +1,33 @@
 package userinterface;
 
+import login.Interfaces.IParameterizedUser;
+import roles.abstractfactory.IRoleFactory;
+import roles.abstractfactory.RoleFactory;
 import roles.interfaces.IModifyUserRole;
+import userinterface.abstractFactory.IUserInterfaceFactory;
+import userinterface.abstractFactory.UserInterfaceFactory;
 
 public class ModifyUserRoleScreen implements IModifyUserRoleScreen {
 	
 	public final String SUCCESSFUL_USER_ROLE_UPDATE = "User role is updated successfully.";
-	public final String UNSUCCESSFUL_USER_ROLE_UPDATE = "User role is not updated successfully. Please contact admin.";
+	public final String UNSUCCESSFUL_USER_ROLE_UPDATE = "Error while updating user role. Please contact admin.";
 
 	private IInputOutputHandler inputOutputHandler;
 	private IModifyUserRole modifyUserRole;
+	IBackToHomePageScreen backToHomePageScreen;
+	IUserInterfaceFactory userInterfaceFactory;
+	IRoleFactory roleFactory;
 
-	public ModifyUserRoleScreen(IInputOutputHandler inputOutputHandler, IModifyUserRole modifyUserRole) {
+	public ModifyUserRoleScreen(IInputOutputHandler inputOutputHandler) {
 		this.inputOutputHandler = inputOutputHandler;
-		this.modifyUserRole = modifyUserRole;
 	}
 
-	public void displayModifyUserRoleScreen(String empId, String userType) {
-
+	public void displayModifyUserRoleScreen(IParameterizedUser user) {
+		
 		try {
+			roleFactory = RoleFactory.instance();
+	    	modifyUserRole = roleFactory.makeModifyUserRoleObject();
+			
 			String inputEmpId = inputOutputHandler.input();
 			String inputUserType = inputOutputHandler.input();
 			boolean isUserRoleModified = modifyUserRole.modifyUserRole(inputEmpId, inputUserType);
@@ -31,6 +41,9 @@ public class ModifyUserRoleScreen implements IModifyUserRoleScreen {
 			inputOutputHandler.displayMethod(UNSUCCESSFUL_USER_ROLE_UPDATE);
 		}
 
+		userInterfaceFactory = UserInterfaceFactory.instance();
+		backToHomePageScreen = userInterfaceFactory.getBackToHomePageScreen(inputOutputHandler);
+		backToHomePageScreen.displayGoBackToHomePageOption(user);
 	}
 
 }

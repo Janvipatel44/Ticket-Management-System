@@ -1,26 +1,34 @@
 package menucontroller;
 
+import login.Interfaces.IParameterizedUser;
 import menucontroller.interfaces.IMenuHandler;
 import menucontroller.interfaces.IMenuTask;
+import userinterface.IInputOutputHandler;
 
 public class MenuHandler implements IMenuHandler {
 
 	public enum Menu {
-		CREATE_TICKET, UPDATE_TICKET, SEARCH_TICKETS, RATING_FEATURE, EMPLOYEE_PERFORMANCE_REPORT, TWITTER_POSTING,
+		LOGIN, REGISTRATION, FORGOT_PASSWORD, CREATE_TICKET, UPDATE_TICKET, SEARCH_TICKETS, RATING_FEATURE, EMPLOYEE_PERFORMANCE_REPORT, TWITTER_POSTING,
 		EMPLOYEE_EFFICENCY, CUSTOMERS_ANALYSIS, OPEN_TICKETS_WITH_TEAM, PERSONAL_MILESTONES, MODIFY_USER_ROLE,
 		HOME_PAGE, LOGOUT, EXIT
 	}
 
 	@Override
-	public void runMenuTask(Menu menuTaskName, String empId, String userType) {
+	public void runMenuTask(Menu menuTaskName, IParameterizedUser user, IInputOutputHandler inputOutputHandler) {
 		IMenuTask menuTask = createMenuTaskObject(menuTaskName);
-		menuTask.runMenuTask(empId, userType);
+		menuTask.runMenuTask(user, inputOutputHandler);
 	}
 
 	private IMenuTask createMenuTaskObject(Menu menuTaskName) {
 		IMenuTask menuTask = null;
 
 		switch (menuTaskName) {
+		case LOGIN:
+			break;
+		case REGISTRATION:
+			break;
+		case FORGOT_PASSWORD:
+			break;
 		case CREATE_TICKET:
 			break;
 		case UPDATE_TICKET:

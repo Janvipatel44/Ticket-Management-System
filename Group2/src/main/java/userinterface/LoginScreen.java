@@ -1,23 +1,44 @@
 package userinterface;
 import login.Interfaces.*;
 import login.abstractfactory.*;
-import userinterface.abstractFactory.UserInterfaceFactory;
-import userinterface.abstractFactory.UserInterfaceFactoryImplementation;
+import menucontroller.MenuHandler;
+import menucontroller.abstractfactory.*;
+import menucontroller.interfaces.IMenuHandler;
+import userinterface.abstractFactory.*;
+import java.io.IOException;
 public class LoginScreen implements ILoginScreen
 {
-    IInputOutputHandler inputOutputHandler;
-    UserInterfaceFactory userInterfaceFactory = new UserInterfaceFactoryImplementation();
-    ILoginFactory loginFactory = LoginFactory.instance();
+    private final IInputOutputHandler inputOutputHandler;
+    private final IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
+    private final IMenuHandlerFactory menuHandlerFactory = MenuHandlerFactory.instance();
+    private final ILoginFactory loginFactory = LoginFactory.instance();
+    private IMenuHandler menuHandler;
 
     public LoginScreen(IInputOutputHandler inputOutputHandler)
     {
         this.inputOutputHandler = inputOutputHandler;
+        this.menuHandler = menuHandlerFactory.makeMenuHandlerObject();
     }
 
     public void displayLoginScreen()
     {
         IServiceNowWelcomeScreen serviceNowWelcomeScreen = userInterfaceFactory.getServiceNowWelcomeScreen(inputOutputHandler);;
-        IPersistenceAuthenticationOperations authenticationOperations = loginFactory.getAuthenticationOperations();;
+        IPersistenceAuthenticationOperations authenticationOperations = null;
+        try
+        {
+            authenticationOperations = loginFactory.getAuthenticationOperations();
+        }
+        catch (IOException e)
+        {
+            inputOutputHandler.displayMethod("Login process encountered an issue. Please contact system administrator.");
+        }
+
+        if(authenticationOperations == null)
+        {
+            serviceNowWelcomeScreen.displayLoginScreen();
+            return;
+        }
+
         IAuthentication authentication = loginFactory.getAuthentication(authenticationOperations);
         IParameterizedUser parameterizedUser;
         String employeeID="";
@@ -32,6 +53,8 @@ public class LoginScreen implements ILoginScreen
         if(authentication.authenticateUser(employeeID, password))
         {
             parameterizedUser = authentication.getUserDetails(employeeID);
+            MenuHandler.Menu menuTaskName = MenuHandler.Menu.HOME_PAGE;
+            menuHandler.runMenuTask(menuTaskName, parameterizedUser, inputOutputHandler);
         }
         else
         {

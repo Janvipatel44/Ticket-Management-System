@@ -1,6 +1,8 @@
 package customerAnalysis.abstractfactory;
 import customerAnalysis.Interfaces.*;
 import customerAnalysis.*;
+
+import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
 public class CustomerAnalysisFactory implements ICustomerAnalysisFactory
@@ -26,7 +28,7 @@ public class CustomerAnalysisFactory implements ICustomerAnalysisFactory
         return new ComputeCustomerProperties(tickets);
     }
 
-    public ICustomerAnalysis getCustomerAnalysis()
+    public ICustomerAnalysis getCustomerAnalysis() throws IOException
     {
         IPersistenceCustomer persistenceCustomer = getPersistenceCustomer();
         return new CustomerAnalysisFacade(persistenceCustomer);
@@ -37,7 +39,7 @@ public class CustomerAnalysisFactory implements ICustomerAnalysisFactory
         return new ParameterizedCustomerTicket(ticketID, customerID, startDate, endDate, ticketType, priority, urgency, impact, ticketLevel, creatorID, employeeID, rating);
     }
 
-    public IPersistenceCustomer getPersistenceCustomer()
+    public IPersistenceCustomer getPersistenceCustomer() throws IOException
     {
         return new PersistenceCustomer();
     }

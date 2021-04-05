@@ -8,13 +8,13 @@ import login.abstractfactory.LoginFactoryTest;
 import org.junit.Test;
 import userinterface.*;
 import login.Interfaces.*;
+import userinterface.abstractFactory.IUserInterfaceFactory;
 import userinterface.abstractFactory.UserInterfaceFactory;
-import userinterface.abstractFactory.UserInterfaceFactoryImplementation;
 
 public class RegistrationTest
 {
 	ILoginFactoryTest loginFactoryTest = LoginFactoryTest.instance();
-	UserInterfaceFactory userInterfaceFactory = new UserInterfaceFactoryImplementation();
+	IUserInterfaceFactory userInterfaceFactory = new UserInterfaceFactory();
 	IInputOutputHandler inputOutputHandler = userInterfaceFactory.getInputOutputHandler();
 	IPersistenceUserRegistrationOperations databaseUserMock = loginFactoryTest.getPersistenceUserRegistrationOperationsMock();
 

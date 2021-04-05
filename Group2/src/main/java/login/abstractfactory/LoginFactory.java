@@ -29,7 +29,7 @@ public class LoginFactory implements ILoginFactory
         return new Authentication(authenticationOperations);
     }
 
-    public IPersistenceAuthenticationOperations getAuthenticationOperations()
+    public IPersistenceAuthenticationOperations getAuthenticationOperations() throws IOException
     {
         return new PersistenceAuthenticationOperations();
     }
@@ -54,11 +54,12 @@ public class LoginFactory implements ILoginFactory
         return new PasswordValidations();
     }
 
-    public IPersistenceForgotPasswordOperations getPersistenceForgotPasswordOperations()  {
+    public IPersistenceForgotPasswordOperations getPersistenceForgotPasswordOperations() throws IOException
+    {
         return new PersistenceForgotPasswordOperations();
     }
 
-    public IPersistenceUserRegistrationOperations getPersistenceUserRegistrationOperations()
+    public IPersistenceUserRegistrationOperations getPersistenceUserRegistrationOperations() throws IOException
     {
         return new PersistenceUserRegistrationOperations();
     }

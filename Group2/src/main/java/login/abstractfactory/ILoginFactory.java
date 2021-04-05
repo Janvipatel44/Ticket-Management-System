@@ -8,12 +8,12 @@ import java.io.IOException;
 public interface ILoginFactory
 {
     IAuthentication getAuthentication(IPersistenceAuthenticationOperations authenticationOperations);
-    IPersistenceAuthenticationOperations getAuthenticationOperations();
+    IPersistenceAuthenticationOperations getAuthenticationOperations() throws IOException;
     IEncryption getEncryption();
     IForgotPassword getForgotPassword(IMail mail, IPersistenceForgotPasswordOperations persistenceForgotPasswordOperations);
     IParameterizedUser getParameterizedUser(String employeeID, String firstName, String lastName, String email, String user_type);
     IPasswordValidations getPasswordValidations();
-    IPersistenceForgotPasswordOperations getPersistenceForgotPasswordOperations();
-    IPersistenceUserRegistrationOperations getPersistenceUserRegistrationOperations();
+    IPersistenceForgotPasswordOperations getPersistenceForgotPasswordOperations() throws IOException;
+    IPersistenceUserRegistrationOperations getPersistenceUserRegistrationOperations() throws IOException;
     IRegister getRegister(IPersistenceUserRegistrationOperations userRegistrationOperations, IInputOutputHandler inputOutputHandler);
 }

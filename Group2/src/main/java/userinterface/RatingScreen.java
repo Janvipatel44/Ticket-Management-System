@@ -1,27 +1,34 @@
 package userinterface;
 import Rating.abstractfactory.*;
 import Rating.interfaces.*;
-public class RatingScreen
+import login.Interfaces.IParameterizedUser;
+import userinterface.abstractFactory.*;
+import java.io.IOException;
+public class RatingScreen implements IRatingScreen
 {
     private final IInputOutputHandler inputOutputHandler;
     private final IRatingFactory ratingFactory;
+    private IUserInterfaceFactory userInterfaceFactory;
+    private IBackToHomePageScreen backToHomePageScreen;
 
     public RatingScreen(IInputOutputHandler inputOutputHandler)
     {
         this.inputOutputHandler = inputOutputHandler;
         ratingFactory = RatingFactory.instance();
+        userInterfaceFactory = UserInterfaceFactory.instance();
     }
 
-    public void displayRatingScreen(String employeeID)
+    public void displayRatingScreen(IParameterizedUser user)
     {
         String ticketID;
+        String employeeID;
         int userSatisfactionRating;
         int userFeedbackRating;
         int userExperienceRating;
         int userRecommendationRating;
         IPersistenceRating persistenceRating;
         IRatingQuestionnaire ratingQuestionnaire;
-        IRatingAssignee ratingAssignee;
+        IRatingAssignee ratingAssignee = null;
 
         inputOutputHandler.displayMethod("Enter ticket ID to provide rating:\n");
         ticketID = inputOutputHandler.input();
@@ -39,8 +46,23 @@ public class RatingScreen
         userRecommendationRating = inputOutputHandler.inputInt();
 
         ratingQuestionnaire = ratingFactory.getRatingQuestionnaire(userSatisfactionRating, userFeedbackRating, userExperienceRating, userRecommendationRating);
-        ratingAssignee = ratingFactory.getRatingAssignee(ratingQuestionnaire);
+        try
+        {
+            ratingAssignee = ratingFactory.getRatingAssignee(ratingQuestionnaire);
+        }
+        catch (IOException e)
+        {
+            inputOutputHandler.displayMethod("Rating process encountered an issue. Please contact system administrator.");
+        }
 
+        if(ratingAssignee == null)
+        {
+            backToHomePageScreen = userInterfaceFactory.getBackToHomePageScreen(inputOutputHandler);
+            backToHomePageScreen.displayGoBackToHomePageOption(user);
+            return;
+        }
+
+        employeeID = user.getEmployeeID();
         if(ratingAssignee.provideRating(employeeID, ticketID))
         {
             inputOutputHandler.displayMethod("Rating has been provided successfully.\n");
@@ -50,6 +72,7 @@ public class RatingScreen
             inputOutputHandler.displayMethod("Rating was not provided to the given ticket. Please check the information and try again.\n");
         }
 
-
+        backToHomePageScreen = userInterfaceFactory.getBackToHomePageScreen(inputOutputHandler);
+        backToHomePageScreen.displayGoBackToHomePageOption(user);
     }
 }

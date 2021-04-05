@@ -1,6 +1,5 @@
 package roles.abstractfactory;
 
-import database.ConnectionManager;
 import roles.MenuItemsByRole;
 import roles.ModifyUserRole;
 import roles.RoleManagementDaoMock;
@@ -23,13 +22,13 @@ public class RoleMockFactory implements IRoleFactory {
 	}
 	
 	@Override
-	public IModifyUserRole makeModifyUserRoleObject(ConnectionManager connectionManager) {
+	public IModifyUserRole makeModifyUserRoleObject() {
 		IRoleManagementDao roleManagementDao = new RoleManagementDaoMock();
 		return new ModifyUserRole(roleManagementDao);
 	}
 
 	@Override
-	public IMenuItemsByRole makeMenuItemsByRoleObject(ConnectionManager connectionManager) {
+	public IMenuItemsByRole makeMenuItemsByRoleObject() {
 		IRoleManagementDao roleManagementDao = new RoleManagementDaoMock();
 		return new MenuItemsByRole(roleManagementDao);
 	}
