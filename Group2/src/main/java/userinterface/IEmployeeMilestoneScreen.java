@@ -1,5 +1,8 @@
 package userinterface;
+
+import login.Interfaces.IParameterizedUser;
+
 public interface IEmployeeMilestoneScreen
 {
-    void displayEmployeeMileStoneScreen();
+    void displayEmployeeMileStoneScreen(IParameterizedUser user);
 }

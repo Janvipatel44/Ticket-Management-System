@@ -1,5 +1,8 @@
 package userinterface;
+
+import login.Interfaces.IParameterizedUser;
+
 public interface ICustomerAnalysisScreen
 {
-    void displayCustomerAnalysisScreen();
+    void displayCustomerAnalysisScreen(IParameterizedUser user);
 }

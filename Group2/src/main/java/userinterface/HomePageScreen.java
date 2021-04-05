@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import login.Interfaces.IParameterizedUser;
 import menucontroller.MenuHandler;
 import menucontroller.abstractfactory.IMenuHandlerFactory;
 import menucontroller.abstractfactory.MenuHandlerFactory;
@@ -17,7 +18,7 @@ public class HomePageScreen implements IHomePageScreen {
 	private final String MENU_ITEMS_SELECTION_MESSAGE = "Please select the item from menu (provide corresponding menu item number) : ";
 	private final String ERROR_MESSAGE = "You have provided wrong input. Please choose the correct input from menu.";
 	private final int MINIMUM_MENU_ITEMS = 1;
-	
+
 	private IMenuItemsByRole iMenuItemsByRole;
 	private IInputOutputHandler inputOutputHandler;
 	private Map<Integer, String> menuMap;
@@ -31,10 +32,13 @@ public class HomePageScreen implements IHomePageScreen {
 		this.menuHandler = menuHandlerFactory.makeMenuHandlerObject();
 	}
 
-	public void handleHomePageMenu(String empId, String empName, String userType) throws Exception {
+	public void handleHomePageMenu(IParameterizedUser user) throws Exception {
 
-		if (StringValidations.isStringValid(empName) && StringValidations.isStringValid(userType)) {
-			String welcomeUser = "Hello " + empName + "\n\nMenu\n";
+		String firstName = user.getfirstName();
+		String userType = user.getUserType();
+
+		if (StringValidations.isStringValid(firstName) && StringValidations.isStringValid(userType)) {
+			String welcomeUser = "Hello " + firstName + "\n\nMenu\n";
 			inputOutputHandler.displayMethod(welcomeUser);
 
 			int maximumMenuItems = displayMenuItems(userType);
@@ -57,9 +61,9 @@ public class HomePageScreen implements IHomePageScreen {
 						}
 
 						MenuHandler.Menu menuItem = MenuHandler.Menu.valueOf(menuMap.get(selectedMenuItem));
-						
-						menuHandler.runMenuTask(menuItem, empId, userType);
-						
+
+						menuHandler.runMenuTask(menuItem, user, inputOutputHandler);
+
 					} catch (IllegalArgumentException e) {
 						inputOutputHandler.displayMethod(ERROR_MESSAGE);
 						continue;
@@ -77,7 +81,7 @@ public class HomePageScreen implements IHomePageScreen {
 	private int displayMenuItems(String userType) throws Exception {
 		List<String> menuItemsList = iMenuItemsByRole.fetchMenuItemsByRole(userType);
 		int i = 0;
-				
+
 		for (; i < menuItemsList.size(); i++) {
 			int menuoption = i + 1;
 			String menuItem = menuItemsList.get(i);

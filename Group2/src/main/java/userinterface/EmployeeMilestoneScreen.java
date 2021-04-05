@@ -1,6 +1,8 @@
 package userinterface;
 import employeeMilestones.abstractfactory.*;
 import employeeMilestones.interfaces.IEmployeeMilestone;
+import login.Interfaces.IParameterizedUser;
+
 import java.util.Map;
 public class EmployeeMilestoneScreen implements IEmployeeMilestoneScreen
 {
@@ -11,7 +13,7 @@ public class EmployeeMilestoneScreen implements IEmployeeMilestoneScreen
     {
         this.inputOutputHandler = inputOutputHandler;
     }
-    public void displayEmployeeMileStoneScreen() {
+    public void displayEmployeeMileStoneScreen(IParameterizedUser user) {
         String employeeID;
         Map<String, String> output;
         IEmployeeMilestone employeeMilestone;

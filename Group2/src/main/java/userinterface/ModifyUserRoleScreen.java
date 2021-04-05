@@ -1,6 +1,9 @@
 package userinterface;
 
+import login.Interfaces.IParameterizedUser;
 import roles.interfaces.IModifyUserRole;
+import userinterface.abstractFactory.IUserInterfaceFactory;
+import userinterface.abstractFactory.UserInterfaceFactory;
 
 public class ModifyUserRoleScreen implements IModifyUserRoleScreen {
 	
@@ -9,13 +12,15 @@ public class ModifyUserRoleScreen implements IModifyUserRoleScreen {
 
 	private IInputOutputHandler inputOutputHandler;
 	private IModifyUserRole modifyUserRole;
+	IBackToHomePageScreen backToHomePageScreen;
+	IUserInterfaceFactory userInterfaceFactory;
 
 	public ModifyUserRoleScreen(IInputOutputHandler inputOutputHandler, IModifyUserRole modifyUserRole) {
 		this.inputOutputHandler = inputOutputHandler;
-		this.modifyUserRole = modifyUserRole;
+		this.modifyUserRole = modifyUserRole; 
 	}
 
-	public void displayModifyUserRoleScreen(String empId, String userType) {
+	public void displayModifyUserRoleScreen(IParameterizedUser user) {
 
 		try {
 			String inputEmpId = inputOutputHandler.input();
@@ -31,6 +36,9 @@ public class ModifyUserRoleScreen implements IModifyUserRoleScreen {
 			inputOutputHandler.displayMethod(UNSUCCESSFUL_USER_ROLE_UPDATE);
 		}
 
+		userInterfaceFactory = UserInterfaceFactory.instance();
+		backToHomePageScreen = userInterfaceFactory.getBackToHomePageScreen(inputOutputHandler);
+		backToHomePageScreen.displayGoBackToHomePageOption(user);
 	}
 
 }

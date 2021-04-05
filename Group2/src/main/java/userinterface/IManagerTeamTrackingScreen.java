@@ -1,7 +1,9 @@
 package userinterface;
 
+import login.Interfaces.IParameterizedUser;
+
 public interface IManagerTeamTrackingScreen {
 
-	void displayManagerTrackingScreen(String managerId, String userType);
+	void displayManagerTrackingScreen(IParameterizedUser user);
 
 }

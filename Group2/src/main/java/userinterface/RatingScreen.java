@@ -1,20 +1,27 @@
 package userinterface;
 import Rating.abstractfactory.*;
 import Rating.interfaces.*;
+import login.Interfaces.IParameterizedUser;
+import userinterface.abstractFactory.IUserInterfaceFactory;
+import userinterface.abstractFactory.UserInterfaceFactory;
 public class RatingScreen
 {
     private final IInputOutputHandler inputOutputHandler;
     private final IRatingFactory ratingFactory;
+    private IUserInterfaceFactory userInterfaceFactory;
+    private IBackToHomePageScreen backToHomePageScreen;
 
     public RatingScreen(IInputOutputHandler inputOutputHandler)
     {
         this.inputOutputHandler = inputOutputHandler;
         ratingFactory = RatingFactory.instance();
+        userInterfaceFactory = UserInterfaceFactory.instance();
     }
 
-    public void displayRatingScreen(String employeeID)
+    public void displayRatingScreen(IParameterizedUser user)
     {
         String ticketID;
+        String employeeID;
         int userSatisfactionRating;
         int userFeedbackRating;
         int userExperienceRating;
@@ -41,6 +48,7 @@ public class RatingScreen
         ratingQuestionnaire = ratingFactory.getRatingQuestionnaire(userSatisfactionRating, userFeedbackRating, userExperienceRating, userRecommendationRating);
         ratingAssignee = ratingFactory.getRatingAssignee(ratingQuestionnaire);
 
+        employeeID = user.getEmployeeID();
         if(ratingAssignee.provideRating(employeeID, ticketID))
         {
             inputOutputHandler.displayMethod("Rating has been provided successfully.\n");
@@ -50,6 +58,7 @@ public class RatingScreen
             inputOutputHandler.displayMethod("Rating was not provided to the given ticket. Please check the information and try again.\n");
         }
 
-
+        backToHomePageScreen = userInterfaceFactory.getBackToHomePageScreen(inputOutputHandler);
+        backToHomePageScreen.displayGoBackToHomePageOption(user);
     }
 }
