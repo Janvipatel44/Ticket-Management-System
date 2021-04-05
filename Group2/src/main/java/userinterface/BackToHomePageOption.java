@@ -32,7 +32,7 @@ public class BackToHomePageOption implements IBackToHomePageScreen {
 
 				if (choice == 1) {
 					MenuHandler.Menu menuTaskName = MenuHandler.Menu.HOME_PAGE;
-					menuHandler.runMenuTask(menuTaskName, user);
+					menuHandler.runMenuTask(menuTaskName, user, inputOutputHandler);
 				} else {
 					inputOutputHandler.displayMethod(CHOSE_INVALID_OPTION_MESSAGE);
 				}

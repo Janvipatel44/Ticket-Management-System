@@ -3,6 +3,7 @@ package menucontroller;
 import login.Interfaces.IParameterizedUser;
 import menucontroller.interfaces.IMenuHandler;
 import menucontroller.interfaces.IMenuTask;
+import userinterface.IInputOutputHandler;
 
 public class MenuHandler implements IMenuHandler {
 
@@ -13,9 +14,9 @@ public class MenuHandler implements IMenuHandler {
 	}
 
 	@Override
-	public void runMenuTask(Menu menuTaskName, IParameterizedUser user) {
+	public void runMenuTask(Menu menuTaskName, IParameterizedUser user, IInputOutputHandler inputOutputHandler) {
 		IMenuTask menuTask = createMenuTaskObject(menuTaskName);
-		menuTask.runMenuTask(user);
+		menuTask.runMenuTask(user, inputOutputHandler);
 	}
 
 	private IMenuTask createMenuTaskObject(Menu menuTaskName) {
