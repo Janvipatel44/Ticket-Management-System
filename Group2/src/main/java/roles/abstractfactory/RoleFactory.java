@@ -1,5 +1,7 @@
 package roles.abstractfactory;
 
+import java.io.IOException;
+
 import roles.MenuItemsByRole;
 import roles.ModifyUserRole;
 import roles.RoleManagementDao;
@@ -21,13 +23,13 @@ public class RoleFactory implements IRoleFactory {
 	}
 	
 	@Override
-	public IModifyUserRole makeModifyUserRoleObject() {
+	public IModifyUserRole makeModifyUserRoleObject() throws IOException {
 		RoleManagementDao roleManagementDao = new RoleManagementDao();
 		return new ModifyUserRole(roleManagementDao);
 	}
 
 	@Override
-	public IMenuItemsByRole makeMenuItemsByRoleObject() {
+	public IMenuItemsByRole makeMenuItemsByRoleObject() throws IOException {
 		RoleManagementDao roleManagementDao = new RoleManagementDao();
 		return new MenuItemsByRole(roleManagementDao);
 	}

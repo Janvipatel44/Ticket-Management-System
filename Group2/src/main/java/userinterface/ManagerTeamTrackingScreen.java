@@ -4,6 +4,8 @@ import java.util.List;
 
 import Tickets.ICreateTicket;
 import login.Interfaces.IParameterizedUser;
+import managerfeatures.abstractfactory.IManagerFeaturesFactory;
+import managerfeatures.abstractfactory.ManagerFeaturesFactory;
 import managerfeatures.interfaces.IManagerTeamTracking;
 import userinterface.abstractFactory.IUserInterfaceFactory;
 import userinterface.abstractFactory.UserInterfaceFactory;
@@ -11,23 +13,26 @@ import userinterface.abstractFactory.UserInterfaceFactory;
 public class ManagerTeamTrackingScreen implements IManagerTeamTrackingScreen {
 
 	public final String CHOSE_INVALID_OPTION_MESSAGE = "You chose an invalid option, Please choose an option from the list.";
-	public final String UNSUCCESSFUL_DATA_FETCH = "Problem occurred while fetching data from DB. Please contact admin.";
+	public final String UNSUCCESSFUL_DATA_FETCH = "Error while fetching data from DB. Please contact admin.";
 	public final String NO_DATA_AVAILABLE_FOR_TEAM = "Team is not working on any tickets.";
 
 	private IInputOutputHandler inputOutputHandler;
 	private IManagerTeamTracking managerTeamTracking;
 	IBackToHomePageScreen backToHomePageScreen;
 	IUserInterfaceFactory userInterfaceFactory;
+	IManagerFeaturesFactory managerFeaturesFactory;
 
-	public ManagerTeamTrackingScreen(IInputOutputHandler inputOutputHandler, IManagerTeamTracking managerTeamTracking) {
+	public ManagerTeamTrackingScreen(IInputOutputHandler inputOutputHandler) {
 		this.inputOutputHandler = inputOutputHandler;
-		this.managerTeamTracking = managerTeamTracking;
 	}
 
 	@Override
 	public void displayManagerTrackingScreen(IParameterizedUser user) {
 
-		try {
+		try {	
+			managerFeaturesFactory = ManagerFeaturesFactory.instance();
+	        managerTeamTracking = managerFeaturesFactory.makeManagerFeaturesFactoryObject();
+			
 			String managerId = user.getEmployeeID();
 			List<ICreateTicket> teamsTickets = managerTeamTracking.fetchTeamsTicketDetails(managerId);
 

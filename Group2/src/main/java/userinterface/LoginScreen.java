@@ -1,13 +1,11 @@
 package userinterface;
 import login.Interfaces.*;
 import login.abstractfactory.*;
-import menucontroller.CreateTicketMenuTask;
 import menucontroller.MenuHandler;
-import menucontroller.abstractfactory.IMenuHandlerFactory;
-import menucontroller.abstractfactory.MenuHandlerFactory;
+import menucontroller.abstractfactory.*;
 import menucontroller.interfaces.IMenuHandler;
-import userinterface.abstractFactory.IUserInterfaceFactory;
-import userinterface.abstractFactory.UserInterfaceFactory;
+import userinterface.abstractFactory.*;
+import java.io.IOException;
 public class LoginScreen implements ILoginScreen
 {
     private final IInputOutputHandler inputOutputHandler;
@@ -25,7 +23,22 @@ public class LoginScreen implements ILoginScreen
     public void displayLoginScreen()
     {
         IServiceNowWelcomeScreen serviceNowWelcomeScreen = userInterfaceFactory.getServiceNowWelcomeScreen(inputOutputHandler);;
-        IPersistenceAuthenticationOperations authenticationOperations = loginFactory.getAuthenticationOperations();;
+        IPersistenceAuthenticationOperations authenticationOperations = null;
+        try
+        {
+            authenticationOperations = loginFactory.getAuthenticationOperations();
+        }
+        catch (IOException e)
+        {
+            inputOutputHandler.displayMethod("Login process encountered an issue. Please contact system administrator.");
+        }
+
+        if(authenticationOperations == null)
+        {
+            serviceNowWelcomeScreen.displayLoginScreen();
+            return;
+        }
+
         IAuthentication authentication = loginFactory.getAuthentication(authenticationOperations);
         IParameterizedUser parameterizedUser;
         String employeeID="";
@@ -41,7 +54,7 @@ public class LoginScreen implements ILoginScreen
         {
             parameterizedUser = authentication.getUserDetails(employeeID);
             MenuHandler.Menu menuTaskName = MenuHandler.Menu.HOME_PAGE;
-            menuHandler.runMenuTask(menuTaskName, parameterizedUser);
+            menuHandler.runMenuTask(menuTaskName, parameterizedUser, inputOutputHandler);
         }
         else
         {

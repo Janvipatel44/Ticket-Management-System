@@ -1,6 +1,8 @@
 package employeeMilestones.abstractfactory;
 import employeeMilestones.*;
 import employeeMilestones.interfaces.*;
+
+import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
 public class EmployeeMilestoneFactory implements IEmployeeMilestoneFactory {
@@ -26,7 +28,7 @@ public class EmployeeMilestoneFactory implements IEmployeeMilestoneFactory {
         return new CalculateMilestone(employeeTicketList);
     }
 
-    public IEmployeeMilestone getEmployeeMilestone()
+    public IEmployeeMilestone getEmployeeMilestone() throws IOException
     {
         IPersistenceEmployeeTickets persistenceEmployeeTickets = getPersistenceEmployeeTickets();
         return new EmployeeMilestoneFacade(persistenceEmployeeTickets);
@@ -37,7 +39,7 @@ public class EmployeeMilestoneFactory implements IEmployeeMilestoneFactory {
         return new ParameterizedEmployeeTicket(ticketID, employeeID, customerID, startDate, endDate, rating, priority, impact, urgency, ticketType);
     }
 
-    public IPersistenceEmployeeTickets getPersistenceEmployeeTickets()
+    public IPersistenceEmployeeTickets getPersistenceEmployeeTickets() throws IOException
     {
         return new PersistenceEmployeeTickets();
     }

@@ -6,25 +6,7 @@ import roles.abstractfactory.IRoleFactory;
 import roles.abstractfactory.RoleFactory;
 import roles.interfaces.IMenuItemsByRole;
 import roles.interfaces.IModifyUserRole;
-import userinterface.BackToHomePageOption;
-import userinterface.ForgotPasswordScreen;
-import userinterface.HomePageScreen;
-import userinterface.IBackToHomePageScreen;
-import userinterface.IForgotPasswordScreen;
-import userinterface.IHomePageScreen;
-import userinterface.IInputOutputHandler;
-import userinterface.ILoginScreen;
-import userinterface.IManagerTeamTrackingScreen;
-import userinterface.IModifyUserRoleScreen;
-import userinterface.IRegistrationScreen;
-import userinterface.IServiceNowWelcomeScreen;
-import userinterface.InputOutputHandler;
-import userinterface.LoginScreen;
-import userinterface.ManagerTeamTrackingScreen;
-import userinterface.ModifyUserRoleScreen;
-import userinterface.RegistrationScreen;
-import userinterface.ServiceNowWelcomeScreen;
-
+import userinterface.*;
 public class UserInterfaceFactory implements IUserInterfaceFactory
 {
 	private static IUserInterfaceFactory uniqueInstance = null;
@@ -71,22 +53,31 @@ public class UserInterfaceFactory implements IUserInterfaceFactory
     
     public IModifyUserRoleScreen getModifyUserRoleScreen(IInputOutputHandler inputOutputHandler)
     {
-    	IRoleFactory roleFactory = RoleFactory.instance();
-    	IModifyUserRole modifyUserRole = roleFactory.makeModifyUserRoleObject();
-        return new ModifyUserRoleScreen(inputOutputHandler, modifyUserRole);
+        return new ModifyUserRoleScreen(inputOutputHandler);
     }
     
     public IManagerTeamTrackingScreen getmangerTeamTrackingScreen(IInputOutputHandler inputOutputHandler)
     {
-    	IManagerFeaturesFactory managerFeaturesFactory = ManagerFeaturesFactory.instance();
-    	IManagerTeamTracking managerTeamTracking = managerFeaturesFactory.makeManagerFeaturesFactoryObject();
-        return new ManagerTeamTrackingScreen(inputOutputHandler, managerTeamTracking);
+        return new ManagerTeamTrackingScreen(inputOutputHandler);
     }
     
     public IHomePageScreen getHomePageScreen(IInputOutputHandler inputOutputHandler)
     {
-    	IRoleFactory roleFactory = RoleFactory.instance();
-    	IMenuItemsByRole menuItemsByRole = roleFactory.makeMenuItemsByRoleObject();
-        return new HomePageScreen(menuItemsByRole, inputOutputHandler);
+        return new HomePageScreen(inputOutputHandler);
+    }
+
+    public IRatingScreen getRatingScreen(IInputOutputHandler inputOutputHandler)
+    {
+        return new RatingScreen(inputOutputHandler);
+    }
+
+    public ICustomerAnalysisScreen getCustomerAnalysisScreen(IInputOutputHandler inputOutputHandler)
+    {
+        return new CustomerAnalysisScreen(inputOutputHandler);
+    }
+
+    public IEmployeeMilestoneScreen getEmployeeMilestoneScreen(IInputOutputHandler inputOutputHandler)
+    {
+        return new EmployeeMilestoneScreen(inputOutputHandler);
     }
 }

@@ -3,21 +3,40 @@ import database.*;
 import database.abstractfactory.DatabaseFactory;
 import database.abstractfactory.IDatabaseFactory;
 import login.Interfaces.*;
+import mailservice.ReadPropertiesFile;
+
+import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Properties;
+
 public class PersistenceUserRegistrationOperations implements IPersistenceUserRegistrationOperations
 {
     private boolean result=false;
-    private String configurationFile = "ConfigurationFile.txt";
+    private String projectConfigurationFile = "ProjectConfiguration.properties";
+    private String dbConfigurationKey = "DBConfiguration";
     private final IDatabaseFactory databaseFactory = DatabaseFactory.instance();
-    private final IConnectionManager connection = databaseFactory.getConnectionManager(configurationFile);
+    private final IConnectionManager connection;
+
+    public PersistenceUserRegistrationOperations() throws IOException
+    {
+        Properties properties = ReadPropertiesFile.readConfigPropertyFile(projectConfigurationFile);
+        String configurationFile = (String)properties.get(dbConfigurationKey);
+        connection = databaseFactory.getConnectionManager(configurationFile);
+    }
 
     public boolean registerUserDatabase(IParameterizedUser user, String user_password)
     {
     	Connection dummyConnection=null;
         CallableStatement procedureCall;
+
+        if(connection == null)
+        {
+            return false;
+        }
+
         try {
         	String procedureName = "registerUser";
         	dummyConnection = connection.establishConnection();
@@ -43,6 +62,11 @@ public class PersistenceUserRegistrationOperations implements IPersistenceUserRe
 
     public boolean checkDuplicateEmployeeID(String employeeID)
     {
+        if(connection == null)
+        {
+            return false;
+        }
+
         CallableStatement procedureCall;
         try
         {

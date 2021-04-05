@@ -1,6 +1,9 @@
 package Rating.abstractfactory;
 import Rating.*;
 import Rating.interfaces.*;
+
+import java.io.IOException;
+
 public class RatingFactory implements IRatingFactory
 {
     private static IRatingFactory uniqueInstance = null;
@@ -19,13 +22,13 @@ public class RatingFactory implements IRatingFactory
         return uniqueInstance;
     }
 
-    public IRatingAssignee getRatingAssignee(IRatingQuestionnaire questionnaire)
+    public IRatingAssignee getRatingAssignee(IRatingQuestionnaire questionnaire) throws IOException
     {
         IPersistenceRating persistenceRating = getPersistenceRating();
         return new RatingAssigneeFacade(questionnaire, persistenceRating);
     }
 
-    public IPersistenceRating getPersistenceRating()
+    public IPersistenceRating getPersistenceRating() throws IOException
     {
         return new PersistenceRating();
     }

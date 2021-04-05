@@ -5,6 +5,7 @@ import login.abstractfactory.*;
 import mailservice.Gmail;
 import mailservice.interfaces.IMail;
 import userinterface.abstractFactory.*;
+import java.io.IOException;
 public class ForgotPasswordScreen implements IForgotPasswordScreen
 {
     IInputOutputHandler inputOutputHandler;
@@ -20,7 +21,24 @@ public class ForgotPasswordScreen implements IForgotPasswordScreen
     {
         IServiceNowWelcomeScreen serviceNowWelcomeScreen;
         IMail mail = new Gmail();
-        IPersistenceForgotPasswordOperations persistenceForgotPasswordOperations = loginFactory.getPersistenceForgotPasswordOperations();
+        IPersistenceForgotPasswordOperations persistenceForgotPasswordOperations = null;
+        serviceNowWelcomeScreen = userInterfaceFactory.getServiceNowWelcomeScreen(inputOutputHandler);
+
+        try
+        {
+            persistenceForgotPasswordOperations = loginFactory.getPersistenceForgotPasswordOperations();
+        }
+        catch (IOException e)
+        {
+            inputOutputHandler.displayMethod("Forgot password process encountered an issue. Please contact system administrator.");
+        }
+
+        if(persistenceForgotPasswordOperations == null)
+        {
+            serviceNowWelcomeScreen.displayLoginScreen();
+            return;
+        }
+
         IForgotPassword forgotPassword = loginFactory.getForgotPassword(mail, persistenceForgotPasswordOperations);
         String employeeID;
         String newPassword;
@@ -46,7 +64,6 @@ public class ForgotPasswordScreen implements IForgotPasswordScreen
                 inputOutputHandler.displayMethod("Invalid OTP. Please try again.");
             }
 
-            serviceNowWelcomeScreen = userInterfaceFactory.getServiceNowWelcomeScreen(inputOutputHandler);
             serviceNowWelcomeScreen.displayLoginScreen();
         }
     }

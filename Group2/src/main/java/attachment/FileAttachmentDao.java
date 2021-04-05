@@ -1,23 +1,34 @@
 package attachment;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Properties;
 
 import com.mysql.cj.jdbc.Blob;
 
 import attachment.interfaces.IAttachmentDao;
 import database.IConnectionManager;
+import database.abstractfactory.DatabaseFactory;
+import database.abstractfactory.IDatabaseFactory;
+import mailservice.ReadPropertiesFile;
 
 public class FileAttachmentDao implements IAttachmentDao {
 
+	private final IDatabaseFactory databaseFactory = DatabaseFactory.instance();
 	private final String uploadAttachment = "upload_attachment";
 	private final String downloadAttachment = "download_attachment";
 	private IConnectionManager connectionManager;
+	private String projectConfigurationFile = "ProjectConfiguration.properties";
+	private String dbConfigurationKey = "DBConfiguration";
 
-	public FileAttachmentDao() {
+	public FileAttachmentDao() throws IOException {
+		Properties properties = ReadPropertiesFile.readConfigPropertyFile(projectConfigurationFile);
+		String configurationFile = (String)properties.get(dbConfigurationKey);
+		connectionManager = databaseFactory.getConnectionManager(configurationFile);
 	}
 	
 	@Override
