@@ -1,19 +1,20 @@
 package reuseablePackage.abstractFactory;
 
 import database.IConnectionManager;
+import reuseablePackage.TableGenerator;
 import reuseablePackage.checkTicketExists;
 import reuseablePackage.displayTicket;
 import reuseablePackage.exportTicket;
 import reuseablePackage.getListOfTickets;
 import reuseablePackage.openTicket;
 import reuseablePackage.storeTicketData;
+import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.IcheckTicketExists;
 import reuseablePackage.interfaces.IdisplayTicket;
 import reuseablePackage.interfaces.IexportTicket;
 import reuseablePackage.interfaces.IgetListOfTickets;
 import reuseablePackage.interfaces.IopenTicket;
 import reuseablePackage.interfaces.IstoreTicketData;
-import userinterface.IInputOutputHandler;
 
 public class reuseableClassFactory implements IreuseableClassFactory {
 
@@ -39,10 +40,16 @@ public class reuseableClassFactory implements IreuseableClassFactory {
 		return new storeTicketData();
 	}
 	
-	public IdisplayTicket displayUser(IInputOutputHandler inputoutputhandler)
+	public IdisplayTicket displayUser(ITableGenerator tableFormate)
 	{
-		return new displayTicket(inputoutputhandler);
+		return new displayTicket(tableFormate);
 	}
+
+	public ITableGenerator tableFormate()
+	{
+		return new TableGenerator();
+	}
+	
 	
 	public IopenTicket openticket(IstoreTicketData storeTicketData,IdisplayTicket displayUser,IConnectionManager ConnectionMng)
 	{

@@ -1,36 +1,36 @@
-package searchTicket;
+package reuseableClasses;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import reuseablePackage.abstractFactory.IreuseableClassFactory;
+import reuseablePackage.abstractFactory.reuseableClassFactory;
+import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.IdisplayTicket;
 import reuseablePackage.interfaces.IopenTicket;
-import searchTicket.abstarctfactory.IsearchFactoryTest;
-import searchTicket.abstarctfactory.searchFactoryTest;
-import userinterface.IInputOutputHandler;
-import userinterface.InputOutputHandler;
-
 
 public class openTicketMock implements IopenTicket
 {
+
 	ArrayList<String> singleTicketData;
 	ArrayList<String> comments;
 	
 	List<String> columnOfTable;
 		
-	IsearchFactoryTest  searchfactorytest = searchFactoryTest.instance();
-	IInputOutputHandler inputoutputhandler = new InputOutputHandler();
-	private IdisplayTicket displayUser;
+	private IreuseableClassFactory reuseableclassfactory = reuseableClassFactory.instance();
+	private ITableGenerator generateTable;
+	private IdisplayTicket displayticket;
 	
 	public openTicketMock()
 	{
-		displayUser = searchfactorytest.displayUser(inputoutputhandler);
+		generateTable = reuseableclassfactory.tableFormate();
+		displayticket = reuseableclassfactory.displayUser(generateTable);
 		singleTicketData = new 	ArrayList<String>();
 		comments = new 	ArrayList<String>();
 		columnOfTable = new ArrayList<String>();
 	}
 
-	public void openticket(String ticketId)
+	public String openticket(String ticketId)
 	{
 		String ticketID = "111";
 		if(ticketId.equals(ticketID))
@@ -48,7 +48,8 @@ public class openTicketMock implements IopenTicket
 		}
 		addColumnsOfTable();
 		comments = commentOnTicket(ticketId);
-		displayUser.printSignleTicketDetails(singleTicketData,columnOfTable,comments);
+		String output= displayticket.printSignleTicketDetails(singleTicketData,columnOfTable,comments);
+		return output;
 			
 	}
 	

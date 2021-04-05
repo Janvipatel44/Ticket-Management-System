@@ -1,10 +1,13 @@
-package searchTicketUI;
+package userinterface;
 
 
 import database.ConnectionManager;
 import database.IConnectionManager;
+import login.Interfaces.IParameterizedUser;
+import managerfeatures.abstractfactory.IManagerFeaturesFactory;
 import reuseablePackage.abstractFactory.IreuseableClassFactory;
 import reuseablePackage.abstractFactory.reuseableClassFactory;
+import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.IdisplayTicket;
 import reuseablePackage.interfaces.IexportTicket;
 import reuseablePackage.interfaces.IopenTicket;
@@ -12,40 +15,39 @@ import reuseablePackage.interfaces.IstoreTicketData;
 import searchTicket.abstractfactory.IsearchTicketFactory;
 import searchTicket.abstractfactory.searchTicketFactory;
 import searchTicket.interfaces.IsearchTicket;
-import userinterface.IInputOutputHandler;
-import userinterface.InputOutputHandler;
+import userinterface.abstractFactory.IUserInterfaceFactory;
+import userinterface.abstractFactory.UserInterfaceFactory;
 
 public class searchTicketScreen implements IsearchTicketScreen
 {
 	static String ConfigurationFile = "ConfigurationFile";
 	
+	IBackToHomePageScreen backToHomePageScreen;
+	IUserInterfaceFactory userInterfaceFactory;
+	IManagerFeaturesFactory managerFeaturesFactory;
+
+
 	static IConnectionManager connectionMng = new ConnectionManager(ConfigurationFile);
-	static IInputOutputHandler inputoutputhandler = new InputOutputHandler();
+	static IInputOutputHandler inputoutputhandler;
 	
-	static IreuseableClassFactory reuseablefactory;
-	static IstoreTicketData storeticketdata;
-	static IdisplayTicket displayuser;
+	static IreuseableClassFactory reuseablefactory=reuseableClassFactory.instance();
+	static IstoreTicketData storeticketdata=reuseablefactory.storeTicketData();
+	static ITableGenerator tablegenerator = reuseablefactory.tableFormate();
+	static IdisplayTicket displayuser=reuseablefactory.displayUser(tablegenerator);
 	static IopenTicket openticket;
 	
-	static IsearchTicketFactory searchticketfactory; 
-	static IsearchTicket searchticket;
-	static IexportTicket exportTicketData;
+	static IsearchTicketFactory searchticketfactory= searchTicketFactory.instance();
+	static IsearchTicket searchticket=searchticketfactory.searchticket(storeticketdata,displayuser, connectionMng);;
 	
-	public searchTicketScreen()
+	public searchTicketScreen(IInputOutputHandler inputoutputhandler)
 	{
-		inputoutputhandler = new InputOutputHandler();
-		connectionMng = new ConnectionManager(ConfigurationFile);
-		
-		reuseablefactory = reuseableClassFactory.instance();
-		storeticketdata = reuseablefactory.storeTicketData();
-		displayuser = reuseablefactory.displayUser(inputoutputhandler);
-		searchticketfactory = searchTicketFactory.instance();
-		searchticket= searchticketfactory.searchticket(storeticketdata,displayuser, connectionMng);	
+		this.inputoutputhandler = inputoutputhandler;
 	}
 	
-	public void searchTicketScreen() throws ClassNotFoundException 
+	public void searchTicketScreen(IParameterizedUser user)
 	{
 		int choice=0;
+		String output="";
 		String searchInput=null;
 			
 		//Available options for user
@@ -63,44 +65,49 @@ public class searchTicketScreen implements IsearchTicketScreen
 			{
 				System.out.println("Please Provide TicketID:");
 				searchInput=inputoutputhandler.input();
-				searchticket.searchbyTicket(choice, searchInput);
+				output=searchticket.searchbyTicket(choice, searchInput);
 			}
 			else if(choice==2)
 			{
 				System.out.println("Please Provide name of Ticket Assignee:");
 				searchInput=inputoutputhandler.input();
-				searchticket.searchbyTicket(choice, searchInput);
+				output=searchticket.searchbyTicket(choice, searchInput);
 			}
 			else if(choice==3) 
 			{
 				System.out.println("Please Provide Ticket Type:");
 				searchInput=inputoutputhandler.input();
-				searchticket.searchbyTicket(choice, searchInput);
+				output=searchticket.searchbyTicket(choice, searchInput);
 			}
 			else if(choice==4) 
 			{
 				System.out.println("All Tickets:");
-				searchticket.searchbyTicket(choice, searchInput);
+				output=searchticket.searchbyTicket(choice, searchInput);
 			}
 			else if(choice==5) 
 			{
 				System.out.println("Please Provide Name of Ticket Creator:");
 				searchInput=inputoutputhandler.input();
-				searchticket.searchbyTicket(choice, searchInput);
+				output=searchticket.searchbyTicket(choice, searchInput);
 			}
 			else if(choice==6) 
 			{
 				System.out.println("Please Provide Keyword:");
 				searchInput=inputoutputhandler.input();
-				searchticket.searchbyTicket(choice, searchInput);
+				output=searchticket.searchbyTicket(choice, searchInput);
 			}
 			else 
 			{
 				inputoutputhandler.displayMethod("You have provided wrong input.Please choose the correct input value");
 			}
+			inputoutputhandler.displayMethod(output);
 			open();
 		}
 		while(choice!=7);
+		userInterfaceFactory = UserInterfaceFactory.instance();
+		backToHomePageScreen = userInterfaceFactory.getBackToHomePageScreen(inputoutputhandler);
+		backToHomePageScreen.displayGoBackToHomePageOption(user);
+
 	}
 
 	private static void open() {
@@ -120,7 +127,8 @@ public class searchTicketScreen implements IsearchTicketScreen
 				
 				inputoutputhandler.displayMethod("Enter Ticket ID:");
 				ticketID = inputoutputhandler.input();
-				openticket.openticket(ticketID) ;
+				String output=openticket.openticket(ticketID);
+				inputoutputhandler.displayMethod(output);
 			}
 			else if(choice == 2)
 			{

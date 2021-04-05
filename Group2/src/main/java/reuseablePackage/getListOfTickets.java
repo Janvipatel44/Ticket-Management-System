@@ -32,8 +32,9 @@ public class getListOfTickets implements IgetListOfTickets
 		this.displayTicket = displayTicket;
 	}
 	
-	public void listOfTickets()
+	public String listOfTickets()
 	{
+		String tableofticket="";
 		try 
 		{
 			connect = IConnectionMng.establishConnection();
@@ -49,14 +50,15 @@ public class getListOfTickets implements IgetListOfTickets
 			    storeTicketData.addFetchedTickets(resultSet,tableMetaData);
 			    Map<String, ArrayList <String>> ticketsData = storeTicketData.getTableData();
 			    List<String> columnOfTable = storeTicketData.getTicketColumns();
-			    displayTicket.printTicketsDetails(ticketsData,columnOfTable);
+			    tableofticket=displayTicket.printTicketsDetails(ticketsData,columnOfTable);
 			}
-
 			IConnectionMng.closeConnection();
+			
 		}
 		catch (SQLException e)
 		{
 				e.printStackTrace();
 		}
+		return tableofticket;
 	}
 }

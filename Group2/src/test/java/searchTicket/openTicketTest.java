@@ -1,29 +1,32 @@
 package searchTicket;
 
-import org.junit.Before;
 import org.junit.Test;
 
+import reuseableClasses.abstractfactory.IreuseableClassesFactoryTest;
+import reuseableClasses.abstractfactory.reuseableClassFactoryTest;
 import reuseablePackage.interfaces.IopenTicket;
-import searchTicket.abstarctfactory.IsearchFactoryTest;
-import searchTicket.abstarctfactory.searchFactoryTest;
+import userinterface.IInputOutputHandler;
+import userinterface.InputOutputHandler;
 
 
 public class openTicketTest
 {
-	IsearchFactoryTest  searchfactorytest = searchFactoryTest.instance();
-	IopenTicket openticket;
-	
-	@Before
-    public void initialize()
-    {
-		openticket = searchfactorytest.openticketMock();
-    }
-
-	
+	private IreuseableClassesFactoryTest reuseableclassfactory = reuseableClassFactoryTest.instance();
+	IopenTicket openticket = reuseableclassfactory.openticketMock();
+	IInputOutputHandler inputoutputhandler = new InputOutputHandler();
+//	
+//	@Before
+//    public void initialize()
+//    {
+//		openticket = searchfactorytest.openticketMock();
+//    }
+//
+//	
 	@Test
 	public void openTicketTest()
 	{
 		String TicketId = "111";
-		openticket.openticket(TicketId);
+		String output = openticket.openticket(TicketId);
+		inputoutputhandler.displayMethod(output);
 	}
 }

@@ -5,12 +5,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import reuseablePackage.abstractFactory.IreuseableClassFactory;
+import reuseablePackage.abstractFactory.reuseableClassFactory;
+import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.IdisplayTicket;
-import searchTicket.abstarctfactory.IsearchFactoryTest;
-import searchTicket.abstarctfactory.searchFactoryTest;
 import searchTicket.interfaces.IsearchTicket;
-import userinterface.IInputOutputHandler;
-import userinterface.InputOutputHandler;
 
 public class searchTicketMock implements IsearchTicket
 {
@@ -18,19 +17,20 @@ public class searchTicketMock implements IsearchTicket
 	Map<String, ArrayList<String>> ticketsData ;
 	List<String> columnOfTable;
 	
-	IsearchFactoryTest  searchfactorytest =  searchFactoryTest.instance();
-	IInputOutputHandler inputoutputhandler = new InputOutputHandler();
-	private IdisplayTicket displayUser;
-	
+	private IreuseableClassFactory reuseableclassfactory = reuseableClassFactory.instance();
+	private ITableGenerator generateTable;
+	private IdisplayTicket displayticket;
+
 	
 	public searchTicketMock()
 	{
-		displayUser = searchfactorytest.displayUser(inputoutputhandler);
+		generateTable = reuseableclassfactory.tableFormate();
+		displayticket = reuseableclassfactory.displayUser(generateTable);
 		ticketsData = new LinkedHashMap<String, ArrayList<String>>();
 		columnOfTable = new ArrayList<String>();
 	}
 	
-	public void searchbyTicket(int choice, String searchInput) 
+	public String searchbyTicket(int choice, String searchInput) 
 	{
 		addColumnsOfTable();
 		if(choice==1)
@@ -129,7 +129,8 @@ public class searchTicketMock implements IsearchTicket
 				ticketsData.get("111").add("");
 			}
 		}
-		displayUser.printTicketsDetails(ticketsData,columnOfTable);
+		String output = displayticket.printTicketsDetails(ticketsData,columnOfTable);
+		return output;
 	}
 
 	private void addColumnsOfTable() {

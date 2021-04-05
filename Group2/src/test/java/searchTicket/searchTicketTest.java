@@ -6,12 +6,15 @@ import org.junit.Test;
 import searchTicket.abstarctfactory.IsearchFactoryTest;
 import searchTicket.abstarctfactory.searchFactoryTest;
 import searchTicket.interfaces.IsearchTicket;
+import userinterface.IInputOutputHandler;
+import userinterface.InputOutputHandler;
 
 
 public class searchTicketTest 
 {
 	IsearchFactoryTest  searchfactorytest = searchFactoryTest.instance();
 	IsearchTicket searchticket;
+	IInputOutputHandler inputoutputhandler = new InputOutputHandler();
 	
 	@Before
     public void initialize()
@@ -24,42 +27,48 @@ public class searchTicketTest
 	public void searchbyTicketIDTest()
 	{
 		String TicketId = "111";
-		searchticket.searchbyTicket(1, TicketId);
+		String output = searchticket.searchbyTicket(1, TicketId);
+		inputoutputhandler.displayMethod(output);
 	}
 	
 	@Test
 	public void searchbyTicketAssigneeTest()
 	{
 		String AssigneeName = "Tejasw";
-		searchticket.searchbyTicket(2, AssigneeName);
+		String output = searchticket.searchbyTicket(2, AssigneeName);
+		inputoutputhandler.displayMethod(output);
 	}
 	
 	@Test
 	public void searchbyTicketTypeTest()
 	{
 		String TicketType = "bug";
-		searchticket.searchbyTicket(3, TicketType);
+		String output = searchticket.searchbyTicket(3, TicketType);
+		inputoutputhandler.displayMethod(output);
 	}
 	
 	@Test
 	public void searchAllTicketTest()
 	{
 		String TicketIAll = null;
-		searchticket.searchbyTicket(4, TicketIAll);
+		String output = searchticket.searchbyTicket(4, TicketIAll);
+		inputoutputhandler.displayMethod(output);
 	}
 	
 	@Test
 	public void searchbyTicketCreatorTest()
 	{
 		String TicketCreatorId= "EMP123";
-		searchticket.searchbyTicket(5, TicketCreatorId);
+		String output = searchticket.searchbyTicket(5, TicketCreatorId);
+		inputoutputhandler.displayMethod(output);
 	}
 	
 	@Test
 	public void searchTicketbyKeyWordTest()
 	{
 		String keyword = "login";
-		searchticket.searchbyTicket(6, keyword);
+		String output = searchticket.searchbyTicket(6, keyword);
+		inputoutputhandler.displayMethod(output);
 	}
 	
 }

@@ -32,8 +32,9 @@ public class searchTicket implements IsearchTicket
 		this.displayUser = displayuser;
 		this.ConnectionMng = ConnectionMng;
 	}
-	public void searchbyTicket(int choice, String searchInput) 
+	public String searchbyTicket(int choice, String searchInput) 
 	{
+		String output="";
 		try 
 		{
 			connect = ConnectionMng.establishConnection();
@@ -49,7 +50,7 @@ public class searchTicket implements IsearchTicket
 			    storeTicketData.addFetchedTickets(resultSet,tableMetaData);
 			    LinkedHashMap<String,ArrayList<String>> ticketData = storeTicketData.getTableData();
 			    List<String> columnOfTable = storeTicketData.getTicketColumns();
-			    displayUser.printTicketsDetails(ticketData,columnOfTable);
+			    output = displayUser.printTicketsDetails(ticketData,columnOfTable);
 			}
 	
 			ConnectionMng.closeConnection();
@@ -58,5 +59,6 @@ public class searchTicket implements IsearchTicket
 		{
 				e.printStackTrace();
 		}
+		return output;
 	}	
 }
