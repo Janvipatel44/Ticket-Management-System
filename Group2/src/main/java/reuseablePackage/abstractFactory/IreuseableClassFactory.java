@@ -6,6 +6,7 @@ import reuseablePackage.interfaces.IdisplayTicket;
 import reuseablePackage.interfaces.IgetListOfTickets;
 import reuseablePackage.interfaces.IopenTicket;
 import reuseablePackage.interfaces.IstoreTicketData;
+import reuseablePackage.interfaces.IticketStatusInProgress;
 import userinterface.IInputOutputHandler;
 
 
@@ -18,5 +19,5 @@ public interface IreuseableClassFactory
 	IopenTicket openticket(IstoreTicketData storeTicketData,IdisplayTicket displayUser,IConnectionManager ConnectionMng);
 	IcheckTicketExists checkticketexists();
 	IgetListOfTickets getalltickets(IstoreTicketData storeTicketData,IdisplayTicket displaytickets,IConnectionManager ConnectionMng);
-		
+	IticketStatusInProgress ticketInProgress(IConnectionManager ConnectionMng);
 }

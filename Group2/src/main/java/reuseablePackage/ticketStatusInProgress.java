@@ -1,4 +1,4 @@
-package updateTicketDetails;
+package reuseablePackage;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 import database.ConnectionManager;
 import database.IConnectionManager;
-import updateTicketDetails.interfaces.IticketStatusInProgress;
+import reuseablePackage.interfaces.IticketStatusInProgress;
 
 public class ticketStatusInProgress implements IticketStatusInProgress 
 {
@@ -21,7 +21,12 @@ public class ticketStatusInProgress implements IticketStatusInProgress
 	private ResultSet resultSet=null;
 	static String fileName = "ConfigurationFile";
 	private double hours = -1;
-	private IConnectionManager ConnectionMng=new ConnectionManager(fileName);;
+	private IConnectionManager ConnectionMng=new ConnectionManager(fileName);
+	
+	public ticketStatusInProgress(IConnectionManager ConnectionMng) 
+	{
+		this.ConnectionMng=ConnectionMng;
+	}
 	
 	public double calculateHours(String ticketID)
 	{

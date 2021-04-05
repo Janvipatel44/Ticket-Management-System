@@ -6,11 +6,13 @@ import reuseablePackage.displayTicket;
 import reuseablePackage.getListOfTickets;
 import reuseablePackage.openTicket;
 import reuseablePackage.storeTicketData;
+import reuseablePackage.ticketStatusInProgress;
 import reuseablePackage.interfaces.IcheckTicketExists;
 import reuseablePackage.interfaces.IdisplayTicket;
 import reuseablePackage.interfaces.IgetListOfTickets;
 import reuseablePackage.interfaces.IopenTicket;
 import reuseablePackage.interfaces.IstoreTicketData;
+import reuseablePackage.interfaces.IticketStatusInProgress;
 import userinterface.IInputOutputHandler;
 
 public class reuseableClassFactory implements IreuseableClassFactory {
@@ -61,6 +63,11 @@ public class reuseableClassFactory implements IreuseableClassFactory {
 	public IgetListOfTickets getalltickets(IstoreTicketData storeTicketData,IdisplayTicket displaytickets,IConnectionManager ConnectionMng)
 	{
 		return new getListOfTickets(storeTicketData,displaytickets,ConnectionMng);
+	}
+	
+	public IticketStatusInProgress ticketInProgress(IConnectionManager ConnectionMng)
+	{
+		return new ticketStatusInProgress(ConnectionMng);
 	}
 	
 }
