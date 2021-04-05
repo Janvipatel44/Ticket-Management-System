@@ -16,35 +16,56 @@ import reuseablePackage.interfaces.IstoreTicketData;
 import userinterface.IInputOutputHandler;
 import userinterface.InputOutputHandler;
 
-public class userInput 
+public class commentOnTicketScreen implements IcommentOnTicketScreen
 {
+	Scanner sc = new Scanner(System.in);
 	
-	public static void main(String args[])
-	{
-		String ticketId = null;
-		String commentString = null;
-		boolean result = false;
-		boolean commentPostResult=false;
-		String employeeID = "emp123";
-		Scanner sc = new Scanner(System.in);
-		final String ConfigurationFile = "ConfigurationFile";
+	private String ticketId = null;
+	private String commentString = null;
+	private boolean result = false;
+	private boolean commentPostResult=false;
+	private String employeeID = "emp123";
+	private final String ConfigurationFile = "ConfigurationFile";
 
-		IConnectionManager ConnectionMng = new ConnectionManager(ConfigurationFile);
-		IInputOutputHandler inputoutputhandler = new InputOutputHandler();
-		IcommentOnTicketFactory commentonticketfactory = commentOnTicketFactory.instance();
-		IcommentOnTicket postcomment = commentonticketfactory.postComment(ConnectionMng);
-		IreuseableClassFactory reuseableclassfactory = reuseableClassFactory.instance();
-		IcheckTicketExists checkticketexists= reuseableclassfactory.checkticketexists();
+	IConnectionManager ConnectionMng = new ConnectionManager(ConfigurationFile);
+	IInputOutputHandler inputoutputhandler = new InputOutputHandler();
+	
+	IcommentOnTicketFactory commentonticketfactory;
+	IcommentOnTicket postcomment;
+	
+	IreuseableClassFactory reuseableclassfactory ;
+	IcheckTicketExists checkticketexists;
+	IstoreTicketData storeTicketData;
+	IdisplayTicket displaytickets;
+	IgetListOfTickets getalltickets;
+	
+	public commentOnTicketScreen()
+	{
+		ConnectionMng = new ConnectionManager(ConfigurationFile);
+		inputoutputhandler = new InputOutputHandler();
 		
-		IstoreTicketData storeTicketData =reuseableclassfactory.storeTicketData();
-		IdisplayTicket displaytickets = reuseableclassfactory.displayUser(inputoutputhandler);
-		IgetListOfTickets getalltickets = reuseableclassfactory.getalltickets(storeTicketData,displaytickets,ConnectionMng);
+		commentonticketfactory = commentOnTicketFactory.instance();
+		postcomment = commentonticketfactory.postComment(ConnectionMng);
+		
+		reuseableclassfactory = reuseableClassFactory.instance();
+		checkticketexists= reuseableclassfactory.checkticketexists();
+		storeTicketData =reuseableclassfactory.storeTicketData();
+		displaytickets = reuseableclassfactory.displayUser(inputoutputhandler);
+		getalltickets = reuseableclassfactory.getalltickets(storeTicketData,displaytickets,ConnectionMng);
+	}
+	
+	public  void commentonticketscreen()
+	{
 		
 		
 		getalltickets.listOfTickets();
+		
 		inputoutputhandler.displayMethod("Enter Ticket Id you want to post comment on.:");
+		
 		ticketId = inputoutputhandler.input();
+		
 		result=checkticketexists.ticketExists(ticketId);
+		
 		if(result == true)
 		{
 			inputoutputhandler.displayMethod("Write comment you want to post");
