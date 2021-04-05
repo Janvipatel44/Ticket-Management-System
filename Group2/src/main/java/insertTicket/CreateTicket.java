@@ -12,7 +12,7 @@ public class CreateTicket implements ICreateTicket
 {
 	private String ticketID = null;
     private String description = null;
-    private String startDate = null;
+    private Date startDate = null;
     private String endDate = null;
     private String reporterID = null;
     private String employeeID = null;
@@ -32,8 +32,8 @@ public class CreateTicket implements ICreateTicket
 	
 	public CreateTicket(String ticketID, String description,  String expectedEndDate, String reporterID,
 			String employeeID,  String assigneeName, String ticketType, String ticketStatus, int priority, int urgency, int impact,
-			String ticketLevel, String customerID, String customerName, String creatorID, String creatorName) {
-		
+			String ticketLevel, String customerID, String customerName, String creatorID, String creatorName)
+	{
 		this.ticketID = ticketID;
 	    this.description = description;
 	    this.expectedEndDateString = expectedEndDate;
@@ -49,57 +49,64 @@ public class CreateTicket implements ICreateTicket
 	    this.customerID = customerID;
 	    this.customerName = customerName;
 	    this.creatorID = creatorID;
-	    this.creatorName = creatorName;
-	  
+	    this.creatorName = creatorName;  
 	}
-	
-    
-    public String getTicketID() {
+	   
+    public String getTicketID() 
+    {
         return ticketID;
     }
     
-
-    public String getDescription() {
+    public String getDescription()
+    {
         return description;
     }
     
-    public String generateStartDate() {
-    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
-	    LocalDateTime now = LocalDateTime.now();  
-	    System.out.println(dtf.format(now)); 
-	    startDate = dtf.format(now);
+    public Date generateStartDate() throws ParseException 
+    {
+    	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+	    String now = LocalDateTime.now().toString();  
+    	expectedEndDateString =formatter.format(formatter.parse(now));
+    	startDate = (Date)formatter.parseObject(expectedEndDateString);
+    	
         return startDate;
     }
     
-    public Date getExpectedEndDate() throws ParseException {
+    public Date getExpectedEndDate() throws ParseException 
+    {
     	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
-
     	expectedEndDateString =formatter.format(formatter.parse(expectedEndDateString));
     	expectedEndDate = (Date)formatter.parseObject(expectedEndDateString);
     	return expectedEndDate;
     }
     
-    public String getEndDate() {
+    public String getEndDate() 
+    {
         return endDate;
     }
     
-    public String getReporterID() {
+    public String getReporterID() 
+    {
         return reporterID;
     }
 
-    public String getEmployeeID() {
+    public String getEmployeeID() 
+    {
         return employeeID;
     }
 
-    public String getAssigneeName() {
+    public String getAssigneeName() 
+    {
         return assigneeName;
     }
     
-    public String getTicketType() {
+    public String getTicketType()
+    {
         return ticketType;
     }
     
-    public String getTicketStatus() {
+    public String getTicketStatus()
+    {
         return ticketStatus;
     }
     

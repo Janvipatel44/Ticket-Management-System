@@ -8,6 +8,10 @@ import insertTicket.UserInputTicket;
 import insertTicket.Interfaces.IUserInputTicket;
 import insertTicket.abstractFactory.IInsertTicketFactory;
 import insertTicket.abstractFactory.InsertTicketFactory;
+import userinterface.GenerateTicketScreen;
+import userinterface.IGenerateTicketScreen;
+import userinterface.IInputOutputHandler;
+import userinterface.InputOutputHandler;
 
 public class main {
 	
@@ -19,7 +23,8 @@ public class main {
 		    String employeeId = null;
 		    String date = null;
 			IInsertTicketFactory  insertTicketFactory = InsertTicketFactory.instance();
-			
+			IInputOutputHandler inputOutputHandler = new InputOutputHandler();
+			IGenerateTicketScreen generateTicketScreen = new GenerateTicketScreen(inputOutputHandler);
 		    while(input != -1){
 		        System.out.println("Please enter your desired operation:");
 		        System.out.println("1: Create Tickets");
@@ -36,8 +41,8 @@ public class main {
 		            break;
 		       
 		            case 1:
-		            	insertTicketFactory.inputTicket().userInputTicketDetails();
-					
+		            	//insertTicketFactory.inputTicket().userInputTicketDetails();
+		            	generateTicketScreen.displayTicketGenerationScreen();
 		            break;
 		            
 		            case 2:

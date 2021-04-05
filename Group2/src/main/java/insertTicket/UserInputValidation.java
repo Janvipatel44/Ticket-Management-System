@@ -8,6 +8,9 @@ import insertTicket.Interfaces.IInputStringValidation;
 import insertTicket.Interfaces.IUserInputValidation;
 import insertTicket.abstractFactory.IInsertTicketFactory;
 import insertTicket.abstractFactory.InsertTicketFactory;
+import userinterface.IInputOutputHandler;
+import userinterface.abstractFactory.IUserInterfaceFactory;
+import userinterface.abstractFactory.UserInterfaceFactory;
 
 public class UserInputValidation implements IUserInputValidation {
 	
@@ -19,15 +22,17 @@ public class UserInputValidation implements IUserInputValidation {
 		IInputStringValidation ticketStringValidation = insertTicketFactory.ticketStringValidation();
 		IInputDateValidation dateValidation = insertTicketFactory.dateValidation();
 		IInputRangeValidation rangeValidation = insertTicketFactory.rangeValidation();
+		IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
+		IInputOutputHandler inputOutputHandler = userInterfaceFactory.getInputOutputHandler();
 		
 		HashMap<String, Integer> stringLength = new HashMap<String, Integer>();
 		stringLength.put("ticketID", 30);
-		stringLength.put("expectedEndDate", 10);
-		stringLength.put("endDate", 10);
+		stringLength.put("expectedEndDate", 19);
 		stringLength.put("reporterID", 30);
 		stringLength.put("employeeID", 30);
 		stringLength.put("assigneeName", 45);
 		stringLength.put("ticketType", 25);
+		
 		boolean success = false;
 		switch (input) {
 		case validateTicketID:
@@ -64,8 +69,14 @@ public class UserInputValidation implements IUserInputValidation {
 			success = true;
 			break;
 		case validateExpectedEndDate:
+		
 			if (ticketStringValidation.isStringContainsSpecialCharacters(validationString) == true) {
 				System.err.println("String contains Special Characters");
+				success = false;
+				break;
+			}
+			if (ticketStringValidation.isStringLengthValid(validationString, stringLength.get("expectedEndDate")) == true ) {
+				inputOutputHandler.displayMethod("String contains Special Characters");
 				success = false;
 				break;
 			}

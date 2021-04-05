@@ -1,5 +1,4 @@
 package userinterface.abstractFactory;
-import customerAnalysis.Interfaces.ICustomerAnalysis;
 import userinterface.*;
 public interface IUserInterfaceFactory
 {
@@ -15,4 +14,5 @@ public interface IUserInterfaceFactory
     public IRatingScreen getRatingScreen(IInputOutputHandler inputOutputHandler);
     public ICustomerAnalysisScreen getCustomerAnalysisScreen(IInputOutputHandler inputOutputHandler);
     public IEmployeeMilestoneScreen getEmployeeMilestoneScreen(IInputOutputHandler inputOutputHandler);
+    public IGenerateTicketScreen getGenerateTicketScreen(IInputOutputHandler inputOutputHandler);
 }
