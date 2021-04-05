@@ -3,11 +3,13 @@ package reuseablePackage.abstractFactory;
 import database.IConnectionManager;
 import reuseablePackage.checkTicketExists;
 import reuseablePackage.displayTicket;
+import reuseablePackage.exportTicket;
 import reuseablePackage.getListOfTickets;
 import reuseablePackage.openTicket;
 import reuseablePackage.storeTicketData;
 import reuseablePackage.interfaces.IcheckTicketExists;
 import reuseablePackage.interfaces.IdisplayTicket;
+import reuseablePackage.interfaces.IexportTicket;
 import reuseablePackage.interfaces.IgetListOfTickets;
 import reuseablePackage.interfaces.IopenTicket;
 import reuseablePackage.interfaces.IstoreTicketData;
@@ -61,6 +63,11 @@ public class reuseableClassFactory implements IreuseableClassFactory {
 	public IgetListOfTickets getalltickets(IstoreTicketData storeTicketData,IdisplayTicket displaytickets,IConnectionManager ConnectionMng)
 	{
 		return new getListOfTickets(storeTicketData,displaytickets,ConnectionMng);
+	}
+	
+	public IexportTicket exportTicketData(IstoreTicketData storeTicketData) 
+	{
+		return new exportTicket(storeTicketData);
 	}
 	
 }

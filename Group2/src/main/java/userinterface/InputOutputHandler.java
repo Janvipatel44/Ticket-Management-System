@@ -2,8 +2,6 @@ package userinterface;
 
 import java.util.Scanner;
 
-import validations.StringValidations;
-
 public class InputOutputHandler implements IInputOutputHandler {
 
 	public void displayMethod(String printMessage) {
@@ -14,7 +12,7 @@ public class InputOutputHandler implements IInputOutputHandler {
 		int i = -1;
 		Scanner scanner = new Scanner(System.in);
 		String nextLine = scanner.nextLine();
-		scanner.close();
+		
 		return nextLine;
 	}
 
@@ -22,7 +20,7 @@ public class InputOutputHandler implements IInputOutputHandler {
 	{
 		Scanner scanner = new Scanner(System.in);
 		int input = scanner.nextInt();
-		scanner.close();
+		
 		return input;
 	}
 }
