@@ -11,8 +11,8 @@ public class ModifyUserRoleMenuTask implements IMenuTask {
 
 	@Override
 	public void runMenuTask(IParameterizedUser user, IInputOutputHandler inputOutputHandler) {
-		IUserInterfaceFactory userInterfacefactory = UserInterfaceFactory.instance();
-		IModifyUserRoleScreen modifyUserRoleScreen = userInterfacefactory.getModifyUserRoleScreen(inputOutputHandler);
+		IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
+		IModifyUserRoleScreen modifyUserRoleScreen = userInterfaceFactory.getModifyUserRoleScreen(inputOutputHandler);
 		modifyUserRoleScreen.displayModifyUserRoleScreen(user);
 	}
 

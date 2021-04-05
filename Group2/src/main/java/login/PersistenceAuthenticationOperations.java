@@ -3,17 +3,24 @@ import database.IConnectionManager;
 import database.abstractfactory.DatabaseFactory;
 import database.abstractfactory.IDatabaseFactory;
 import login.Interfaces.*;
-import login.abstractfactory.ILoginFactory;
-import login.abstractfactory.LoginFactory;
-
+import login.abstractfactory.*;
+import mailservice.ReadPropertiesFile;
+import java.io.IOException;
 import java.sql.*;
-
+import java.util.Properties;
 public class PersistenceAuthenticationOperations implements IPersistenceAuthenticationOperations
 {
     ILoginFactory loginFactory = LoginFactory.instance();
     private final IDatabaseFactory databaseFactory = DatabaseFactory.instance();
-    private String configurationFile = "ConfigurationFile.txt";
-    private final IConnectionManager connection = databaseFactory.getConnectionManager(configurationFile);
+    private String projectConfigurationFile = "ProjectConfiguration.properties";
+    private String dbConfigurationKey = "DBConfiguration";
+    private final IConnectionManager connection;
+
+    public PersistenceAuthenticationOperations() throws IOException {
+        Properties properties = ReadPropertiesFile.readConfigPropertyFile(projectConfigurationFile);
+        String configurationFile = (String)properties.get(dbConfigurationKey);
+        connection = databaseFactory.getConnectionManager(configurationFile);
+    }
 
     public String getPassword(String employeeID)
     {
@@ -21,6 +28,12 @@ public class PersistenceAuthenticationOperations implements IPersistenceAuthenti
         String procedureName = "getPassword";
         Connection dummyConnection=null;
         CallableStatement procedureCall;
+
+        if(connection == null)
+        {
+            return null;
+        }
+
         try {
             dummyConnection = connection.establishConnection();
             procedureCall =	dummyConnection.prepareCall("{call "+procedureName+"(?,?)}");
@@ -58,6 +71,11 @@ public class PersistenceAuthenticationOperations implements IPersistenceAuthenti
         String procedureName = "getUserDetails";
         Connection dummyConnection=null;
         CallableStatement procedureCall;
+
+        if(connection == null)
+        {
+            return null;
+        }
 
         try {
             dummyConnection = connection.establishConnection();

@@ -1,23 +1,45 @@
 package Rating;
+import customerAnalysis.PersistenceCustomer;
 import database.*;
+
+import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.Properties;
+
 import Rating.interfaces.*;
 import database.abstractfactory.*;
+import mailservice.ReadPropertiesFile;
+
 public class PersistenceRating implements IPersistenceRating
 {
     private final IDatabaseFactory databaseFactory = DatabaseFactory.instance();
-    private final String configurationFile = "ConfigurationFile.txt";
-    private final IConnectionManager connection = databaseFactory.getConnectionManager(configurationFile);
+    private String projectConfigurationFile = "ProjectConfiguration.properties";
+    private String dbConfigurationKey = "DBConfiguration";
+    private IConnectionManager connection;
     IDatabaseOperations databaseOperations = databaseFactory.getDatabaseOperations();
+
+    public PersistenceRating() throws IOException {
+        Properties properties = ReadPropertiesFile.readConfigPropertyFile(projectConfigurationFile);
+        String configurationFile = (String)properties.get(dbConfigurationKey);
+        connection = databaseFactory.getConnectionManager(configurationFile);
+    }
 
     public String getPersistenceCreatorID(String ticketID)
     {
         Connection dummyConnection=null;
         CallableStatement procedureCall;
-        try {
+
+        if(connection == null)
+        {
+            return null;
+        }
+
+        try
+        {
+
             String procedureName = "checkCreator";
             dummyConnection = connection.establishConnection();
             procedureCall = dummyConnection.prepareCall("{call "+procedureName+"(?,?}");

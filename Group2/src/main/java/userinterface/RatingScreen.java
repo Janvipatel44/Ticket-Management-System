@@ -2,9 +2,9 @@ package userinterface;
 import Rating.abstractfactory.*;
 import Rating.interfaces.*;
 import login.Interfaces.IParameterizedUser;
-import userinterface.abstractFactory.IUserInterfaceFactory;
-import userinterface.abstractFactory.UserInterfaceFactory;
-public class RatingScreen
+import userinterface.abstractFactory.*;
+import java.io.IOException;
+public class RatingScreen implements IRatingScreen
 {
     private final IInputOutputHandler inputOutputHandler;
     private final IRatingFactory ratingFactory;
@@ -28,7 +28,7 @@ public class RatingScreen
         int userRecommendationRating;
         IPersistenceRating persistenceRating;
         IRatingQuestionnaire ratingQuestionnaire;
-        IRatingAssignee ratingAssignee;
+        IRatingAssignee ratingAssignee = null;
 
         inputOutputHandler.displayMethod("Enter ticket ID to provide rating:\n");
         ticketID = inputOutputHandler.input();
@@ -46,7 +46,21 @@ public class RatingScreen
         userRecommendationRating = inputOutputHandler.inputInt();
 
         ratingQuestionnaire = ratingFactory.getRatingQuestionnaire(userSatisfactionRating, userFeedbackRating, userExperienceRating, userRecommendationRating);
-        ratingAssignee = ratingFactory.getRatingAssignee(ratingQuestionnaire);
+        try
+        {
+            ratingAssignee = ratingFactory.getRatingAssignee(ratingQuestionnaire);
+        }
+        catch (IOException e)
+        {
+            inputOutputHandler.displayMethod("Rating process encountered an issue. Please contact system administrator.");
+        }
+
+        if(ratingAssignee == null)
+        {
+            backToHomePageScreen = userInterfaceFactory.getBackToHomePageScreen(inputOutputHandler);
+            backToHomePageScreen.displayGoBackToHomePageOption(user);
+            return;
+        }
 
         employeeID = user.getEmployeeID();
         if(ratingAssignee.provideRating(employeeID, ticketID))
