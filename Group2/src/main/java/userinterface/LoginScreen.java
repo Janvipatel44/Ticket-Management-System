@@ -1,12 +1,12 @@
 package userinterface;
 import login.Interfaces.*;
 import login.abstractfactory.*;
+import userinterface.abstractFactory.IUserInterfaceFactory;
 import userinterface.abstractFactory.UserInterfaceFactory;
-import userinterface.abstractFactory.UserInterfaceFactoryImplementation;
 public class LoginScreen implements ILoginScreen
 {
     IInputOutputHandler inputOutputHandler;
-    UserInterfaceFactory userInterfaceFactory = new UserInterfaceFactoryImplementation();
+    IUserInterfaceFactory userInterfaceFactory = new UserInterfaceFactory();
     ILoginFactory loginFactory = LoginFactory.instance();
 
     public LoginScreen(IInputOutputHandler inputOutputHandler)
