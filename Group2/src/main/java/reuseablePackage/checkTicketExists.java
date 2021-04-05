@@ -11,7 +11,6 @@ import reuseablePackage.interfaces.IcheckTicketExists;
 
 public class checkTicketExists  implements IcheckTicketExists
 {
-	
 	private Connection connect=null;
 	private CallableStatement SPstatement=null;
 	private static ResultSet resultSet=null;
@@ -103,4 +102,5 @@ public class checkTicketExists  implements IcheckTicketExists
 		}
 		return result;
 	}
+
 }

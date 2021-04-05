@@ -1,9 +1,8 @@
-package updateTicketDetails;
+package reuseableClasses;
 
 import reuseablePackage.interfaces.IcheckTicketExists;
 
 public class checkTicketExistsMock implements IcheckTicketExists
-
 {
 	int ticketExist = 0;
 

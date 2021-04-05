@@ -1,12 +1,30 @@
 package userinterface.abstractFactory;
-import managerfeatures.abstractfactory.IManagerFeaturesFactory;
-import managerfeatures.abstractfactory.ManagerFeaturesFactory;
-import managerfeatures.interfaces.IManagerTeamTracking;
-import roles.abstractfactory.IRoleFactory;
-import roles.abstractfactory.RoleFactory;
-import roles.interfaces.IMenuItemsByRole;
-import roles.interfaces.IModifyUserRole;
-import userinterface.*;
+import userinterface.BackToHomePageOption;
+import userinterface.CustomerAnalysisScreen;
+import userinterface.EmployeeMilestoneScreen;
+import userinterface.ForgotPasswordScreen;
+import userinterface.HomePageScreen;
+import userinterface.IBackToHomePageScreen;
+import userinterface.ICustomerAnalysisScreen;
+import userinterface.IEmployeeMilestoneScreen;
+import userinterface.IForgotPasswordScreen;
+import userinterface.IHomePageScreen;
+import userinterface.IInputOutputHandler;
+import userinterface.ILoginScreen;
+import userinterface.IManagerTeamTrackingScreen;
+import userinterface.IModifyUserRoleScreen;
+import userinterface.IRatingScreen;
+import userinterface.IRegistrationScreen;
+import userinterface.IServiceNowWelcomeScreen;
+import userinterface.InputOutputHandler;
+import userinterface.IupdateTicketScreen;
+import userinterface.LoginScreen;
+import userinterface.ManagerTeamTrackingScreen;
+import userinterface.ModifyUserRoleScreen;
+import userinterface.RatingScreen;
+import userinterface.RegistrationScreen;
+import userinterface.ServiceNowWelcomeScreen;
+import userinterface.updateTicketScreen;
 public class UserInterfaceFactory implements IUserInterfaceFactory
 {
 	private static IUserInterfaceFactory uniqueInstance = null;
@@ -80,4 +98,10 @@ public class UserInterfaceFactory implements IUserInterfaceFactory
     {
         return new EmployeeMilestoneScreen(inputOutputHandler);
     }
+    
+    public IupdateTicketScreen getUpdateTicketScreen(IInputOutputHandler inputOutputHandler)
+    {
+        return new updateTicketScreen(inputOutputHandler);
+    }
+
 }

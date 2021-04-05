@@ -7,6 +7,8 @@ import java.text.ParseException;
 
 import org.junit.Test;
 
+import reuseableClasses.abstractfactory.IreuseableClassesFactoryTest;
+import reuseableClasses.abstractfactory.reuseableClassFactoryTest;
 import reuseablePackage.interfaces.IcheckTicketExists;
 import updateTicketDetails.abstractfactory.IupdateTicketDetailsfactoryTest;
 import updateTicketDetails.abstractfactory.updateTicketDetailsfactoryTest;
@@ -14,9 +16,10 @@ import updateTicketDetails.interfaces.IupdateTicket;
 
 public class updateTicketTest {
 
+	IreuseableClassesFactoryTest reuseableClassFactorytest = reuseableClassFactoryTest.instance();
 	IupdateTicketDetailsfactoryTest updateticketsdetailsfactore = updateTicketDetailsfactoryTest.instance();
 	IupdateTicket updateticketdetails = updateticketsdetailsfactore.updateticketMock();
-	IcheckTicketExists checkticketexists = updateticketsdetailsfactore.checkticketexistsMock();
+	IcheckTicketExists checkticketexists = reuseableClassFactorytest.checkticketexistMock();
 	
 	@Test
 	public void updateForManagerWithValidTicketIDAndValidEmployeeID() {

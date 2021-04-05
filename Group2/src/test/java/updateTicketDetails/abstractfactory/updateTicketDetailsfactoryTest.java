@@ -1,8 +1,6 @@
 package updateTicketDetails.abstractfactory;
 
-import reuseablePackage.interfaces.IcheckTicketExists;
 import reuseablePackage.interfaces.IticketStatusInProgress;
-import updateTicketDetails.checkTicketExistsMock;
 import updateTicketDetails.ticketStatusInProgressMock;
 import updateTicketDetails.updateTicketTestMock;
 import updateTicketDetails.interfaces.IupdateTicket;
@@ -24,11 +22,6 @@ public class updateTicketDetailsfactoryTest implements IupdateTicketDetailsfacto
         }
         return uniqueInstance;
     }
-
-    public IcheckTicketExists checkticketexistsMock()
-	{
-		return new checkTicketExistsMock();
-	}
 	
     public  IticketStatusInProgress ticketInProgressMock()
     {
