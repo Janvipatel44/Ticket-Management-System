@@ -1,4 +1,16 @@
 package userinterface.abstractFactory;
+import employeePerformance.GenerateEmployeePerformanceReport;
+import employeePerformance.Interfaces.IExportEmployeePerformanceReport;
+import employeePerformance.Interfaces.IGenerateEmployeePerformanceReport;
+import employeePerformance.Interfaces.IInputEmployeeDetails;
+import managerfeatures.abstractfactory.IManagerFeaturesFactory;
+import managerfeatures.abstractfactory.ManagerFeaturesFactory;
+import managerfeatures.interfaces.IManagerTeamTracking;
+import roles.abstractfactory.IRoleFactory;
+import roles.abstractfactory.RoleFactory;
+import roles.interfaces.IMenuItemsByRole;
+import roles.interfaces.IModifyUserRole;
+import userinterface.*;
 import userinterface.BackToHomePageOption;
 import userinterface.CustomerAnalysisScreen;
 import userinterface.EmployeeMilestoneScreen;
@@ -16,25 +28,39 @@ import userinterface.IModifyUserRoleScreen;
 import userinterface.IRatingScreen;
 import userinterface.IRegistrationScreen;
 import userinterface.IServiceNowWelcomeScreen;
+import userinterface.InputOutputHandler;
+import userinterface.IsearchTicketScreen;
+
+import userinterface.InputOutputHandler;
+import userinterface.IsortTciketScreen;
+
+import userinterface.IdeleteTicketScreen;
 import userinterface.ITwitterPostScreen;
 import userinterface.InputOutputHandler;
 import userinterface.IupdateTicketScreen;
 import userinterface.IcommentOnTicketScreen;
 import userinterface.InputOutputHandler;
+
 import userinterface.LoginScreen;
 import userinterface.ManagerTeamTrackingScreen;
 import userinterface.ModifyUserRoleScreen;
 import userinterface.RatingScreen;
 import userinterface.RegistrationScreen;
 import userinterface.ServiceNowWelcomeScreen;
+import userinterface.searchTicketScreen;
+
+import userinterface.sortTicketScreen;
+
+import userinterface.deleteTicketScreen;
 import userinterface.TwitterPostScreen;
 import userinterface.updateTicketScreen;
 import userinterface.commentOnTicketScreen;
+
 public class UserInterfaceFactory implements IUserInterfaceFactory
 {
 	private static IUserInterfaceFactory uniqueInstance = null;
 	
-	private UserInterfaceFactory() {
+	public UserInterfaceFactory() {
 	}
 	
 	public static IUserInterfaceFactory instance() {
@@ -102,6 +128,30 @@ public class UserInterfaceFactory implements IUserInterfaceFactory
     public IEmployeeMilestoneScreen getEmployeeMilestoneScreen(IInputOutputHandler inputOutputHandler)
     {
         return new EmployeeMilestoneScreen(inputOutputHandler);
+    }
+    
+    public IGenerateTicketScreen getGenerateTicketScreen(IInputOutputHandler inputOutputHandler)
+    {
+        return new GenerateTicketScreen(inputOutputHandler);
+    }
+    public IEmployeePerformanceScreen getEmployeePerformanceScreen(IInputOutputHandler inputOutputHandler)
+    {
+        return new EmployeePerformanceScreen(inputOutputHandler);
+    }
+    
+    public IsearchTicketScreen getsearchTicketScreen(IInputOutputHandler inputOutputHandler)
+    {
+        return new searchTicketScreen(inputOutputHandler);
+    }
+    
+    public IsortTciketScreen getSortTicketScreen(IInputOutputHandler inputOutputHandler)
+    {
+        return new sortTicketScreen(inputOutputHandler);
+    }
+
+    public IdeleteTicketScreen getdeleteTicketScreen(IInputOutputHandler inputOutputHandler)
+    {
+        return new deleteTicketScreen(inputOutputHandler);
     }
     
     public ITwitterPostScreen getTwitterPostScreen(IInputOutputHandler inputOutputHandler)

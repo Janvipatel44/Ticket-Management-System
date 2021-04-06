@@ -2,8 +2,8 @@ package managerfeatures;
 
 import java.util.ArrayList;
 import java.util.List;
-import Tickets.CreateTicket;
-import Tickets.ICreateTicket;
+import insertTicket.CreateTicket;
+import insertTicket.Interfaces.ICreateTicket;
 import managerfeatures.interfaces.IManagerFeaturesDao;
 import validations.StringValidations;
 
@@ -20,7 +20,7 @@ public class ManagerFeaturesDaoMock implements IManagerFeaturesDao {
 		if (StringValidations.isStringValid(managerId) && managerId.trim().equalsIgnoreCase(MANAGER_ID)) {
 			createTickets = new ArrayList<ICreateTicket>();
 			ICreateTicket createTicket = new CreateTicket();
-			createTicket.setEmployeeId(EMPLOYEE_ID);
+			createTicket.setEmployeeID(EMPLOYEE_ID);
 			createTicket.setTicketId(TICKET_ID);
 			createTicket.setDescription(DESCRIPTION);
 			createTickets.add(createTicket);

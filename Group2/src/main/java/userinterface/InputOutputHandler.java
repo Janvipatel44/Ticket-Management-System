@@ -12,6 +12,7 @@ public class InputOutputHandler implements IInputOutputHandler {
 		int i = -1;
 		Scanner scanner = new Scanner(System.in);
 		String nextLine = scanner.nextLine();
+
 		return nextLine;
 	}
 
@@ -19,6 +20,7 @@ public class InputOutputHandler implements IInputOutputHandler {
 	{
 		Scanner scanner = new Scanner(System.in);
 		int input = scanner.nextInt();
+
 		return input;
 	}
 }

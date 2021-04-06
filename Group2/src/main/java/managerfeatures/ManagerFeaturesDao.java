@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import Tickets.CreateTicket;
-import Tickets.ICreateTicket;
+import insertTicket.Interfaces.ICreateTicket;
+import insertTicket.CreateTicket;
 import database.IConnectionManager;
 import database.abstractfactory.DatabaseFactory;
 import database.abstractfactory.IDatabaseFactory;

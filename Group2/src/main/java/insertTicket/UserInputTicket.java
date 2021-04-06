@@ -162,7 +162,12 @@ public class UserInputTicket implements IUserInputTicket {
 	    		customerName, creatorID, creatorName);
 
 	    insertTicket = insertTicketFactory.insertTicket(createTicket);
-	    insertTicket.successfulInsertion();
+	    if(insertTicket.successfulInsertion()==true) {
+	    	
+	    }
+	    else {
+	    	
+	    }
 	    
 		return true;
 	}

@@ -4,5 +4,5 @@ import java.text.ParseException;
 
 public interface IInsertTicket 
 {
-	public void successfulInsertion() throws ParseException;
+	public boolean successfulInsertion() throws ParseException;
 }
