@@ -14,7 +14,7 @@ public class CreateTicketMenuTask implements IMenuTask
 	public void runMenuTask(IParameterizedUser user, IInputOutputHandler inputOutputHandler) 
 	{	
 		IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
-		ILoginScreen loginScreen = userInterfaceFactory.getLoginScreen(inputOutputHandler);
-		loginScreen.displayLoginScreen();
+		IGenerateTicketScreen generateTicket = userInterfaceFactory.getGenerateTicketScreen(inputOutputHandler);
+		generateTicket.displayTicketGenerationScreen();
 	}
 }
