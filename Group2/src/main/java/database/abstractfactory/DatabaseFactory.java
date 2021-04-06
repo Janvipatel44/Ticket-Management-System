@@ -37,6 +37,6 @@ public class DatabaseFactory implements IDatabaseFactory {
 
     public ITicketOperationsDB getTicketOperationsDB(ICreateTicket createTicket)
     {
-        return new TicketOperationsDB(createTicket);
+    	return new TicketOperationsDB(createTicket);
     }
 }
