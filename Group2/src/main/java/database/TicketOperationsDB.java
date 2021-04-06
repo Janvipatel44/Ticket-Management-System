@@ -1,13 +1,12 @@
 package database;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.HashMap;
 
 import insertTicket.Interfaces.ICreateTicket;
-
-import java.sql.CallableStatement;
 
 public class TicketOperationsDB implements ITicketOperationsDB{
 
@@ -18,9 +17,11 @@ public class TicketOperationsDB implements ITicketOperationsDB{
 	ICreateTicket createTicket = null;
     HashMap<String, String> inputsHandler = new HashMap<String, String>();
 
-	public TicketOperationsDB(ICreateTicket createTicket) {
+	public TicketOperationsDB(ICreateTicket createTicket)
+	{
 		this.createTicket = createTicket;
 	}
+	
 	public boolean insertTicket() throws ParseException
 	{
 		connection = IConnectionMng.establishConnection();
