@@ -16,24 +16,20 @@ import userinterface.IModifyUserRoleScreen;
 import userinterface.IRatingScreen;
 import userinterface.IRegistrationScreen;
 import userinterface.IServiceNowWelcomeScreen;
-<<<<<<< HEAD
+import userinterface.ITwitterPostScreen;
 import userinterface.InputOutputHandler;
 import userinterface.IupdateTicketScreen;
-=======
 import userinterface.IcommentOnTicketScreen;
 import userinterface.InputOutputHandler;
->>>>>>> c48c17d804db2ea57f0668d832dbf027e1b99721
 import userinterface.LoginScreen;
 import userinterface.ManagerTeamTrackingScreen;
 import userinterface.ModifyUserRoleScreen;
 import userinterface.RatingScreen;
 import userinterface.RegistrationScreen;
 import userinterface.ServiceNowWelcomeScreen;
-<<<<<<< HEAD
+import userinterface.TwitterPostScreen;
 import userinterface.updateTicketScreen;
-=======
 import userinterface.commentOnTicketScreen;
->>>>>>> c48c17d804db2ea57f0668d832dbf027e1b99721
 public class UserInterfaceFactory implements IUserInterfaceFactory
 {
 	private static IUserInterfaceFactory uniqueInstance = null;
@@ -107,17 +103,20 @@ public class UserInterfaceFactory implements IUserInterfaceFactory
     {
         return new EmployeeMilestoneScreen(inputOutputHandler);
     }
-<<<<<<< HEAD
+    
+    public ITwitterPostScreen getTwitterPostScreen(IInputOutputHandler inputOutputHandler)
+    {
+        return new TwitterPostScreen(inputOutputHandler);
+    }
     
     public IupdateTicketScreen getUpdateTicketScreen(IInputOutputHandler inputOutputHandler)
     {
         return new updateTicketScreen(inputOutputHandler);
     }
 
-=======
     public IcommentOnTicketScreen getCommentOnTicketScreen(IInputOutputHandler inputOutputHandler)
     {
         return new commentOnTicketScreen(inputOutputHandler);
     }
->>>>>>> c48c17d804db2ea57f0668d832dbf027e1b99721
+
 }
