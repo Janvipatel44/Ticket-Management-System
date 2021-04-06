@@ -60,7 +60,7 @@ public class UserInterfaceFactory implements IUserInterfaceFactory
 {
 	private static IUserInterfaceFactory uniqueInstance = null;
 	
-	private UserInterfaceFactory() {
+	public UserInterfaceFactory() {
 	}
 	
 	public static IUserInterfaceFactory instance() {
@@ -130,6 +130,10 @@ public class UserInterfaceFactory implements IUserInterfaceFactory
         return new EmployeeMilestoneScreen(inputOutputHandler);
     }
     
+    public IGenerateTicketScreen getGenerateTicketScreen(IInputOutputHandler inputOutputHandler)
+    {
+        return new GenerateTicketScreen(inputOutputHandler);
+    }
     public IEmployeePerformanceScreen getEmployeePerformanceScreen(IInputOutputHandler inputOutputHandler)
     {
         return new EmployeePerformanceScreen(inputOutputHandler);

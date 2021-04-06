@@ -11,6 +11,8 @@ import insertTicket.UserInputTicket;
 import insertTicket.Interfaces.IUserInputTicket;
 import insertTicket.abstractFactory.IInsertTicketFactory;
 import insertTicket.abstractFactory.InsertTicketFactory;
+import userinterface.GenerateTicketScreen;
+import userinterface.IGenerateTicketScreen;
 import login.ParameterizedUser;
 import login.Interfaces.IParameterizedUser;
 import menucontroller.EmployeePerformanceReportTask;
@@ -28,6 +30,8 @@ public class main {
 		    String employeeId = null;
 		    String date = null;
 			IInsertTicketFactory  insertTicketFactory = InsertTicketFactory.instance();
+			IInputOutputHandler inputOutputHandler = new InputOutputHandler();
+			IGenerateTicketScreen generateTicketScreen = new GenerateTicketScreen(inputOutputHandler);
 			IInputOutputHandler inputoutputhandler = new InputOutputHandler();
 			//IParameterizedUser user = new ParameterizedUser();
 		    while(input != -1){
@@ -47,14 +51,14 @@ public class main {
 		       
 		            case 1:
 		            	//insertTicketFactory.inputTicket().userInputTicketDetails();
-					
+
 		            break;
 		            
 		            case 2:
 		            	//EmployeePerformanceReportTask employee = new EmployeePerformanceReportTask();
 		            	//employee.runMenuTask("new", inputoutputhandler);
-		            	EmployeePerformanceScreen employee = new EmployeePerformanceScreen(inputoutputhandler);
-		            	employee.displayTicketGenerationScreen();
+		            	//EmployeePerformanceScreen employee = new EmployeePerformanceScreen(inputoutputhandler);
+		            	//employee.displayTicketGenerationScreen();
 		            break;
 		            
 		        }

@@ -19,22 +19,26 @@ public class InsertTicket implements IInsertTicket
 	public InsertTicket(ICreateTicket createTicket){
 		this.createTicket = createTicket;
 	}
-	public void successfulInsertion() throws ParseException
+	public boolean successfulInsertion() throws ParseException
 	{
 		boolean result = false;
 	
-		try {
-			System.out.print("In insert");
+		try 
+		{
 			ticketOperationDB = insertTicketFactory.insertTicketDB(createTicket);
 			result = ticketOperationDB.duplicateTicket();
 			if(result==false) {
 				result = ticketOperationDB.insertTicket();
 				System.out.print(result);
+				return result;
+			}
+			else {
+				return result;
 			}
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
-			System.out.print("Hello");
 			e.printStackTrace();
 		}
+		return result;
 	}
 }

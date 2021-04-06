@@ -2,7 +2,7 @@ package userinterface;
 
 import java.util.List;
 
-import Tickets.ICreateTicket;
+import insertTicket.Interfaces.ICreateTicket;
 import login.Interfaces.IParameterizedUser;
 import managerfeatures.abstractfactory.IManagerFeaturesFactory;
 import managerfeatures.abstractfactory.ManagerFeaturesFactory;
@@ -40,8 +40,8 @@ public class ManagerTeamTrackingScreen implements IManagerTeamTrackingScreen {
 				inputOutputHandler.displayMethod(NO_DATA_AVAILABLE_FOR_TEAM);
 			} else {
 				for (ICreateTicket createTicket : teamsTickets) {
-					String employeeId = createTicket.getEmployeeId();
-					String ticketId = createTicket.getTicketId();
+					String employeeId = createTicket.getEmployeeID();
+					String ticketId = createTicket.getTicketID();
 					String description = createTicket.getDescription();
 					String employeeTicketDetail = employeeId + "\t" + ticketId + "\t" + description;
 					inputOutputHandler.displayMethod(employeeTicketDetail + "\n");
