@@ -2,6 +2,9 @@ package roles;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.Test;
 import roles.abstractfactory.IRoleFactory;
@@ -20,7 +23,7 @@ public class ModifyUserRoleTest {
 	private IModifyUserRole modifyUserRole;
 
 	@Before
-	public void init() {
+	public void init() throws IOException {
 		IRoleFactory roleFactory = RoleMockFactory.instance();
 		modifyUserRole = roleFactory.makeModifyUserRoleObject();
 	}

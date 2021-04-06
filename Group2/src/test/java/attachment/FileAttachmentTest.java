@@ -5,6 +5,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,7 +25,7 @@ public class FileAttachmentTest {
 	private IAttachment attachment;
 
 	@Before
-	public void init() {
+	public void init() throws IOException {
 		IAttachmentFactory attachmentFactory = AttachmentMockFactory.instance();
 		attachment = attachmentFactory.makeAttachmentObject(ATTACHMENT_TYPE);
 	}
