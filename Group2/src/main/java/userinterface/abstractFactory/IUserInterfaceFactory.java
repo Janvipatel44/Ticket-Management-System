@@ -11,7 +11,11 @@ import userinterface.IModifyUserRoleScreen;
 import userinterface.IRatingScreen;
 import userinterface.IRegistrationScreen;
 import userinterface.IServiceNowWelcomeScreen;
+<<<<<<< HEAD
 import userinterface.IupdateTicketScreen;
+=======
+import userinterface.IcommentOnTicketScreen;
+>>>>>>> c48c17d804db2ea57f0668d832dbf027e1b99721
 public interface IUserInterfaceFactory
 {
     public IServiceNowWelcomeScreen getServiceNowWelcomeScreen(IInputOutputHandler inputOutputHandler);
@@ -26,5 +30,9 @@ public interface IUserInterfaceFactory
     public IRatingScreen getRatingScreen(IInputOutputHandler inputOutputHandler);
     public ICustomerAnalysisScreen getCustomerAnalysisScreen(IInputOutputHandler inputOutputHandler);
     public IEmployeeMilestoneScreen getEmployeeMilestoneScreen(IInputOutputHandler inputOutputHandler);
+<<<<<<< HEAD
     public IupdateTicketScreen getUpdateTicketScreen(IInputOutputHandler inputOutputHandler);
+=======
+    public IcommentOnTicketScreen getCommentOnTicketScreen(IInputOutputHandler inputOutputHandler);
+>>>>>>> c48c17d804db2ea57f0668d832dbf027e1b99721
 }
