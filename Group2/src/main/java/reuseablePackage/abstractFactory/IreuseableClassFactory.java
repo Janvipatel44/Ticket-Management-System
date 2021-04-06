@@ -8,9 +8,12 @@ import reuseablePackage.interfaces.IgetListOfTickets;
 import reuseablePackage.interfaces.IopenTicket;
 import reuseablePackage.interfaces.IstoreTicketData;
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 import reuseablePackage.interfaces.IticketStatusInProgress;
 =======
 >>>>>>> c48c17d804db2ea57f0668d832dbf027e1b99721
+>>>>>>> 0f49392a7257876e081394bca39199e2863e18ad
 
 
 public interface IreuseableClassFactory
