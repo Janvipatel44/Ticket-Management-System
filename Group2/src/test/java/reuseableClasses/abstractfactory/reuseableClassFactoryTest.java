@@ -33,7 +33,10 @@ public class reuseableClassFactoryTest implements IreuseableClassesFactoryTest
 	{
 		return new getListOfTicketsMock();
 	}
+<<<<<<< HEAD
+=======
 	
+>>>>>>> e56b2235298b9593bd0c3cef8226877d954e1f08
 	public IopenTicket openticketMock()
 	{
 		return new openTicketMock();
