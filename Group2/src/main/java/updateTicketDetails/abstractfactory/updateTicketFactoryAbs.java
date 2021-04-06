@@ -1,10 +1,10 @@
 package updateTicketDetails.abstractfactory;
 
-import updateTicketDetails.interfaces.IdeleteTicket;
+import database.IConnectionManager;
+import reuseablePackage.interfaces.IticketStatusInProgress;
 import updateTicketDetails.interfaces.IupdateTicket;
 
 public abstract class updateTicketFactoryAbs
 {
-	public abstract IdeleteTicket deleteticket();
-	public abstract IupdateTicket updateTicket();
+	public abstract IupdateTicket updateTicket(IConnectionManager ConnectionMng,IticketStatusInProgress ticketInProgress);
 }

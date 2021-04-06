@@ -2,7 +2,7 @@ package managerfeatures.interfaces;
 
 import java.util.List;
 
-import Tickets.ICreateTicket;
+import insertTicket.Interfaces.ICreateTicket;
 
 public interface IManagerTeamTracking {
 	

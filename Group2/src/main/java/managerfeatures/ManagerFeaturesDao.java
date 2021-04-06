@@ -1,22 +1,34 @@
 package managerfeatures;
 
+import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import Tickets.CreateTicket;
-import Tickets.ICreateTicket;
+import java.util.Properties;
+
+import insertTicket.Interfaces.ICreateTicket;
+import insertTicket.CreateTicket;
 import database.IConnectionManager;
+import database.abstractfactory.DatabaseFactory;
+import database.abstractfactory.IDatabaseFactory;
+import mailservice.ReadPropertiesFile;
 import managerfeatures.interfaces.IManagerFeaturesDao;
 
 public class ManagerFeaturesDao implements IManagerFeaturesDao {
 
 	private final String MANAGER_TEAM_TICKETS = "managers_team_tickets";
 	private IConnectionManager connectionManager;
+	private String projectConfigurationFile = "ProjectConfiguration.properties";
+	private String dbConfigurationKey = "DBConfiguration";
+	private final IDatabaseFactory databaseFactory = DatabaseFactory.instance();
 
-	public ManagerFeaturesDao() {
+	public ManagerFeaturesDao() throws IOException {
+		Properties properties = ReadPropertiesFile.readConfigPropertyFile(projectConfigurationFile);
+		String configurationFile = (String)properties.get(dbConfigurationKey);
+		connectionManager = databaseFactory.getConnectionManager(configurationFile);
 	}
 	
 	

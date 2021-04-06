@@ -1,8 +1,14 @@
 package database.abstractfactory;
-import Tickets.ICreateTicket;
+import insertTicket.Interfaces.ICreateTicket;
 import database.*;
 import employeeMilestones.abstractfactory.EmployeeMilestoneFactory;
 import employeeMilestones.abstractfactory.IEmployeeMilestoneFactory;
+import database.ConnectionManager;
+import database.DatabaseOperations;
+import database.IConnectionManager;
+import database.IDatabaseOperations;
+import database.ITicketOperationsDB;
+import database.TicketOperationsDB;
 
 public class DatabaseFactory implements IDatabaseFactory {
 
@@ -34,6 +40,6 @@ public class DatabaseFactory implements IDatabaseFactory {
 
     public ITicketOperationsDB getTicketOperationsDB(ICreateTicket createTicket)
     {
-        return new TicketOperationsDB(createTicket);
+    	return new TicketOperationsDB(createTicket);
     }
 }

@@ -8,9 +8,11 @@ public class InputStringValidation implements IInputStringValidation
 	protected static String validationString = null;
 	protected static int length = 0;
 	
-	public boolean isStringNull(String validationString) {
+	public boolean isStringNull(String validationString) 
+	{
 		
-		if(validationString == null || validationString.equals(" "))  {
+		if(validationString == null || validationString.equals(" ")) 
+		{
 			System.out.print("Null value found for input string");
 			return true;
 		}
@@ -18,7 +20,8 @@ public class InputStringValidation implements IInputStringValidation
 		return false;
 	}
 	
-	public boolean isStringContainsSpecialCharacters (String validationString) {
+	public boolean isStringContainsSpecialCharacters (String validationString) 
+	{
 		
 		if(validationString.contains("@") || validationString.contains("#") || validationString.contains("!") ||  validationString.contains("_") ||  validationString.contains("%") || validationString.contains("&"))
 		{
@@ -29,7 +32,8 @@ public class InputStringValidation implements IInputStringValidation
 		return false;
 	}
 
-	public boolean isStringEmployeeAndReporterID (String validationString) {
+	public boolean isStringEmployeeAndReporterID (String validationString) 
+	{
 		
 		String prefix = "EMP";
 		if(validationString.equals(null) || validationString.equals(" ") || validationString.equals("")) {
@@ -45,13 +49,14 @@ public class InputStringValidation implements IInputStringValidation
 		return false;
 	}
 
-	public boolean isStringLengthValid (String validationString, int length) {
+	public boolean isStringLengthValid (String validationString, int length)
+	{
 	
-			if(validationString.length()<=length)
-			{
-				return true;
-			}
-			System.out.print("Length Exceeded for input string");
-			return false;
+		if(validationString.length()<=length)
+		{
+			return true;
+		}
+		System.out.print("Length Exceeded for input string");
+		return false;
 	}
 }

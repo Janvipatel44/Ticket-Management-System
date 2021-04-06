@@ -5,46 +5,49 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import insertTicket.Interfaces.IInputDateValidation;
+import userinterface.IInputOutputHandler;
 
 public class InputDateValidation implements IInputDateValidation
 {
 	
+	IInputOutputHandler inputOutputHandler;
 	public boolean isDurationValid (String startDate, String endDate) throws ParseException
-	{
-		
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+	{		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:MM:SS");
 	    Date firstDate = format.parse(startDate);
 	    Date secondDate = format.parse(endDate);
 
 	    long diffInMillies = Math.abs(secondDate.getTime() - firstDate.getTime());
-		System.out.print("diff" +diffInMillies);
-
+	    
 		if(diffInMillies<0)
 		{
-			System.out.print("Wrong endDate found");
+			inputOutputHandler.displayMethod("Expected end date is not valid");
 			return false;
 		}
-
+		
 		return true;
 	}
 	public boolean isDateFormatValid (String validationString) throws ParseException {
 		
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:MM:SS");
+		
 		Date date = null;
 
 		if(validationString.equals("") || validationString.equals(null)) 
-		{
-			System.out.print("Here");
-			
+		{	
+			inputOutputHandler.displayMethod("Null value inserted");
 			return true;
 		}
-		else {
+		else 
+		{
 			date = format.parse(validationString);
 		}
-	    if (validationString.equals(format.format(date))) {
+	    
+		if (validationString.equals(format.format(date))) 
+		{
 			return true;
 		}
-		System.out.print("Wrong date format for input string");
+		inputOutputHandler.displayMethod("Wrong date format for input string");
 
 		return false;
 	}
