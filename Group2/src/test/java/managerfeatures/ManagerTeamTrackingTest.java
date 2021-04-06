@@ -3,13 +3,12 @@ package managerfeatures;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import insertTicket.Interfaces.ICreateTicket;
+import Tickets.ICreateTicket;
 import managerfeatures.abstractfactory.IManagerFeaturesFactory;
 import managerfeatures.abstractfactory.ManagerFeaturesMockFactory;
 import managerfeatures.interfaces.IManagerTeamTracking;
@@ -24,7 +23,7 @@ public class ManagerTeamTrackingTest {
 	private IManagerTeamTracking managerTeamTracking;
 
 	@Before
-	public void init() throws IOException {
+	public void init() {
 		IManagerFeaturesFactory managerFeaturesFactory = ManagerFeaturesMockFactory.instance();
 		managerTeamTracking = managerFeaturesFactory.makeManagerFeaturesFactoryObject();
 	}
