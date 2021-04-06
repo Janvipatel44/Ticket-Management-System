@@ -1,12 +1,10 @@
 package menucontroller;
 import login.Interfaces.IParameterizedUser;
 import menucontroller.interfaces.IMenuTask;
-import userinterface.*;
+import userinterface.IGenerateTicketScreen;
+import userinterface.IInputOutputHandler;
 import userinterface.abstractFactory.IUserInterfaceFactory;
 import userinterface.abstractFactory.UserInterfaceFactory;
-import login.Interfaces.IParameterizedUser;
-import menucontroller.interfaces.IMenuTask;
-import userinterface.IInputOutputHandler;
 
 public class CreateTicketMenuTask implements IMenuTask 
 {

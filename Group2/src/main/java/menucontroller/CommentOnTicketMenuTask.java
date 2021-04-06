@@ -14,9 +14,7 @@ public class CommentOnTicketMenuTask implements IMenuTask
 	public void runMenuTask(IParameterizedUser user, IInputOutputHandler inputOutputHandler) {
 		IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
 		IcommentOnTicketScreen commentonticketscreen = userInterfaceFactory.getCommentOnTicketScreen(inputOutputHandler);
-		//commentonticketscreen.displayRegistrationScreen(user);
-		
-		
+		commentonticketscreen.commentonticketscreen(user);	
 	}
 
 }

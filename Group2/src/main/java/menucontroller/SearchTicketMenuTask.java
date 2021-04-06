@@ -14,7 +14,7 @@ public class SearchTicketMenuTask implements IMenuTask
 	public void runMenuTask(IParameterizedUser user, IInputOutputHandler inputOutputHandler) {
 		IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
 		IsearchTicketScreen getsearchticketscreen = userInterfaceFactory.getsearchTicketScreen(inputOutputHandler);
-		//getsearchticketscreen.displayRegistrationScreen(user);
+		getsearchticketscreen.searchTicketScreen(user);
 		
 		
 	}
