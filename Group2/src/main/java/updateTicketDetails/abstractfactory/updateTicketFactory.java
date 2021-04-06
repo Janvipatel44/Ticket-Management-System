@@ -1,8 +1,8 @@
 package updateTicketDetails.abstractfactory;
 
-import updateTicketDetails.deleteTicket;
+import database.IConnectionManager;
+import reuseablePackage.interfaces.IticketStatusInProgress;
 import updateTicketDetails.updateTicket;
-import updateTicketDetails.interfaces.IdeleteTicket;
 import updateTicketDetails.interfaces.IupdateTicket;
 
 
@@ -25,14 +25,9 @@ public class updateTicketFactory implements IupdateTicketFactory
     }
 
 
-	public IdeleteTicket deleteticket()
-	{		
-		return new deleteTicket();
-	}
-
-	public IupdateTicket updateTicket() 
+	public IupdateTicket updateTicket(IConnectionManager ConnectionMng,IticketStatusInProgress ticketInProgress) 
 	{	
-		return new updateTicket();
+		return new updateTicket(ConnectionMng,ticketInProgress);
 	}
 
 }
