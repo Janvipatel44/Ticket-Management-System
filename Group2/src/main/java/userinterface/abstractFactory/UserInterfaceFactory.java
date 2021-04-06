@@ -80,4 +80,9 @@ public class UserInterfaceFactory implements IUserInterfaceFactory
     {
         return new EmployeeMilestoneScreen(inputOutputHandler);
     }
+    
+    public ITwitterPostScreen getTwitterPostScreen(IInputOutputHandler inputOutputHandler)
+    {
+        return new TwitterPostScreen(inputOutputHandler);
+    }
 }
