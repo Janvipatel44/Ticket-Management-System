@@ -32,13 +32,14 @@ public class openTicket implements IopenTicket
 		
 	}
 
-	public void openticket(String ticketId)
+	public String openticket(String ticketId)
 	{
 		ArrayList<String> singleTicketData = storeTicketData.getSingleTicketData(ticketId);
 		List<String> columnOfTable = storeTicketData.getTicketColumns();
 		List<String> comments = commentOnTicket(ticketId);
-		displayUser.printSignleTicketDetails(singleTicketData,columnOfTable,comments);
+		String tableofticket = displayUser.printSignleTicketDetails(singleTicketData,columnOfTable,comments);
 		ConnectionMng.closeConnection();
+		return tableofticket;
 
 		
 	}
