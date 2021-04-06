@@ -17,7 +17,7 @@ public class CheckTicketExistsTest
 	@Test
 	public void ticketExistsTest()
 	{
-		assertTrue(checkticketexists.ticketExists("12456"));
+		assertTrue(checkticketexists.ticketExists("111"));
 		assertFalse(checkticketexists.ticketExists("123"));
 	}
 }
