@@ -4,14 +4,12 @@ import database.abstractfactory.DatabaseFactory;
 import database.abstractfactory.IDatabaseFactory;
 import login.Interfaces.*;
 import mailservice.ReadPropertiesFile;
-
 import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
-
 public class PersistenceUserRegistrationOperations implements IPersistenceUserRegistrationOperations
 {
     private boolean result=false;
@@ -40,13 +38,14 @@ public class PersistenceUserRegistrationOperations implements IPersistenceUserRe
         try {
         	String procedureName = "registerUser";
         	dummyConnection = connection.establishConnection();
-            procedureCall = dummyConnection.prepareCall("{call "+procedureName+"(?,?,?,?,?,?)}");
+            procedureCall = dummyConnection.prepareCall("{call "+procedureName+"(?,?,?,?,?,?,?)}");
             procedureCall.setString(1,user.getEmployeeID());
             procedureCall.setString(2,user.getfirstName());
             procedureCall.setString(3,user.getLastName());
             procedureCall.setString(4, user.getEmail());
             procedureCall.setString(5, user_password);
             procedureCall.setString(6, user.getUserType());
+            procedureCall.setString(7, user.getManager());
             return executeUpdateCommand(procedureCall);
         }
         catch (SQLException throwables)

@@ -1,8 +1,10 @@
 package login;
+import login.Interfaces.IEncryption;
 import login.Interfaces.IForgotPassword;
 import login.Interfaces.IPasswordValidations;
 import login.Interfaces.IPersistenceForgotPasswordOperations;
-import mailservice.MailMessage;
+import login.abstractfactory.ILoginFactory;
+import login.abstractfactory.LoginFactory;
 import mailservice.abstractfactory.IMailFactory;
 import mailservice.abstractfactory.MailFactory;
 import mailservice.interfaces.IMail;
@@ -24,6 +26,7 @@ public class ForgotPassword implements IForgotPassword
 
     public boolean sendOTP(String employeeID)
     {
+        double otpDouble;
         final String mailConfiguration = "MailConfiguration.properties";
         final String userConfiguration = "MailUserConfiguration.properties";
         this.employeeID = employeeID;
@@ -31,15 +34,16 @@ public class ForgotPassword implements IForgotPassword
         String subject;
         String message;
         int minimum = 1000;
-        otp = (int)Math.random();
+        otpDouble = Math.random();
 
-        if(otp == 0)
+        if(otpDouble == 0)
         {
             otp = minimum;
         }
         else
         {
-            otp = otp * minimum;
+            otpDouble = otpDouble * minimum;
+            otp = (int)otpDouble;
         }
 
         email = persistenceForgotPasswordOperations.getEmail(employeeID);
@@ -62,6 +66,8 @@ public class ForgotPassword implements IForgotPassword
 
     public boolean updatePassword(int otp, String newPassword)
     {
+        ILoginFactory loginFactory = LoginFactory.instance();
+        IEncryption encryption = loginFactory.getEncryption();
         IPasswordValidations passwordValidations = new PasswordValidations();
         if( passwordValidations.checkUpperCaseRule(newPassword) &&
             passwordValidations.checkLowerCaseRule(newPassword) &&
@@ -70,6 +76,7 @@ public class ForgotPassword implements IForgotPassword
             passwordValidations.checkLengthRule(newPassword) &&
             this.otp == otp)
         {
+            newPassword = encryption.encryptPassword(newPassword);
             return persistenceForgotPasswordOperations.updatePassword(this.employeeID, newPassword);
         }
         return false;

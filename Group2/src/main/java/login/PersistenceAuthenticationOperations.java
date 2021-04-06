@@ -24,6 +24,7 @@ public class PersistenceAuthenticationOperations implements IPersistenceAuthenti
 
     public String getPassword(String employeeID)
     {
+        String result = "";
         final Object nullObject = null;
         String procedureName = "getPassword";
         Connection dummyConnection=null;
@@ -36,14 +37,16 @@ public class PersistenceAuthenticationOperations implements IPersistenceAuthenti
 
         try {
             dummyConnection = connection.establishConnection();
-            procedureCall =	dummyConnection.prepareCall("{call "+procedureName+"(?,?)}");
+            procedureCall =	dummyConnection.prepareCall("{call "+procedureName+"(?)}");
             procedureCall.setString(1,employeeID);
-            procedureCall.registerOutParameter(2, Types.VARCHAR);
-            procedureCall.execute();
-            String result=procedureCall.getString(2);
-            if(result.equals(nullObject))
+            ResultSet resultSet = procedureCall.executeQuery();
+            while(resultSet.next())
             {
-            	return null;
+                result = resultSet.getString("user_password");
+            }
+            if(result == null)
+            {
+                return null;
             }
             else 
             {
@@ -67,6 +70,7 @@ public class PersistenceAuthenticationOperations implements IPersistenceAuthenti
         String lastName;
         String userType;
         String email;
+        String manager;
         final Object nullObject = null;
         String procedureName = "getUserDetails";
         Connection dummyConnection=null;
@@ -88,7 +92,8 @@ public class PersistenceAuthenticationOperations implements IPersistenceAuthenti
                 lastName = resultSet.getString("lastName");
                 email = resultSet.getString("email");
                 userType = resultSet.getString("user_type");
-                parameterizedUser = loginFactory.getParameterizedUser(employeeID, firstName, lastName, email, userType);
+                manager = resultSet.getString("manager");
+                parameterizedUser = loginFactory.getParameterizedUser(employeeID, firstName, lastName, email, userType, manager);
                 return parameterizedUser;
             }
             else
