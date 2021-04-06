@@ -16,6 +16,7 @@ public class checkTicketExists  implements IcheckTicketExists
 	private static ResultSet resultSet=null;
 	private String ConfigurationFile = "ConfigurationFile";
 	private int choice=1;
+	
 	private IConnectionManager IConnectionMng = new ConnectionManager(ConfigurationFile);
 	
 	public boolean ticketExists(String ticketID)
