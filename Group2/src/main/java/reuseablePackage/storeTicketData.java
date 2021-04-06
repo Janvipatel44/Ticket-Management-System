@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import reuseablePackage.interfaces.IstoreTicketData;
 
@@ -28,13 +27,14 @@ public class storeTicketData implements IstoreTicketData
 		ticketData.clear();
 		columnsOfTable.clear();
 		
-		try {
-			System.out.println("col:"+tableMetaData.getColumnCount());
+		try 
+		{
 			for(int i=1;i<=tableMetaData.getColumnCount();i++)
 			{
 				String columnName = tableMetaData.getColumnName(i);
 				columnsOfTable.add(columnName);
 			}
+			
 			while (resultSet.next()) 
 			{
 				ticketData.put(resultSet.getString(columnsOfTable.get(0)), new ArrayList<String>());
@@ -54,6 +54,7 @@ public class storeTicketData implements IstoreTicketData
 	
 	public void addFetchedComments(ResultSet resultSet) 
 	{
+		commentsOntickets.clear();
 		try 
 		{
 			System.out.println("Comments:");
@@ -86,8 +87,9 @@ public class storeTicketData implements IstoreTicketData
 		
 	}
 	
-	public Map<String,ArrayList<String>> getTableData()
+	public LinkedHashMap<String,ArrayList<String>> getTableData()
 	{
+		System.out.println(ticketData);
 		return ticketData;
 	}
 	
