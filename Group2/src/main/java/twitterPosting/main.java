@@ -15,9 +15,9 @@ public class main {
 		IUserInputTwitterPost userinput;
 		userinput = posthandling.userinput();
 		userinput.getticketCountsDB();*/
-		IInputOutputHandler input = new InputOutputHandler();
-		ITwitterPostScreen posthandling = new TwitterPostScreen(input);
-		posthandling.displayTwitterPostScreen();
+		//IInputOutputHandler input = new InputOutputHandler();
+		//ITwitterPostScreen posthandling = new TwitterPostScreen(input);
+		//posthandling.displayTwitterPostScreen();
     } 
 	
 }
