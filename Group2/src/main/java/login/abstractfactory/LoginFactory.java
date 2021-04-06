@@ -44,9 +44,9 @@ public class LoginFactory implements ILoginFactory
         return new ForgotPassword(mail, persistenceForgotPasswordOperations);
     }
 
-    public IParameterizedUser getParameterizedUser(String employeeID, String firstName, String lastName, String email, String user_type)
+    public IParameterizedUser getParameterizedUser(String employeeID, String firstName, String lastName, String email, String user_type, String manager)
     {
-        return new ParameterizedUser(employeeID, firstName, lastName, email, user_type);
+        return new ParameterizedUser(employeeID, firstName, lastName, email, user_type, manager);
     }
 
     public IPasswordValidations getPasswordValidations()

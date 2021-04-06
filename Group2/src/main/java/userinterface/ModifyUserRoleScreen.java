@@ -27,8 +27,10 @@ public class ModifyUserRoleScreen implements IModifyUserRoleScreen {
 		try {
 			roleFactory = RoleFactory.instance();
 	    	modifyUserRole = roleFactory.makeModifyUserRoleObject();
-			
+
+	    	inputOutputHandler.displayMethod("Enter employee ID of the user whose role needs to be updated:");
 			String inputEmpId = inputOutputHandler.input();
+			inputOutputHandler.displayMethod("\nEnter new role:");
 			String inputUserType = inputOutputHandler.input();
 			boolean isUserRoleModified = modifyUserRole.modifyUserRole(inputEmpId, inputUserType);
 			if (isUserRoleModified) {

@@ -72,7 +72,7 @@ public class PersistenceForgotPasswordOperations implements IPersistenceForgotPa
             dummyConnection = connection.establishConnection();
             procedureCall = dummyConnection.prepareCall("{call "+procedureName+"(?,?)}");
             procedureCall.setString(1, employeeID);
-            procedureCall.setString(1, newPassword);
+            procedureCall.setString(2, newPassword);
             return databaseOperations.executeUpdateCommand(procedureCall);
         }
         catch (SQLException throwables)

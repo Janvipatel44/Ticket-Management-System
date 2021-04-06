@@ -24,6 +24,10 @@ public class Authentication implements IAuthentication
         
         user_password = encryption.encryptPassword(user_password);
         actual_password = authenticationOperations.getPassword(employeeID);
+        if(actual_password == null)
+        {
+            return false;
+        }
         if(actual_password.equals(user_password))
         {
             inputOutputHandler.displayMethod(successfulMessage);

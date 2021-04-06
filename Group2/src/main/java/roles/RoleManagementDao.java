@@ -44,17 +44,16 @@ public class RoleManagementDao implements IRoleManagementDao {
 			procedureCall = connection.prepareCall("call " + menuItemsByRoleProcedure + "(?)");
 			procedureCall.setString(1, role);
 
-			boolean isResultSet = procedureCall.execute();
+			ResultSet resultSet = procedureCall.executeQuery();
 
-			if (isResultSet) {
-				ResultSet resultSet = procedureCall.getResultSet();
-				if (resultSet.next()) {
-					if (menuItemsList == null) {
-						menuItemsList = new ArrayList<String>();
-					}
-					menuItemsList.add(resultSet.getString(0));
+
+			while (resultSet.next()) {
+				if (menuItemsList == null) {
+					menuItemsList = new ArrayList<String>();
 				}
+				menuItemsList.add(resultSet.getString(1));
 			}
+
 		} catch (SQLException throwables) {
 			throw new Exception("Failed during DB operations. Please contact admin.");
 		}

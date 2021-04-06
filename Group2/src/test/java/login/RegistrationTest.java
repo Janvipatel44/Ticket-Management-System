@@ -21,7 +21,7 @@ public class RegistrationTest
 	@Test
 	public void registerUserTestSuccessfull()
 	{
-		ParameterizedUser user = new ParameterizedUser("111", "Daniel", "Howards", "custom@gmail.com", "End_User");
+		ParameterizedUser user = new ParameterizedUser("111", "Daniel", "Howards", "custom@gmail.com", "End_User", "emp_666");
 		IRegister registration = new Registration(databaseUserMock, inputOutputHandler);
 		assertTrue("Test failed.", registration.registerUser(user, "Abcd@123"));
 	}
@@ -29,7 +29,7 @@ public class RegistrationTest
 	@Test
 	public void registerUserTestUnsuccessfull_Duplicate()
 	{
-		IParameterizedUser user = new ParameterizedUser("112", "Daniel", "Howards", "custom@gmail.com", "End_User");
+		IParameterizedUser user = new ParameterizedUser("112", "Daniel", "Howards", "custom@gmail.com", "End_User", "emp_222");
 		IRegister registration = new Registration(databaseUserMock, inputOutputHandler);
 		assertFalse("Test failed.", registration.registerUser(user, "Abcd@123"));
 	}
@@ -37,9 +37,9 @@ public class RegistrationTest
 	@Test
 	public void checkPasswordRules()
 	{
-		IParameterizedUser user_one = new ParameterizedUser("114", "Daniel", "Howards", "custom@gmail.com", "End_User");
-		IParameterizedUser user_two = new ParameterizedUser("115", "Daniel", "Howards", "custom@gmail.com", "End_User");
-		IParameterizedUser user_three = new ParameterizedUser("116", "Daniel", "Howards", "custom@gmail.com", "End_User");
+		IParameterizedUser user_one = new ParameterizedUser("114", "Daniel", "Howards", "custom@gmail.com", "End_User", "emp_111");
+		IParameterizedUser user_two = new ParameterizedUser("115", "Daniel", "Howards", "custom@gmail.com", "End_User", "emp_000");
+		IParameterizedUser user_three = new ParameterizedUser("116", "Daniel", "Howards", "custom@gmail.com", "End_User", "emp_099");
 		IRegister registration = new Registration(databaseUserMock, inputOutputHandler);
 
 		assertFalse("Test failed.", registration.registerUser(user_one, "abcd@123"));
