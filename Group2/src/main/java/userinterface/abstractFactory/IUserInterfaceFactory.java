@@ -1,5 +1,7 @@
 package userinterface.abstractFactory;
 import customerAnalysis.Interfaces.ICustomerAnalysis;
+import employeePerformance.Interfaces.IGenerateEmployeePerformanceReport;
+import employeePerformance.Interfaces.IInputEmployeeDetails;
 import userinterface.*;
 public interface IUserInterfaceFactory
 {
@@ -15,4 +17,6 @@ public interface IUserInterfaceFactory
     public IRatingScreen getRatingScreen(IInputOutputHandler inputOutputHandler);
     public ICustomerAnalysisScreen getCustomerAnalysisScreen(IInputOutputHandler inputOutputHandler);
     public IEmployeeMilestoneScreen getEmployeeMilestoneScreen(IInputOutputHandler inputOutputHandler);
+    public IEmployeePerformanceScreen getEmployeePerformanceScreen(IInputOutputHandler inputOutputHandler);
+    
 }

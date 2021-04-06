@@ -1,4 +1,8 @@
 package userinterface.abstractFactory;
+import employeePerformance.GenerateEmployeePerformanceReport;
+import employeePerformance.Interfaces.IExportEmployeePerformanceReport;
+import employeePerformance.Interfaces.IGenerateEmployeePerformanceReport;
+import employeePerformance.Interfaces.IInputEmployeeDetails;
 import managerfeatures.abstractfactory.IManagerFeaturesFactory;
 import managerfeatures.abstractfactory.ManagerFeaturesFactory;
 import managerfeatures.interfaces.IManagerTeamTracking;
@@ -80,4 +84,14 @@ public class UserInterfaceFactory implements IUserInterfaceFactory
     {
         return new EmployeeMilestoneScreen(inputOutputHandler);
     }
+    
+    public IEmployeePerformanceScreen getEmployeePerformanceScreen(IInputOutputHandler inputOutputHandler)
+    {
+        return new EmployeePerformanceScreen(inputOutputHandler);
+    }
+
+
+    
+ 
+   
 }
