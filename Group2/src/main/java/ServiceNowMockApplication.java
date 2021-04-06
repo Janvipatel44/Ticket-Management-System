@@ -1,4 +1,5 @@
 import userinterface.IInputOutputHandler;
+import userinterface.IServiceNowWelcomeScreen;
 import userinterface.abstractFactory.*;
 public class ServiceNowMockApplication
 {
@@ -6,6 +7,7 @@ public class ServiceNowMockApplication
     {
         IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
         IInputOutputHandler inputOutputHandler = userInterfaceFactory.getInputOutputHandler();
-        userInterfaceFactory.getServiceNowWelcomeScreen(inputOutputHandler);
+        IServiceNowWelcomeScreen serviceNowWelcomeScreen = userInterfaceFactory.getServiceNowWelcomeScreen(inputOutputHandler);
+        serviceNowWelcomeScreen.displayLoginScreen();
     }
 }
