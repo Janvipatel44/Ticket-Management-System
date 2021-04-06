@@ -7,12 +7,20 @@ import reuseablePackage.displayTicket;
 import reuseablePackage.getListOfTickets;
 import reuseablePackage.openTicket;
 import reuseablePackage.storeTicketData;
+<<<<<<< HEAD
+import reuseablePackage.ticketStatusInProgress;
+=======
+>>>>>>> c48c17d804db2ea57f0668d832dbf027e1b99721
 import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.IcheckTicketExists;
 import reuseablePackage.interfaces.IdisplayTicket;
 import reuseablePackage.interfaces.IgetListOfTickets;
 import reuseablePackage.interfaces.IopenTicket;
 import reuseablePackage.interfaces.IstoreTicketData;
+<<<<<<< HEAD
+import reuseablePackage.interfaces.IticketStatusInProgress;
+=======
+>>>>>>> c48c17d804db2ea57f0668d832dbf027e1b99721
 
 public class reuseableClassFactory implements IreuseableClassFactory {
 
@@ -38,6 +46,16 @@ public class reuseableClassFactory implements IreuseableClassFactory {
 		return new storeTicketData();
 	}
 	
+<<<<<<< HEAD
+	public ITableGenerator tableFormate()
+	{
+		return new TableGenerator();
+	}
+
+	public IdisplayTicket displayUser(ITableGenerator tableFormate)
+	{
+		return new displayTicket(tableFormate);
+=======
 	public IdisplayTicket displayUser(ITableGenerator tableFormate)
 	{
 		return new displayTicket(tableFormate);
@@ -46,6 +64,7 @@ public class reuseableClassFactory implements IreuseableClassFactory {
 	public ITableGenerator tableFormate()
 	{
 		return new TableGenerator();
+>>>>>>> c48c17d804db2ea57f0668d832dbf027e1b99721
 	}
 
 	
@@ -68,6 +87,11 @@ public class reuseableClassFactory implements IreuseableClassFactory {
 	public IgetListOfTickets getalltickets(IstoreTicketData storeTicketData,IdisplayTicket displaytickets,IConnectionManager ConnectionMng)
 	{
 		return new getListOfTickets(storeTicketData,displaytickets,ConnectionMng);
+	}
+	
+	public IticketStatusInProgress ticketInProgress(IConnectionManager ConnectionMng)
+	{
+		return new ticketStatusInProgress(ConnectionMng);
 	}
 	
 }
