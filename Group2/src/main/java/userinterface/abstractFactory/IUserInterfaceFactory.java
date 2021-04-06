@@ -1,13 +1,11 @@
 package userinterface.abstractFactory;
 
-import customerAnalysis.Interfaces.ICustomerAnalysis;
-import employeePerformance.Interfaces.IGenerateEmployeePerformanceReport;
-import employeePerformance.Interfaces.IInputEmployeeDetails;
-import userinterface.*;
 import userinterface.IBackToHomePageScreen;
 import userinterface.ICustomerAnalysisScreen;
 import userinterface.IEmployeeMilestoneScreen;
+import userinterface.IEmployeePerformanceScreen;
 import userinterface.IForgotPasswordScreen;
+import userinterface.IGenerateTicketScreen;
 import userinterface.IHomePageScreen;
 import userinterface.IInputOutputHandler;
 import userinterface.ILoginScreen;
@@ -16,10 +14,12 @@ import userinterface.IModifyUserRoleScreen;
 import userinterface.IRatingScreen;
 import userinterface.IRegistrationScreen;
 import userinterface.IServiceNowWelcomeScreen;
-import userinterface.IdeleteTicketScreen;
 import userinterface.ITwitterPostScreen;
-import userinterface.IupdateTicketScreen;
 import userinterface.IcommentOnTicketScreen;
+import userinterface.IdeleteTicketScreen;
+import userinterface.IsearchTicketScreen;
+import userinterface.IsortTciketScreen;
+import userinterface.IupdateTicketScreen;
 
 public interface IUserInterfaceFactory
 {
@@ -37,7 +37,8 @@ public interface IUserInterfaceFactory
     public IEmployeeMilestoneScreen getEmployeeMilestoneScreen(IInputOutputHandler inputOutputHandler);
     public IGenerateTicketScreen getGenerateTicketScreen(IInputOutputHandler inputOutputHandler);
     public IEmployeePerformanceScreen getEmployeePerformanceScreen(IInputOutputHandler inputOutputHandler);
-
+    public IsortTciketScreen getsortTicketScreen(IInputOutputHandler inputOutputHandler);
+    public IsearchTicketScreen getsearchTicketScreen(IInputOutputHandler inputOutputHandler);
     public IdeleteTicketScreen getdeleteTicketScreen(IInputOutputHandler inputOutputHandler);
     public ITwitterPostScreen getTwitterPostScreen(IInputOutputHandler inputOutputHandler);
     public IupdateTicketScreen getUpdateTicketScreen(IInputOutputHandler inputOutputHandler);
