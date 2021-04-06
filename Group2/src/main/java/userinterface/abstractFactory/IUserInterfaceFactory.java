@@ -3,6 +3,23 @@ import customerAnalysis.Interfaces.ICustomerAnalysis;
 import employeePerformance.Interfaces.IGenerateEmployeePerformanceReport;
 import employeePerformance.Interfaces.IInputEmployeeDetails;
 import userinterface.*;
+import userinterface.IBackToHomePageScreen;
+import userinterface.ICustomerAnalysisScreen;
+import userinterface.IEmployeeMilestoneScreen;
+import userinterface.IForgotPasswordScreen;
+import userinterface.IHomePageScreen;
+import userinterface.IInputOutputHandler;
+import userinterface.ILoginScreen;
+import userinterface.IManagerTeamTrackingScreen;
+import userinterface.IModifyUserRoleScreen;
+import userinterface.IRatingScreen;
+import userinterface.IRegistrationScreen;
+import userinterface.IServiceNowWelcomeScreen;
+import userinterface.IdeleteTicketScreen;
+import userinterface.ITwitterPostScreen;
+import userinterface.IupdateTicketScreen;
+import userinterface.IcommentOnTicketScreen;
+
 public interface IUserInterfaceFactory
 {
     public IServiceNowWelcomeScreen getServiceNowWelcomeScreen(IInputOutputHandler inputOutputHandler);
@@ -18,5 +35,10 @@ public interface IUserInterfaceFactory
     public ICustomerAnalysisScreen getCustomerAnalysisScreen(IInputOutputHandler inputOutputHandler);
     public IEmployeeMilestoneScreen getEmployeeMilestoneScreen(IInputOutputHandler inputOutputHandler);
     public IEmployeePerformanceScreen getEmployeePerformanceScreen(IInputOutputHandler inputOutputHandler);
-    
+
+    public IdeleteTicketScreen getdeleteTicketScreen(IInputOutputHandler inputOutputHandler);
+    public ITwitterPostScreen getTwitterPostScreen(IInputOutputHandler inputOutputHandler);
+    public IupdateTicketScreen getUpdateTicketScreen(IInputOutputHandler inputOutputHandler);
+    public IcommentOnTicketScreen getCommentOnTicketScreen(IInputOutputHandler inputOutputHandler);
+
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.IdisplayTicket;
 import userinterface.IInputOutputHandler;
 
@@ -13,18 +14,17 @@ public class displayTicket implements IdisplayTicket
 	List<String> tableHeader;
 	List<List<String>> rowOfTable;
 	
-	TableGenerator tableFormate;
+	ITableGenerator tableFormate;
 	IInputOutputHandler inputoutputhandler;
 	
-	public displayTicket(IInputOutputHandler inputoutputhandler) 
+	public displayTicket(ITableGenerator tableFormate) 
 	{
 		tableHeader = new ArrayList<String>();
 		rowOfTable = new  ArrayList<>();
-		tableFormate = new TableGenerator(); 
-		this.inputoutputhandler = inputoutputhandler;
+		this.tableFormate = tableFormate;
 	}
 	
-	public void printTicketsDetails(Map<String,ArrayList<String>> ticketData,List<String> columnsOfTable)
+	public String printTicketsDetails(Map<String,ArrayList<String>> ticketData,List<String> columnsOfTable)
 	{ 
 			
 		tableHeader.clear();
@@ -42,11 +42,11 @@ public class displayTicket implements IdisplayTicket
 			
 		}
 		String table = tableFormate.generateTable(tableHeader, rowOfTable);
-		inputoutputhandler.displayMethod(table);
+		return table;
 	}
 	
 		
-	public void printSignleTicketDetails(List<String> singleTicketData,List<String> columnsOfTable, List<String> comments)
+	public String printSignleTicketDetails(List<String> singleTicketData,List<String> columnsOfTable, List<String> comments)
 	{
 		rowOfTable.clear();
 		tableHeader = columnsOfTable;
@@ -59,16 +59,14 @@ public class displayTicket implements IdisplayTicket
 		}
 		rowOfTable.add(singleTicketData);
 		String table = tableFormate.generateTable(tableHeader, rowOfTable);
-		inputoutputhandler.displayMethod(table);
-		inputoutputhandler.displayMethod("  Comments...");
+		table = table + "\n  Comments...";
 		String commentsData="";
 		for(int i = 0; i < comments.size() ; i++)
 		{
 			commentsData = commentsData +" "+comments.get(i)+"\n";
 		}
-		inputoutputhandler.displayMethod(commentsData);
+		table = table + "\n"+commentsData;
+		return table;
 	}
 }
     
-
-	

@@ -6,9 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-import database.ConnectionManager;
 import database.IConnectionManager;
-import updateTicketDetails.interfaces.IticketStatusInProgress;
+import reuseablePackage.interfaces.IticketStatusInProgress;
 import updateTicketDetails.interfaces.IupdateTicket;
 
 public class updateTicket implements IupdateTicket
@@ -19,42 +18,51 @@ public class updateTicket implements IupdateTicket
 
 	static String fileName = "ConfigurationFile";
 	private IConnectionManager ConnectionMng;
-	private IticketStatusInProgress ticketInProgress= new  ticketStatusInProgress();
-	public updateTicket()
+	private IticketStatusInProgress ticketInProgress;
+	
+	public updateTicket(IConnectionManager ConnectionMng,IticketStatusInProgress ticketInProgress)
 	{
-		ConnectionMng = new ConnectionManager(fileName);
+		this.ConnectionMng = ConnectionMng;
+		this.ticketInProgress= ticketInProgress;
 	}
+	
 	public boolean updateValueOfTicketForManager(String ticketID, int choice , String valueToUpdate)
 	{
 		boolean result = false;
 		try 
 		{
-			connect = ConnectionMng.establishConnection();
-			SPstatement = connect.prepareCall("{call updateTicketForManager(?,?,?)}");
-			SPstatement.setLong(1,choice);
-			SPstatement.setString(2,ticketID);
-			SPstatement.setString(3,valueToUpdate);
-			boolean hasResult=SPstatement.execute();
-			if(hasResult == false) {
-				int count = SPstatement.getUpdateCount();
-				if(count > 0)
-				{
-				   result = true;
-				}
-		
+			if(choice == 7) 
+			{
+				return result=changeTicketSatatus(ticketID,valueToUpdate);
 			}
-			ConnectionMng.closeConnection();
-		} 
+			else
+			{
+				connect = ConnectionMng.establishConnection();
+				SPstatement = connect.prepareCall("{call updateTicketForManager(?,?,?)}");
+				SPstatement.setLong(1,choice);
+				SPstatement.setString(2,ticketID);
+				SPstatement.setString(3,valueToUpdate);
+				boolean hasResult=SPstatement.execute();
+				if(hasResult == false) {
+					int count = SPstatement.getUpdateCount();
+					if(count > 0)
+					{
+					   result = true;
+					}
+			
+				}
+				ConnectionMng.closeConnection();
+			} 
+		}
 		catch (SQLException e)
 		{
-				e.printStackTrace();
+			e.printStackTrace();
 		}
-
+	
 		return result;
 	}
 	
-	public boolean updateValueOfTicketForNotManager(String ticketID, String valueToUpdate) throws ParseException
-	{
+	private boolean changeTicketSatatus(String ticketID, String valueToUpdate) {
 		valueToUpdate = valueToUpdate.toLowerCase();
 		boolean result = false;
 		try 
@@ -115,6 +123,12 @@ public class updateTicket implements IupdateTicket
 				e.printStackTrace();
 		}
 
+		return result;
+		
+	}
+	public boolean updateValueOfTicketForNotManager(String ticketID, String valueToUpdate) throws ParseException
+	{
+		boolean result = changeTicketSatatus(ticketID,valueToUpdate);
 		return result;
 	}
 	
