@@ -3,5 +3,5 @@ package userinterface;
 import login.Interfaces.IParameterizedUser;
 
 public interface IHomePageScreen {
-	public void handleHomePageMenu(IParameterizedUser user) throws Exception;
+	public void handleHomePageMenu(IParameterizedUser user);
 }

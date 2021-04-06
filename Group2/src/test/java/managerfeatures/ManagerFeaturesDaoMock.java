@@ -2,8 +2,10 @@ package managerfeatures;
 
 import java.util.ArrayList;
 import java.util.List;
-import insertTicket.CreateTicket;
+
 import insertTicket.Interfaces.ICreateTicket;
+import insertTicket.abstractFactory.IInsertTicketFactory;
+import insertTicket.abstractFactory.InsertTicketFactory;
 import managerfeatures.interfaces.IManagerFeaturesDao;
 import validations.StringValidations;
 
@@ -17,12 +19,14 @@ public class ManagerFeaturesDaoMock implements IManagerFeaturesDao {
 	@Override
 	public List<ICreateTicket> managersTeamTickets(String managerId) throws Exception {
 		List<ICreateTicket> createTickets = null;
+		IInsertTicketFactory insertTicketFactory = InsertTicketFactory.instance();
 		if (StringValidations.isStringValid(managerId) && managerId.trim().equalsIgnoreCase(MANAGER_ID)) {
 			createTickets = new ArrayList<ICreateTicket>();
-			ICreateTicket createTicket = new CreateTicket();
-			createTicket.setEmployeeID(EMPLOYEE_ID);
-			createTicket.setTicketId(TICKET_ID);
-			createTicket.setDescription(DESCRIPTION);
+			String employeeId = EMPLOYEE_ID;
+			String ticketId = TICKET_ID;
+			String description = DESCRIPTION;
+			ICreateTicket createTicket = insertTicketFactory.getcreateTicket(ticketId, description, null, null, employeeId, null,
+					null, null, 0, 0, 0, null, null, null, null, null);
 			createTickets.add(createTicket);
 		}
 		return createTickets;
