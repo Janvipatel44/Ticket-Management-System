@@ -25,8 +25,8 @@ public class EmployeePerformanceScreen implements IEmployeePerformanceScreen
         this.inputOutputHandler = inputOutputHandler;
         this.userInterfaceFactory = UserInterfaceFactory.instance();
     }
-    //IParameterizedUser user
-    public void displayTicketGenerationScreen()
+    
+    public void displayTicketGenerationScreen(IParameterizedUser user)
     {
 	   
 	   	String date = null;
@@ -96,8 +96,8 @@ public class EmployeePerformanceScreen implements IEmployeePerformanceScreen
 			e1.printStackTrace();
 		}
     	
-	    //backToHomePageScreen = userInterfaceFactory.getBackToHomePageScreen(inputOutputHandler);
-        //backToHomePageScreen.displayGoBackToHomePageOption(user);
+	    backToHomePageScreen = userInterfaceFactory.getBackToHomePageScreen(inputOutputHandler);
+        backToHomePageScreen.displayGoBackToHomePageOption(user);
     }
 
 	
