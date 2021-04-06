@@ -14,7 +14,7 @@ public class UpdateTicketMenuTask implements IMenuTask
 	public void runMenuTask(IParameterizedUser user, IInputOutputHandler inputOutputHandler) {
 		IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
 		IupdateTicketScreen updateticketscreen = userInterfaceFactory.getUpdateTicketScreen(inputOutputHandler);
-		//updateticketscreen.displayRegistrationScreen(user);
+		updateticketscreen.updateticketscreen(user);
 		
 	}
 

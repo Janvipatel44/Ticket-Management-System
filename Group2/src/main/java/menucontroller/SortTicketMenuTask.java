@@ -9,14 +9,10 @@ import userinterface.abstractFactory.UserInterfaceFactory;
 
 public class SortTicketMenuTask implements IMenuTask
 {
-
 	@Override
 	public void runMenuTask(IParameterizedUser user, IInputOutputHandler inputOutputHandler) {
 		IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
-		IsortTciketScreen getsortticketscreen = userInterfaceFactory.getsortTicketScreen(inputOutputHandler);
-		//getsortticketscreen.displayRegistrationScreen(user);
-		
-		
+		IsortTciketScreen sortTicketscreen = userInterfaceFactory.getsortTicketScreen(inputOutputHandler);
+		sortTicketscreen.sortticketscreen(user);	
 	}
-
 }
