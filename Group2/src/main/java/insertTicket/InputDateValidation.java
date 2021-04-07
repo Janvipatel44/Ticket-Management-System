@@ -13,26 +13,24 @@ public class InputDateValidation implements IInputDateValidation
 	IInputOutputHandler inputOutputHandler;
 	public boolean isDurationValid (String startDate, String endDate) throws ParseException
 	{		
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:MM:SS");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:SS");
 	    Date firstDate = format.parse(startDate);
 	    Date secondDate = format.parse(endDate);
 
-	    long diffInMillies = Math.abs(secondDate.getTime() - firstDate.getTime());
-	    
-		if(diffInMillies<0)
-		{
-			inputOutputHandler.displayMethod("Expected end date is not valid");
+	    if(secondDate.before(firstDate)) 
+	    {
 			return false;
-		}
-		
+	    }
+	    
 		return true;
 	}
+
 	public boolean isDateFormatValid (String validationString) throws ParseException {
 		
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:MM:SS");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:SS");
 		
 		Date date = null;
-
+		
 		if(validationString.equals("") || validationString.equals(null)) 
 		{	
 			inputOutputHandler.displayMethod("Null value inserted");

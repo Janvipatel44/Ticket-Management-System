@@ -3,9 +3,9 @@ import database.ConnectionManager;
 import database.DatabaseOperations;
 import database.IConnectionManager;
 import database.IDatabaseOperations;
-import database.ITicketOperationsDB;
-import database.TicketOperationsDB;
+import insertTicket.TicketOperationsDB;
 import insertTicket.Interfaces.ICreateTicket;
+import insertTicket.Interfaces.ITicketOperationsDB;
 
 public class DatabaseFactory implements IDatabaseFactory {
 

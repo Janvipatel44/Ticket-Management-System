@@ -31,8 +31,7 @@ public class GenerateTicketScreen implements IGenerateTicketScreen
         this.userInterfaceFactory = UserInterfaceFactory.instance();
     }
     
-    //IParameterizedUser user;
-    public void displayTicketGenerationScreen()
+    public void displayTicketGenerationScreen(IParameterizedUser user)
     {
 		String ticketID = null;
 	    String description = null;
@@ -51,26 +50,27 @@ public class GenerateTicketScreen implements IGenerateTicketScreen
 	    String creatorID = null;
 	    String creatorName = null;
 	   	int validInput = -1;	 
-	   	
-	   	ticketID = displayGenerateTicketScreenController(validInput,"ticketID",EnumValidation.validateTicketID);
-	   	description = displayGenerateTicketScreenController(validInput,"description",EnumValidation.validateTicketID);
-	   	expectedEndDate = displayGenerateTicketScreenController(validInput,"expectedEndDate",EnumValidation.validateTicketID);
-	   	reporterID = displayGenerateTicketScreenController(validInput,"reporterID",EnumValidation.validateTicketID);
-	   	employeeID = displayGenerateTicketScreenController(validInput,"employeeID",EnumValidation.validateTicketID);
-	   	assigneeName = displayGenerateTicketScreenController(validInput,"assigneeName",EnumValidation.validateTicketID);
-	   	ticketType = displayGenerateTicketScreenController(validInput,"ticketType",EnumValidation.validateTicketID);
-	   	ticketStatus = displayGenerateTicketScreenController(validInput,"ticketStatus",EnumValidation.validateTicketID);
-	   	priority = Integer.parseInt(displayGenerateTicketScreenController(validInput,"priority",EnumValidation.validateTicketID));
-	   	urgency = Integer.parseInt(displayGenerateTicketScreenController(validInput,"urgency",EnumValidation.validateTicketID));
-	   	impact = Integer.parseInt(displayGenerateTicketScreenController(validInput,"impact",EnumValidation.validateTicketID));
-	   	ticketLevel = displayGenerateTicketScreenController(validInput,"ticketLevel",EnumValidation.validateTicketID);
-	   	customerID = displayGenerateTicketScreenController(validInput,"customerID",EnumValidation.validateTicketID);
-	   	customerName = displayGenerateTicketScreenController(validInput,"customerName",EnumValidation.validateTicketID);
-	   	creatorID = displayGenerateTicketScreenController(validInput,"creatorID",EnumValidation.validateTicketID);
-	   	creatorName = displayGenerateTicketScreenController(validInput,"creatorName",EnumValidation.validateTicketID);
+	   	    
+		
+	   	ticketID = displayGenerateTicketScreenController(validInput,"ticketID",EnumValidation.VALIDATETICKETID);
+	   	description = displayGenerateTicketScreenController(validInput,"description",EnumValidation.VALIDATEDESCRIPTION);
+	   	expectedEndDate = displayGenerateTicketScreenController(validInput,"expectedEndDate",EnumValidation.VALIDATEEXPECTEDENDDATE);
+	   	reporterID = displayGenerateTicketScreenController(validInput,"reporterID",EnumValidation.VALIDATEREPORTERID);
+	   	employeeID = displayGenerateTicketScreenController(validInput,"employeeID",EnumValidation.VALIDATEEMPLOYEEID);
+	   	assigneeName = displayGenerateTicketScreenController(validInput,"assigneeName",EnumValidation.VALIDATEASSIGNEENAME);
+	   	ticketType = displayGenerateTicketScreenController(validInput,"ticketType",EnumValidation.VALIDATETICKETTYPE);
+	   	ticketStatus = displayGenerateTicketScreenController(validInput,"ticketStatus",EnumValidation.VALIDATETICKETSTATUS);
+	   	priority = Integer.parseInt(displayGenerateTicketScreenController(validInput,"priority",EnumValidation.VALIDATEPRIORITY));
+	   	urgency = Integer.parseInt(displayGenerateTicketScreenController(validInput,"urgency",EnumValidation.VALIDATEURGENCY));
+	   	impact = Integer.parseInt(displayGenerateTicketScreenController(validInput,"impact",EnumValidation.VALIDATEIMPACT));
+	   	ticketLevel = displayGenerateTicketScreenController(validInput,"ticketLevel",EnumValidation.VALIDATETICKETLEVEL);
+	   	customerID = displayGenerateTicketScreenController(validInput,"customerID",EnumValidation.VALIDATECUSTOMERID);
+	   	customerName = displayGenerateTicketScreenController(validInput,"customerName",EnumValidation.VALIDATECUSTOMERNAME);
+	   	creatorID = displayGenerateTicketScreenController(validInput,"creatorID",EnumValidation.VALIDATECREATORID);
+	   	creatorName = displayGenerateTicketScreenController(validInput,"creatorName",EnumValidation.VALIDATECREATORNAME);
 
 	    createTicket = insertTicketFactory.getcreateTicket(ticketID, description, expectedEndDate, reporterID,
-	    		employeeID, assigneeName, ticketType, ticketStatus, priority, urgency, impact, ticketLevel, customerID, 
+	    		employeeID, assigneeName, ticketType, ticketStatus,priority, urgency, impact, ticketLevel, customerID, 
 	    		customerName, creatorID, creatorName);
 	   
         inputOutputHandler.displayMethod("\n");
@@ -93,8 +93,8 @@ public class GenerateTicketScreen implements IGenerateTicketScreen
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}      
-	   // backToHomePageScreen = userInterfaceFactory.getBackToHomePageScreen(inputOutputHandler);
-       // backToHomePageScreen.displayGoBackToHomePageOption(user);
+	    backToHomePageScreen = userInterfaceFactory.getBackToHomePageScreen(inputOutputHandler);
+        backToHomePageScreen.displayGoBackToHomePageOption(user);
     }
     
     public String displayGenerateTicketScreenController(int validInput, String inputType, EnumValidation validationString)
@@ -103,22 +103,27 @@ public class GenerateTicketScreen implements IGenerateTicketScreen
     	String inputMessage = null;
     	String errorMessage = null;
         inputMessage = "Enter " + inputType + ":\n";
-        errorMessage = "Please enter valid" + inputType;
+        errorMessage = "Please enter valid " + inputType;
                
     	while(validInput != 0) 
     	{
     	    inputOutputHandler.displayMethod(inputMessage);
     	    inputString = inputOutputHandler.input();
     	    
-		    if(insertTicketFactory.validation().validation(inputString,validationString) == false) 
-		    {
-	            inputOutputHandler.displayMethod(errorMessage);
-		    	validInput = 1;
-		    }
-		    else 
-		    {
-		    	validInput = 0;
-		    }
+		    try {
+				if(insertTicketFactory.validation().validation(inputString,validationString) == false) 
+				{
+				    inputOutputHandler.displayMethod(errorMessage);
+					validInput = 1;
+				}
+				else 
+				{
+					validInput = 0;
+				}
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		    if(validInput == 1) 
 		    {
 	    	    inputOutputHandler.displayMethod("Exit? (Yes/No)");

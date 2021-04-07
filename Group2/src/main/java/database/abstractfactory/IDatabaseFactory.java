@@ -1,9 +1,9 @@
 package database.abstractfactory;
 
 import insertTicket.Interfaces.ICreateTicket;
+import insertTicket.Interfaces.ITicketOperationsDB;
 import database.IConnectionManager;
 import database.IDatabaseOperations;
-import database.ITicketOperationsDB;
 
 public interface IDatabaseFactory {
     IConnectionManager getConnectionManager(String configurationFile);
