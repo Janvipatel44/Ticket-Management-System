@@ -40,7 +40,7 @@ public class FetchProjectDetailsDB implements IFetchProjectDetailsDB
         ResultSet resultset = null;
         String postDescription = null;
 		try 
-		{  
+		{   
 			CallableStatement statement = (CallableStatement) connection.prepareCall("{call tweetDescriptionGenerator(?)}");
 			
 			statement.setString(1, postDetails.getTicketId());
