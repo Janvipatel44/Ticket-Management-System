@@ -75,12 +75,12 @@ public class TicketOperationsDB implements ITicketOperationsDB{
             
 			if(duplicate_ticket==0) 
 			{
-			    success = false;
+			    success = true;
 			}
 			else 
 			{
 				System.out.println("Duplicate Entry Found!!!");
-				success = true;
+				success = false;
 			}
 		} 
 		catch (SQLException e) 

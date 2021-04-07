@@ -1,9 +1,14 @@
 package twitterPosting;
 
-public class FetchProjectDetailsMock
+import twitterPosting.Interfaces.IFetchProjectDetailsDB;
+
+public class FetchProjectDetailsMock implements IFetchProjectDetailsDB
 {	
-	public boolean getticketCountsDB(String ticketId)
+	String ticketId = null;
+
+	public boolean getticketCountsDB()
 	{
+		ticketId = "111";
 		if(ticketId == "111") 
 		{
 			return true;
@@ -14,4 +19,4 @@ public class FetchProjectDetailsMock
 		}
 		return false;
 	}
-}
+} 

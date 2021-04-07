@@ -64,11 +64,7 @@ public class CreateTicket implements ICreateTicket
     
     public Date generateStartDate() throws ParseException 
     {
-    	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
-	    String now = LocalDateTime.now().toString();  
-    	expectedEndDateString =formatter.format(formatter.parse(now));
-    	startDate = (Date)formatter.parseObject(expectedEndDateString);
-    	
+    	startDate = new java.util.Date();
         return startDate;
     }
     
@@ -77,6 +73,7 @@ public class CreateTicket implements ICreateTicket
     	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
     	expectedEndDateString =formatter.format(formatter.parse(expectedEndDateString));
     	expectedEndDate = (Date)formatter.parseObject(expectedEndDateString);
+    	
     	return expectedEndDate;
     }
     
