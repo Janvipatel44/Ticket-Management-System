@@ -28,7 +28,7 @@ public class TwitterOperations implements ITwitterOperations {
 		public String generateTweetContent() throws SQLException 
 		{
 			String description = null;
-			String workingHours = null;
+			String resolutionHours = null;
 			String startDate = null;
 			String endDate = null;
 			String ticketType = null;
@@ -37,9 +37,9 @@ public class TwitterOperations implements ITwitterOperations {
 	    	String postDescription = null;
 
 			while(resultSet.next()) 
-			{	    		
+			{	    		 
 	    		description = resultSet.getString("description");
-	    		workingHours = resultSet.getString("resolutionHours");
+	    		resolutionHours = resultSet.getString("resolutionHours");
 	    		startDate = resultSet.getString("startDate");
 	    		endDate = resultSet.getString("endDate");
 	    		ticketType = resultSet.getString("ticketType");
@@ -47,8 +47,9 @@ public class TwitterOperations implements ITwitterOperations {
 	    		lastName = resultSet.getString("lastName");
 			}
     		
-    		postDescription = "Happy to announce that I have been working on a " +ticketType + " named: '" + description + "' for  " + workingHours +
-    					" since " + startDate + endDate + " with the guidance of my manager " + firstName + lastName;
+			postDescription = "Hey, I just finished working on this" +ticketType + " of ticket." +"Following are the details: " +"\n" +
+					"Title: " +description + "\n" + "Time taken: " + resolutionHours + "(" + startDate + "to" + endDate + ")" +"\n" + 
+					"Kindly let me know if further issues are found regarding this.";
     		
 			return postDescription;
 		}

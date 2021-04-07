@@ -28,6 +28,7 @@ public class RegistrationScreen implements IRegistrationScreen
         String password;
         String email;
         String user_type;
+        String manager;
         IServiceNowWelcomeScreen serviceNowWelcomeScreen = userInterfaceFactory.getServiceNowWelcomeScreen(inputOutputHandler);;
         IPersistenceUserRegistrationOperations userRegistrationOperations = null;
         try
@@ -62,10 +63,13 @@ public class RegistrationScreen implements IRegistrationScreen
         inputOutputHandler.displayMethod("Enter employee/user type.\n");
         user_type = inputOutputHandler.input();
 
+        inputOutputHandler.displayMethod("Enter manager ID.\n");
+        manager = inputOutputHandler.input();
+
         inputOutputHandler.displayMethod("Enter password.\n");
         password = inputOutputHandler.input();
 
-        user = loginFactory.getParameterizedUser(employeeID, firstName, lastName, email, user_type);
+        user = loginFactory.getParameterizedUser(employeeID, firstName, lastName, email, user_type, manager);
 
         if(register.registerUser(user, password))
         {

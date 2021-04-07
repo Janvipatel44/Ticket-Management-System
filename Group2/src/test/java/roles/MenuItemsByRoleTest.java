@@ -2,6 +2,8 @@ package roles;
 
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+
+import java.io.IOException;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +22,7 @@ public class MenuItemsByRoleTest {
 	private IMenuItemsByRole menuItemsByRole;
 
 	@Before
-	public void init() {
+	public void init() throws IOException {
 		IRoleFactory roleFactory = RoleMockFactory.instance();
 		menuItemsByRole = roleFactory.makeMenuItemsByRoleObject();
 	}

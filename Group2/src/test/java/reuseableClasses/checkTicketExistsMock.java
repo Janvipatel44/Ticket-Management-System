@@ -14,6 +14,7 @@ public class checkTicketExistsMock implements IcheckTicketExists
 			if(ticketExist == 1)
 			{
 				result = true;
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -64,7 +65,7 @@ public class checkTicketExistsMock implements IcheckTicketExists
 	
 	private void fetchTicketForTicketID(String ticketID) throws Exception
 	{
-		
+		ticketExist = 0;
 		String ticketid = "111";
 		if(ticketid.equals(ticketID))
 		{

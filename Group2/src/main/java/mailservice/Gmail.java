@@ -40,7 +40,7 @@ public class Gmail implements IMail {
 
 		try {
 			mailConfigurationProperties = ReadPropertiesFile.readConfigPropertyFile(mailConfiguration);
-			userConfigurationProperties = ReadPropertiesFile.readConfigPropertyFile(mailConfiguration);
+			userConfigurationProperties = ReadPropertiesFile.readConfigPropertyFile(userConfiguration);
 		} catch (IOException e) {
 			throw new IllegalArgumentException(WRONG_FILE_PATH_MESSAGE);
 		}

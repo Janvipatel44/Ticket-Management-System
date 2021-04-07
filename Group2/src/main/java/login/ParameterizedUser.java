@@ -7,14 +7,16 @@ public class ParameterizedUser implements IParameterizedUser {
 	private String lastName;
 	private String email;
 	private String user_type;
+	private String manager;
 	
-	public ParameterizedUser(String employeeID, String firstName, String lastName, String email, String user_type)
+	public ParameterizedUser(String employeeID, String firstName, String lastName, String email, String user_type, String manager)
 	{
 		this.employeeID = employeeID;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.user_type = user_type;
+		this.manager = manager;
 	}
 	
 	public String getEmployeeID()
@@ -40,5 +42,10 @@ public class ParameterizedUser implements IParameterizedUser {
 	public String getUserType()
 	{
 		return user_type;
+	}
+
+	public String getManager()
+	{
+		return manager;
 	}
 }

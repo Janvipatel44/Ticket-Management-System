@@ -1,19 +1,16 @@
 package menucontroller;
-
 import login.Interfaces.IParameterizedUser;
 import menucontroller.interfaces.IMenuTask;
-import userinterface.ICustomerAnalysisScreen;
-import userinterface.IInputOutputHandler;
+import userinterface.*;
 import userinterface.abstractFactory.IUserInterfaceFactory;
 import userinterface.abstractFactory.UserInterfaceFactory;
-
-public class CustomerAnalysisMenuTask implements IMenuTask {
+public class LogoutMenuTask implements IMenuTask {
 
 	@Override
 	public void runMenuTask(IParameterizedUser user, IInputOutputHandler inputOutputHandler)
 	{
 		IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
-		ICustomerAnalysisScreen customerAnalysisScreen = userInterfaceFactory.getCustomerAnalysisScreen(inputOutputHandler);
-		customerAnalysisScreen.displayCustomerAnalysisScreen(user);
+		IServiceNowWelcomeScreen serviceNowWelcomeScreen = userInterfaceFactory.getServiceNowWelcomeScreen(inputOutputHandler);
+		serviceNowWelcomeScreen.displayLoginScreen();
 	}
 }

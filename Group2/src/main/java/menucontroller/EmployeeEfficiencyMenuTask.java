@@ -4,7 +4,6 @@ import login.Interfaces.IParameterizedUser;
 import menucontroller.interfaces.IMenuTask;
 import userinterface.IEmployeeMilestoneScreen;
 import userinterface.IInputOutputHandler;
-import userinterface.IRatingScreen;
 import userinterface.abstractFactory.IUserInterfaceFactory;
 import userinterface.abstractFactory.UserInterfaceFactory;
 

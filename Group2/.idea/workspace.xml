@@ -5,35 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74e0b3c0-b815-448a-a6b0-f49829c01fc2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/menucontroller/RatingMenuTask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rating/PersistenceRating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rating/PersistenceRating.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rating/abstractfactory/IRatingFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rating/abstractfactory/IRatingFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rating/abstractfactory/RatingFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rating/abstractfactory/RatingFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/customerAnalysis/PersistenceCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/customerAnalysis/PersistenceCustomer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/customerAnalysis/abstractfactory/CustomerAnalysisFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/customerAnalysis/abstractfactory/CustomerAnalysisFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/customerAnalysis/abstractfactory/ICustomerAnalysisFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/customerAnalysis/abstractfactory/ICustomerAnalysisFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/abstractfactory/DatabaseFactoryAbs.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/employeeMilestones/PersistenceEmployeeTickets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employeeMilestones/PersistenceEmployeeTickets.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/employeeMilestones/abstractfactory/EmployeeMilestoneFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employeeMilestones/abstractfactory/EmployeeMilestoneFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/employeeMilestones/abstractfactory/IEmployeeMilestoneFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employeeMilestones/abstractfactory/IEmployeeMilestoneFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MailConfiguration.properties" beforeDir="false" afterPath="$PROJECT_DIR$/MailConfiguration.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/login/Authentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/Authentication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/login/ForgotPassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/ForgotPassword.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/login/Interfaces/IParameterizedUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/Interfaces/IParameterizedUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/login/ParameterizedUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/ParameterizedUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/login/PersistenceAuthenticationOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/PersistenceAuthenticationOperations.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/login/PersistenceForgotPasswordOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/PersistenceForgotPasswordOperations.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/login/PersistenceUserRegistrationOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/PersistenceUserRegistrationOperations.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/login/abstractfactory/ILoginFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/abstractfactory/ILoginFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/login/abstractfactory/LoginFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/login/abstractfactory/LoginFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/menucontroller/MenuHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/menucontroller/MenuHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/menucontroller/ModifyUserRoleMenuTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/menucontroller/ModifyUserRoleMenuTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/menucontroller/RatingFeatureMenuTask.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/CustomerAnalysisScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/CustomerAnalysisScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/EmployeeMilestoneScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/EmployeeMilestoneScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/ForgotPasswordScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/ForgotPasswordScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/LoginScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/LoginScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/RatingScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/RatingScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mailservice/Gmail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mailservice/Gmail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/roles/RoleManagementDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/roles/RoleManagementDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/ModifyUserRoleScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/ModifyUserRoleScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/RegistrationScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/RegistrationScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/ServiceNowWelcomeScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/ServiceNowWelcomeScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/abstractFactory/IUserInterfaceFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/abstractFactory/IUserInterfaceFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/userinterface/abstractFactory/UserInterfaceFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userinterface/abstractFactory/UserInterfaceFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/login/RegistrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/login/RegistrationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,9 +30,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
         <option value="JUnit4 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -91,7 +78,14 @@
       <recent name="menucontroller" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CustomerAnalysisFacadeTest">
+  <component name="RunManager" selected="Application.ServiceNowMockApplication">
+    <configuration name="ServiceNowMockApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ServiceNowMockApplication" />
+      <module name="Group2" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -150,6 +144,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ServiceNowMockApplication" />
         <item itemvalue="JUnit.CustomerAnalysisFacadeTest" />
         <item itemvalue="JUnit.EmployeeMilestoneFacadeTest" />
         <item itemvalue="JUnit.RatingAssigneeFacadeTest" />
@@ -168,7 +163,11 @@
       <workItem from="1617561136836" duration="2504000" />
       <workItem from="1617567203299" duration="4414000" />
       <workItem from="1617590769794" duration="1470000" />
-      <workItem from="1617592280364" duration="9097000" />
+      <workItem from="1617592280364" duration="9389000" />
+      <workItem from="1617606175175" duration="114000" />
+      <workItem from="1617676443926" duration="1555000" />
+      <workItem from="1617683207804" duration="578000" />
+      <workItem from="1617685072132" duration="11221000" />
     </task>
     <servers />
   </component>
@@ -186,5 +185,56 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ServiceNowMockApplication.java</url>
+          <line>10</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/userinterface/LoginScreen.java</url>
+          <line>56</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/userinterface/ForgotPasswordScreen.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/userinterface/ForgotPasswordScreen.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/login/ForgotPassword.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/mailservice/Gmail.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/login/ForgotPassword.java</url>
+          <line>79</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/userinterface/ModifyUserRoleScreen.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="mailservice.MailMessage" memberName="recipients" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>

@@ -6,4 +6,5 @@ public interface IParameterizedUser
     public String getLastName();
     public String getEmail();
     public String getUserType();
+    public String getManager();
 }

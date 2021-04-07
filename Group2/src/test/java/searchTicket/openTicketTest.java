@@ -14,7 +14,7 @@ public class openTicketTest
 	private IreuseableClassesFactoryTest reuseableclassfactory = reuseableClassFactoryTest.instance();
 	IopenTicket openticket = reuseableclassfactory.openticketMock();
 	IInputOutputHandler inputoutputhandler = new InputOutputHandler();
-//	
+//	 
 //	@Before
 //    public void initialize()
 //    {
