@@ -1,4 +1,4 @@
-package employeePerformance;
+package userinterface;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -6,9 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import employeePerformance.Interfaces.IExportEmployeePerformanceReport;
 import employeePerformance.Interfaces.IGenerateEmployeePerformanceReport;
-import userinterface.IInputOutputHandler;
 
 public class ExportEmployeePerformanceReport implements IExportEmployeePerformanceReport 
 {	
@@ -18,13 +16,12 @@ public class ExportEmployeePerformanceReport implements IExportEmployeePerforman
 	IGenerateEmployeePerformanceReport generateEmployeePerformanceReport;
 	IInputOutputHandler inputOutputHandler;
 	
-	public ExportEmployeePerformanceReport(IInputOutputHandler inputOutputHandler, ArrayList<String> employeeEfficiency) {
-		this.employeeDetailsString = employeeEfficiency;
+	public ExportEmployeePerformanceReport(IInputOutputHandler inputOutputHandler) {
 		this.inputOutputHandler = inputOutputHandler;
 	}
 	
 	@Override
-	public void exportTicket() 
+	public void exportTicket(ArrayList<String> employeeEfficiency) 
 	{
 		inputOutputHandler.displayMethod("Enter file name with Path:");
 		FileName=sc.next();

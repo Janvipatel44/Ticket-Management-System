@@ -1,6 +1,8 @@
 package userinterface;
 
 import userinterface.abstractFactory.*;
+
+import java.awt.List;
 import java.text.ParseException;
 import java.util.ArrayList;
 
@@ -13,17 +15,18 @@ import login.Interfaces.IParameterizedUser;
 
 public class EmployeePerformanceScreen implements IEmployeePerformanceScreen
 {
-    private final IInputOutputHandler inputOutputHandler;
-    private final IUserInterfaceFactory userInterfaceFactory;
+    private final IUserInterfaceFactory userInterfaceFactory =  UserInterfaceFactory.instance();;
     private IEmployeePerformanceFactory employeePerformanceFactory = EmployeePerformanceFactory.instance();
     private IInputEmployeeDetails inputEmployeeDetails;
     private IEmployeePerformanceDB employeedetailsDB;
+    private IExportEmployeePerformanceReport employeePerformanceReport;
     private IBackToHomePageScreen backToHomePageScreen;
-    private IGenerateEmployeePerformanceReport generateEmployeePerformance;
+    private IInputOutputHandler inputOutputHandler = userInterfaceFactory.getInputOutputHandler();
+    
     public EmployeePerformanceScreen(IInputOutputHandler inputOutputHandler)
     {
         this.inputOutputHandler = inputOutputHandler;
-        this.userInterfaceFactory = UserInterfaceFactory.instance();
+        //this.userInterfaceFactory = UserInterfaceFactory.instance();
     }
     
     public void displayTicketGenerationScreen(IParameterizedUser user)
@@ -44,7 +47,8 @@ public class EmployeePerformanceScreen implements IEmployeePerformanceScreen
 		 
 		try
 		{
-			if(employeedetailsDB.getticketCountsDB()==true) 
+			efficiencyReport.add(employeedetailsDB.getticketCountsDB().toString());
+			if(employeedetailsDB.getticketCountsDB()!=null) 
 			{
 			    inputOutputHandler.displayMethod("Successfully performed fetching of ticket count based on ticket level:");
 			}
@@ -61,7 +65,8 @@ public class EmployeePerformanceScreen implements IEmployeePerformanceScreen
 		}
 		
 		try {
-			if(employeedetailsDB.getemployeeEfficiencyDB()==true) 
+			efficiencyReport.add(employeedetailsDB.getemployeeEfficiencyDB().toString());
+			if(employeedetailsDB.getemployeeEfficiencyDB()!=null) 
 			{
 			    inputOutputHandler.displayMethod("Successfully performed data fetching for generating employee efficiency:");
 			}
@@ -79,7 +84,8 @@ public class EmployeePerformanceScreen implements IEmployeePerformanceScreen
 		
 		try 
 		{
-			if(employeedetailsDB.getemployeeProductivityDB() == true) 
+			efficiencyReport.add(employeedetailsDB.getemployeeProductivityDB().toString());
+			if(employeedetailsDB.getemployeeProductivityDB() != null) 
 			{
 				
 			    inputOutputHandler.displayMethod("Successfully performed data fetching for generating employee productivity:");
@@ -95,10 +101,11 @@ public class EmployeePerformanceScreen implements IEmployeePerformanceScreen
 		    inputOutputHandler.displayMethod(e1.toString());
 			e1.printStackTrace();
 		}
-    	
+		
+		employeePerformanceReport = userInterfaceFactory.getExportEmployeePerformanceReport(inputOutputHandler);
+		employeePerformanceReport.exportTicket(efficiencyReport);
+		
 	    backToHomePageScreen = userInterfaceFactory.getBackToHomePageScreen(inputOutputHandler);
         backToHomePageScreen.displayGoBackToHomePageOption(user);
-    }
-
-	
+    }	
 }

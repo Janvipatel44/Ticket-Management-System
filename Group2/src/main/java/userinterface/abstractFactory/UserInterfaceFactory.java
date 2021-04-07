@@ -1,8 +1,11 @@
 package userinterface.abstractFactory;
+import java.util.ArrayList;
+
 import userinterface.BackToHomePageOption;
 import userinterface.CustomerAnalysisScreen;
 import userinterface.EmployeeMilestoneScreen;
 import userinterface.EmployeePerformanceScreen;
+import userinterface.ExportEmployeePerformanceReport;
 import userinterface.ForgotPasswordScreen;
 import userinterface.GenerateTicketScreen;
 import userinterface.HomePageScreen;
@@ -10,6 +13,7 @@ import userinterface.IBackToHomePageScreen;
 import userinterface.ICustomerAnalysisScreen;
 import userinterface.IEmployeeMilestoneScreen;
 import userinterface.IEmployeePerformanceScreen;
+import userinterface.IExportEmployeePerformanceReport;
 import userinterface.IForgotPasswordScreen;
 import userinterface.IGenerateTicketScreen;
 import userinterface.IHomePageScreen;
@@ -68,6 +72,7 @@ public class UserInterfaceFactory implements IUserInterfaceFactory
     {
         return new LoginScreen(inputOutputHandler);
     }
+    
 
     public IRegistrationScreen getRegistrationScreen(IInputOutputHandler inputOutputHandler)
     {
@@ -152,5 +157,12 @@ public class UserInterfaceFactory implements IUserInterfaceFactory
     {
         return new commentOnTicketScreen(inputOutputHandler);
     }
+    
+    //
+    public IExportEmployeePerformanceReport getExportEmployeePerformanceReport(IInputOutputHandler inputOutputHandler) 
+	{
+    	//
+		return new ExportEmployeePerformanceReport(inputOutputHandler);
+	}
 
 }

@@ -1,9 +1,12 @@
 package userinterface.abstractFactory;
 
+import java.util.ArrayList;
+
 import userinterface.IBackToHomePageScreen;
 import userinterface.ICustomerAnalysisScreen;
 import userinterface.IEmployeeMilestoneScreen;
 import userinterface.IEmployeePerformanceScreen;
+import userinterface.IExportEmployeePerformanceReport;
 import userinterface.IForgotPasswordScreen;
 import userinterface.IGenerateTicketScreen;
 import userinterface.IHomePageScreen;
@@ -43,5 +46,6 @@ public interface IUserInterfaceFactory
     public ITwitterPostScreen getTwitterPostScreen(IInputOutputHandler inputOutputHandler);
     public IupdateTicketScreen getUpdateTicketScreen(IInputOutputHandler inputOutputHandler);
     public IcommentOnTicketScreen getCommentOnTicketScreen(IInputOutputHandler inputOutputHandler);
+    public IExportEmployeePerformanceReport getExportEmployeePerformanceReport(); 
 
 }

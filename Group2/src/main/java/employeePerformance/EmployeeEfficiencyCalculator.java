@@ -8,7 +8,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 
 import employeePerformance.Interfaces.IEmployeeEfficiencyCalculator;
-import employeePerformance.Interfaces.IExportEmployeePerformanceReport;
+import userinterface.IExportEmployeePerformanceReport;
 
 public class EmployeeEfficiencyCalculator implements IEmployeeEfficiencyCalculator
 {

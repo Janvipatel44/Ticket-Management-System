@@ -8,12 +8,12 @@ import java.util.HashMap;
 import java.util.List;
 
 import employeePerformance.Interfaces.IBarChartGeneration;
-import employeePerformance.Interfaces.IExportEmployeePerformanceReport;
 import employeePerformance.Interfaces.IGenerateEmployeePerformanceReport;
 import employeePerformance.Interfaces.IInputEmployeeDetails;
 import employeePerformance.Interfaces.ITableGenerator;
 import employeePerformance.abstractFactory.EmployeePerformanceFactory;
 import employeePerformance.abstractFactory.IEmployeePerformanceFactory;
+import userinterface.IExportEmployeePerformanceReport;
 import userinterface.IInputOutputHandler;
 
 public class GenerateEmployeePerformanceReport implements IGenerateEmployeePerformanceReport
@@ -114,8 +114,7 @@ public class GenerateEmployeePerformanceReport implements IGenerateEmployeePerfo
 	        employeeDetailsString.add(tableGeneratorEmployeeProductivity.generateTable(headersList, rowsList));
 			employeeDetailsString.add(barchart.Displaybarchart(calculatedEmployeeProductivity));
 			
-			employeePerformanceReport = employeePerformanceFactory.getExportEmployeePerformanceReport(inputOutputHandler, employeeDetailsString);
-			employeePerformanceReport.exportTicket();
+			//employeePerformanceReport = employeePerformanceFactory.getExportEmployeePerformanceReport(inputOutputHandler, employeeDetailsString);
 			return employeeDetailsString;
 		}
 }
