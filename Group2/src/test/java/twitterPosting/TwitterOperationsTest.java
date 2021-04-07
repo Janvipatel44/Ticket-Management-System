@@ -26,7 +26,9 @@ public class TwitterOperationsTest
 	    @Test
 	    public void checkPosting() 
 	    {
-			String postDescription= "Glad  to announce that I have been working on a ticketType - feature for 20 workingHours with the guidance of manage";
-	    	assertTrue(twitterOperations.tweetTicket(postDescription));
+	    	String postDescription = "Hey, I just finished working on this ticketype of ticket." +"Following are the details: " +"\n" +
+					"Title: " + "Login feature" + "\n" + "Time taken: "+ "100 hours"+ "(" + "2021-04-04" + "to" + "2021-04-06" + ")" +"\n" + 
+					"Kindly let me know if further issues are found regarding this.";	    
+			assertTrue(twitterOperations.tweetTicket(postDescription));
 	    }
 }
