@@ -16,8 +16,6 @@ import sortTickets.sortTicket;
 import sortTickets.abstractfactory.ISortTicketFactory;
 import sortTickets.abstractfactory.SortTicketFactory;
 import sortTickets.interfaces.IsortTicket;
-import userinterface.IBackToHomePageScreen;
-import userinterface.IInputOutputHandler;
 import userinterface.abstractFactory.IUserInterfaceFactory;
 import userinterface.abstractFactory.UserInterfaceFactory;
 
@@ -57,10 +55,11 @@ public class sortTicketScreen implements IsortTciketScreen{
 			inputoutputhandler.displayMethod("Enter your choice:");
 			choice = inputoutputhandler.inputInt();
 			IsortTicket sortTicketobj = new sortTicket(storeTicketData, displayUser, ConnectionMng);
-			if (choice <= 3 || choice <= 1) {
-				sortTicketobj.sortTickets(choice);
+			if (choice <= 3 && choice >= 1) {
+				output = sortTicketobj.sortTickets(choice);
+				inputoutputhandler.displayMethod(output);
+				open();
 			}
-			open();
 		} while (choice != 4);
 		
 		userInterfaceFactory = UserInterfaceFactory.instance();
@@ -70,6 +69,7 @@ public class sortTicketScreen implements IsortTciketScreen{
 
 	private static void open() {
 		int choice = 0;
+		String output="";
 		String ticketID = null;
 		IopenTicket openticket = resuableclassfactore.openticket(storeTicketData, displayUser, ConnectionMng);
 
@@ -86,7 +86,8 @@ public class sortTicketScreen implements IsortTciketScreen{
 					inputoutputhandler.displayMethod("Enter Ticket ID:");
 					inputoutputhandler.displayMethod("\n");
 					ticketID = inputoutputhandler.input();
-					openticket.openticket(ticketID);
+					output = openticket.openticket(ticketID);
+					inputoutputhandler.displayMethod(output);
 				}
 				else
 				{

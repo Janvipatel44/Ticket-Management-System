@@ -18,8 +18,6 @@ import roles.abstractfactory.IRoleFactory;
 import updateTicketDetails.abstractfactory.IupdateTicketFactory;
 import updateTicketDetails.abstractfactory.updateTicketFactory;
 import updateTicketDetails.interfaces.IupdateTicket;
-import userinterface.IBackToHomePageScreen;
-import userinterface.IInputOutputHandler;
 import userinterface.abstractFactory.IUserInterfaceFactory;
 import userinterface.abstractFactory.UserInterfaceFactory;
 
@@ -28,7 +26,7 @@ public class updateTicketScreen implements IupdateTicketScreen
 	String configurationFile = "ConfigurationFile";
 	String ticketId = null;
 	String userRole = "manager";
-	String employeeID = "emp123";
+	String employeeID = "ct785";
 	boolean result=false;
 	Scanner sc = new Scanner(System.in);
 	
@@ -68,65 +66,81 @@ public class updateTicketScreen implements IupdateTicketScreen
 			
 		if(userRole.equals(userenterRole))
 		{
-			inputoutputhandler.displayMethod("Enter Ticket Id you want to update:");
-			ticketId = inputoutputhandler.input();
-			result=checkticketexists.ticketExistForManager(ticketId, employeeID);
-			if(result == true)
-			{
-				inputoutputhandler.displayMethod("1. Expected Date"+"\n"+"2. Reporter ID"+"\n"+"3. Assignee Name"+"\n"+"4. priority"+"\n"+"5. urgency"+
-						"\n"+"6. impact"+"\n"+"7. status of ticket");
-				
-				inputoutputhandler.displayMethod("Please provide your choice");
-				int choiceToUpdate =inputoutputhandler.inputInt();
-				inputoutputhandler.displayMethod("Enter Update Value:");
-				String value = inputoutputhandler.input();
-				result = updateTicket.updateValueOfTicketForManager(ticketId,choiceToUpdate,value);
+			do {
+				inputoutputhandler.displayMethod("Enter Ticket Id you want to update:");
+				inputoutputhandler.displayMethod("Enter exit to go to main menu");
+				ticketId = inputoutputhandler.input();
+				if(ticketId.toLowerCase().equals("exit")) 
+				{
+					break;
+				}
+				result=checkticketexists.ticketExistForManager(ticketId, employeeID);
 				if(result == true)
 				{
-					inputoutputhandler.displayMethod("true");
+					inputoutputhandler.displayMethod("1. Expected Date"+"\n"+"2. Reporter ID"+"\n"+"3. Assignee Name"+"\n"+"4. priority"+"\n"+"5. urgency"+
+							"\n"+"6. impact"+"\n"+"7. status of ticket");
+					
+					inputoutputhandler.displayMethod("Please provide your choice");
+					int choiceToUpdate =inputoutputhandler.inputInt();
+					inputoutputhandler.displayMethod("Enter Update Value:");
+					String value = inputoutputhandler.input();
+					result = updateTicket.updateValueOfTicketForManager(ticketId,choiceToUpdate,value);
+					if(result == true)
+					{
+						inputoutputhandler.displayMethod("true");
+					}
+					else
+					{
+						inputoutputhandler.displayMethod("false");
+					}
 				}
 				else
 				{
-					inputoutputhandler.displayMethod("false");
+					inputoutputhandler.displayMethod("Please provide valid ticket id. You are either not allow to update tickets data, or ticket with given id does not exists");
 				}
 				
-			}
-			else
-			{
-				inputoutputhandler.displayMethod("Please provide valid ticket id. You are either not allow to update tickets data, or ticket with given id does not exists");
-			}
+			}while(true);
 					
 		}
 		else
 		{
-			inputoutputhandler.displayMethod("Enter Ticket Id you want to update:");
-			ticketId = inputoutputhandler.input();
-			result = checkticketexists.ticketExistForNotManager(ticketId, employeeID);
-			if(result == true)
+			do 
 			{
-				inputoutputhandler.displayMethod("Change Ticket Status");
-				inputoutputhandler.displayMethod("Enter Ticket Status:");
-				String value = inputoutputhandler.input();
-				
-			try {
-					result = updateTicket.updateValueOfTicketForNotManager(ticketId,value);
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-				e.printStackTrace();
+				inputoutputhandler.displayMethod("Enter Ticket Id you want to update:");
+				inputoutputhandler.displayMethod("Enter exit to go to main menu");
+				ticketId = inputoutputhandler.input();
+				if(ticketId.toLowerCase().equals("exit")) 
+				{
+					break;
 				}
+				result = checkticketexists.ticketExistForNotManager(ticketId, employeeID);
 				if(result == true)
 				{
-					inputoutputhandler.displayMethod("true");
+					inputoutputhandler.displayMethod("Change Ticket Status");
+					inputoutputhandler.displayMethod("Enter Ticket Status:");
+					String value = inputoutputhandler.input();
+					
+				try {
+						result = updateTicket.updateValueOfTicketForNotManager(ticketId,value);
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+					e.printStackTrace();
+					}
+					if(result == true)
+					{
+						inputoutputhandler.displayMethod("true");
+					}
+					else
+					{
+						inputoutputhandler.displayMethod("false");
+					}
 				}
 				else
 				{
-					inputoutputhandler.displayMethod("false");
+					inputoutputhandler.displayMethod("Please provide valid ticket id. You are either not allow to update tickets data, or ticket with given id does not exists");
 				}
-			}
-			else
-			{
-				inputoutputhandler.displayMethod("Please provide valid ticket id. You are either not allow to update tickets data, or ticket with given id does not exists");
-			}
+				
+			}while(true);
 			
 		}
 		userInterfaceFactory = UserInterfaceFactory.instance();

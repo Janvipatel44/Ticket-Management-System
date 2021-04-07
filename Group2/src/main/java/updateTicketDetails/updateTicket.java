@@ -56,7 +56,7 @@ public class updateTicket implements IupdateTicket
 		}
 		catch (SQLException e)
 		{
-			e.printStackTrace();
+			result = false;
 		}
 	
 		return result;

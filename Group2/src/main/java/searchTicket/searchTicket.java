@@ -46,11 +46,13 @@ public class searchTicket implements IsearchTicket
 			{
 			    resultSet = SPstatement.getResultSet();
 			    ResultSetMetaData tableMetaData = resultSet.getMetaData();
-			    System.out.println("hasresult:"+hasResult + "resultset:"+resultSet );
 			    storeTicketData.addFetchedTickets(resultSet,tableMetaData);
 			    LinkedHashMap<String,ArrayList<String>> ticketData = storeTicketData.getTableData();
 			    List<String> columnOfTable = storeTicketData.getTicketColumns();
-			    output = displayUser.printTicketsDetails(ticketData,columnOfTable);
+			    if(ticketData.size()>0)
+			    {
+			    	 output = displayUser.printTicketsDetails(ticketData,columnOfTable);
+			    }
 			}
 	
 			ConnectionMng.closeConnection();
