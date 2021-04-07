@@ -57,7 +57,7 @@ public class searchTicketScreen implements IsearchTicketScreen
 		
 		do 
 		{
-			System.out.println("Please Provide your choice:");
+			System.out.println("Please Provide your choice to search Ticket:");
 			choice=inputoutputhandler.inputInt();
 			
 			
@@ -101,7 +101,16 @@ public class searchTicketScreen implements IsearchTicketScreen
 				inputoutputhandler.displayMethod("You have provided wrong input.Please choose the correct input value");
 			}
 			inputoutputhandler.displayMethod(output);
-			open();
+			
+			if(output.length()>0)
+			{
+				open();
+			}
+			else
+			{
+				inputoutputhandler.displayMethod("No ticket found!");
+			}
+			
 		}
 		while(choice!=7);
 		userInterfaceFactory = UserInterfaceFactory.instance();
@@ -119,7 +128,7 @@ public class searchTicketScreen implements IsearchTicketScreen
 		
 		do 
 		{
-			inputoutputhandler.displayMethod("Choose Operation you want to perform");
+			inputoutputhandler.displayMethod("Choose Operation you want to perform on searched listed tickets:");
 			choice=inputoutputhandler.inputInt();
 			if(choice == 1)
 			{

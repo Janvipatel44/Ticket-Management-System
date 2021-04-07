@@ -19,16 +19,14 @@ public class displayTicket implements IdisplayTicket
 	
 	public displayTicket(ITableGenerator tableFormate) 
 	{
-		tableHeader = new ArrayList<String>();
-		rowOfTable = new  ArrayList<>();
 		this.tableFormate = tableFormate;
 	}
 	
 	public String printTicketsDetails(Map<String,ArrayList<String>> ticketData,List<String> columnsOfTable)
 	{ 
 			
-		tableHeader.clear();
-		rowOfTable.clear();
+		tableHeader = new ArrayList<String>();
+		rowOfTable = new  ArrayList<>();
 		tableHeader.add(columnsOfTable.get(0));
 		tableHeader.add(columnsOfTable.get(1));
 		for(String key : ticketData.keySet())
@@ -48,7 +46,7 @@ public class displayTicket implements IdisplayTicket
 		
 	public String printSignleTicketDetails(List<String> singleTicketData,List<String> columnsOfTable, List<String> comments)
 	{
-		rowOfTable.clear();
+		rowOfTable = new  ArrayList<>();
 		tableHeader = columnsOfTable;
 		for(int i=0;i<singleTicketData.size();i++)
 		{
