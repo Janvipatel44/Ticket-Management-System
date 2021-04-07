@@ -1,8 +1,8 @@
 package updateTicketDetails.abstractfactory;
 
-import reuseablePackage.interfaces.IticketStatusInProgress;
 import updateTicketDetails.ticketStatusInProgressMock;
 import updateTicketDetails.updateTicketTestMock;
+import updateTicketDetails.interfaces.IticketStatusInProgress;
 import updateTicketDetails.interfaces.IupdateTicket;
 
 public class updateTicketDetailsfactoryTest implements IupdateTicketDetailsfactoryTest

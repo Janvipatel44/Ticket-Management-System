@@ -1,4 +1,4 @@
-package reuseablePackage;
+package updateTicketDetails;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 import database.ConnectionManager;
 import database.IConnectionManager;
-import reuseablePackage.interfaces.IticketStatusInProgress;
+import updateTicketDetails.interfaces.IticketStatusInProgress;
 
 public class ticketStatusInProgress implements IticketStatusInProgress 
 {

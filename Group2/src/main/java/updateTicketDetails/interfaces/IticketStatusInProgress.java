@@ -1,4 +1,4 @@
-package reuseablePackage.interfaces;
+package updateTicketDetails.interfaces;
 
 public interface IticketStatusInProgress {
 

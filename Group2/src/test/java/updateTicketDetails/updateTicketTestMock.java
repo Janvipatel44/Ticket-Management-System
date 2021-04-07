@@ -2,9 +2,9 @@ package updateTicketDetails;
 
 import java.text.ParseException;
 
-import reuseablePackage.interfaces.IticketStatusInProgress;
 import updateTicketDetails.abstractfactory.IupdateTicketDetailsfactoryTest;
 import updateTicketDetails.abstractfactory.updateTicketDetailsfactoryTest;
+import updateTicketDetails.interfaces.IticketStatusInProgress;
 import updateTicketDetails.interfaces.IupdateTicket;
 
 public class updateTicketTestMock  implements IupdateTicket

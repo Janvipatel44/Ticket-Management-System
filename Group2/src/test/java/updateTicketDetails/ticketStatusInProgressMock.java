@@ -1,6 +1,6 @@
 package updateTicketDetails;
 
-import reuseablePackage.interfaces.IticketStatusInProgress;
+import updateTicketDetails.interfaces.IticketStatusInProgress;
 
 public class ticketStatusInProgressMock implements IticketStatusInProgress
 {

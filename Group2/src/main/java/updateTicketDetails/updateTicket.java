@@ -7,7 +7,8 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 import database.IConnectionManager;
-import reuseablePackage.interfaces.IticketStatusInProgress;
+import updateTicketDetails.interfaces.ITicketStatusOperationsDB;
+import updateTicketDetails.interfaces.IticketStatusInProgress;
 import updateTicketDetails.interfaces.IupdateTicket;
 
 public class updateTicket implements IupdateTicket
@@ -19,7 +20,7 @@ public class updateTicket implements IupdateTicket
 	static String fileName = "ConfigurationFile";
 	private IConnectionManager ConnectionMng;
 	private IticketStatusInProgress ticketInProgress;
-	
+	private ITicketStatusOperationsDB ticketStatusOperationsDB = new TicketStatusOperationsDB();
 	public updateTicket(IConnectionManager ConnectionMng,IticketStatusInProgress ticketInProgress)
 	{
 		this.ConnectionMng = ConnectionMng;
@@ -64,7 +65,9 @@ public class updateTicket implements IupdateTicket
 	
 	private boolean changeTicketSatatus(String ticketID, String valueToUpdate) {
 		valueToUpdate = valueToUpdate.toLowerCase();
+		double hours = 0;
 		boolean result = false;
+		int choice = 0;
 		try 
 		{
 			connect = ConnectionMng.establishConnection();
@@ -82,37 +85,48 @@ public class updateTicket implements IupdateTicket
 					
 				}else if(status.equalsIgnoreCase("on hold"))
 				{
+					if(status.equalsIgnoreCase(valueToUpdate)) {
+						return false;
+					}
+					else
+					{
+						hours = ticketStatusOperationsDB.ticketonHoldHours(ticketID);
+						choice = 1;
+					}
 					
 				}else if(status.equalsIgnoreCase("in progress"))
 				{
 					if(status.equals(valueToUpdate))
 					{
-						
-					}else 
+						return false;
+					}
+					else 
 					{
-						
-						double hours = ticketInProgress.calculateHours(ticketID);
-						if(hours > -1)
-						{
-							double previoushours = resultSet.getDouble("ticketInProgressHours");
-							if(previoushours > 0 ) 
-							{
-								hours = hours + previoushours;
-							}
-							SPstatement = connect.prepareCall("{call updateTicketStatusDetails(?,?,?,?)}");
-							SPstatement.setInt(1,1);
-							SPstatement.setString(2,ticketID);
-							SPstatement.setDouble(3,hours);
-							SPstatement.setString(4,valueToUpdate);
-							SPstatement.execute();
-							int count = SPstatement.getUpdateCount();
-							if(count > 0)
-							{
-								   result = true;
-							}
-						}
+						hours = ticketStatusOperationsDB.ticketInProgressHours(ticketID);
+						choice = 2;
+						//hours = ticketInProgress.calculateHours(ticketID);
 					}
 					
+				}
+				
+				System.out.println("Hours: "+hours);
+				if(hours>-1) {
+					double previoushours = resultSet.getDouble("ticketInProgressHours");
+					if(previoushours > 0 ) 
+					{
+						hours = hours + previoushours;
+					}
+					SPstatement = connect.prepareCall("{call updateTicketStatusDetails(?,?,?,?)}");
+					SPstatement.setInt(1,1);
+					SPstatement.setString(2,ticketID);
+					SPstatement.setDouble(3,hours);
+					SPstatement.setString(4,valueToUpdate);
+					SPstatement.execute();
+					int count = SPstatement.getUpdateCount();
+					if(count > 0)
+					{
+						   result = true;
+					}
 				}
 			}
 			

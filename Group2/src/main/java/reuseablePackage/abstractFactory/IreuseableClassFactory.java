@@ -8,7 +8,7 @@ import reuseablePackage.interfaces.IexportTicket;
 import reuseablePackage.interfaces.IgetListOfTickets;
 import reuseablePackage.interfaces.IopenTicket;
 import reuseablePackage.interfaces.IstoreTicketData;
-import reuseablePackage.interfaces.IticketStatusInProgress;
+import updateTicketDetails.interfaces.IticketStatusInProgress;
 
 public interface IreuseableClassFactory
 {

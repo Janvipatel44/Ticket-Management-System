@@ -8,7 +8,6 @@ import reuseablePackage.exportTicket;
 import reuseablePackage.getListOfTickets;
 import reuseablePackage.openTicket;
 import reuseablePackage.storeTicketData;
-import reuseablePackage.ticketStatusInProgress;
 import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.IcheckTicketExists;
 import reuseablePackage.interfaces.IdisplayTicket;
@@ -16,7 +15,8 @@ import reuseablePackage.interfaces.IexportTicket;
 import reuseablePackage.interfaces.IgetListOfTickets;
 import reuseablePackage.interfaces.IopenTicket;
 import reuseablePackage.interfaces.IstoreTicketData;
-import reuseablePackage.interfaces.IticketStatusInProgress;
+import updateTicketDetails.ticketStatusInProgress;
+import updateTicketDetails.interfaces.IticketStatusInProgress;
 
 public class reuseableClassFactory implements IreuseableClassFactory {
 
