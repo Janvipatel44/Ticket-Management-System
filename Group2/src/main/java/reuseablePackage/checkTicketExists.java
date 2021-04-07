@@ -13,7 +13,7 @@ public class checkTicketExists  implements IcheckTicketExists
 {
 	private Connection connect=null;
 	private CallableStatement SPstatement=null;
-	private static ResultSet resultSet=null;
+	private ResultSet resultSet=null;
 	private String ConfigurationFile = "ConfigurationFile";
 	private int choice=1;
 	
@@ -64,8 +64,7 @@ public class checkTicketExists  implements IcheckTicketExists
 			{
 				String creatorID = resultSet.getString("creatorID");
 				if(creatorID.equals(employeeID))
-				{
-					
+				{					
 					result=true;
 				}
 				IConnectionMng.closeConnection();

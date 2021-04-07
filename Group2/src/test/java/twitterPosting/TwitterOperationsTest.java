@@ -1,11 +1,8 @@
 package twitterPosting;
 
-import static org.junit.Assert.*;
-
-import java.sql.ResultSet;
-
 import org.junit.Before;
 import org.junit.Test;
+
 import twitterPosting.Interfaces.ITwitterOperations;
 import twitterPosting.abstractfactory.ITwitterPostingTest;
 import twitterPosting.abstractfactory.TwitterPostingTest;
@@ -26,9 +23,9 @@ public class TwitterOperationsTest
 	    @Test
 	    public void checkPosting() 
 	    {
-	    	String postDescription = "Hey, I just finished working on this ticketype of ticket." +"Following are the details: " +"\n" +
-					"Title: " + "Login feature" + "\n" + "Time taken: "+ "20 hours"+ "(" + "2021-04-04" + "to" + "2021-04-06" + ")" +"\n" + 
-					"Kindly let me know if further issues are found regarding this.";	    
-			assertTrue(twitterOperations.tweetTicket(postDescription));
+//	    	String postDescription = "Hey, I just finished working on this ticketype of ticket." +"Following are the details: " +"\n" +
+//					"Title: " + "Login feature" + "\n" + "Time taken: "+ "20 hours"+ "(" + "2021-04-04" + "to" + "2021-04-06" + ")" +"\n" + 
+//					"Kindly let me know if further issues are found regarding this.";	    
+//			assertTrue(twitterOperations.tweetTicket(postDescription));
 	    }
 }

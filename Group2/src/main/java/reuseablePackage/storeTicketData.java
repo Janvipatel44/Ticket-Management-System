@@ -57,7 +57,6 @@ public class storeTicketData implements IstoreTicketData
 		commentsOntickets.clear();
 		try 
 		{
-			System.out.println("Comments:");
 			while (resultSet.next()) 
 			{		
 				String commentData = resultSet.getString("firstName")+" "+resultSet.getString("lastName")+"\t\t"+resultSet.getDate("date")+
@@ -89,7 +88,6 @@ public class storeTicketData implements IstoreTicketData
 	
 	public LinkedHashMap<String,ArrayList<String>> getTableData()
 	{
-		System.out.println(ticketData);
 		return ticketData;
 	}
 	
