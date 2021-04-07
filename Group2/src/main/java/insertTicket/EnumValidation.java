@@ -2,20 +2,20 @@ package insertTicket;
 
 public enum EnumValidation 
 {	
-	validateTicketID,	
-    validateDescription,	
-    validateExpectedEndDate,	
-    validateReporterID,			
-    validateEmployeeID,			
-    validateAssigneeName,		
-    validateTicketType,		
-    validateTicketStatus,		
-    validatePriority,			
-    validateImpact,				
-    validateUrgency,			
-    validateCustomerID,			
-    validateCustomerName,		
-    validateTicketLevel,		
-    validateCreatorID,			
-    validateCreatorName			    
+	VALIDATETICKETID,	
+	VALIDATEDESCRIPTION,
+	VALIDATEEXPECTEDENDDATE,
+	VALIDATEREPORTERID,
+	VALIDATEEMPLOYEEID,
+	VALIDATEASSIGNEENAME,
+	VALIDATETICKETTYPE,
+	VALIDATETICKETSTATUS,
+	VALIDATEPRIORITY,
+	VALIDATEIMPACT,
+	VALIDATEURGENCY,
+	VALIDATECUSTOMERID,
+	VALIDATECUSTOMERNAME,
+	VALIDATETICKETLEVEL,
+	VALIDATECREATORID,
+	VALIDATECREATORNAME	    
 }

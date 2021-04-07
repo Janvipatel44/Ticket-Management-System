@@ -13,6 +13,6 @@ public class CreateTicketMenuTask implements IMenuTask
 	{	
 		IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
 		IGenerateTicketScreen generateTicket = userInterfaceFactory.getGenerateTicketScreen(inputOutputHandler);
-		generateTicket.displayTicketGenerationScreen();
+		generateTicket.displayTicketGenerationScreen(user);
 	}
 }

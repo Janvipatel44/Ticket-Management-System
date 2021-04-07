@@ -1,10 +1,14 @@
-package database;
+package insertTicket;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
+
+import database.ConnectionManager;
+import database.IConnectionManager;
 import insertTicket.Interfaces.ICreateTicket;
+import insertTicket.Interfaces.ITicketOperationsDB;
 import userinterface.IInputOutputHandler;
 
 public class TicketOperationsDB implements ITicketOperationsDB{
@@ -75,12 +79,12 @@ public class TicketOperationsDB implements ITicketOperationsDB{
             
 			if(duplicate_ticket==0) 
 			{
-			    success = true;
+			    success = false;
 			}
 			else 
 			{
 				System.out.println("Duplicate Entry Found!!!");
-				success = false;
+				success = true;
 			}
 		} 
 		catch (SQLException e) 

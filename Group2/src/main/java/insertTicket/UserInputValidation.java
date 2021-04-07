@@ -1,7 +1,6 @@
 package insertTicket;
 
-import java.util.HashMap;
-
+import java.text.ParseException;
 import insertTicket.Interfaces.IInputDateValidation;
 import insertTicket.Interfaces.IInputRangeValidation;
 import insertTicket.Interfaces.IInputStringValidation;
@@ -14,7 +13,7 @@ import userinterface.abstractFactory.UserInterfaceFactory;
 
 public class UserInputValidation implements IUserInputValidation {
 	
-	public boolean validation(String validationString, EnumValidation input) 
+	public boolean validation(String validationString, EnumValidation input) throws ParseException 
 	{
 		
 		IInsertTicketFactory  insertTicketFactory = InsertTicketFactory.instance();
@@ -24,18 +23,22 @@ public class UserInputValidation implements IUserInputValidation {
 		IInputRangeValidation rangeValidation = insertTicketFactory.rangeValidation();
 		IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
 		IInputOutputHandler inputOutputHandler = userInterfaceFactory.getInputOutputHandler();
-		
-		HashMap<String, Integer> stringLength = new HashMap<String, Integer>();
-		stringLength.put("ticketID", 30);
-		stringLength.put("expectedEndDate", 19);
-		stringLength.put("reporterID", 30);
-		stringLength.put("employeeID", 30);
-		stringLength.put("assigneeName", 45);
-		stringLength.put("ticketType", 25);
+	
 		
 		boolean success = false;
-		switch (input) {
-		case validateTicketID:
+		switch (input) 
+		{
+		
+		case VALIDATETICKETID:
+		case VALIDATEDESCRIPTION:
+		case VALIDATECREATORNAME:
+		case VALIDATECREATORID:
+		case VALIDATECUSTOMERID:
+		case VALIDATEASSIGNEENAME:
+		case VALIDATECUSTOMERNAME:
+		case VALIDATETICKETLEVEL:
+		case VALIDATETICKETSTATUS:
+		case VALIDATETICKETTYPE:
 
 			if (ticketStringValidation.isStringNull(validationString) == true) {
 				System.err.println("Null String");
@@ -47,62 +50,27 @@ public class UserInputValidation implements IUserInputValidation {
 				success = false;
 				break;
 			}
-			if (ticketStringValidation.isStringLengthValid(validationString, stringLength.get("ticketID")) == false) {
-				System.err.println("Invalid String Length");
-				success = false;
-				break;
-			}
 			success = true;
-			break;
-
-		case validateDescription:
-
-			if (ticketStringValidation.isStringNull(validationString) == true) {
-				success = false;
-				break;
-			}
-			if (ticketStringValidation.isStringContainsSpecialCharacters(validationString) == true) {
-				System.err.println("String contains Special Characters");
-				success = false;
-				break;
-			}
-			success = true;
-			break;
-		case validateExpectedEndDate:
+			break;	
+			
+		case VALIDATEEXPECTEDENDDATE:
 		
-			if (ticketStringValidation.isStringContainsSpecialCharacters(validationString) == true) {
-				System.err.println("String contains Special Characters");
+			if (dateValidation.isDateFormatValid(validationString) == false ) {
+				inputOutputHandler.displayMethod("Date format invalid");
 				success = false;
 				break;
 			}
-			if (ticketStringValidation.isStringLengthValid(validationString, stringLength.get("expectedEndDate")) == true ) {
-				inputOutputHandler.displayMethod("String contains Special Characters");
-				success = false;
-				break;
-			}
-			success = true;
-
-			break;
-		case validateReporterID:
-			if (ticketStringValidation.isStringContainsSpecialCharacters(validationString) == true) {
-				System.err.println("String contains Special Characters");
-				success = false;
-				break;
-			}
-			if (ticketStringValidation.isStringNull(validationString) == true) {
-				System.err.println("String contains Special Characters");
-				success = false;
-				break;
-			}
-			if(ticketStringValidation.isStringEmployeeAndReporterID(validationString) == false) {
-				System.err.println("EMP not found");
+			if (dateValidation.isDurationValid(new java.sql.Timestamp(new java.util.Date().getTime()).toString(), validationString) == false ) {
+				inputOutputHandler.displayMethod("Duration invalid");
 				success = false;
 				break;
 			}
 			success = true;
 
 			break;
-		case validateEmployeeID:
+			
+		case VALIDATEREPORTERID :
+		case VALIDATEEMPLOYEEID:
 			if (ticketStringValidation.isStringContainsSpecialCharacters(validationString) == true) {
 				System.err.println("String contains Special Characters");
 				success = false;
@@ -122,138 +90,19 @@ public class UserInputValidation implements IUserInputValidation {
 
 			break;
 			
-		case validateAssigneeName:
-			if (ticketStringValidation.isStringContainsSpecialCharacters(validationString) == true) {
-				System.err.println("String contains Special Characters");
-				success = false;
-				break;
-			}
-			if (ticketStringValidation.isStringNull(validationString) == true) {
-				System.err.println("String contains Special Characters");
-				success = false;
-				break;
-			}
-			/*
-			 * if(ticketStringValidation.isStringLengthValid(validationString,
-			 * rangeLengthValidationList.get(i))==false)) {
-			 * System.err.println("EMP not found"); success = false; break; }
-			 */
-			success = true;
+		case VALIDATEPRIORITY:
+		case VALIDATEIMPACT:
+		case VALIDATEURGENCY:
 
-			break;
-		case validateTicketType:
-			if (ticketStringValidation.isStringContainsSpecialCharacters(validationString) == true) {
-				System.err.println("String contains Special Characters");
-				success = false;
-				break;
-			}
-			if (ticketStringValidation.isStringNull(validationString) == true) {
-				System.err.println("String contains Special Characters");
+			if(rangeValidation.isRangeValid(Integer.parseInt(validationString)) == false) 
+			{
+				System.err.println("Range not valid");
 				success = false;
 				break;
 			}
 			success = true;
-
 			break;
-		case validateTicketStatus:
-			if (ticketStringValidation.isStringContainsSpecialCharacters(validationString) == true) {
-				System.err.println("String contains Special Characters");
-				success = false;
-				break;
-			}
-			if (ticketStringValidation.isStringNull(validationString) == true) {
-				System.err.println("String contains Special Characters");
-				success = false;
-				break;
-			}
-			success = true;
-
-			break;
-		case validatePriority:
 			
-			success = true;
-
-			break;
-		case validateImpact:
-			success = true;
-
-			break;
-		case validateUrgency:
-			success = true;
-
-			break;
-		case validateCustomerID:
-			if (ticketStringValidation.isStringContainsSpecialCharacters(validationString) == true) {
-				System.err.println("String contains Special Characters");
-				success = false;
-				break;
-			}
-			if (ticketStringValidation.isStringNull(validationString) == true) {
-				System.err.println("String contains Special Characters");
-				success = false;
-				break;
-			}
-			success = true;
-
-			break;
-		case validateCustomerName:
-			if (ticketStringValidation.isStringContainsSpecialCharacters(validationString) == true) {
-				System.err.println("String contains Special Characters");
-				success = false;
-				break;
-			}
-			if (ticketStringValidation.isStringNull(validationString) == true) {
-				System.err.println("String contains Special Characters");
-				success = false;
-				break;
-			}
-			success = true;
-
-			break;
-		case validateTicketLevel:
-			if (ticketStringValidation.isStringContainsSpecialCharacters(validationString) == true) {
-				System.err.println("String contains Special Characters");
-				success = false;
-				break;
-			}
-			if (ticketStringValidation.isStringNull(validationString) == true) {
-				System.err.println("String contains Special Characters");
-				success = false;
-				break;
-			}
-			success = true;
-
-			break;
-		case validateCreatorID:
-			if (ticketStringValidation.isStringContainsSpecialCharacters(validationString) == true) {
-				System.err.println("String contains Special Characters");
-				success = false;
-				break;
-			}
-			if (ticketStringValidation.isStringNull(validationString) == true) {
-				System.err.println("String contains Special Characters");
-				success = false;
-				break;
-			}
-			success = true;
-
-			break;
-		case validateCreatorName:
-			if (ticketStringValidation.isStringContainsSpecialCharacters(validationString) == true) {
-				System.err.println("String contains Special Characters");
-				success = false;
-				break;
-			}
-			if (ticketStringValidation.isStringNull(validationString) == true) {
-				System.err.println("String contains Special Characters");
-				success = false;
-				break;
-			}
-			success = true;
-
-			break;
-		
-		
 		default:
 			break;
 		}

@@ -48,15 +48,4 @@ public class InputStringValidation implements IInputStringValidation
 		System.out.print("\nPrefix should be 'EMP' for input string");
 		return false;
 	}
-
-	public boolean isStringLengthValid (String validationString, int length)
-	{
-	
-		if(validationString.length()<=length)
-		{
-			return true;
-		}
-		System.out.print("Length Exceeded for input string");
-		return false;
-	}
 }

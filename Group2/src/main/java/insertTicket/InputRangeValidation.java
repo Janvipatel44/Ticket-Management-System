@@ -6,7 +6,6 @@ public class InputRangeValidation implements IInputRangeValidation
 {
 	public boolean isRangeValid (int inputValue)  
 	{
-		System.out.print("Input value" +inputValue);
 
 		if(inputValue>0 && inputValue<6)
 		{

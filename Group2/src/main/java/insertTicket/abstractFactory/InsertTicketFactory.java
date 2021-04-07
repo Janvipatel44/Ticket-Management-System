@@ -1,18 +1,17 @@
 package insertTicket.abstractFactory;
 
-import database.ITicketOperationsDB;
-import database.TicketOperationsDB;
 import insertTicket.CreateTicket;
 import insertTicket.InputDateValidation;
 import insertTicket.InputRangeValidation;
 import insertTicket.InputStringValidation;
 import insertTicket.InsertTicket;
-import insertTicket.UserInputTicket;
+import insertTicket.TicketOperationsDB;
 import insertTicket.UserInputValidation;
 import insertTicket.Interfaces.IInputDateValidation;
 import insertTicket.Interfaces.IInputRangeValidation;
 import insertTicket.Interfaces.IInputStringValidation;
 import insertTicket.Interfaces.IInsertTicket;
+import insertTicket.Interfaces.ITicketOperationsDB;
 import insertTicket.Interfaces.IUserInputTicket;
 import insertTicket.Interfaces.ICreateTicket;
 import insertTicket.Interfaces.IUserInputValidation;
@@ -63,11 +62,7 @@ public class InsertTicketFactory implements IInsertTicketFactory {
     	return new InputRangeValidation();
     }
     
-    public 	IUserInputTicket inputTicket() 
-    {
-    	return new UserInputTicket();
-    }
-    
+
     public ITicketOperationsDB insertTicketDB(ICreateTicket createTicket) 
     {
     	return new TicketOperationsDB(createTicket);
