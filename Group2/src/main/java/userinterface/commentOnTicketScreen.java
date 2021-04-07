@@ -58,33 +58,37 @@ public class commentOnTicketScreen implements IcommentOnTicketScreen
 		
 		String output="";
 		output=getalltickets.listOfTickets();
-		
-		inputoutputhandler.displayMethod(output);
-		inputoutputhandler.displayMethod("Enter Ticket Id you want to post comment on.:");
-		
-		ticketId = inputoutputhandler.input();
-		
-		result=checkticketexists.ticketExists(ticketId);
-		
-		if(result == true)
-		{
-			inputoutputhandler.displayMethod("Write comment you want to post");
-			commentString = inputoutputhandler.input();
-			commentPostResult=postcomment.postCommentOnticket(ticketId,employeeID, commentString);
-			if(commentPostResult==true)
+		do {
+			inputoutputhandler.displayMethod(output);
+			inputoutputhandler.displayMethod("Enter Ticket Id you want to post comment on.:");
+			inputoutputhandler.displayMethod("Enter exit to go to main page");
+			ticketId = inputoutputhandler.input();
+			if(ticketId.toLowerCase().equals("exit"))
 			{
-				inputoutputhandler.displayMethod("true");
+				break;
+			}
+			result=checkticketexists.ticketExists(ticketId);
+			
+			if(result == true)
+			{
+				inputoutputhandler.displayMethod("Write comment you want to post");
+				commentString = inputoutputhandler.input();
+				commentPostResult=postcomment.postCommentOnticket(ticketId,employeeID, commentString);
+				if(commentPostResult==true)
+				{
+					inputoutputhandler.displayMethod("true");
+				}
+				else
+				{
+					inputoutputhandler.displayMethod("false");
+				}
 			}
 			else
 			{
-				inputoutputhandler.displayMethod("false");
+				inputoutputhandler.displayMethod("Ticket with " + ticketId + "does not exists. Please provide valid ticketId.");
 			}
-		}
-		else
-		{
-			inputoutputhandler.displayMethod("Ticket with " + ticketId + "does not exists. Please provide valid ticketId.");
-		}
-		
+		}while(true);
+	
 		userInterfaceFactory = UserInterfaceFactory.instance();
 		backToHomePageScreen = userInterfaceFactory.getBackToHomePageScreen(inputoutputhandler);
 		backToHomePageScreen.displayGoBackToHomePageOption(user);
