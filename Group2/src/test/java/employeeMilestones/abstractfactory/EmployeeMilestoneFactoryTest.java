@@ -20,14 +20,14 @@ public class EmployeeMilestoneFactoryTest implements IEmployeeMilestoneFactoryTe
         return uniqueInstance;
     }
 
-    public IPersistenceEmployeeTickets getPersistenceEmployeeTicketsMock()
+    public IEmployeeTicketsDao getPersistenceEmployeeTicketsMock()
     {
         return new PersistenceEmployeeTicketsMock();
     }
 
     public IEmployeeMilestone getEmployeeMilestone()
     {
-        IPersistenceEmployeeTickets persistenceEmployeeTicketsMock = getPersistenceEmployeeTicketsMock();
+        IEmployeeTicketsDao persistenceEmployeeTicketsMock = getPersistenceEmployeeTicketsMock();
         return new EmployeeMilestoneFacade(persistenceEmployeeTicketsMock);
     }
 }

@@ -10,7 +10,7 @@ public class ComputeCustomerPropertiesTest
 {
     ICustomerAnalysisFactory customerAnalysisFactory;
     ICustomerAnalysisFactoryTest customerAnalysisFactoryTest;
-    IPersistenceCustomer persistenceCustomer;
+    ICustomerAnalysisDao persistenceCustomer;
     IComputeCustomerProperties computeCustomerProperties;
 
     @Before

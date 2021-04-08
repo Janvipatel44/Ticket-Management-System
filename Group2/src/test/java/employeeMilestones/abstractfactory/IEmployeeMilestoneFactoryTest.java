@@ -1,8 +1,8 @@
 package employeeMilestones.abstractfactory;
 import employeeMilestones.interfaces.IEmployeeMilestone;
-import employeeMilestones.interfaces.IPersistenceEmployeeTickets;
+import employeeMilestones.interfaces.IEmployeeTicketsDao;
 public interface IEmployeeMilestoneFactoryTest
 {
-    IPersistenceEmployeeTickets getPersistenceEmployeeTicketsMock();
+    IEmployeeTicketsDao getPersistenceEmployeeTicketsMock();
     IEmployeeMilestone getEmployeeMilestone();
 }

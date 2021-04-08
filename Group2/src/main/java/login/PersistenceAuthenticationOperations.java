@@ -1,5 +1,5 @@
 package login;
-import database.IConnectionManager;
+import database.intefaces.IConnectionManager;
 import database.abstractfactory.DatabaseFactory;
 import database.abstractfactory.IDatabaseFactory;
 import login.Interfaces.*;

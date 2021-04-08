@@ -1,6 +1,4 @@
 package Rating;
-import customerAnalysis.PersistenceCustomer;
-import database.*;
 
 import java.io.IOException;
 import java.sql.CallableStatement;
@@ -11,6 +9,8 @@ import java.util.Properties;
 
 import Rating.interfaces.*;
 import database.abstractfactory.*;
+import database.intefaces.IConnectionManager;
+import database.intefaces.IDatabaseOperations;
 import mailservice.ReadPropertiesFile;
 
 public class PersistenceRating implements IPersistenceRating

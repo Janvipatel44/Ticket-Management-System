@@ -6,7 +6,7 @@ import commentOnTicket.abstractfactory.IcommentOnTicketFactory;
 import commentOnTicket.abstractfactory.commentOnTicketFactory;
 import commentOnTicket.interfaces.IcommentOnTicket;
 import database.ConnectionManager;
-import database.IConnectionManager;
+import database.intefaces.IConnectionManager;
 import login.Interfaces.IParameterizedUser;
 import managerfeatures.abstractfactory.IManagerFeaturesFactory;
 import reuseablePackage.abstractFactory.IreuseableClassFactory;

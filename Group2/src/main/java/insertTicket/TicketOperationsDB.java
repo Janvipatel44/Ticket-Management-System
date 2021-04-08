@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 import database.ConnectionManager;
-import database.IConnectionManager;
+import database.intefaces.IConnectionManager;
 import insertTicket.Interfaces.ICreateTicket;
 import insertTicket.Interfaces.ITicketOperationsDB;
 import userinterface.IInputOutputHandler;

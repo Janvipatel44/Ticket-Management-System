@@ -1,6 +1,6 @@
 package employeeMilestones.interfaces;
 import java.util.List;
-public interface IPersistenceEmployeeTickets
+public interface IEmployeeTicketsDao
 {
     List<IParameterizedEmployeeTicket> getEmployeeTickets(String employeeID);
 }

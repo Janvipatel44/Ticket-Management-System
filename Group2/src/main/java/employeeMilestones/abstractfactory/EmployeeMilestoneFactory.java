@@ -30,7 +30,7 @@ public class EmployeeMilestoneFactory implements IEmployeeMilestoneFactory {
 
     public IEmployeeMilestone getEmployeeMilestone() throws IOException
     {
-        IPersistenceEmployeeTickets persistenceEmployeeTickets = getPersistenceEmployeeTickets();
+        IEmployeeTicketsDao persistenceEmployeeTickets = getPersistenceEmployeeTickets();
         return new EmployeeMilestoneFacade(persistenceEmployeeTickets);
     }
 
@@ -39,8 +39,8 @@ public class EmployeeMilestoneFactory implements IEmployeeMilestoneFactory {
         return new ParameterizedEmployeeTicket(ticketID, employeeID, customerID, startDate, endDate, rating, priority, impact, urgency, ticketType);
     }
 
-    public IPersistenceEmployeeTickets getPersistenceEmployeeTickets() throws IOException
+    public IEmployeeTicketsDao getPersistenceEmployeeTickets() throws IOException
     {
-        return new PersistenceEmployeeTickets();
+        return new EmployeeTicketsDao();
     }
 }

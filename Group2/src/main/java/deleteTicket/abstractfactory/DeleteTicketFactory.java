@@ -1,6 +1,6 @@
 package deleteTicket.abstractfactory;
 
-import database.IConnectionManager;
+import database.intefaces.IConnectionManager;
 import deleteTicket.deleteTicket;
 import deleteTicket.interfaces.IdeleteTicket;
 

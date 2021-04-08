@@ -1,6 +1,6 @@
 package sortTickets.abstractfactory;
 
-import database.IConnectionManager;
+import database.intefaces.IConnectionManager;
 import reuseablePackage.interfaces.IdisplayTicket;
 import reuseablePackage.interfaces.IstoreTicketData;
 import sortTickets.sortTicket;

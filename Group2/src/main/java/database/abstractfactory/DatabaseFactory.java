@@ -1,8 +1,8 @@
 package database.abstractfactory;
 import database.ConnectionManager;
 import database.DatabaseOperations;
-import database.IConnectionManager;
-import database.IDatabaseOperations;
+import database.intefaces.IConnectionManager;
+import database.intefaces.IDatabaseOperations;
 import insertTicket.TicketOperationsDB;
 import insertTicket.Interfaces.ICreateTicket;
 import insertTicket.Interfaces.ITicketOperationsDB;

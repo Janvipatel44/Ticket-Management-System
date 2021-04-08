@@ -12,7 +12,7 @@ public class CalculateMilestoneTest
     {
         IEmployeeMilestoneFactory employeeMilestoneFactory = EmployeeMilestoneFactory.instance();
         IEmployeeMilestoneFactoryTest employeeMilestoneFactoryTest = EmployeeMilestoneFactoryTest.instance();
-        IPersistenceEmployeeTickets persistenceEmployeeTickets = employeeMilestoneFactoryTest.getPersistenceEmployeeTicketsMock();
+        IEmployeeTicketsDao persistenceEmployeeTickets = employeeMilestoneFactoryTest.getPersistenceEmployeeTicketsMock();
         calculateMilestone = employeeMilestoneFactory.getCalculateMilestone(persistenceEmployeeTickets.getEmployeeTickets("EMP_123"));
     }
 
