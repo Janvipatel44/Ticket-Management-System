@@ -3,12 +3,12 @@ package reuseablePackage.abstractFactory;
 import database.intefaces.IConnectionManager;
 import reuseablePackage.interfaces.ICheckTicketsExists;
 import reuseablePackage.interfaces.IDisplayTickets;
-import reuseablePackage.interfaces.IExportTicket;
 import reuseablePackage.interfaces.IGetListOfTickets;
-import reuseablePackage.interfaces.IOpenTicket;
 import reuseablePackage.interfaces.IStoreTicketData;
 import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.IticketStatusInProgress;
+import searchTicket.interfaces.IExportTicket;
+import searchTicket.interfaces.IOpenTicket;
 
 
 public abstract class ReuseableClasssFactoryAbs

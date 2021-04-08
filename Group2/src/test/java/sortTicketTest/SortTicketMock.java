@@ -7,9 +7,9 @@ import java.util.Map;
 
 import reuseablePackage.abstractFactory.IReuseableClasssFactory;
 import reuseablePackage.abstractFactory.ReuseableClasssFactory;
-import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.IDisplayTickets;
-import sortTickets.interfaces.ISortTicket;
+import reuseablePackage.interfaces.ITableGenerator;
+import searchTicket.interfaces.ISortTicket;
 
 public class SortTicketMock implements ISortTicket
 {
@@ -128,6 +128,12 @@ public class SortTicketMock implements ISortTicket
 		columnOfTable.add("priority");
 		columnOfTable.add("urgency");
 		
+	}
+
+	@Override
+	public String sortSearchedTickets(int choiceToSortTicket) {
+		// TODO Auto-generated method stub
+		return null;
 	}	
 
 }

@@ -1,5 +1,4 @@
 package userinterface.abstractFactory;
-import reuseablePackage.interfaces.IStoreTicketData;
 import userinterface.BackToHomePageOption;
 import userinterface.CommentOnTicketScreen;
 import userinterface.CustomerAnalysisScreen;
@@ -26,7 +25,6 @@ import userinterface.IRatingScreen;
 import userinterface.IRegistrationScreen;
 import userinterface.ISearchTicketScreen;
 import userinterface.IServiceNowWelcomeScreen;
-import userinterface.ISortTciketScreen;
 import userinterface.ITwitterPostScreen;
 import userinterface.IUpdateTicketScreen;
 import userinterface.InputOutputHandler;
@@ -37,7 +35,6 @@ import userinterface.RatingScreen;
 import userinterface.RegistrationScreen;
 import userinterface.SearchTicketScreen;
 import userinterface.ServiceNowWelcomeScreen;
-import userinterface.SortTicketScreen;
 import userinterface.TwitterPostScreen;
 import userinterface.UpdateTicketScreen;
 
@@ -128,11 +125,7 @@ public class UserInterfaceFactory implements IUserInterfaceFactory
     {
         return new SearchTicketScreen(inputOutputHandler);
     }
-    
-    public ISortTciketScreen getsortTicketScreen(IInputOutputHandler inputOutputHandler,IStoreTicketData storeTicketData)
-    {
-        return new SortTicketScreen(inputOutputHandler,storeTicketData);
-    }
+   
 
     public IDeleteTicketScreen getdeleteTicketScreen(IInputOutputHandler inputOutputHandler)
     {

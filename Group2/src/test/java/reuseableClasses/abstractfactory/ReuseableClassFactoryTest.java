@@ -1,13 +1,13 @@
 package reuseableClasses.abstractfactory;
 
 import reuseableClasses.CheckTicketExistsMock;
-import reuseableClasses.ExportTicketDataMock;
 import reuseableClasses.GetListOfTicketsMock;
-import reuseableClasses.OpenTicketMock;
 import reuseablePackage.interfaces.ICheckTicketsExists;
-import reuseablePackage.interfaces.IExportTicket;
 import reuseablePackage.interfaces.IGetListOfTickets;
-import reuseablePackage.interfaces.IOpenTicket;
+import searchTicket.ExportTicketDataMock;
+import searchTicket.OpenTicketMock;
+import searchTicket.interfaces.IExportTicket;
+import searchTicket.interfaces.IOpenTicket;
 
 public class ReuseableClassFactoryTest implements IReuseableClassesFactoryTest
 {

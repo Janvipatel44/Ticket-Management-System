@@ -1,4 +1,4 @@
-package reuseablePackage;
+package searchTicket;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -8,8 +8,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Scanner;
 
-import reuseablePackage.interfaces.IExportTicket;
+import employeePerformance.TableGenerator;
 import reuseablePackage.interfaces.IStoreTicketData;
+import searchTicket.interfaces.IExportTicket;
 
 public class ExportTickets implements  IExportTicket{
 	private Scanner sc=new Scanner(System.in);

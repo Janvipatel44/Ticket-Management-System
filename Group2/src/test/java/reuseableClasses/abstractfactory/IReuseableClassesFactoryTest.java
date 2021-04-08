@@ -1,9 +1,9 @@
 package reuseableClasses.abstractfactory;
 
 import reuseablePackage.interfaces.ICheckTicketsExists;
-import reuseablePackage.interfaces.IExportTicket;
 import reuseablePackage.interfaces.IGetListOfTickets;
-import reuseablePackage.interfaces.IOpenTicket;
+import searchTicket.interfaces.IExportTicket;
+import searchTicket.interfaces.IOpenTicket;
 
 public interface IReuseableClassesFactoryTest 
 {

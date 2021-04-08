@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import reuseableClasses.abstractfactory.IReuseableClassesFactoryTest;
 import reuseableClasses.abstractfactory.ReuseableClassFactoryTest;
-import reuseablePackage.interfaces.IOpenTicket;
+import searchTicket.interfaces.IOpenTicket;
 import userinterface.IInputOutputHandler;
 import userinterface.InputOutputHandler;
 

@@ -1,4 +1,4 @@
-package reuseablePackage;
+package searchTicket;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import database.intefaces.IConnectionManager;
 import reuseablePackage.interfaces.IDisplayTickets;
-import reuseablePackage.interfaces.IOpenTicket;
 import reuseablePackage.interfaces.IStoreTicketData;
+import searchTicket.interfaces.IOpenTicket;
 
 
 public class OpenTickets implements IOpenTicket

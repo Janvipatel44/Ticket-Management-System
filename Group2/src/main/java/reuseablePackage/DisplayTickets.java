@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.IDisplayTickets;
+import reuseablePackage.interfaces.ITableGenerator;
 import userinterface.IInputOutputHandler;
 
 
@@ -35,10 +35,13 @@ public class DisplayTickets implements IDisplayTickets
 			rowData.add(key);
 			String element = ticketData.get(key).get(0);
 			rowData.add(element);
+			if(rowData.size()>columnsOfTable.size())
+			  {
+				  rowData.remove(0);
+			  }
 			rowOfTable.add(rowData);
-			
-			
 		}
+		
 		String table = tableFormate.generateTable(tableHeader, rowOfTable);
 		return table;
 	}

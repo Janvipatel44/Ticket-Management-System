@@ -1,4 +1,4 @@
-package reuseableClasses;
+package searchTicket;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.List;
 import reuseablePackage.abstractFactory.IReuseableClasssFactory;
 import reuseablePackage.abstractFactory.ReuseableClasssFactory;
 import reuseablePackage.interfaces.ITableGenerator;
+import searchTicket.interfaces.IOpenTicket;
 import reuseablePackage.interfaces.IDisplayTickets;
-import reuseablePackage.interfaces.IOpenTicket;
 
 public class OpenTicketMock implements IOpenTicket
 {

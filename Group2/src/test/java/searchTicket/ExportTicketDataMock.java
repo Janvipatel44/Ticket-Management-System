@@ -1,6 +1,6 @@
-package reuseableClasses;
+package searchTicket;
 
-import reuseablePackage.interfaces.IExportTicket;
+import searchTicket.interfaces.IExportTicket;
 
 public class ExportTicketDataMock implements IExportTicket
 {

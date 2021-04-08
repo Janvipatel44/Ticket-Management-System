@@ -1,6 +1,6 @@
 package sortTicketTest.abstractfactory;
 
-import sortTickets.interfaces.ISortTicket;
+import searchTicket.interfaces.ISortTicket;
 
 public interface ISortTicketFactoryTest {
 	ISortTicket sortTicketMock();

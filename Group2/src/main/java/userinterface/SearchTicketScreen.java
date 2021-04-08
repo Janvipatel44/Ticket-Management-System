@@ -8,15 +8,14 @@ import managerfeatures.abstractfactory.IManagerFeaturesFactory;
 import reuseablePackage.abstractFactory.IReuseableClasssFactory;
 import reuseablePackage.abstractFactory.ReuseableClasssFactory;
 import reuseablePackage.interfaces.IDisplayTickets;
-import reuseablePackage.interfaces.IExportTicket;
-import reuseablePackage.interfaces.IOpenTicket;
 import reuseablePackage.interfaces.IStoreTicketData;
 import reuseablePackage.interfaces.ITableGenerator;
 import searchTicket.abstractfactory.ISearchTicketsFactory;
 import searchTicket.abstractfactory.SearchTicketsFactory;
+import searchTicket.interfaces.IExportTicket;
+import searchTicket.interfaces.IOpenTicket;
 import searchTicket.interfaces.ISearchTicket;
-import sortTickets.abstractfactory.ISortTicketFactory;
-import sortTickets.abstractfactory.SortTicketFactory;
+import searchTicket.interfaces.ISortTicket;
 import userinterface.abstractFactory.IUserInterfaceFactory;
 import userinterface.abstractFactory.UserInterfaceFactory;
 
@@ -38,7 +37,7 @@ public class SearchTicketScreen implements ISearchTicketScreen
 	static ITableGenerator tablegenerator = reuseablefactory.tableFormate();
 	static IDisplayTickets displayuser=reuseablefactory.displayUser(tablegenerator);
 	static IOpenTicket openticket;
-	static ISortTicketFactory sortticketfactory = SortTicketFactory.instance();
+	//static ISortTicketFactory sortticketfactory = SortTicketFactory.instance();
 	
 	
 	static ISearchTicketsFactory searchticketfactory= SearchTicketsFactory.instance();
@@ -138,7 +137,7 @@ public class SearchTicketScreen implements ISearchTicketScreen
 			choice=inputoutputhandler.inputInt();
 			if(choice == 1)
 			{
-				openticket = reuseablefactory.openticket(storeticketdata,displayuser, connectionMng);
+				openticket = searchticketfactory.openticket(storeticketdata,displayuser, connectionMng);
 				
 				inputoutputhandler.displayMethod("Enter Ticket ID:");
 				ticketID = inputoutputhandler.input();
@@ -156,8 +155,24 @@ public class SearchTicketScreen implements ISearchTicketScreen
 			}
 			else if(choice == 3)
 			{
-				ISortTciketScreen sortticket = userinterfacefactory.getsortTicketScreen(inputoutputhandler,storeticketdata);
-				sortticket.sortticketscreen(user);
+				int choiceForSort=0;
+				inputoutputhandler.displayMethod("1.Priority"+"\n"+"2.Impact"+"\n"+"3.Urgency"+"\n"+"4.Exit");
+				do 
+				{
+					inputoutputhandler.displayMethod("Choose option for sort ticket");
+					choiceForSort=inputoutputhandler.inputInt();
+					if(choiceForSort>0 && choiceForSort<4) {
+						ISortTicket sortticket=searchticketfactory.sortTicketobj(storeticketdata, displayuser);
+						String output = sortticket.sortSearchedTickets(choiceForSort);
+						inputoutputhandler.displayMethod(output);
+					}
+					else
+					{
+						inputoutputhandler.displayMethod("Invalid Choice");
+					}
+					
+					
+				}while(choiceForSort!=4);
 				
 			}
 		}

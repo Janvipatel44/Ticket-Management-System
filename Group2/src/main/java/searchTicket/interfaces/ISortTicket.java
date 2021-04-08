@@ -1,6 +1,5 @@
-package sortTickets.interfaces;
+package searchTicket.interfaces;
 
 public interface ISortTicket {
-	public String sortTickets(int choice);
 	public String sortSearchedTickets(int choiceToSortTicket);
 }
