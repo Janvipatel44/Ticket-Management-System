@@ -46,7 +46,7 @@ public class UpdateTicketScreen implements IUpdateTicketScreen
 	IDisplayTickets displayticket = reusableFactory.displayUser(tableformate);
 	IGetListOfTickets getalltickets = reusableFactory.getalltickets(storeticketdata, displayticket, ConnectionMng);
 	IticketStatusInProgress ticketInProgress = reusableFactory.ticketInProgress(ConnectionMng);
-	IUpdateTicket updateTicket = updateticketfactory.updateTicket(ConnectionMng,ticketInProgress);
+	IUpdateTicket updateTicket = updateticketfactory.UpdateTicket(ConnectionMng);
 	
 	
 	public UpdateTicketScreen(IInputOutputHandler inputoutputhandler)

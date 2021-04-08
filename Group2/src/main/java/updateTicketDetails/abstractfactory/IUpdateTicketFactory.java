@@ -6,5 +6,6 @@ import updateTicketDetails.interfaces.IUpdateTicket;
 
 public interface IUpdateTicketFactory 
 {
-	IUpdateTicket updateTicket(IConnectionManager ConnectionMng,IticketStatusInProgress ticketInProgress);
+
+	IUpdateTicket UpdateTicket(IConnectionManager connectionMng);
 }
