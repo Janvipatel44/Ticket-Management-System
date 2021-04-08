@@ -1,19 +1,19 @@
 package login;
 import login.Interfaces.IEncryption;
 import login.Interfaces.IForgotPassword;
-import login.Interfaces.IPasswordValidations;
 import login.Interfaces.IForgotPasswordDao;
+import login.Interfaces.IPasswordValidations;
 import login.abstractfactory.ILoginFactory;
 import login.abstractfactory.LoginFactory;
 import mailservice.abstractfactory.IMailFactory;
-import mailservice.abstractfactory.MailFactoryMock;
+import mailservice.abstractfactory.MailFactory;
 import mailservice.interfaces.IMail;
 import mailservice.interfaces.IMailMessage;
 public class ForgotPassword implements IForgotPassword
 {
     private int otp;
     private String employeeID;
-    private final IMailFactory factoryMethodMail = MailFactoryMock.instance();
+    private final IMailFactory factoryMethodMail = MailFactory.instance();
     private final IMail mail;
     private final IMailMessage mailMessage = factoryMethodMail.makeMailMessageObject();
     private final IForgotPasswordDao persistenceForgotPasswordOperations;
