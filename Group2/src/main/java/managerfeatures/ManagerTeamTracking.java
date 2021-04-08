@@ -1,9 +1,7 @@
 package managerfeatures;
 
 import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
-
 import insertTicket.Interfaces.ICreateTicket;
 import managerfeatures.interfaces.IManagerFeaturesDao;
 import managerfeatures.interfaces.IManagerTeamTracking;

@@ -4,14 +4,12 @@ import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-
-import database.intefaces.IConnectionManager;
 import database.abstractfactory.DatabaseFactory;
 import database.abstractfactory.IDatabaseFactory;
+import database.intefaces.IConnectionManager;
 import database.intefaces.IDatabaseOperations;
 import insertTicket.Interfaces.ICreateTicket;
 import insertTicket.abstractFactory.IInsertTicketFactory;
@@ -38,7 +36,7 @@ public class ManagerFeaturesDao implements IManagerFeaturesDao {
 	public List<ICreateTicket> managersTeamTickets(String managerId) throws Exception {
 
 		IInsertTicketFactory insertTicketFactory = InsertTicketFactory.instance();
-		
+
 		List<ICreateTicket> createTickets = new ArrayList<ICreateTicket>();
 
 		if (connectionManager == null) {
@@ -47,25 +45,24 @@ public class ManagerFeaturesDao implements IManagerFeaturesDao {
 
 		Connection connection = connectionManager.establishConnection();
 		CallableStatement procedureCall;
-			procedureCall = connection.prepareCall("call " + MANAGER_TEAM_TICKETS + "(?)");
-			procedureCall.setString(1, managerId);
+		procedureCall = connection.prepareCall("call " + MANAGER_TEAM_TICKETS + "(?)");
+		procedureCall.setString(1, managerId);
 
-			ResultSet resultSet = databaseOperations.executeQuery(procedureCall);
+		ResultSet resultSet = databaseOperations.executeQuery(procedureCall);
 
-			if(resultSet == null)
-			{
-				return null;
-			}
+		if (resultSet == null) {
+			return null;
+		}
 
-			while(resultSet.next()){
-					String employeeId = resultSet.getString(1);
-					String ticketId = resultSet.getString(2);
-					String description = resultSet.getString(3);
-					ICreateTicket createTicket = insertTicketFactory.getcreateTicket(ticketId, description, null, null, employeeId, null,
-							null, null, 0, 0, 0, null, null, null, null, null);
-					createTickets.add(createTicket);
-			}
-			connectionManager.closeConnection();
+		while (resultSet.next()) {
+			String employeeId = resultSet.getString(1);
+			String ticketId = resultSet.getString(2);
+			String description = resultSet.getString(3);
+			ICreateTicket createTicket = insertTicketFactory.getcreateTicket(ticketId, description, null, null,
+					employeeId, null, null, null, 0, 0, 0, null, null, null, null, null);
+			createTickets.add(createTicket);
+		}
+		connectionManager.closeConnection();
 		return createTickets;
 	}
 
