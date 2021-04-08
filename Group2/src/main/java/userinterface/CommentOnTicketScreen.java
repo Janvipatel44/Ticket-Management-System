@@ -2,18 +2,18 @@ package userinterface;
 
 import java.util.Scanner;
 
-import commentOnTicket.abstractfactory.ICommentOnTicketFactory;
-import commentOnTicket.abstractfactory.CommentOnTicketFactory;
-import commentOnTicket.interfaces.ICommentOnTicket;
+import commentOnTicket.abstractfactory.ICommentOnTicketsFactory;
+import commentOnTicket.abstractfactory.CommentOnTicketsFactory;
+import commentOnTicket.interfaces.ICommentOnTickets;
 import database.ConnectionManager;
 import database.intefaces.IConnectionManager;
 import login.Interfaces.IParameterizedUser;
 import managerfeatures.abstractfactory.IManagerFeaturesFactory;
-import reuseablePackage.abstractFactory.IReuseableClassFactory;
-import reuseablePackage.abstractFactory.ReuseableClassFactory;
+import reuseablePackage.abstractFactory.IReuseableClasssFactory;
+import reuseablePackage.abstractFactory.ReuseableClasssFactory;
 import reuseablePackage.interfaces.ITableGenerator;
-import reuseablePackage.interfaces.ICheckTicketExists;
-import reuseablePackage.interfaces.IDisplayTicket;
+import reuseablePackage.interfaces.ICheckTicketsExists;
+import reuseablePackage.interfaces.IDisplayTickets;
 import reuseablePackage.interfaces.IGetListOfTickets;
 import reuseablePackage.interfaces.IStoreTicketData;
 import userinterface.abstractFactory.IUserInterfaceFactory;
@@ -37,14 +37,14 @@ public class CommentOnTicketScreen implements ICommentOnTicketScreen
 	IConnectionManager ConnectionMng = new ConnectionManager(ConfigurationFile);
 	IInputOutputHandler inputoutputhandler;
 	
-	ICommentOnTicketFactory commentonticketfactory = CommentOnTicketFactory.instance();
-	ICommentOnTicket postcomment = commentonticketfactory.postComment(ConnectionMng);
+	ICommentOnTicketsFactory commentonticketfactory = CommentOnTicketsFactory.instance();
+	ICommentOnTickets postcomment = commentonticketfactory.postComment(ConnectionMng);
 	
-	IReuseableClassFactory reuseableclassfactory = ReuseableClassFactory.instance();
-	ICheckTicketExists checkticketexists= reuseableclassfactory.checkticketexists();
+	IReuseableClasssFactory reuseableclassfactory = ReuseableClasssFactory.instance();
+	ICheckTicketsExists checkticketexists= reuseableclassfactory.checkticketexists();
 	IStoreTicketData storeTicketData =reuseableclassfactory.storeTicketData();
 	ITableGenerator tableformate = reuseableclassfactory.tableFormate();
-	IDisplayTicket displaytickets = reuseableclassfactory.displayUser(tableformate);
+	IDisplayTickets displaytickets = reuseableclassfactory.displayUser(tableformate);
 	IGetListOfTickets getalltickets = reuseableclassfactory.getalltickets(storeTicketData,displaytickets,ConnectionMng);
 	
 	public CommentOnTicketScreen(IInputOutputHandler inputoutputhandler)

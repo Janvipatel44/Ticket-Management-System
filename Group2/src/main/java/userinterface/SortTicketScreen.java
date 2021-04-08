@@ -6,10 +6,10 @@ import database.ConnectionManager;
 import database.intefaces.IConnectionManager;
 import login.Interfaces.IParameterizedUser;
 import managerfeatures.abstractfactory.IManagerFeaturesFactory;
-import reuseablePackage.abstractFactory.IReuseableClassFactory;
-import reuseablePackage.abstractFactory.ReuseableClassFactory;
+import reuseablePackage.abstractFactory.IReuseableClasssFactory;
+import reuseablePackage.abstractFactory.ReuseableClasssFactory;
 import reuseablePackage.interfaces.ITableGenerator;
-import reuseablePackage.interfaces.IDisplayTicket;
+import reuseablePackage.interfaces.IDisplayTickets;
 import reuseablePackage.interfaces.IOpenTicket;
 import reuseablePackage.interfaces.IStoreTicketData;
 import sortTickets.SortTicket;
@@ -33,11 +33,11 @@ public class SortTicketScreen implements ISortTciketScreen{
 
 	static IInputOutputHandler inputoutputhandler;
 	
-	static IReuseableClassFactory resuableclassfactore = ReuseableClassFactory.instance();
+	static IReuseableClasssFactory resuableclassfactore = ReuseableClasssFactory.instance();
 	static ISortTicketFactory storeticketfactory = SortTicketFactory.instance();
 	static IStoreTicketData storeTicketData = resuableclassfactore.storeTicketData();
 	static ITableGenerator tableformate = resuableclassfactore.tableFormate();
-	static IDisplayTicket displayUser = resuableclassfactore.displayUser(tableformate);
+	static IDisplayTickets displayUser = resuableclassfactore.displayUser(tableformate);
 	static IConnectionManager ConnectionMng = new ConnectionManager(ConfigurationFile);
 
 	public SortTicketScreen(IInputOutputHandler inputoutputhandler)

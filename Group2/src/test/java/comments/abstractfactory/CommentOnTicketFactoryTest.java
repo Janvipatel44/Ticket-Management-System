@@ -1,6 +1,6 @@
 package comments.abstractfactory;
 
-import commentOnTicket.interfaces.ICommentOnTicket;
+import commentOnTicket.interfaces.ICommentOnTickets;
 import comments.CommentOnTicketMock;
 
 public class CommentOnTicketFactoryTest implements ICommentOnTicketFactoryTest
@@ -21,7 +21,7 @@ public class CommentOnTicketFactoryTest implements ICommentOnTicketFactoryTest
         return uniqueInstance;
     }
 
-	public ICommentOnTicket commentonticketMock()
+	public ICommentOnTickets commentonticketMock()
 	{
 		return new CommentOnTicketMock();
 	}

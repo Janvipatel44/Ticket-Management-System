@@ -1,7 +1,7 @@
 package deleteTicket.abstractfactory;
 
-import deleteTicket.interfaces.IDeleteTicket;
+import deleteTicket.interfaces.IDeleteTickets;
 
 public interface IDeleteTicketfactoryTest {
-	IDeleteTicket deleteTicketMock();
+	IDeleteTickets deleteTicketMock();
 }

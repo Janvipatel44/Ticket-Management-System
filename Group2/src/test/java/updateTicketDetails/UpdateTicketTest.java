@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import reuseableClasses.abstractfactory.IReuseableClassesFactoryTest;
 import reuseableClasses.abstractfactory.ReuseableClassFactoryTest;
-import reuseablePackage.interfaces.ICheckTicketExists;
+import reuseablePackage.interfaces.ICheckTicketsExists;
 import updateTicketDetails.abstractfactory.IUpdateTicketDetailsfactoryTest;
 import updateTicketDetails.abstractfactory.UpdateTicketDetailsfactoryTest;
 import updateTicketDetails.interfaces.IUpdateTicket;
@@ -19,7 +19,7 @@ public class UpdateTicketTest {
 	IReuseableClassesFactoryTest reuseableClassFactorytest = ReuseableClassFactoryTest.instance();
 	IUpdateTicketDetailsfactoryTest updateticketsdetailsfactore = UpdateTicketDetailsfactoryTest.instance();
 	IUpdateTicket updateticketdetails = updateticketsdetailsfactore.updateticketMock();
-	ICheckTicketExists checkticketexists = reuseableClassFactorytest.checkticketexistMock();
+	ICheckTicketsExists checkticketexists = reuseableClassFactorytest.checkticketexistMock();
 	
 	@Test
 	public void updateForManagerWithValidTicketIDAndValidEmployeeID() {

@@ -3,11 +3,11 @@ package comments;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
-import commentOnTicket.interfaces.ICommentOnTicket;
+import commentOnTicket.interfaces.ICommentOnTickets;
 import userinterface.IInputOutputHandler;
 import userinterface.InputOutputHandler;
 
-public class CommentOnTicketMock implements ICommentOnTicket 
+public class CommentOnTicketMock implements ICommentOnTickets 
 {
 	IInputOutputHandler inputoutputhandler = new InputOutputHandler();
 

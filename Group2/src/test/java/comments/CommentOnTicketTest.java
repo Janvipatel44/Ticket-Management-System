@@ -4,12 +4,12 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import commentOnTicket.interfaces.ICommentOnTicket;
+import commentOnTicket.interfaces.ICommentOnTickets;
 import comments.abstractfactory.ICommentOnTicketFactoryTest;
 import comments.abstractfactory.CommentOnTicketFactoryTest;
 import reuseableClasses.abstractfactory.IReuseableClassesFactoryTest;
 import reuseableClasses.abstractfactory.ReuseableClassFactoryTest;
-import reuseablePackage.interfaces.ICheckTicketExists;
+import reuseablePackage.interfaces.ICheckTicketsExists;
 import reuseablePackage.interfaces.IGetListOfTickets;
 import userinterface.IInputOutputHandler;
 import userinterface.InputOutputHandler;
@@ -20,11 +20,11 @@ public class CommentOnTicketTest
 	public void postCommentOnticket() 
 	{
 		IReuseableClassesFactoryTest reuseableclassfactorytest = ReuseableClassFactoryTest.instance();
-		ICheckTicketExists checkticketexists =reuseableclassfactorytest.checkticketexistMock();
+		ICheckTicketsExists checkticketexists =reuseableclassfactorytest.checkticketexistMock();
 		IGetListOfTickets getalltickets =reuseableclassfactorytest.getlistofticketsMock();
 		
 		ICommentOnTicketFactoryTest commentonticketfactorytest = CommentOnTicketFactoryTest.instance();
-		ICommentOnTicket postComment = commentonticketfactorytest. commentonticketMock();
+		ICommentOnTickets postComment = commentonticketfactorytest. commentonticketMock();
 		
 		IInputOutputHandler inputoutputhandler = new InputOutputHandler();
 		

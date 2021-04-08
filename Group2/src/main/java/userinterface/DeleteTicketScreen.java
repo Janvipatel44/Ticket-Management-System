@@ -4,25 +4,18 @@ import java.util.Scanner;
 
 import database.ConnectionManager;
 import database.intefaces.IConnectionManager;
-import deleteTicket.abstractfactory.DeleteTicketFactory;
-import deleteTicket.abstractfactory.IDeleteTicketFactory;
-import deleteTicket.interfaces.IDeleteTicket;
+import deleteTicket.abstractfactory.DeleteTicketsFactory;
+import deleteTicket.abstractfactory.IDeleteTicketsFactory;
+import deleteTicket.interfaces.IDeleteTickets;
 import login.Interfaces.IParameterizedUser;
 import managerfeatures.abstractfactory.IManagerFeaturesFactory;
-import reuseablePackage.abstractFactory.IReuseableClassFactory;
-import reuseablePackage.abstractFactory.ReuseableClassFactory;
-import reuseablePackage.interfaces.ITableGenerator;
-<<<<<<< HEAD:Group2/src/main/java/userinterface/DeleteTicketScreen.java
-import reuseablePackage.interfaces.ICheckTicketExists;
-import reuseablePackage.interfaces.IDisplayTicket;
+import reuseablePackage.abstractFactory.IReuseableClasssFactory;
+import reuseablePackage.abstractFactory.ReuseableClasssFactory;
+import reuseablePackage.interfaces.ICheckTicketsExists;
+import reuseablePackage.interfaces.IDisplayTickets;
 import reuseablePackage.interfaces.IGetListOfTickets;
 import reuseablePackage.interfaces.IStoreTicketData;
-=======
-import reuseablePackage.interfaces.IcheckTicketExists;
-import reuseablePackage.interfaces.IdisplayTicket;
-import reuseablePackage.interfaces.IgetListOfTickets;
-import reuseablePackage.interfaces.IstoreTicketData;
->>>>>>> 5a2ea7b7154c35580472c415ac24ce2ced02e5a3:Group2/src/main/java/userinterface/deleteTicketScreen.java
+import reuseablePackage.interfaces.ITableGenerator;
 import userinterface.abstractFactory.IUserInterfaceFactory;
 import userinterface.abstractFactory.UserInterfaceFactory;
 
@@ -42,15 +35,15 @@ public class DeleteTicketScreen implements IDeleteTicketScreen
 	IInputOutputHandler inputoutputhandler;
 	IConnectionManager ConnectionMng = new ConnectionManager(configurationFile);
 	
-	IReuseableClassFactory reusableFactory = ReuseableClassFactory.instance();
-	ICheckTicketExists checkticketexists = reusableFactory.checkticketexists();
+	IReuseableClasssFactory reusableFactory = ReuseableClasssFactory.instance();
+	ICheckTicketsExists checkticketexists = reusableFactory.checkticketexists();
 	IStoreTicketData storeticketdata = reusableFactory.storeTicketData();
 	ITableGenerator tableformate = reusableFactory.tableFormate();
-	IDisplayTicket displayticket = reusableFactory.displayUser(tableformate);
+	IDisplayTickets displayticket = reusableFactory.displayUser(tableformate);
 	IGetListOfTickets getalltickets = reusableFactory.getalltickets(storeticketdata, displayticket, ConnectionMng);
 	
-	IDeleteTicketFactory deleteticketfactory = DeleteTicketFactory.instance();
-	IDeleteTicket deleteticket;
+	IDeleteTicketsFactory deleteticketfactory = DeleteTicketsFactory.instance();
+	IDeleteTickets deleteticket;
 	
 	public DeleteTicketScreen(IInputOutputHandler inputoutputhandler)
 	{

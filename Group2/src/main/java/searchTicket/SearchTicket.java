@@ -9,17 +9,10 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-<<<<<<< HEAD:Group2/src/main/java/searchTicket/SearchTicket.java
-import database.IConnectionManager;
-import reuseablePackage.interfaces.IDisplayTicket;
+import database.intefaces.IConnectionManager;
+import reuseablePackage.interfaces.IDisplayTickets;
 import reuseablePackage.interfaces.IStoreTicketData;
 import searchTicket.interfaces.ISearchTicket;
-=======
-import database.intefaces.IConnectionManager;
-import reuseablePackage.interfaces.IdisplayTicket;
-import reuseablePackage.interfaces.IstoreTicketData;
-import searchTicket.interfaces.IsearchTicket;
->>>>>>> 5a2ea7b7154c35580472c415ac24ce2ced02e5a3:Group2/src/main/java/searchTicket/searchTicket.java
 
 public class SearchTicket implements ISearchTicket
 {
@@ -30,10 +23,10 @@ public class SearchTicket implements ISearchTicket
 	
 	
 	private IStoreTicketData storeTicketData;
-	private IDisplayTicket displayUser;
+	private IDisplayTickets displayUser;
 	private IConnectionManager ConnectionMng;
 	
-	public SearchTicket(IStoreTicketData storeTicketData,IDisplayTicket displayuser, IConnectionManager ConnectionMng)
+	public SearchTicket(IStoreTicketData storeTicketData,IDisplayTickets displayuser, IConnectionManager ConnectionMng)
 	{
 		this.storeTicketData = storeTicketData; 
 		this.displayUser = displayuser;
