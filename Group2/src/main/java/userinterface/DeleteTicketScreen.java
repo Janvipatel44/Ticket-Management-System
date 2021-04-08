@@ -23,8 +23,7 @@ public class DeleteTicketScreen implements IDeleteTicketScreen
 {
 	String configurationFile = "ConfigurationFile";
 	String ticketId = null;
-	String userRole = "manager";
-	String empployeeID = "emp123";
+	String userRole = "admin";
 	boolean result=false;
 	Scanner sc = new Scanner(System.in);
 	
@@ -53,17 +52,12 @@ public class DeleteTicketScreen implements IDeleteTicketScreen
 	public void deleteTicketScreen(IParameterizedUser user)
 	{
 		String output;
-		inputoutputhandler.displayMethod("Enter your role:");
-		String userenterRole = inputoutputhandler.input();
+		
+		String userenterRole = user.getUserType().toLowerCase();
 		inputoutputhandler.displayMethod("Tickets Details");
 		output = getalltickets.listOfTickets();
 		inputoutputhandler.displayMethod(output);
 		
-		inputoutputhandler.displayMethod("1. update"+"\n"+"2. delete");
-	
-		inputoutputhandler.displayMethod("Enter operation you want to perform");
-		int choice = inputoutputhandler.inputInt();
-
 		if(userRole.equals(userenterRole))
 		{
 			
