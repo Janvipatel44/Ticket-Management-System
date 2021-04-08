@@ -4,11 +4,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.temporal.ChronoUnit;
+import java.util.Date;
 import java.util.HashMap;
-
 import employeePerformance.Interfaces.IEmployeeEfficiencyCalculator;
-import employeePerformance.Interfaces.IExportEmployeePerformanceReport;
 
 public class EmployeeEfficiencyCalculator implements IEmployeeEfficiencyCalculator
 {
@@ -22,7 +22,7 @@ public class EmployeeEfficiencyCalculator implements IEmployeeEfficiencyCalculat
 	}
 
 	public HashMap<Integer,Integer> calculateEmployeeEfficiency() throws SQLException, ParseException
-	{
+	{ 
 		WorkWeights myVar = null; 
 		int efficiency = 0;
 		int avg_efficiency = 0;
@@ -33,23 +33,36 @@ public class EmployeeEfficiencyCalculator implements IEmployeeEfficiencyCalculat
 		int year = 0;
 		HashMap<Integer,Integer> EfficiencyHashMap=new HashMap<Integer,Integer>();//Creating HashMap    
 		LocalDate startDate = null;
+		LocalDate expectedendDate = null;
 		LocalDate endDate = null;
-		LocalDate closeDate = null;
 		long durationTaken = 0;
 		long durationGiven = 0;
-
+		float divisor = 0.0f;
+        float dividend = 0.0f;
+        float averageResolutionTime = 0.0f;
+        long differenceInSeconds;
+        float differenceInTime;
+        float toSeconds = 1000.0f;
+        float toMinutes = 60.0f;
+        float toHours = 60.0f;
+        int hoursNotIncludedInWorkOnADay = 16;
+        int hoursInADay = 24;
+        float remainingHours;
+        
 		while(resultSetEfficiency.next()) 
     	{
-        	startDate = LocalDate.parse(resultSetEfficiency.getString("startDate").substring(0, 10));
-        	endDate = LocalDate.parse(resultSetEfficiency.getString("expectedEndDate").substring(0, 10));
-
-    	    durationGiven = ChronoUnit.DAYS.between(startDate,endDate);
-    	    //System.out.print("\nDifference duration Given:" +durationGiven);
-
-    	    closeDate = LocalDate.parse(resultSetEfficiency.getString("endDate").substring(0, 10));
-    	    durationTaken = ChronoUnit.DAYS.between(startDate,closeDate);
+        	
+            startDate = LocalDate.parse(resultSetProductivity.getString("startDate"));
+    	    expectedendDate = LocalDate.parse(resultSetProductivity.getString("endDate"));
     	    
-    	    //System.out.print("\nDifference duration taken:" +durationTaken);
+    	       	    
+    	    durationGiven = ChronoUnit.DAYS.between(startDate,expectedendDate);
+    	    System.out.print("\nDifference duration Given:" +durationGiven);
+
+    	    endDate = LocalDate.parse(resultSetEfficiency.getString("endDate"));
+    	    durationTaken = ChronoUnit.DAYS.between(startDate,endDate);
+    	    
+    	    System.out.print("\nDifference duration taken:" +durationTaken);
     	    durationTaken++;
     	    durationGiven++;
     	    
@@ -66,18 +79,18 @@ public class EmployeeEfficiencyCalculator implements IEmployeeEfficiencyCalculat
     	    		myVar = WorkWeights.LOW; 
     	    	}
 	    		efficiency= (int) ((durationTaken*100*myVar.getWorkWeights())/durationGiven);
-    	    	//System.out.print("\nEfficiency:" +efficiency);
+    	    	System.out.print("\nEfficiency:" +efficiency);
 	    	}
 	    	else 
 	    	{
 	    		efficiency= (int) ((durationTaken*100)/durationGiven);
-	    		//System.out.print("\nEfficiency:" +efficiency);
-	    	}
-	    	avg_efficiency +=efficiency;
+	    		System.out.print("\nEfficiency:" +efficiency);
+	    	} 
+	    	avg_efficiency +=efficiency; 
 	    	count++;
 	    	
 	    	
-	    	if(startDate.getMonthValue() == month || count==1)
+	    	if(startDate.getDayOfMonth() == (month) || count==1)
 	    	{
 	    	    avgEfficiency +=efficiency;
 		    	countMonth++;
@@ -91,7 +104,7 @@ public class EmployeeEfficiencyCalculator implements IEmployeeEfficiencyCalculat
 	    		avgEfficiency += efficiency;
 	    		countMonth++;
     	    }
-	    	month = startDate.getMonthValue();
+	    	month = startDate.getDayOfMonth();
     	}
 		
 		year = startDate.getYear();
@@ -99,9 +112,7 @@ public class EmployeeEfficiencyCalculator implements IEmployeeEfficiencyCalculat
 		EfficiencyHashMap.put(year, avg_efficiency);
 		
 		EfficiencyHashMap.put(month, avgEfficiency);
-				
+	
 		return EfficiencyHashMap;
 	}
-	
-	
 }

@@ -59,7 +59,7 @@ public class ManagerFeaturesDao implements IManagerFeaturesDao {
 			String ticketId = resultSet.getString(2);
 			String description = resultSet.getString(3);
 			ICreateTicket createTicket = insertTicketFactory.getcreateTicket(ticketId, description, null, null,
-					employeeId, null, null, null, 0, 0, 0, null, null, null, null, null);
+					employeeId, null, null, null, 0, 0, 0, null, null, null, null, null,null);
 			createTickets.add(createTicket);
 		}
 		connectionManager.closeConnection();

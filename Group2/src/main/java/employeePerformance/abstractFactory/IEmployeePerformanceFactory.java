@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import employeePerformance.Interfaces.IEmployeeEfficiencyCalculator;
 import employeePerformance.Interfaces.IEmployeePerformanceDB;
 import employeePerformance.Interfaces.IEmployeeProductivityCalculator;
-import employeePerformance.Interfaces.IExportEmployeePerformanceReport;
 import employeePerformance.Interfaces.IGenerateEmployeePerformanceReport;
 import employeePerformance.Interfaces.IInputEmployeeDetails;
 import employeePerformance.Interfaces.IUserInputEmployeePerformance;
+import userinterface.IExportEmployeePerformanceReport;
 import userinterface.IInputOutputHandler;
 
 public interface IEmployeePerformanceFactory 
@@ -19,5 +19,4 @@ public interface IEmployeePerformanceFactory
 	public IEmployeeEfficiencyCalculator getEmployeeEfficiencyCalculator(ResultSet resultset);
 	public IEmployeeProductivityCalculator getEmployeeProductivityCalculator(ResultSet resultset);
 	public IUserInputEmployeePerformance userinputemployee();
-	public IExportEmployeePerformanceReport getExportEmployeePerformanceReport(IInputOutputHandler inputOutputHandler, ArrayList<String> employeeEfficiency); 
 }

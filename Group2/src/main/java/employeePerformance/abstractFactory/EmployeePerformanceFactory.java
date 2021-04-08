@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import employeePerformance.EmployeeEfficiencyCalculator;
 import employeePerformance.EmployeePerformanceDB;
 import employeePerformance.EmployeeProductivityCalculator;
-import employeePerformance.ExportEmployeePerformanceReport;
 import employeePerformance.GenerateEmployeePerformanceReport;
 import employeePerformance.InputEmployeeDetails;
 import employeePerformance.UserInputEmployeePerformance;
@@ -14,11 +13,12 @@ import employeePerformance.Interfaces.IBarChartGeneration;
 import employeePerformance.Interfaces.IEmployeeEfficiencyCalculator;
 import employeePerformance.Interfaces.IEmployeePerformanceDB;
 import employeePerformance.Interfaces.IEmployeeProductivityCalculator;
-import employeePerformance.Interfaces.IExportEmployeePerformanceReport;
 import employeePerformance.Interfaces.IGenerateEmployeePerformanceReport;
 import employeePerformance.Interfaces.IInputEmployeeDetails;
 import employeePerformance.Interfaces.ITableGenerator;
 import employeePerformance.Interfaces.IUserInputEmployeePerformance;
+import userinterface.ExportEmployeePerformanceReport;
+import userinterface.IExportEmployeePerformanceReport;
 import userinterface.IInputOutputHandler;
 
 public class EmployeePerformanceFactory implements IEmployeePerformanceFactory
@@ -69,8 +69,5 @@ public class EmployeePerformanceFactory implements IEmployeePerformanceFactory
 		return new UserInputEmployeePerformance();
 	}
 	
-	public IExportEmployeePerformanceReport getExportEmployeePerformanceReport(IInputOutputHandler inputOutputHandler, ArrayList<String> employeeEfficiency) 
-	{
-		return new ExportEmployeePerformanceReport(inputOutputHandler, employeeEfficiency);
-	}
+	
 }

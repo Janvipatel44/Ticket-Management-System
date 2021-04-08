@@ -53,10 +53,10 @@ public class InsertTicketTestFactory implements IInsertTicketTestFactory
     
     public 	ICreateTicket getcreateTicket(String ticketID, String description,  String expectedEndDate, String reporterID,
 			String employeeID,  String assigneeName, String ticketType, String ticketStatus, int priority, int urgency, int impact,
-			String ticketLevel, String customerID, String customerName, String creatorID, String creatorName) {
+			String ticketLevel, String customerID, String customerName, String creatorID, String creatorName, String attachmentID) {
     	return new CreateTicket(  ticketID,  description,   expectedEndDate,  reporterID,
 				 employeeID,   assigneeName,  ticketType,  ticketStatus,  priority,  urgency,  impact,
-				 ticketLevel,  customerID,  customerName,  creatorID, creatorName);
+				 ticketLevel,  customerID,  customerName,  creatorID, creatorName, attachmentID);
     }
     public IInsertTicket insertTicket(ICreateTicket createTicket) {
     	
