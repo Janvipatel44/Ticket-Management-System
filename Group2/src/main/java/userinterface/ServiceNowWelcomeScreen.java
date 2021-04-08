@@ -27,19 +27,21 @@ public class ServiceNowWelcomeScreen implements IServiceNowWelcomeScreen
         {
             MenuHandler.Menu menuTaskName = MenuHandler.Menu.LOGIN;
             menuHandler.runMenuTask(menuTaskName, null, inputOutputHandler);
-            //ILoginScreen loginScreen = userInterfaceFactory.getLoginScreen(inputOutputHandler);
         }
         else if(choice == 2)
         {
             MenuHandler.Menu menuTaskName = MenuHandler.Menu.REGISTRATION;
             menuHandler.runMenuTask(menuTaskName, null, inputOutputHandler);
-            //IRegistrationScreen registrationScreen = userInterfaceFactory.getRegistrationScreen(inputOutputHandler);
         }
         else if(choice == 3)
         {
             MenuHandler.Menu menuTaskName = MenuHandler.Menu.FORGOT_PASSWORD;
             menuHandler.runMenuTask(menuTaskName, null, inputOutputHandler);
-            //IForgotPasswordScreen forgotPasswordScreen = userInterfaceFactory.getForgotPasswordScreen(inputOutputHandler);
+        }
+        else
+        {
+        	IServiceNowWelcomeScreen serviceNowWelcomeScreen = userInterfaceFactory.getServiceNowWelcomeScreen(inputOutputHandler);
+            serviceNowWelcomeScreen.displayLoginScreen();
         }
     }
 }
