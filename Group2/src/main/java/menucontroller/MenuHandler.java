@@ -8,9 +8,9 @@ import userinterface.IInputOutputHandler;
 public class MenuHandler implements IMenuHandler {
 
 	public enum Menu {
-		LOGIN, REGISTRATION, FORGOT_PASSWORD, CREATE_TICKET, UPDATE_TICKET, COMMENT, SORT, SEARCH_TICKETS, RATING_FEATURE,
-		EMPLOYEE_PERFORMANCE_REPORT, TWITTER_POSTING, EMPLOYEE_EFFICENCY, CUSTOMERS_ANALYSIS, OPEN_TICKETS_WITH_TEAM,
-		MODIFY_USER_ROLE, HOME_PAGE, LOGOUT, EXIT, DELETE_TICKET
+		LOGIN, REGISTRATION, FORGOT_PASSWORD, CREATE_TICKET, UPDATE_TICKET, COMMENT, SORT, SEARCH_TICKETS,
+		RATING_FEATURE, EMPLOYEE_PERFORMANCE_REPORT, TWITTER_POSTING, EMPLOYEE_EFFICENCY, CUSTOMERS_ANALYSIS,
+		OPEN_TICKETS_WITH_TEAM, MODIFY_USER_ROLE, HOME_PAGE, LOGOUT, EXIT, DELETE_TICKET
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class MenuHandler implements IMenuHandler {
 		IMenuTask menuTask = null;
 
 		switch (menuTaskName) {
-		case LOGIN:		
+		case LOGIN:
 			menuTask = new LoginMenuTask();
 			break;
 		case REGISTRATION:
@@ -81,8 +81,6 @@ public class MenuHandler implements IMenuHandler {
 			menuTask = new ExitMenuTask();
 			break;
 		}
-
 		return menuTask;
 	}
-
 }

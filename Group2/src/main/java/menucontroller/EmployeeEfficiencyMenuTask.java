@@ -10,11 +10,10 @@ import userinterface.abstractFactory.UserInterfaceFactory;
 public class EmployeeEfficiencyMenuTask implements IMenuTask {
 
 	@Override
-	public void runMenuTask(IParameterizedUser user, IInputOutputHandler inputOutputHandler)
-	{
+	public void runMenuTask(IParameterizedUser user, IInputOutputHandler inputOutputHandler) {
 		IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
-		IEmployeeMilestoneScreen employeeMilestoneScreen = userInterfaceFactory.getEmployeeMilestoneScreen(inputOutputHandler);
+		IEmployeeMilestoneScreen employeeMilestoneScreen = userInterfaceFactory
+				.getEmployeeMilestoneScreen(inputOutputHandler);
 		employeeMilestoneScreen.displayEmployeeMileStoneScreen(user);
 	}
-
 }

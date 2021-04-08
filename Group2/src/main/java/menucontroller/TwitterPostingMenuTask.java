@@ -9,8 +9,7 @@ import userinterface.abstractFactory.UserInterfaceFactory;
 
 public class TwitterPostingMenuTask implements IMenuTask {
 
-	public void runMenuTask(IParameterizedUser user, IInputOutputHandler inputOutputHandler)
-	{
+	public void runMenuTask(IParameterizedUser user, IInputOutputHandler inputOutputHandler) {
 		IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
 		ITwitterPostScreen twitterPost = userInterfaceFactory.getTwitterPostScreen(inputOutputHandler);
 		twitterPost.displayTwitterPostScreen(user);

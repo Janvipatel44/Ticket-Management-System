@@ -15,5 +15,4 @@ public class OpenTicketsWithTeamMenuTask implements IMenuTask {
 		IManagerTeamTrackingScreen managerTeamTrackingScreen = userInterfaceFactory.getmangerTeamTrackingScreen(inputOutputHandler);
 		managerTeamTrackingScreen.displayManagerTrackingScreen(user);
 	}
-
 }

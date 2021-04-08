@@ -15,5 +15,4 @@ public class ModifyUserRoleMenuTask implements IMenuTask {
 		IModifyUserRoleScreen modifyUserRoleScreen = userInterfaceFactory.getModifyUserRoleScreen(inputOutputHandler);
 		modifyUserRoleScreen.displayModifyUserRoleScreen(user);
 	}
-
 }

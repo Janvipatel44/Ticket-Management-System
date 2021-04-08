@@ -15,5 +15,4 @@ public class HomePageMenuTask implements IMenuTask {
 		IHomePageScreen homePageScreen = userInterfaceFactory.getHomePageScreen(inputOutputHandler);
 		homePageScreen.handleHomePageMenu(user);
 	}
-
 }

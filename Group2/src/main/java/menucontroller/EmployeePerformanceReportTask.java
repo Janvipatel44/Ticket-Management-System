@@ -9,10 +9,10 @@ import userinterface.abstractFactory.UserInterfaceFactory;
 
 public class EmployeePerformanceReportTask implements IMenuTask {
 
-	public void runMenuTask(IParameterizedUser user, IInputOutputHandler inputOutputHandler)
-	{
+	public void runMenuTask(IParameterizedUser user, IInputOutputHandler inputOutputHandler) {
 		IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
-		IEmployeePerformanceScreen employeePerformanceScreen = userInterfaceFactory.getEmployeePerformanceScreen(inputOutputHandler);
+		IEmployeePerformanceScreen employeePerformanceScreen = userInterfaceFactory
+				.getEmployeePerformanceScreen(inputOutputHandler);
 		employeePerformanceScreen.displayTicketGenerationScreen(user);
 	}
 }

@@ -7,12 +7,12 @@ import userinterface.ISortTciketScreen;
 import userinterface.abstractFactory.IUserInterfaceFactory;
 import userinterface.abstractFactory.UserInterfaceFactory;
 
-public class SortTicketMenuTask implements IMenuTask
-{
+public class SortTicketMenuTask implements IMenuTask {
+	
 	@Override
 	public void runMenuTask(IParameterizedUser user, IInputOutputHandler inputOutputHandler) {
 		IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
 		ISortTciketScreen sortTicketscreen = userInterfaceFactory.getsortTicketScreen(inputOutputHandler);
-		sortTicketscreen.sortticketscreen(user);	
+		sortTicketscreen.sortticketscreen(user);
 	}
 }
