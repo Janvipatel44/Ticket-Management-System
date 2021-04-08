@@ -21,12 +21,12 @@ import userinterface.IRatingScreen;
 import userinterface.IRegistrationScreen;
 import userinterface.IServiceNowWelcomeScreen;
 import userinterface.ITwitterPostScreen;
-import userinterface.IcommentOnTicketScreen;
-import userinterface.IdeleteTicketScreen;
+import userinterface.ICommentOnTicketScreen;
+import userinterface.IDeleteTicketScreen;
 import userinterface.InputOutputHandler;
-import userinterface.IsearchTicketScreen;
-import userinterface.IsortTciketScreen;
-import userinterface.IupdateTicketScreen;
+import userinterface.ISearchTicketScreen;
+import userinterface.ISortTciketScreen;
+import userinterface.IUpdateTicketScreen;
 import userinterface.LoginScreen;
 import userinterface.ManagerTeamTrackingScreen;
 import userinterface.ModifyUserRoleScreen;
@@ -34,11 +34,11 @@ import userinterface.RatingScreen;
 import userinterface.RegistrationScreen;
 import userinterface.ServiceNowWelcomeScreen;
 import userinterface.TwitterPostScreen;
-import userinterface.commentOnTicketScreen;
-import userinterface.deleteTicketScreen;
-import userinterface.searchTicketScreen;
-import userinterface.sortTicketScreen;
-import userinterface.updateTicketScreen;
+import userinterface.CommentOnTicketScreen;
+import userinterface.DeleteTicketScreen;
+import userinterface.SearchTicketScreen;
+import userinterface.SortTicketScreen;
+import userinterface.UpdateTicketScreen;
 
 public class UserInterfaceFactory implements IUserInterfaceFactory
 {
@@ -123,19 +123,19 @@ public class UserInterfaceFactory implements IUserInterfaceFactory
         return new EmployeePerformanceScreen(inputOutputHandler);
     }
     
-    public IsearchTicketScreen getsearchTicketScreen(IInputOutputHandler inputOutputHandler)
+    public ISearchTicketScreen getsearchTicketScreen(IInputOutputHandler inputOutputHandler)
     {
-        return new searchTicketScreen(inputOutputHandler);
+        return new SearchTicketScreen(inputOutputHandler);
     }
     
-    public IsortTciketScreen getsortTicketScreen(IInputOutputHandler inputOutputHandler)
+    public ISortTciketScreen getsortTicketScreen(IInputOutputHandler inputOutputHandler)
     {
-        return new sortTicketScreen(inputOutputHandler);
+        return new SortTicketScreen(inputOutputHandler);
     }
 
-    public IdeleteTicketScreen getdeleteTicketScreen(IInputOutputHandler inputOutputHandler)
+    public IDeleteTicketScreen getdeleteTicketScreen(IInputOutputHandler inputOutputHandler)
     {
-        return new deleteTicketScreen(inputOutputHandler);
+        return new DeleteTicketScreen(inputOutputHandler);
     }
     
     public ITwitterPostScreen getTwitterPostScreen(IInputOutputHandler inputOutputHandler)
@@ -143,14 +143,14 @@ public class UserInterfaceFactory implements IUserInterfaceFactory
         return new TwitterPostScreen(inputOutputHandler);
     }
     
-    public IupdateTicketScreen getUpdateTicketScreen(IInputOutputHandler inputOutputHandler)
+    public IUpdateTicketScreen getUpdateTicketScreen(IInputOutputHandler inputOutputHandler)
     {
-        return new updateTicketScreen(inputOutputHandler);
+        return new UpdateTicketScreen(inputOutputHandler);
     }
 
-    public IcommentOnTicketScreen getCommentOnTicketScreen(IInputOutputHandler inputOutputHandler)
+    public ICommentOnTicketScreen getCommentOnTicketScreen(IInputOutputHandler inputOutputHandler)
     {
-        return new commentOnTicketScreen(inputOutputHandler);
+        return new CommentOnTicketScreen(inputOutputHandler);
     }
 
 }
