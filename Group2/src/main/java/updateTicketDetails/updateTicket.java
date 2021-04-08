@@ -80,9 +80,14 @@ public class updateTicket implements IupdateTicket
 			if(resultSet.next())
 			{
 				String status = resultSet.getString("ticketStatus");
+				if(status == null)
+				{
+					hours=0;
+					ticketStatusOperationsDB.openTicket(ticketID);
+				}
 				if(status.equals("done"))
 				{
-					
+					return false;
 				}else if(status.equalsIgnoreCase("on hold"))
 				{
 					if(status.equalsIgnoreCase(valueToUpdate)) {
@@ -94,7 +99,8 @@ public class updateTicket implements IupdateTicket
 						choice = 1;
 					}
 					
-				}else if(status.equalsIgnoreCase("in progress"))
+				}
+				else if(status.equalsIgnoreCase("in progress"))
 				{
 					if(status.equals(valueToUpdate))
 					{
@@ -109,24 +115,50 @@ public class updateTicket implements IupdateTicket
 					
 				}
 				
+				
 				System.out.println("Hours: "+hours);
-				if(hours>-1) {
-					double previoushours = resultSet.getDouble("ticketInProgressHours");
-					if(previoushours > 0 ) 
-					{
-						hours = hours + previoushours;
-					}
-					SPstatement = connect.prepareCall("{call updateTicketStatusDetails(?,?,?,?)}");
-					SPstatement.setInt(1,1);
+				double previoushours =0;
+				int count=0;
+				if(choice==1)
+				{
+					 previoushours = resultSet.getDouble("ticketOnHoldHours");
+				}
+				else if(choice==2)
+				{
+					previoushours = resultSet.getDouble("ticketInProgressHours");
+				}
+				
+				if(previoushours > 0 ) 
+				{
+					hours = hours + previoushours;
+				}
+				
+				if(valueToUpdate.equals("done"))
+				{
+					SPstatement = connect.prepareCall("{call calculating_resolutionHours(?,?,?,?)}");
+					SPstatement.setString(1,status);
 					SPstatement.setString(2,ticketID);
 					SPstatement.setDouble(3,hours);
 					SPstatement.setString(4,valueToUpdate);
 					SPstatement.execute();
-					int count = SPstatement.getUpdateCount();
-					if(count > 0)
-					{
-						   result = true;
-					}
+					count = SPstatement.getUpdateCount();
+					
+				}
+				else if(hours>-1)
+				{
+					
+					SPstatement = connect.prepareCall("{call updateTicketStatusDetails(?,?,?,?)}");
+					SPstatement.setInt(1,choice);
+					SPstatement.setString(2,ticketID);
+					SPstatement.setDouble(3,hours);
+					SPstatement.setString(4,valueToUpdate);
+					SPstatement.execute();
+					count = SPstatement.getUpdateCount();
+					
+				}
+				if(count > 0)
+				{
+					   result = true;
 				}
 			}
 			

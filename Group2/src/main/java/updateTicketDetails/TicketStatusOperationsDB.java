@@ -70,6 +70,7 @@ public class TicketStatusOperationsDB implements ITicketStatusOperationsDB
 			boolean hasResult = false;
 			try
 			{
+				
 				connection = IConnectionMng.establishConnection();
 				statement = connection.prepareCall("{call getTicketStatusDate(?)}");
 				statement.setString(1,ticketID);
@@ -82,6 +83,7 @@ public class TicketStatusOperationsDB implements ITicketStatusOperationsDB
 		        	resultset = statement.getResultSet();
 		        	hours = new workingHours(resultset);
 		        	inProgressHours = hours.insertTicket(resultset);
+
 		        	
 		        	//responseTime_resolutionTime_Calculator(inProgressHours);
 			        //insertHours(inProgressHours);
@@ -94,11 +96,40 @@ public class TicketStatusOperationsDB implements ITicketStatusOperationsDB
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		    return inProgressHours;
-
-			
-		}
+		    return inProgressHours;	
+	    }
 	    
+	    public boolean openTicket(String ticketID) throws SQLException
+		{
+	    	
+		    CallableStatement statement;
+			ResultSet resultset;
+			boolean hasResult = false;
+			double inProgressHours = 0;
+	    	ticketInProgressHours( ticketID);
+	    	connection = IConnectionMng.establishConnection();
+			statement = connection.prepareCall("{call check_openTicket(?)}");
+			statement.setString(1,ticketID);
+			
+			hasResult = statement.execute();
+			System.out.println(hasResult);
+	
+	        if(hasResult)  
+	        {  
+	        	resultset = statement.getResultSet();
+	        	hours = new workingHours(resultset);
+	        	inProgressHours = hours.insertTicket(resultset);
+				System.out.println(hasResult);
+
+	        	connection = IConnectionMng.establishConnection();
+				statement = connection.prepareCall("{call calculating_responseHours(?,?)}");
+				statement.setDouble(1,inProgressHours);
+				statement.setString(2,ticketID);
+
+				statement.execute();
+	        }
+			return true;
+	    }
 		/*public boolean insertHours(double inProgressHours)
 		{
 			connection = IConnectionMng.establishConnection();
