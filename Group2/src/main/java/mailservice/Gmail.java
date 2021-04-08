@@ -12,9 +12,7 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
 import org.apache.commons.lang3.StringUtils;
-
 import mailservice.interfaces.IMail;
 import mailservice.interfaces.IMailMessage;
 
@@ -29,10 +27,10 @@ public class Gmail implements IMail {
 	public boolean sendMail(String mailConfiguration, String userConfiguration, IMailMessage mailMessage)
 			throws Exception {
 
-		if(StringUtils.isBlank(mailConfiguration) || StringUtils.isBlank(userConfiguration) || mailMessage == null) {
+		if (StringUtils.isBlank(mailConfiguration) || StringUtils.isBlank(userConfiguration) || mailMessage == null) {
 			return false;
 		}
-		
+
 		boolean messageSendSuccesfully = true;
 
 		Properties mailConfigurationProperties = null;
