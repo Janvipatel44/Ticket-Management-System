@@ -8,20 +8,20 @@ import reuseablePackage.interfaces.IStoreTicketData;
 import searchTicket.SearchTicket;
 import searchTicket.interfaces.ISearchTicket;
 
-public class SearchTicketFactory implements ISearchTicketFactory
+public class SearchTicketsFactory implements ISearchTicketsFactory
 {
-	private static ISearchTicketFactory uniqueInstance = null;
+	private static ISearchTicketsFactory uniqueInstance = null;
 
-    private SearchTicketFactory()
+    private SearchTicketsFactory()
     {
 
     }
 
-    public static ISearchTicketFactory instance()
+    public static ISearchTicketsFactory instance()
     {
         if(null == uniqueInstance)
         {
-            uniqueInstance = new SearchTicketFactory();
+            uniqueInstance = new SearchTicketsFactory();
         }
         return uniqueInstance;
     }

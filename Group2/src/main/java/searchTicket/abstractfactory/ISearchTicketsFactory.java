@@ -7,9 +7,9 @@ import reuseablePackage.interfaces.IExportTicket;
 import reuseablePackage.interfaces.IStoreTicketData;
 import searchTicket.interfaces.ISearchTicket;
 
-public abstract class SearchTicketFactoryAbs 
-{
+public interface ISearchTicketsFactory {
 
-	public abstract ISearchTicket searchticket(IStoreTicketData storeTicketData,IDisplayTickets displayuser,IConnectionManager ConnectionMng);
-	public abstract IExportTicket exportTicketData(IStoreTicketData storeTicketData);
+	ISearchTicket searchticket(IStoreTicketData storeTicketData,IDisplayTickets displayuser,IConnectionManager ConnectionMng);
+	IExportTicket exportTicketData(IStoreTicketData storeTicketData);
 }
+

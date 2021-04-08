@@ -6,11 +6,11 @@ import updateTicketDetails.UpdateTicket;
 import updateTicketDetails.interfaces.IUpdateTicket;
 
 
-public class UpdateTicketFactory implements IUpdateTicketFactory
+public class UpdateTicketsFactory implements IUpdateTicketFactory
 {
 	private static IUpdateTicketFactory uniqueInstance = null;
 
-    private UpdateTicketFactory()
+    private UpdateTicketsFactory()
     {
 
     }
@@ -19,7 +19,7 @@ public class UpdateTicketFactory implements IUpdateTicketFactory
     {
         if(null == uniqueInstance)
         {
-            uniqueInstance = new UpdateTicketFactory();
+            uniqueInstance = new UpdateTicketsFactory();
         }
         return uniqueInstance;
     }

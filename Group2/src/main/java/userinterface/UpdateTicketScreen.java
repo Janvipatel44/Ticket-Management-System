@@ -16,7 +16,7 @@ import reuseablePackage.interfaces.IStoreTicketData;
 import reuseablePackage.interfaces.IticketStatusInProgress;
 import roles.abstractfactory.IRoleFactory;
 import updateTicketDetails.abstractfactory.IUpdateTicketFactory;
-import updateTicketDetails.abstractfactory.UpdateTicketFactory;
+import updateTicketDetails.abstractfactory.UpdateTicketsFactory;
 import updateTicketDetails.interfaces.IUpdateTicket;
 import userinterface.abstractFactory.IUserInterfaceFactory;
 import userinterface.abstractFactory.UserInterfaceFactory;
@@ -37,7 +37,7 @@ public class UpdateTicketScreen implements IUpdateTicketScreen
 	
 	IConnectionManager ConnectionMng = new ConnectionManager(configurationFile);
 		
-	IUpdateTicketFactory updateticketfactory = UpdateTicketFactory.instance(); 
+	IUpdateTicketFactory updateticketfactory = UpdateTicketsFactory.instance(); 
 	IReuseableClasssFactory reusableFactory = ReuseableClasssFactory.instance();
 	
 	ICheckTicketsExists checkticketexists = reusableFactory.checkticketexists();
