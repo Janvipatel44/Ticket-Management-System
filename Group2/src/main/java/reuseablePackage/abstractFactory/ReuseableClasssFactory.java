@@ -37,7 +37,7 @@ public class ReuseableClasssFactory implements IReuseableClasssFactory {
     }
 
 
-	public IStoreTicketData storeTicketData() 
+	public IStoreTicketData storeTicketData()
 	{
 		return new StoreTicketsData();
 	}
@@ -83,5 +83,5 @@ public class ReuseableClasssFactory implements IReuseableClasssFactory {
 		return new ticketStatusInProgress(ConnectionMng);
 
 	}
-	
+
 }

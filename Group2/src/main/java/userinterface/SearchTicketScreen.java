@@ -7,14 +7,16 @@ import login.Interfaces.IParameterizedUser;
 import managerfeatures.abstractfactory.IManagerFeaturesFactory;
 import reuseablePackage.abstractFactory.IReuseableClasssFactory;
 import reuseablePackage.abstractFactory.ReuseableClasssFactory;
-import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.IDisplayTickets;
 import reuseablePackage.interfaces.IExportTicket;
 import reuseablePackage.interfaces.IOpenTicket;
 import reuseablePackage.interfaces.IStoreTicketData;
+import reuseablePackage.interfaces.ITableGenerator;
 import searchTicket.abstractfactory.ISearchTicketsFactory;
 import searchTicket.abstractfactory.SearchTicketsFactory;
 import searchTicket.interfaces.ISearchTicket;
+import sortTickets.abstractfactory.ISortTicketFactory;
+import sortTickets.abstractfactory.SortTicketFactory;
 import userinterface.abstractFactory.IUserInterfaceFactory;
 import userinterface.abstractFactory.UserInterfaceFactory;
 
@@ -30,11 +32,14 @@ public class SearchTicketScreen implements ISearchTicketScreen
 	static IConnectionManager connectionMng = new ConnectionManager(ConfigurationFile);
 	static IInputOutputHandler inputoutputhandler;
 	
+	static IUserInterfaceFactory userinterfacefactory = UserInterfaceFactory.instance();
 	static IReuseableClasssFactory reuseablefactory=ReuseableClasssFactory.instance();
 	static IStoreTicketData storeticketdata=reuseablefactory.storeTicketData();
 	static ITableGenerator tablegenerator = reuseablefactory.tableFormate();
 	static IDisplayTickets displayuser=reuseablefactory.displayUser(tablegenerator);
 	static IOpenTicket openticket;
+	static ISortTicketFactory sortticketfactory = SortTicketFactory.instance();
+	
 	
 	static ISearchTicketsFactory searchticketfactory= SearchTicketsFactory.instance();
 	static ISearchTicket searchticket=searchticketfactory.searchticket(storeticketdata,displayuser, connectionMng);;
@@ -104,7 +109,7 @@ public class SearchTicketScreen implements ISearchTicketScreen
 			
 			if(output.length()>0)
 			{
-				open();
+				open(user);
 			}
 			else
 			{
@@ -119,11 +124,12 @@ public class SearchTicketScreen implements ISearchTicketScreen
 
 	}
 
-	private static void open() {
+	private static void open(IParameterizedUser user) {
 		int choice=0;
 		String ticketID=null;
 		
-		String optionsAfterSEarchTicket = "1. open Ticket"+"\n"+"2. Export Ticket"+"\n"+"3. exit";
+		String optionsAfterSEarchTicket = "1. open Ticket"+"\n"+"2. Export Ticket"+"\n"+"3. Sort Tickets"+
+				"\n"+"4. exit";
 		inputoutputhandler.displayMethod(optionsAfterSEarchTicket);
 		
 		do 
@@ -148,7 +154,13 @@ public class SearchTicketScreen implements ISearchTicketScreen
 				exportTicketData.exportTicket(FileName);
 				
 			}
+			else if(choice == 3)
+			{
+				ISortTciketScreen sortticket = userinterfacefactory.getsortTicketScreen(inputoutputhandler,storeticketdata);
+				sortticket.sortticketscreen(user);
+				
+			}
 		}
-		while(choice!=3);
+		while(choice!=4);
 	}
 }

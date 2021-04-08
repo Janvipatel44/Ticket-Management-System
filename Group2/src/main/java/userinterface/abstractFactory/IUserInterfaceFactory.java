@@ -1,7 +1,10 @@
 package userinterface.abstractFactory;
 
+import reuseablePackage.interfaces.IStoreTicketData;
 import userinterface.IBackToHomePageScreen;
+import userinterface.ICommentOnTicketScreen;
 import userinterface.ICustomerAnalysisScreen;
+import userinterface.IDeleteTicketScreen;
 import userinterface.IEmployeeMilestoneScreen;
 import userinterface.IEmployeePerformanceScreen;
 import userinterface.IForgotPasswordScreen;
@@ -13,12 +16,10 @@ import userinterface.IManagerTeamTrackingScreen;
 import userinterface.IModifyUserRoleScreen;
 import userinterface.IRatingScreen;
 import userinterface.IRegistrationScreen;
-import userinterface.IServiceNowWelcomeScreen;
-import userinterface.ITwitterPostScreen;
-import userinterface.ICommentOnTicketScreen;
-import userinterface.IDeleteTicketScreen;
 import userinterface.ISearchTicketScreen;
+import userinterface.IServiceNowWelcomeScreen;
 import userinterface.ISortTciketScreen;
+import userinterface.ITwitterPostScreen;
 import userinterface.IUpdateTicketScreen;
 
 public interface IUserInterfaceFactory
@@ -37,11 +38,11 @@ public interface IUserInterfaceFactory
     public IEmployeeMilestoneScreen getEmployeeMilestoneScreen(IInputOutputHandler inputOutputHandler);
     public IGenerateTicketScreen getGenerateTicketScreen(IInputOutputHandler inputOutputHandler);
     public IEmployeePerformanceScreen getEmployeePerformanceScreen(IInputOutputHandler inputOutputHandler);
-    public ISortTciketScreen getsortTicketScreen(IInputOutputHandler inputOutputHandler);
+    //public ISortTciketScreen getsortTicketScreen(IInputOutputHandler inputOutputHandler);
     public ISearchTicketScreen getsearchTicketScreen(IInputOutputHandler inputOutputHandler);
     public IDeleteTicketScreen getdeleteTicketScreen(IInputOutputHandler inputOutputHandler);
     public ITwitterPostScreen getTwitterPostScreen(IInputOutputHandler inputOutputHandler);
     public IUpdateTicketScreen getUpdateTicketScreen(IInputOutputHandler inputOutputHandler);
     public ICommentOnTicketScreen getCommentOnTicketScreen(IInputOutputHandler inputOutputHandler);
-
+    public ISortTciketScreen getsortTicketScreen(IInputOutputHandler inputOutputHandler,IStoreTicketData storeTicketData);
 }

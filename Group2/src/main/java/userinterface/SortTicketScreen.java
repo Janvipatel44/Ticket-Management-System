@@ -8,11 +8,10 @@ import login.Interfaces.IParameterizedUser;
 import managerfeatures.abstractfactory.IManagerFeaturesFactory;
 import reuseablePackage.abstractFactory.IReuseableClasssFactory;
 import reuseablePackage.abstractFactory.ReuseableClasssFactory;
-import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.IDisplayTickets;
 import reuseablePackage.interfaces.IOpenTicket;
 import reuseablePackage.interfaces.IStoreTicketData;
-import sortTickets.SortTicket;
+import reuseablePackage.interfaces.ITableGenerator;
 import sortTickets.abstractfactory.ISortTicketFactory;
 import sortTickets.abstractfactory.SortTicketFactory;
 import sortTickets.interfaces.ISortTicket;
@@ -34,14 +33,17 @@ public class SortTicketScreen implements ISortTciketScreen{
 	static IInputOutputHandler inputoutputhandler;
 	
 	static IReuseableClasssFactory resuableclassfactore = ReuseableClasssFactory.instance();
-	static ISortTicketFactory storeticketfactory = SortTicketFactory.instance();
-	static IStoreTicketData storeTicketData = resuableclassfactore.storeTicketData();
+	static ISortTicketFactory sortticketfactory= SortTicketFactory.instance();
+	static IStoreTicketData storeTicketData;
 	static ITableGenerator tableformate = resuableclassfactore.tableFormate();
 	static IDisplayTickets displayUser = resuableclassfactore.displayUser(tableformate);
 	static IConnectionManager ConnectionMng = new ConnectionManager(ConfigurationFile);
-
-	public SortTicketScreen(IInputOutputHandler inputoutputhandler)
+	static ISortTicket sortticket;
+			
+	public SortTicketScreen(IInputOutputHandler inputoutputhandler,IStoreTicketData storeTicketData)
 	{
+		this.storeTicketData = storeTicketData;
+		sortticket = sortticketfactory.sortTicketobj(storeTicketData, displayUser, ConnectionMng);
 		this.inputoutputhandler = inputoutputhandler;		
 	}
 	
@@ -54,11 +56,10 @@ public class SortTicketScreen implements ISortTciketScreen{
 		do {
 			inputoutputhandler.displayMethod("Enter your choice:");
 			choice = inputoutputhandler.inputInt();
-			ISortTicket sortTicketobj = new SortTicket(storeTicketData, displayUser, ConnectionMng);
 			if (choice <= 3 && choice >= 1) {
-				output = sortTicketobj.sortTickets(choice);
+				output = sortticket.sortSearchedTickets(choice);
 				inputoutputhandler.displayMethod(output);
-				open();
+				//open();
 			}
 		} while (choice != 4);
 		
@@ -98,6 +99,12 @@ public class SortTicketScreen implements ISortTciketScreen{
 			}
 		} while (choice != 2);
 	
+	}
+
+	@Override
+	public String sortticketscreenForManualSort() {
+		
+		return null;
 	}
 
 }

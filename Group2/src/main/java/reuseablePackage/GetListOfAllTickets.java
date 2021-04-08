@@ -46,8 +46,6 @@ public class GetListOfAllTickets implements IGetListOfTickets
 			{
 			    resultSet = SPstatement.getResultSet();
 			    ResultSetMetaData tableMetaData = resultSet.getMetaData();
-			    System.out.println("hasresult:"+hasResult + "resultset:"+resultSet );
-			    storeTicketData.addFetchedTickets(resultSet,tableMetaData);
 			    Map<String, ArrayList <String>> ticketsData = storeTicketData.getTableData();
 			    List<String> columnOfTable = storeTicketData.getTicketColumns();
 			    tableofticket=displayTicket.printTicketsDetails(ticketsData,columnOfTable);
