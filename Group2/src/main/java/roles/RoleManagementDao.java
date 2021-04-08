@@ -12,6 +12,7 @@ import java.util.Properties;
 import database.intefaces.IConnectionManager;
 import database.abstractfactory.DatabaseFactory;
 import database.abstractfactory.IDatabaseFactory;
+import database.intefaces.IDatabaseOperations;
 import mailservice.ReadPropertiesFile;
 import roles.interfaces.IRoleManagementDao;
 
@@ -23,6 +24,7 @@ public class RoleManagementDao implements IRoleManagementDao {
 	private String projectConfigurationFile = "ProjectConfiguration.properties";
 	private String dbConfigurationKey = "DBConfiguration";
 	private final IDatabaseFactory databaseFactory = DatabaseFactory.instance();
+	private final IDatabaseOperations databaseOperations = databaseFactory.getDatabaseOperations();
 	
 	public RoleManagementDao() throws IOException {
 		Properties properties = ReadPropertiesFile.readConfigPropertyFile(projectConfigurationFile);
@@ -40,12 +42,15 @@ public class RoleManagementDao implements IRoleManagementDao {
 		List<String> menuItemsList = null;
 		Connection connection = connectionManager.establishConnection();
 		CallableStatement procedureCall;
-		try {
 			procedureCall = connection.prepareCall("call " + menuItemsByRoleProcedure + "(?)");
 			procedureCall.setString(1, role);
 
-			ResultSet resultSet = procedureCall.executeQuery();
+			ResultSet resultSet = databaseOperations.executeQuery(procedureCall);
 
+			if(resultSet == null)
+			{
+				return null;
+			}
 
 			while (resultSet.next()) {
 				if (menuItemsList == null) {
@@ -54,9 +59,7 @@ public class RoleManagementDao implements IRoleManagementDao {
 				menuItemsList.add(resultSet.getString(1));
 			}
 
-		} catch (SQLException throwables) {
-			throw new Exception("Failed during DB operations. Please contact admin.");
-		}
+		connectionManager.closeConnection();
 		return menuItemsList;
 	}
 
@@ -70,20 +73,15 @@ public class RoleManagementDao implements IRoleManagementDao {
 		
 		Connection connection = connectionManager.establishConnection();
 		CallableStatement procedureCall;
-		try {
 			procedureCall = connection.prepareCall("call " + updateUserRoleProcedure + "(?,?)");
 			procedureCall.setString(1, empId);
 			procedureCall.setString(2, role);
 
-			int updatedRows = procedureCall.executeUpdate();
+			boolean result = databaseOperations.executeUpdateCommand(procedureCall);
+			connectionManager.closeConnection();
+			return result;
 
-			if (updatedRows > 0) {
-				return true;
-			}
-		} catch (SQLException throwables) {
-			throw new Exception("Failed during DB operations. Please contact admin.");
-		}
-		return false;
+
 	}
 
 }

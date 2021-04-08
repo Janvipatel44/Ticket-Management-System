@@ -12,6 +12,7 @@ import java.util.Properties;
 import database.intefaces.IConnectionManager;
 import database.abstractfactory.DatabaseFactory;
 import database.abstractfactory.IDatabaseFactory;
+import database.intefaces.IDatabaseOperations;
 import insertTicket.Interfaces.ICreateTicket;
 import insertTicket.abstractFactory.IInsertTicketFactory;
 import insertTicket.abstractFactory.InsertTicketFactory;
@@ -25,6 +26,7 @@ public class ManagerFeaturesDao implements IManagerFeaturesDao {
 	private String projectConfigurationFile = "ProjectConfiguration.properties";
 	private String dbConfigurationKey = "DBConfiguration";
 	private final IDatabaseFactory databaseFactory = DatabaseFactory.instance();
+	private final IDatabaseOperations databaseOperations = databaseFactory.getDatabaseOperations();
 
 	public ManagerFeaturesDao() throws IOException {
 		Properties properties = ReadPropertiesFile.readConfigPropertyFile(projectConfigurationFile);
@@ -45,27 +47,25 @@ public class ManagerFeaturesDao implements IManagerFeaturesDao {
 
 		Connection connection = connectionManager.establishConnection();
 		CallableStatement procedureCall;
-		try {
 			procedureCall = connection.prepareCall("call " + MANAGER_TEAM_TICKETS + "(?)");
 			procedureCall.setString(1, managerId);
 
-			boolean isResultSet = procedureCall.execute();
+			ResultSet resultSet = databaseOperations.executeQuery(procedureCall);
 
-			if (isResultSet) {
-				ResultSet resultSet = procedureCall.getResultSet();
-				if (resultSet.next()) {
+			if(resultSet == null)
+			{
+				return null;
+			}
+
+			while(resultSet.next()){
 					String employeeId = resultSet.getString(1);
 					String ticketId = resultSet.getString(2);
 					String description = resultSet.getString(3);
 					ICreateTicket createTicket = insertTicketFactory.getcreateTicket(ticketId, description, null, null, employeeId, null,
 							null, null, 0, 0, 0, null, null, null, null, null);
 					createTickets.add(createTicket);
-				}
 			}
-		} catch (SQLException throwables) {
-			throw new Exception("Failed during DB operations. Please contact admin.");
-		}
-		
+			connectionManager.closeConnection();
 		return createTickets;
 	}
 

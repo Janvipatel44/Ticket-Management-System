@@ -22,7 +22,7 @@ public class DatabaseOperations implements IDatabaseOperations {
 		int updateResult;
 		try {
 			updateResult = procedureCall.executeUpdate();
-			if (updateResult == 1) {
+			if (updateResult > 0) {
 				result = true;
 				return result;
 			}

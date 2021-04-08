@@ -14,11 +14,13 @@ import attachment.interfaces.IAttachmentDao;
 import database.intefaces.IConnectionManager;
 import database.abstractfactory.DatabaseFactory;
 import database.abstractfactory.IDatabaseFactory;
+import database.intefaces.IDatabaseOperations;
 import mailservice.ReadPropertiesFile;
 
 public class FileAttachmentDao implements IAttachmentDao {
 
 	private final IDatabaseFactory databaseFactory = DatabaseFactory.instance();
+	private final IDatabaseOperations databaseOperations = databaseFactory.getDatabaseOperations();
 	private final String uploadAttachment = "upload_attachment";
 	private final String downloadAttachment = "download_attachment";
 	private IConnectionManager connectionManager;
@@ -40,20 +42,15 @@ public class FileAttachmentDao implements IAttachmentDao {
 		
 		Connection connection = connectionManager.establishConnection();
 		CallableStatement procedureCall;
-		try {
 			procedureCall = connection.prepareCall("call " + uploadAttachment + "(?,?)");
 			procedureCall.setString(1, attachmentId);
 			procedureCall.setBlob(2, inputStream);
 
-			int updatedRows = procedureCall.executeUpdate();
+			boolean result = databaseOperations.executeUpdateCommand(procedureCall);
+		connectionManager.closeConnection();
+			return result;
 
-			if (updatedRows > 0) {
-				return true;
-			}
-		} catch (SQLException throwables) {
-			throw new Exception("Failed during DB operations. Please contact admin.");
-		}
-		return false;
+
 	}
 	
 	@Override
@@ -66,11 +63,11 @@ public class FileAttachmentDao implements IAttachmentDao {
 		InputStream inputStream = null;
 		Connection connection = connectionManager.establishConnection();
 		CallableStatement procedureCall;
-		try {
+
 			procedureCall = connection.prepareCall("call " + downloadAttachment + "(?)");
 			procedureCall.setString(1, attachmentId);
 
-			boolean isResultSet = procedureCall.execute();
+			boolean isResultSet = databaseOperations.executeCommand(procedureCall);
 
 			if (isResultSet) {
 				ResultSet resultSet = procedureCall.getResultSet();
@@ -78,9 +75,7 @@ public class FileAttachmentDao implements IAttachmentDao {
 					inputStream = ((Blob) resultSet.getBlob(1)).getBinaryStream();
 				}
 			}
-		} catch (SQLException throwables) {
-			throw new Exception("Failed during DB operations. Please contact admin.");
-		}
+		connectionManager.closeConnection();
 		return inputStream;
 	}
 
