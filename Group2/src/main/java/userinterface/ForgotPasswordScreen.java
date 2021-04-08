@@ -1,16 +1,23 @@
 package userinterface;
+import java.io.IOException;
+
 import login.Interfaces.IForgotPassword;
 import login.Interfaces.IForgotPasswordDao;
-import login.abstractfactory.*;
-import mailservice.Gmail;
+import login.abstractfactory.ILoginFactory;
+import login.abstractfactory.LoginFactory;
+import mailservice.abstractfactory.IMailFactory;
+import mailservice.abstractfactory.MailFactory;
 import mailservice.interfaces.IMail;
-import userinterface.abstractFactory.*;
-import java.io.IOException;
+import userinterface.abstractFactory.IUserInterfaceFactory;
+import userinterface.abstractFactory.UserInterfaceFactory;
 public class ForgotPasswordScreen implements IForgotPasswordScreen
 {
+	private final String GMAIL = "gmail";
+	
     IInputOutputHandler inputOutputHandler;
     ILoginFactory loginFactory = LoginFactory.instance();
     IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
+    IMailFactory mailFactory = MailFactory.instance();
 
     public ForgotPasswordScreen(IInputOutputHandler inputOutputHandler)
     {
@@ -20,7 +27,7 @@ public class ForgotPasswordScreen implements IForgotPasswordScreen
     public void getForgotPasswordScreen()
     {
         IServiceNowWelcomeScreen serviceNowWelcomeScreen;
-        IMail mail = new Gmail();
+        IMail mail = mailFactory.makeMailObject(GMAIL);
         IForgotPasswordDao persistenceForgotPasswordOperations = null;
         serviceNowWelcomeScreen = userInterfaceFactory.getServiceNowWelcomeScreen(inputOutputHandler);
 

@@ -74,7 +74,9 @@ public class CommentOnTicketScreen implements ICommentOnTicketScreen
 			
 			inputoutputhandler.displayMethod("Enter Ticket Id you want to post comment on.:");
 			inputoutputhandler.displayMethod("Enter exit to go to main page");
+			inputoutputhandler.displayMethod("\n");
 			ticketId = inputoutputhandler.input();
+			
 			if(ticketId.toLowerCase().equals("exit"))
 			{
 				break;
