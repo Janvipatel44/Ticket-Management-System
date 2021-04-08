@@ -64,6 +64,8 @@ public class FetchProjectDetailsDB implements IFetchProjectDetailsDB
 			System.out.print("SQL Exception");
 			e.printStackTrace();
 		}
+		IConnectionMng.closeConnection();
+
         return success;
 	}	
 }

@@ -1,27 +1,29 @@
 package employeePerformance;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
 import employeePerformance.Interfaces.IEmployeeEfficiencyCalculator;
+import employeePerformance.Interfaces.IFetchedPerformanceDetails;
+import userinterface.IInputOutputHandler;
 
 public class EmployeeEfficiencyCalculator implements IEmployeeEfficiencyCalculator
 {
-	ResultSet resultSetEfficiency = null;
-	ResultSet resultSetProductivity = null;
+	IInputOutputHandler inputOutputHandler;
+    static final int MAXIMUM_EFFICIENCY = 100; 
+    static final int WORKWEIGHT_HIGH = 10;
+    static final int WORKWEIGHT_MEDIUM = 5;
 
-	public EmployeeEfficiencyCalculator(ResultSet resultSet) 
+ 
+	public EmployeeEfficiencyCalculator(IInputOutputHandler inputOutputHandler)
 	{
-		this.resultSetEfficiency = resultSet;
-		this.resultSetProductivity = resultSet;
+		this.inputOutputHandler = inputOutputHandler;
 	}
-
-	public HashMap<Integer,Integer> calculateEmployeeEfficiency() throws SQLException, ParseException
+	
+	public HashMap<Integer,Integer> calculateEmployeeEfficiency(ArrayList<IFetchedPerformanceDetails> fetchedPerformanceDetails) throws SQLException, ParseException
 	{ 
 		WorkWeights myVar = null; 
 		int efficiency = 0;
@@ -31,65 +33,59 @@ public class EmployeeEfficiencyCalculator implements IEmployeeEfficiencyCalculat
 		int avgEfficiency = 0;
 		int month = 0;
 		int year = 0;
+		int i = 0;
 		HashMap<Integer,Integer> EfficiencyHashMap=new HashMap<Integer,Integer>();//Creating HashMap    
 		LocalDate startDate = null;
 		LocalDate expectedendDate = null;
 		LocalDate endDate = null;
 		long durationTaken = 0;
-		long durationGiven = 0;
-		float divisor = 0.0f;
-        float dividend = 0.0f;
-        float averageResolutionTime = 0.0f;
-        long differenceInSeconds;
-        float differenceInTime;
-        float toSeconds = 1000.0f;
-        float toMinutes = 60.0f;
-        float toHours = 60.0f;
-        int hoursNotIncludedInWorkOnADay = 16;
-        int hoursInADay = 24;
-        float remainingHours;
-        
-		while(resultSetEfficiency.next()) 
-    	{
-        	
-            startDate = LocalDate.parse(resultSetProductivity.getString("startDate"));
-    	    expectedendDate = LocalDate.parse(resultSetProductivity.getString("endDate"));
-    	    
-    	       	    
+		long durationGiven = 0; 
+		 
+		System.out.print("Fetch performance details: " +fetchedPerformanceDetails.size());
+	    for(i = 0; i < fetchedPerformanceDetails.size(); i++) 
+		{
+            startDate = LocalDate.parse(fetchedPerformanceDetails.get(i).getStartDate());
+    	    expectedendDate = LocalDate.parse(fetchedPerformanceDetails.get(i).getExpectedEndDate());	    
     	    durationGiven = ChronoUnit.DAYS.between(startDate,expectedendDate);
-    	    System.out.print("\nDifference duration Given:" +durationGiven);
+    	    inputOutputHandler.displayMethod("\nDifference duration Given:" +durationGiven);
 
-    	    endDate = LocalDate.parse(resultSetEfficiency.getString("endDate"));
+    	    endDate = LocalDate.parse(fetchedPerformanceDetails.get(i).getEndDate());
     	    durationTaken = ChronoUnit.DAYS.between(startDate,endDate);
     	    
-    	    System.out.print("\nDifference duration taken:" +durationTaken);
+    	    inputOutputHandler.displayMethod("\nDifference duration taken:" +durationTaken);
     	    durationTaken++;
     	    durationGiven++;
-    	    
-    	    
-	    	if(durationTaken < ((int) durationGiven/2)) {
-    	    	if(durationGiven>10) {
+    	        	    
+	    	if(durationTaken < ((int) durationGiven/2)) 
+	    	{
+    	    	if(durationGiven > WORKWEIGHT_HIGH) 
+    	    	{
     	    		myVar = WorkWeights.HIGH;
     	    	}
     	    	
-    	    	else if(durationGiven>5 && durationGiven<11) {
+    	    	else if(durationGiven > WORKWEIGHT_MEDIUM) 
+    	    	{
     	    		myVar =  WorkWeights.MEDIUM; 
     	    	}
-    	    	else {
+    	    	else 
+    	    	{
     	    		myVar = WorkWeights.LOW; 
     	    	}
-	    		efficiency= (int) ((durationTaken*100*myVar.getWorkWeights())/durationGiven);
-    	    	System.out.print("\nEfficiency:" +efficiency);
+	    		efficiency= ((durationTaken*100*myVar.getWorkWeights())/durationGiven);
 	    	}
 	    	else 
 	    	{
-	    		efficiency= (int) ((durationTaken*100)/durationGiven);
-	    		System.out.print("\nEfficiency:" +efficiency);
+	    		efficiency= ((durationTaken*100)/durationGiven);
 	    	} 
+    		inputOutputHandler.displayMethod("\nEfficiency:" +efficiency);
+
+	    	if(efficiency > 100) 
+    		{
+    			efficiency = 100;
+    		}
 	    	avg_efficiency +=efficiency; 
 	    	count++;
-	    	
-	    	
+	    
 	    	if(startDate.getDayOfMonth() == (month) || count==1)
 	    	{
 	    	    avgEfficiency +=efficiency;
@@ -109,8 +105,8 @@ public class EmployeeEfficiencyCalculator implements IEmployeeEfficiencyCalculat
 		
 		year = startDate.getYear();
 		avg_efficiency = avg_efficiency/count;
-		EfficiencyHashMap.put(year, avg_efficiency);
 		
+		EfficiencyHashMap.put(year, avg_efficiency);
 		EfficiencyHashMap.put(month, avgEfficiency);
 	
 		return EfficiencyHashMap;

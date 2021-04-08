@@ -1,6 +1,5 @@
 package employeePerformance;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.*;
 import java.util.ArrayList;
@@ -8,24 +7,21 @@ import java.util.HashMap;
 import java.util.List;
 
 import employeePerformance.Interfaces.IBarChartGeneration;
+import employeePerformance.Interfaces.IFetchedPerformanceDetails;
 import employeePerformance.Interfaces.IGenerateEmployeePerformanceReport;
 import employeePerformance.Interfaces.IInputEmployeeDetails;
-import employeePerformance.Interfaces.ITableGenerator;
 import employeePerformance.abstractFactory.EmployeePerformanceFactory;
 import employeePerformance.abstractFactory.IEmployeePerformanceFactory;
-import userinterface.IExportEmployeePerformanceReport;
 import userinterface.IInputOutputHandler;
 
 public class GenerateEmployeePerformanceReport implements IGenerateEmployeePerformanceReport
 {	
-		private IInputEmployeeDetails employeeDetails = null;
-		private IExportEmployeePerformanceReport employeePerformanceReport ;
 		private IBarChartGeneration barchart;
 		private IInputOutputHandler inputOutputHandler;
 	    private IEmployeePerformanceFactory employeePerformanceFactory = EmployeePerformanceFactory.instance();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 		
-		public ArrayList<String> displayEmployeeDetailsAndTicketCount( IInputEmployeeDetails employeeDetails, ResultSet resultset) throws SQLException, ParseException
+		public ArrayList<String> displayEmployeeDetailsAndTicketCount( IInputEmployeeDetails employeeDetails, ArrayList<IFetchedPerformanceDetails> fetchedPerformanceDetails) throws SQLException, ParseException
 		{
 			ArrayList<String> employeeDetailsString = new ArrayList<String>();
 
@@ -42,19 +38,18 @@ public class GenerateEmployeePerformanceReport implements IGenerateEmployeePerfo
 	        
 	        employeeDetailsString.add(tableEmployeeInformation.generateTable(headersList, rowsList));
 	       
-			TableGenerator tableGeneratorTicketInformation = new TableGenerator();
 	        headersList.clear();
 	        headersList.add("Ticket Level");
 	        headersList.add("Count");
 	        rowsList.clear();
 
-	        while(resultset.next()) 
+	        for(int i = 0; i < fetchedPerformanceDetails.size(); i++) 
 	    	{
-	            List<String> ticketDetailRow = new ArrayList<>(); 
-	            ticketDetailRow.add(resultset.getString("ticketLevel"));
-	            ticketDetailRow.add(resultset.getString("count"));
-	        	System.out.print(ticketDetailRow);
-	            rowsList.add(ticketDetailRow);
+	            ArrayList<String> ticketDetailsRow = new ArrayList<>();
+				ticketDetailsRow.add(fetchedPerformanceDetails.get(i).getTicketLevel());
+	            ticketDetailsRow.add(fetchedPerformanceDetails.get(i).getCount());
+	            
+	            rowsList.add(ticketDetailsRow);
 	    	}
 	        
 	        employeeDetailsString.add(tableEmployeeInformation.generateTable(headersList, rowsList));
@@ -90,7 +85,7 @@ public class GenerateEmployeePerformanceReport implements IGenerateEmployeePerfo
 	        }
 
 	        employeeDetailsString.add(tableGeneratorEmployeeEfficiency.generateTable(headersList, rowsList));
-	        //employeeDetailsString.add(barchart.Displaybarchart(calculatedEmployeeEfficiency));
+	        employeeDetailsString.add(barchart.Displaybarchart(calculatedEmployeeEfficiency));
 	    	System.out.print("In display function calculated employee efficiency" +employeeDetailsString);
 
 			return employeeDetailsString;
@@ -121,7 +116,7 @@ public class GenerateEmployeePerformanceReport implements IGenerateEmployeePerfo
 	        }
 	    	
 	        employeeDetailsString.add(tableGeneratorEmployeeProductivity.generateTable(headersList, rowsList));
-			//employeeDetailsString.add(barchart.Displaybarchart(calculatedEmployeeProductivity));
+			employeeDetailsString.add(barchart.Displaybarchart(calculatedEmployeeProductivity));
 			
 			return employeeDetailsString;
 		}

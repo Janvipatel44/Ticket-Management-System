@@ -12,10 +12,12 @@ import database.IConnectionManager;
 import employeePerformance.Interfaces.IEmployeeEfficiencyCalculator;
 import employeePerformance.Interfaces.IEmployeePerformanceDB;
 import employeePerformance.Interfaces.IEmployeeProductivityCalculator;
+import employeePerformance.Interfaces.IFetchedPerformanceDetails;
 import employeePerformance.Interfaces.IGenerateEmployeePerformanceReport;
 import employeePerformance.Interfaces.IInputEmployeeDetails;
 import employeePerformance.abstractFactory.EmployeePerformanceFactory;
 import employeePerformance.abstractFactory.IEmployeePerformanceFactory;
+import userinterface.IInputOutputHandler;
 import userinterface.abstractFactory.IUserInterfaceFactory;
 import userinterface.abstractFactory.UserInterfaceFactory;
 
@@ -30,40 +32,60 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB
 	IEmployeeEfficiencyCalculator employeeEfficiency;
 	IEmployeeProductivityCalculator employeeProductivity;
 	IGenerateEmployeePerformanceReport generateEmployeePerformanceReport;
-
-	private IInputEmployeeDetails employeeDetails = null;
+	IFetchedPerformanceDetails fetchedperformanceDetails;
 	
-	public EmployeePerformanceDB(IInputEmployeeDetails employeeDetails)
+	private IInputEmployeeDetails employeeDetails = null;
+	private IInputOutputHandler inputOutputHandler; 
+	public EmployeePerformanceDB(IInputEmployeeDetails employeeDetails, IFetchedPerformanceDetails fetchedperformanceDetails)
     {
         this.employeeDetails = employeeDetails;
+        this.fetchedperformanceDetails = fetchedperformanceDetails;
     }
 
 	public ArrayList<String> getticketCountsDB() throws ParseException
 	{
-		ArrayList<String> employeeDetailsString = new ArrayList<String>() ;
 		connection = IConnectionMng.establishConnection();
-        boolean hasResult = false;
+
+		ArrayList<IFetchedPerformanceDetails> ticketCountAnalysislist = new ArrayList<IFetchedPerformanceDetails>() ;
+		ArrayList<String> employeeDetailsString = new ArrayList<String>() ;
+
+		boolean hasResult = false;
         ResultSet resultset = null;
-		
+        String startDate = null;
+        String endDate = null;
+        String expectedEndDate = null;
+        String ticketLevel = null;
+        String count = null;
+
 		try 
 		{  
 			CallableStatement statement = (CallableStatement) connection.prepareCall("{call ticketCount(?, ?)}");
 			statement.setString(1, employeeDetails.getEmployeeId());
-			System.out.print(new java.sql.Timestamp(employeeDetails.generateDateFormat().getTime()));
             statement.setTimestamp(2, new java.sql.Timestamp(employeeDetails.generateDateFormat().getTime()));
             hasResult = statement.execute();
            
             if(hasResult)  
             {  
             	resultset = statement.getResultSet();
-            	
-            	generateEmployeePerformanceReport = employeePerformanceFactory.getPerformanceReport();
-            	employeeDetailsString = generateEmployeePerformanceReport.displayEmployeeDetailsAndTicketCount(employeeDetails, resultset);
-            	IConnectionMng.closeConnection();
-            	return employeeDetailsString;
-            }
+            }  
             else 
+            {
             	return null;
+            }
+            
+            while(resultset.next()) 
+            {
+            	ticketLevel = resultset.getString("ticketLevel");
+            	count = resultset.getString("count");
+            	IFetchedPerformanceDetails fetchedperformanceDetails = new FetchedPerformanceDetails(ticketLevel, count, startDate, expectedEndDate, endDate);
+            	ticketCountAnalysislist.add(fetchedperformanceDetails);
+            }
+            
+            generateEmployeePerformanceReport = employeePerformanceFactory.getPerformanceReport();
+            employeeDetailsString = generateEmployeePerformanceReport.displayEmployeeDetailsAndTicketCount(employeeDetails, ticketCountAnalysislist);
+        	IConnectionMng.closeConnection();
+        	
+        	return employeeDetailsString;
 		} 
 		catch (SQLException e) 
 		{
@@ -75,12 +97,20 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB
 	
 	public ArrayList<String> getemployeeEfficiencyDB() throws ParseException
 	{
-		ArrayList<String> employeeDetailsString = new ArrayList<String>() ;
-
 		connection = IConnectionMng.establishConnection();
+		ArrayList<String> employeeEfficiencyDetailsFormattedTable = new ArrayList<String>() ;
+		ArrayList<IFetchedPerformanceDetails> efficiencyEfficiencyDetailsList = new ArrayList<IFetchedPerformanceDetails>() ;
+
+		String startDate = null;
+        String endDate = null;
+        String expectedEndDate = null;
+        String ticketLevel = null;
+        String count = null;
+        
         boolean hasResult = false;
         ResultSet resultset = null;
         HashMap<Integer,Integer> calculatedEmployeeEfficiency = null;
+        
 		try 
 		{  
 			CallableStatement statement = (CallableStatement) connection.prepareCall("{call employeeEfficiency(?, ?)}");
@@ -93,33 +123,57 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB
             if(hasResult)  
             {  
             	resultset = statement.getResultSet();
-            	employeeEfficiency = employeePerformanceFactory.getEmployeeEfficiencyCalculator(resultset);
-            	calculatedEmployeeEfficiency = employeeEfficiency.calculateEmployeeEfficiency();
-            	employeeDetailsString = generateEmployeePerformanceReport.displayEmployeeEfficiency(calculatedEmployeeEfficiency);
-            	IConnectionMng.closeConnection();
-    			System.out.print("Employee details string: " +employeeDetailsString);
-            	return employeeDetailsString;
             }
-            else {
+            else
+            {
             	return null;
             }
+            
+            while(resultset.next()) 
+            {
+                System.out.print("Inner loop");
+            	startDate = resultset.getString("startDate");
+            	expectedEndDate = resultset.getString("expectedEndDate");
+            	endDate = resultset.getString("endDate");
+            	IFetchedPerformanceDetails fetchedperformanceDetails = new FetchedPerformanceDetails(ticketLevel, count, startDate, expectedEndDate, endDate);
+            	efficiencyEfficiencyDetailsList.add(fetchedperformanceDetails);
+            }
+            
+            System.out.print(efficiencyEfficiencyDetailsList);
+            employeeEfficiency = employeePerformanceFactory.getEmployeeEfficiencyCalculator(inputOutputHandler);
+        	calculatedEmployeeEfficiency = employeeEfficiency.calculateEmployeeEfficiency(efficiencyEfficiencyDetailsList);
+        	employeeEfficiencyDetailsFormattedTable = generateEmployeePerformanceReport.displayEmployeeEfficiency(calculatedEmployeeEfficiency);
+        	
+        	statement.close();
+        	resultset.close();
+        	IConnectionMng.closeConnection();
+
+        	return employeeEfficiencyDetailsFormattedTable;
 		} 
 		catch (SQLException e) 
 		{
 			System.out.print("SQL Exception");
 			e.printStackTrace();
 		}
-        return employeeDetailsString;
+		
+        return  employeeEfficiencyDetailsFormattedTable;
 	}
 
 	public ArrayList<String> getemployeeProductivityDB() throws ParseException
 	{
-		ArrayList<String> employeeDetailsString = new ArrayList<String>() ;
+		ArrayList<IFetchedPerformanceDetails> efficiencyProductivityDetailsList = new ArrayList<IFetchedPerformanceDetails>() ;
+		ArrayList<String> employeeProductivityDetailsFormattedTable = new ArrayList<String>() ;
 
 		connection = IConnectionMng.establishConnection();
         boolean hasResult = false;
         ResultSet resultset = null;
         HashMap<Integer, Integer> calculatedEmployeeProductivity = null;
+        
+        String startDate = null;
+        String endDate = null;
+        String expectedEndDate = null;
+        String ticketLevel = null;
+        String count = null;
         
 		try 
 		{  
@@ -132,22 +186,34 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB
             if(hasResult)  
             {  
             	resultset = statement.getResultSet();
-            	employeeProductivity = employeePerformanceFactory.getEmployeeProductivityCalculator(resultset);
-            	calculatedEmployeeProductivity = employeeProductivity.calculateEmployeeProductivity();
-            	employeeDetailsString  = generateEmployeePerformanceReport.displayEmployeeProductivity(calculatedEmployeeProductivity);
-            	IConnectionMng.closeConnection();
-            	return employeeDetailsString;
+            	
             }
             else
             {
             	return null;
             }
+            
+            while(resultset.next()) 
+            {
+            	startDate = resultset.getString("startDate");
+            	endDate = resultset.getString("endDate");
+            	IFetchedPerformanceDetails fetchedperformanceDetails = new FetchedPerformanceDetails(ticketLevel, count, startDate, expectedEndDate, endDate);
+
+            	efficiencyProductivityDetailsList.add(fetchedperformanceDetails);
+
+            }
+            System.out.print(efficiencyProductivityDetailsList);
+
+            employeeProductivity = employeePerformanceFactory.getEmployeeProductivityCalculator(inputOutputHandler);
+        	calculatedEmployeeProductivity = employeeProductivity.calculateEmployeeProductivity(efficiencyProductivityDetailsList);
+        	employeeProductivityDetailsFormattedTable  = generateEmployeePerformanceReport.displayEmployeeProductivity(calculatedEmployeeProductivity);
+        	IConnectionMng.closeConnection();
 		} 
 		catch (SQLException e) 
 		{
 			System.out.print("SQL Exception");
 			e.printStackTrace();
 		}
-        return employeeDetailsString;
+        return employeeProductivityDetailsFormattedTable;
 	}
 }

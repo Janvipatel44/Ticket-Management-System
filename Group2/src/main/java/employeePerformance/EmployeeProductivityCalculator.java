@@ -5,20 +5,24 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import employeePerformance.Interfaces.IEmployeeProductivityCalculator;
+import employeePerformance.Interfaces.IFetchedPerformanceDetails;
+import userinterface.IInputOutputHandler;
 
 public class EmployeeProductivityCalculator implements IEmployeeProductivityCalculator
 {
 	ResultSet resultSetProductivity = null;
-	public EmployeeProductivityCalculator(ResultSet resultset)
+	IInputOutputHandler inputOutputHandler;
+	public EmployeeProductivityCalculator(IInputOutputHandler inputOutputHandler)
 	{
 		// TODO Auto-generated constructor stub
-		this.resultSetProductivity = resultset;
+		this.inputOutputHandler = inputOutputHandler;
 	}
  
-	public HashMap<Integer,Integer> calculateEmployeeProductivity() throws SQLException, ParseException
+	public HashMap<Integer,Integer> calculateEmployeeProductivity(ArrayList<IFetchedPerformanceDetails> fetchedPerformanceDetails) throws SQLException, ParseException
 	{
 		int productivity = 0;
 		int avg_productivity = 0;

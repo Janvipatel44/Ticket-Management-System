@@ -59,6 +59,8 @@ public class TicketOperationsDB implements ITicketOperationsDB{
 			inputOutputHandler.displayMethod("SQL Exception");
 			e.printStackTrace();
 		}
+		IConnectionMng.closeConnection();
+
         return success;
 	}	
 	
@@ -93,6 +95,7 @@ public class TicketOperationsDB implements ITicketOperationsDB{
 			System.out.print("SQL Exception");
 			e.printStackTrace();
 		}
+		IConnectionMng.closeConnection();
 		return success;
 	}
 }

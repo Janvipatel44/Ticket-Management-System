@@ -1,19 +1,27 @@
 package employeePerformance;
 
 import java.util.HashMap;
-
 import employeePerformance.Interfaces.IBarChartGeneration;
+import userinterface.IInputOutputHandler;
 
 public class BarChartGeneration implements IBarChartGeneration
 {
+	IInputOutputHandler inputOutputHandler;
+	public BarChartGeneration(IInputOutputHandler inputOutputHandler)
+	{
+		this.inputOutputHandler = inputOutputHandler;
+	}
+	
 	public String Displaybarchart(HashMap <Integer, Integer> PatternGeneration ) 
 	{
 	    String string = null;
-        String[] monthString = new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+        String[] monthString = new String[] {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 		String pattern = null;
-		
 	    int length = 0;
-	    for(int i=0;i<monthString.length;i++)   
+	    int i = 0;
+	    int j = 0;
+	    
+	    for(i=0;i<monthString.length;i++)   
 	    {
 	      if(PatternGeneration.containsKey(i))	
 	      {
@@ -26,7 +34,7 @@ public class BarChartGeneration implements IBarChartGeneration
 	    		  length = PatternGeneration.get(i)/10;
 	    	  } 
 	          
-		      for(int j=0;j<length;j++) 
+		      for(j=0;j<length;j++) 
 		      {
 		    	  if(string==null) {
 		    		  string = "*";
@@ -36,21 +44,24 @@ public class BarChartGeneration implements IBarChartGeneration
 		          string += "*";  
 		    	  }
 		      }
+		      
 		      if(pattern==null)
+		      {
 		    	  pattern = monthString[i];
-		      else {
+		      }
+		      else 
+		      {
 		    	  pattern += monthString[i];
 		      }
 		      pattern += ":";
 		      pattern += string;
 		      pattern += "\n";
 
-		      System.out.printf("%2s: %s", monthString[i], string );
+		      inputOutputHandler.displayMethod(pattern);
 		      string = null;
-		      System.out.print("\n");
+		      inputOutputHandler.displayMethod("\n");
 	      }
 	    }
-	    
 	    return pattern;
 	}
 }

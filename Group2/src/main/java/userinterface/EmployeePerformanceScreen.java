@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 import employeePerformance.Interfaces.IEmployeePerformanceDB;
+import employeePerformance.Interfaces.IFetchedPerformanceDetails;
 import employeePerformance.Interfaces.IGenerateEmployeePerformanceReport;
 import employeePerformance.Interfaces.IInputEmployeeDetails;
 import employeePerformance.abstractFactory.EmployeePerformanceFactory;
@@ -22,7 +23,8 @@ public class EmployeePerformanceScreen implements IEmployeePerformanceScreen
     private IExportEmployeePerformanceReport employeePerformanceReport;
     private IBackToHomePageScreen backToHomePageScreen;
     private IInputOutputHandler inputOutputHandler = userInterfaceFactory.getInputOutputHandler();
-    
+	private IFetchedPerformanceDetails fetchpeformancedetails;
+
     public EmployeePerformanceScreen(IInputOutputHandler inputOutputHandler)
     {
         this.inputOutputHandler = inputOutputHandler;
@@ -43,7 +45,7 @@ public class EmployeePerformanceScreen implements IEmployeePerformanceScreen
 			
 		inputEmployeeDetails = employeePerformanceFactory.userInput(date, employeeID);
 		
-		employeedetailsDB = employeePerformanceFactory.employeedetailsDB(inputEmployeeDetails);
+		employeedetailsDB = employeePerformanceFactory.employeedetailsDB(inputEmployeeDetails, fetchpeformancedetails );
 		 
 		try
 		{
@@ -108,8 +110,6 @@ public class EmployeePerformanceScreen implements IEmployeePerformanceScreen
 			e1.printStackTrace();
 		}
 		
-		System.out.print("Efficiency" +efficiencyReport);
-		employeePerformanceReport = userInterfaceFactory.getExportEmployeePerformanceReport(inputOutputHandler);
 		employeePerformanceReport.exportTicket(efficiencyReport);
 		
 	    backToHomePageScreen = userInterfaceFactory.getBackToHomePageScreen(inputOutputHandler);

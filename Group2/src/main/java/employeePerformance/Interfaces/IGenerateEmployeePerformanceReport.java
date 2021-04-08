@@ -8,8 +8,9 @@ import java.util.HashMap;
 
 public interface IGenerateEmployeePerformanceReport 
 {
-	public ArrayList<String> displayEmployeeDetailsAndTicketCount( IInputEmployeeDetails employeeDetails, ResultSet resultset) throws SQLException, ParseException;
 	public ArrayList<String> displayEmployeeEfficiency(HashMap <Integer, Integer> calculatedEmployeeEfficiency); 
 	public ArrayList<String> displayEmployeeProductivity(HashMap <Integer, Integer> calculatedEmployeeProductivity);
+	public ArrayList<String> displayEmployeeDetailsAndTicketCount(
+			IInputEmployeeDetails employeeDetails, ArrayList<IFetchedPerformanceDetails> ticketCountAnalysislist) throws SQLException, ParseException;
 
 }

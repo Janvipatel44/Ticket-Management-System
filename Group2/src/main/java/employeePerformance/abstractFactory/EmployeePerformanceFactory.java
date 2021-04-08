@@ -6,17 +6,17 @@ import java.util.ArrayList;
 import employeePerformance.EmployeeEfficiencyCalculator;
 import employeePerformance.EmployeePerformanceDB;
 import employeePerformance.EmployeeProductivityCalculator;
+import employeePerformance.FetchedPerformanceDetails;
 import employeePerformance.GenerateEmployeePerformanceReport;
 import employeePerformance.InputEmployeeDetails;
-import employeePerformance.UserInputEmployeePerformance;
 import employeePerformance.Interfaces.IBarChartGeneration;
 import employeePerformance.Interfaces.IEmployeeEfficiencyCalculator;
 import employeePerformance.Interfaces.IEmployeePerformanceDB;
 import employeePerformance.Interfaces.IEmployeeProductivityCalculator;
+import employeePerformance.Interfaces.IFetchedPerformanceDetails;
 import employeePerformance.Interfaces.IGenerateEmployeePerformanceReport;
 import employeePerformance.Interfaces.IInputEmployeeDetails;
 import employeePerformance.Interfaces.ITableGenerator;
-import employeePerformance.Interfaces.IUserInputEmployeePerformance;
 import userinterface.ExportEmployeePerformanceReport;
 import userinterface.IExportEmployeePerformanceReport;
 import userinterface.IInputOutputHandler;
@@ -44,9 +44,9 @@ public class EmployeePerformanceFactory implements IEmployeePerformanceFactory
 		return new InputEmployeeDetails(date, employeeId);
 	}
 	
-	public IEmployeePerformanceDB employeedetailsDB ( IInputEmployeeDetails inputEmployeeDetails) 
+	public IEmployeePerformanceDB employeedetailsDB ( IInputEmployeeDetails inputEmployeeDetails, IFetchedPerformanceDetails fetchedPerformanceDetails) 
 	{	
-		return new EmployeePerformanceDB(inputEmployeeDetails);
+		return new EmployeePerformanceDB(inputEmployeeDetails, fetchedPerformanceDetails);
 	}
 
 	public IGenerateEmployeePerformanceReport getPerformanceReport () 
@@ -54,20 +54,20 @@ public class EmployeePerformanceFactory implements IEmployeePerformanceFactory
 		return new GenerateEmployeePerformanceReport();
 	}
 	
-	public IEmployeeEfficiencyCalculator getEmployeeEfficiencyCalculator(ResultSet resultset) 
+	public IEmployeeEfficiencyCalculator getEmployeeEfficiencyCalculator(IInputOutputHandler inputOutputHandler) 
 	{
-		return new EmployeeEfficiencyCalculator(resultset);
+		return new EmployeeEfficiencyCalculator(inputOutputHandler);
 	}
 	
-	public IEmployeeProductivityCalculator getEmployeeProductivityCalculator(ResultSet resultset)
+	public IEmployeeProductivityCalculator getEmployeeProductivityCalculator(IInputOutputHandler inputOutputHandler)
 	{
-		return new EmployeeProductivityCalculator(resultset);
+		return new EmployeeProductivityCalculator(inputOutputHandler);
 	}
 	
-	public IUserInputEmployeePerformance userinputemployee()
+	public IFetchedPerformanceDetails fetchedPerformanceDetails(String ticketLevel, String count, String startDate, String expectedEndDate, String endDate)
 	{
-		return new UserInputEmployeePerformance();
+		return new FetchedPerformanceDetails(ticketLevel, count, startDate, expectedEndDate, endDate);
 	}
-	
+
 	
 }
