@@ -1,11 +1,11 @@
 package sortTickets.abstractfactory;
 
 import database.IConnectionManager;
-import reuseablePackage.interfaces.IdisplayTicket;
-import reuseablePackage.interfaces.IstoreTicketData;
-import sortTickets.interfaces.IsortTicket;
+import reuseablePackage.interfaces.IDisplayTicket;
+import reuseablePackage.interfaces.IStoreTicketData;
+import sortTickets.interfaces.ISortTicket;
 
 public abstract class SortTicketFactoryAbs 
 {
-	public abstract IsortTicket sortTicketobj(IstoreTicketData storeTicketData,IdisplayTicket displayUser,IConnectionManager ConnectionMng);
+	public abstract ISortTicket sortTicketobj(IStoreTicketData storeTicketData,IDisplayTicket displayUser,IConnectionManager ConnectionMng);
 }

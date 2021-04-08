@@ -1,0 +1,40 @@
+package deleteTicket;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import database.IConnectionManager;
+import deleteTicket.interfaces.IDeleteTicket;
+
+public class DeleteTicket implements IDeleteTicket
+{
+	private Connection connect=null;
+	private CallableStatement SPstatement=null;
+	private String ConfigurationFile = "ConfigurationFile";
+	
+	private IConnectionManager IConnectionMng;
+	
+	public DeleteTicket(IConnectionManager IConnectionMng)
+	{
+		this.IConnectionMng =IConnectionMng ;
+	}
+
+	public boolean deleteticket(String ticketId)
+	{
+		try 
+		{
+			connect = IConnectionMng.establishConnection();
+			SPstatement = connect.prepareCall("{call deleteticket(?)}");
+			SPstatement.setString(1,ticketId);
+			SPstatement.execute();
+			IConnectionMng.closeConnection();
+			return true;
+		} 
+		catch (SQLException e)
+		{
+				e.printStackTrace();
+				return false;
+		}
+	}			
+}

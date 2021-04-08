@@ -1,7 +1,7 @@
 package sortTicketTest.abstractfactory;
 
-import sortTicketTest.sortTicketMock;
-import sortTickets.interfaces.IsortTicket;
+import sortTicketTest.SortTicketMock;
+import sortTickets.interfaces.ISortTicket;
 
 public class SortTicketFactoryTest implements ISortTicketFactoryTest
 {
@@ -22,9 +22,9 @@ public class SortTicketFactoryTest implements ISortTicketFactoryTest
         return uniqueInstance;
     }
 
-	public IsortTicket sortTicketMock() 
+	public ISortTicket sortTicketMock() 
 	{
-		return new sortTicketMock();
+		return new SortTicketMock();
 	}
 	
 }

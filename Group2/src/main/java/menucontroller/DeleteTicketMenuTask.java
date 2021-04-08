@@ -2,8 +2,8 @@ package menucontroller;
 
 import login.Interfaces.IParameterizedUser;
 import menucontroller.interfaces.IMenuTask;
+import userinterface.IDeleteTicketScreen;
 import userinterface.IInputOutputHandler;
-import userinterface.IdeleteTicketScreen;
 import userinterface.abstractFactory.IUserInterfaceFactory;
 import userinterface.abstractFactory.UserInterfaceFactory;
 
@@ -14,8 +14,8 @@ public class DeleteTicketMenuTask implements IMenuTask
 	public void runMenuTask(IParameterizedUser user, IInputOutputHandler inputOutputHandler) 
 	{
 		IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
-		IdeleteTicketScreen deleteticketscreen = userInterfaceFactory.getdeleteTicketScreen(inputOutputHandler);
-		//deleteticketscreen.displayRegistrationScreen(user);
+		IDeleteTicketScreen deleteticketscreen = userInterfaceFactory.getdeleteTicketScreen(inputOutputHandler);
+		deleteticketscreen.deleteTicketScreen(user);
 		
 	}
 

@@ -15,11 +15,11 @@ import userinterface.IRatingScreen;
 import userinterface.IRegistrationScreen;
 import userinterface.IServiceNowWelcomeScreen;
 import userinterface.ITwitterPostScreen;
-import userinterface.IcommentOnTicketScreen;
-import userinterface.IdeleteTicketScreen;
-import userinterface.IsearchTicketScreen;
-import userinterface.IsortTciketScreen;
-import userinterface.IupdateTicketScreen;
+import userinterface.ICommentOnTicketScreen;
+import userinterface.IDeleteTicketScreen;
+import userinterface.ISearchTicketScreen;
+import userinterface.ISortTciketScreen;
+import userinterface.IUpdateTicketScreen;
 
 public interface IUserInterfaceFactory
 {
@@ -37,11 +37,11 @@ public interface IUserInterfaceFactory
     public IEmployeeMilestoneScreen getEmployeeMilestoneScreen(IInputOutputHandler inputOutputHandler);
     public IGenerateTicketScreen getGenerateTicketScreen(IInputOutputHandler inputOutputHandler);
     public IEmployeePerformanceScreen getEmployeePerformanceScreen(IInputOutputHandler inputOutputHandler);
-    public IsortTciketScreen getsortTicketScreen(IInputOutputHandler inputOutputHandler);
-    public IsearchTicketScreen getsearchTicketScreen(IInputOutputHandler inputOutputHandler);
-    public IdeleteTicketScreen getdeleteTicketScreen(IInputOutputHandler inputOutputHandler);
+    public ISortTciketScreen getsortTicketScreen(IInputOutputHandler inputOutputHandler);
+    public ISearchTicketScreen getsearchTicketScreen(IInputOutputHandler inputOutputHandler);
+    public IDeleteTicketScreen getdeleteTicketScreen(IInputOutputHandler inputOutputHandler);
     public ITwitterPostScreen getTwitterPostScreen(IInputOutputHandler inputOutputHandler);
-    public IupdateTicketScreen getUpdateTicketScreen(IInputOutputHandler inputOutputHandler);
-    public IcommentOnTicketScreen getCommentOnTicketScreen(IInputOutputHandler inputOutputHandler);
+    public IUpdateTicketScreen getUpdateTicketScreen(IInputOutputHandler inputOutputHandler);
+    public ICommentOnTicketScreen getCommentOnTicketScreen(IInputOutputHandler inputOutputHandler);
 
 }

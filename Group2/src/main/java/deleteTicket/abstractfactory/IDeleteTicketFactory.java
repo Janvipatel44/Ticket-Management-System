@@ -1,11 +1,11 @@
 package deleteTicket.abstractfactory;
 
 import database.IConnectionManager;
-import deleteTicket.interfaces.IdeleteTicket;
+import deleteTicket.interfaces.IDeleteTicket;
 
 
 public interface IDeleteTicketFactory 
 {
-	IdeleteTicket deleteticket(IConnectionManager IConnectionMng);
+	IDeleteTicket deleteticket(IConnectionManager IConnectionMng);
 
 }
