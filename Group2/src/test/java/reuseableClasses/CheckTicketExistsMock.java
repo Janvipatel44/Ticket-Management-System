@@ -1,8 +1,8 @@
 package reuseableClasses;
 
-import reuseablePackage.interfaces.ICheckTicketExists;
+import reuseablePackage.interfaces.ICheckTicketsExists;
 
-public class CheckTicketExistsMock implements ICheckTicketExists
+public class CheckTicketExistsMock implements ICheckTicketsExists
 {
 	int ticketExist = 0;
 

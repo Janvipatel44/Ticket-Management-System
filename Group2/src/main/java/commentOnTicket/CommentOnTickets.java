@@ -6,10 +6,10 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
-import commentOnTicket.interfaces.ICommentOnTicket;
+import commentOnTicket.interfaces.ICommentOnTickets;
 import database.intefaces.IConnectionManager;
 
-public class CommentOnTicket implements ICommentOnTicket
+public class CommentOnTickets implements ICommentOnTickets
 {
 
 	private SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
@@ -20,7 +20,7 @@ public class CommentOnTicket implements ICommentOnTicket
 	
 	private IConnectionManager IConnectionMng;
 	
-	public CommentOnTicket(IConnectionManager IConnectionMng )
+	public CommentOnTickets(IConnectionManager IConnectionMng )
 	{
 		this.IConnectionMng = IConnectionMng; 
 	}

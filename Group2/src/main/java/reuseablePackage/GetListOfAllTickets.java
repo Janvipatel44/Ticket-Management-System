@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.Map;
 
 import database.intefaces.IConnectionManager;
-import reuseablePackage.interfaces.IDisplayTicket;
+import reuseablePackage.interfaces.IDisplayTickets;
 import reuseablePackage.interfaces.IGetListOfTickets;
 import reuseablePackage.interfaces.IStoreTicketData;
 
-public class GetListOfTickets implements IGetListOfTickets
+public class GetListOfAllTickets implements IGetListOfTickets
 {
 	private Connection connect=null;
 	private CallableStatement SPstatement=null;
@@ -23,9 +23,9 @@ public class GetListOfTickets implements IGetListOfTickets
 	
 	private IConnectionManager IConnectionMng;
 	private IStoreTicketData storeTicketData;
-	private IDisplayTicket displayTicket;
+	private IDisplayTickets displayTicket;
 	
-	public GetListOfTickets(IStoreTicketData storeTicketData,IDisplayTicket displayTicket,IConnectionManager IConnectionMng)
+	public GetListOfAllTickets(IStoreTicketData storeTicketData,IDisplayTickets displayTicket,IConnectionManager IConnectionMng)
 	{
 		this.IConnectionMng = IConnectionMng;
 		this.storeTicketData = storeTicketData;

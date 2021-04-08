@@ -5,9 +5,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import database.intefaces.IConnectionManager;
-import deleteTicket.interfaces.IDeleteTicket;
+import deleteTicket.interfaces.IDeleteTickets;
 
-public class DeleteTicket implements IDeleteTicket
+public class DeleteTickets implements IDeleteTickets
 {
 	private Connection connect=null;
 	private CallableStatement SPstatement=null;
@@ -15,7 +15,7 @@ public class DeleteTicket implements IDeleteTicket
 	
 	private IConnectionManager IConnectionMng;
 	
-	public DeleteTicket(IConnectionManager IConnectionMng)
+	public DeleteTickets(IConnectionManager IConnectionMng)
 	{
 		this.IConnectionMng =IConnectionMng ;
 	}

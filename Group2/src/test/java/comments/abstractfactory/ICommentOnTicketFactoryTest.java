@@ -1,9 +1,9 @@
 package comments.abstractfactory;
 
-import commentOnTicket.interfaces.ICommentOnTicket;
+import commentOnTicket.interfaces.ICommentOnTickets;
 
 public interface ICommentOnTicketFactoryTest 
 {
-	ICommentOnTicket commentonticketMock();
+	ICommentOnTickets commentonticketMock();
 	
 }

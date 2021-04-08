@@ -1,8 +1,8 @@
 package searchTicket.abstractfactory;
 
 import database.intefaces.IConnectionManager;
-import reuseablePackage.ExportTicket;
-import reuseablePackage.interfaces.IDisplayTicket;
+import reuseablePackage.ExportTickets;
+import reuseablePackage.interfaces.IDisplayTickets;
 import reuseablePackage.interfaces.IExportTicket;
 import reuseablePackage.interfaces.IStoreTicketData;
 import searchTicket.SearchTicket;
@@ -29,7 +29,7 @@ public class SearchTicketFactory implements ISearchTicketFactory
 	
 
 	
-	public ISearchTicket searchticket(IStoreTicketData storeTicketData,IDisplayTicket displayuser,IConnectionManager ConnectionMng) {
+	public ISearchTicket searchticket(IStoreTicketData storeTicketData,IDisplayTickets displayuser,IConnectionManager ConnectionMng) {
 		
 		return new SearchTicket(storeTicketData,displayuser,ConnectionMng);
 	}
@@ -37,7 +37,7 @@ public class SearchTicketFactory implements ISearchTicketFactory
 	
 	public IExportTicket exportTicketData(IStoreTicketData storeTicketData) 
 	{
-		return new ExportTicket(storeTicketData);
+		return new ExportTickets(storeTicketData);
 	}
 
    

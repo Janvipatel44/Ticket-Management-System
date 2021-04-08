@@ -1,8 +1,8 @@
 package deleteTicket;
 
-import deleteTicket.interfaces.IDeleteTicket;
+import deleteTicket.interfaces.IDeleteTickets;
 
-public class DeleteTicketMock implements IDeleteTicket
+public class DeleteTicketMock implements IDeleteTickets
 {
 
 	

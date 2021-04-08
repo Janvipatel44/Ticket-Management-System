@@ -6,11 +6,11 @@ import java.util.Scanner;
 import database.ConnectionManager;
 import database.intefaces.IConnectionManager;
 import login.Interfaces.IParameterizedUser;
-import reuseablePackage.abstractFactory.IReuseableClassFactory;
-import reuseablePackage.abstractFactory.ReuseableClassFactory;
+import reuseablePackage.abstractFactory.IReuseableClasssFactory;
+import reuseablePackage.abstractFactory.ReuseableClasssFactory;
 import reuseablePackage.interfaces.ITableGenerator;
-import reuseablePackage.interfaces.ICheckTicketExists;
-import reuseablePackage.interfaces.IDisplayTicket;
+import reuseablePackage.interfaces.ICheckTicketsExists;
+import reuseablePackage.interfaces.IDisplayTickets;
 import reuseablePackage.interfaces.IGetListOfTickets;
 import reuseablePackage.interfaces.IStoreTicketData;
 import reuseablePackage.interfaces.IticketStatusInProgress;
@@ -38,12 +38,12 @@ public class UpdateTicketScreen implements IUpdateTicketScreen
 	IConnectionManager ConnectionMng = new ConnectionManager(configurationFile);
 		
 	IUpdateTicketFactory updateticketfactory = UpdateTicketFactory.instance(); 
-	IReuseableClassFactory reusableFactory = ReuseableClassFactory.instance();
+	IReuseableClasssFactory reusableFactory = ReuseableClasssFactory.instance();
 	
-	ICheckTicketExists checkticketexists = reusableFactory.checkticketexists();
+	ICheckTicketsExists checkticketexists = reusableFactory.checkticketexists();
 	IStoreTicketData storeticketdata = reusableFactory.storeTicketData();
 	ITableGenerator tableformate = reusableFactory.tableFormate();
-	IDisplayTicket displayticket = reusableFactory.displayUser(tableformate);
+	IDisplayTickets displayticket = reusableFactory.displayUser(tableformate);
 	IGetListOfTickets getalltickets = reusableFactory.getalltickets(storeticketdata, displayticket, ConnectionMng);
 	IticketStatusInProgress ticketInProgress = reusableFactory.ticketInProgress(ConnectionMng);
 	IUpdateTicket updateTicket = updateticketfactory.updateTicket(ConnectionMng,ticketInProgress);

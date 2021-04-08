@@ -6,14 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import database.intefaces.IConnectionManager;
-import reuseablePackage.interfaces.IDisplayTicket;
+import reuseablePackage.interfaces.IDisplayTickets;
 import reuseablePackage.interfaces.IOpenTicket;
 import reuseablePackage.interfaces.IStoreTicketData;
 
 
-public class OpenTicket implements IOpenTicket
+public class OpenTickets implements IOpenTicket
 {
 	private Connection connect=null;
 	private CallableStatement SPstatement=null;
@@ -21,10 +20,10 @@ public class OpenTicket implements IOpenTicket
 	private boolean hasResult=false;
 	
 	private IStoreTicketData storeTicketData;
-	private IDisplayTicket displayUser;
+	private IDisplayTickets displayUser;
 	private IConnectionManager ConnectionMng;
 	
-	public OpenTicket(IStoreTicketData storeTicketData,IDisplayTicket displayUser, IConnectionManager ConnectionMng)
+	public OpenTickets(IStoreTicketData storeTicketData,IDisplayTickets displayUser, IConnectionManager ConnectionMng)
 	{
 		this.storeTicketData = storeTicketData; 
 		this.displayUser = displayUser;

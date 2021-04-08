@@ -4,7 +4,7 @@ import reuseableClasses.CheckTicketExistsMock;
 import reuseableClasses.ExportTicketDataMock;
 import reuseableClasses.GetListOfTicketsMock;
 import reuseableClasses.OpenTicketMock;
-import reuseablePackage.interfaces.ICheckTicketExists;
+import reuseablePackage.interfaces.ICheckTicketsExists;
 import reuseablePackage.interfaces.IExportTicket;
 import reuseablePackage.interfaces.IGetListOfTickets;
 import reuseablePackage.interfaces.IOpenTicket;
@@ -27,7 +27,7 @@ public class ReuseableClassFactoryTest implements IReuseableClassesFactoryTest
         return uniqueInstance;
     }
 
-	public ICheckTicketExists checkticketexistMock()
+	public ICheckTicketsExists checkticketexistMock()
 	{
 		return new CheckTicketExistsMock();
 	}

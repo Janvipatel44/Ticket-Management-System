@@ -1,7 +1,7 @@
 package deleteTicket.abstractfactory;
 
 import deleteTicket.DeleteTicketMock;
-import deleteTicket.interfaces.IDeleteTicket;
+import deleteTicket.interfaces.IDeleteTickets;
 
 public class DeleteTicketfactoryTest implements IDeleteTicketfactoryTest {
 	private static IDeleteTicketfactoryTest uniqueInstance = null;
@@ -20,7 +20,7 @@ public class DeleteTicketfactoryTest implements IDeleteTicketfactoryTest {
         return uniqueInstance;
     }
 
-	public IDeleteTicket deleteTicketMock() {
+	public IDeleteTickets deleteTicketMock() {
 		return new DeleteTicketMock();
 	}
 	

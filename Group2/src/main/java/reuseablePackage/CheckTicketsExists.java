@@ -7,9 +7,9 @@ import java.sql.SQLException;
 
 import database.ConnectionManager;
 import database.intefaces.IConnectionManager;
-import reuseablePackage.interfaces.ICheckTicketExists;
+import reuseablePackage.interfaces.ICheckTicketsExists;
 
-public class CheckTicketExists  implements ICheckTicketExists
+public class CheckTicketsExists  implements ICheckTicketsExists
 {
 	private Connection connect=null;
 	private CallableStatement SPstatement=null;

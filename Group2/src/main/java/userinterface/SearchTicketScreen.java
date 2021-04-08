@@ -5,10 +5,10 @@ import database.ConnectionManager;
 import database.intefaces.IConnectionManager;
 import login.Interfaces.IParameterizedUser;
 import managerfeatures.abstractfactory.IManagerFeaturesFactory;
-import reuseablePackage.abstractFactory.IReuseableClassFactory;
-import reuseablePackage.abstractFactory.ReuseableClassFactory;
+import reuseablePackage.abstractFactory.IReuseableClasssFactory;
+import reuseablePackage.abstractFactory.ReuseableClasssFactory;
 import reuseablePackage.interfaces.ITableGenerator;
-import reuseablePackage.interfaces.IDisplayTicket;
+import reuseablePackage.interfaces.IDisplayTickets;
 import reuseablePackage.interfaces.IExportTicket;
 import reuseablePackage.interfaces.IOpenTicket;
 import reuseablePackage.interfaces.IStoreTicketData;
@@ -30,10 +30,10 @@ public class SearchTicketScreen implements ISearchTicketScreen
 	static IConnectionManager connectionMng = new ConnectionManager(ConfigurationFile);
 	static IInputOutputHandler inputoutputhandler;
 	
-	static IReuseableClassFactory reuseablefactory=ReuseableClassFactory.instance();
+	static IReuseableClasssFactory reuseablefactory=ReuseableClasssFactory.instance();
 	static IStoreTicketData storeticketdata=reuseablefactory.storeTicketData();
 	static ITableGenerator tablegenerator = reuseablefactory.tableFormate();
-	static IDisplayTicket displayuser=reuseablefactory.displayUser(tablegenerator);
+	static IDisplayTickets displayuser=reuseablefactory.displayUser(tablegenerator);
 	static IOpenTicket openticket;
 	
 	static ISearchTicketFactory searchticketfactory= SearchTicketFactory.instance();

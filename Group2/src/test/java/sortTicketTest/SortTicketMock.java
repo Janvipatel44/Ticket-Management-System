@@ -5,10 +5,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import reuseablePackage.abstractFactory.IReuseableClassFactory;
-import reuseablePackage.abstractFactory.ReuseableClassFactory;
+import reuseablePackage.abstractFactory.IReuseableClasssFactory;
+import reuseablePackage.abstractFactory.ReuseableClasssFactory;
 import reuseablePackage.interfaces.ITableGenerator;
-import reuseablePackage.interfaces.IDisplayTicket;
+import reuseablePackage.interfaces.IDisplayTickets;
 import sortTickets.interfaces.ISortTicket;
 
 public class SortTicketMock implements ISortTicket
@@ -16,9 +16,9 @@ public class SortTicketMock implements ISortTicket
 	Map<String, ArrayList<String>> ticketsData ;
 	List<String> columnOfTable;
 	
-	IReuseableClassFactory reuseableclassfactory = ReuseableClassFactory.instance();
+	IReuseableClasssFactory reuseableclassfactory = ReuseableClasssFactory.instance();
 	ITableGenerator tableformate = reuseableclassfactory.tableFormate();
-	IDisplayTicket displayuser=reuseableclassfactory.displayUser(tableformate);
+	IDisplayTickets displayuser=reuseableclassfactory.displayUser(tableformate);
 	
 	
 	public SortTicketMock()

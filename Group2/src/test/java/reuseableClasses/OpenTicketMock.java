@@ -3,10 +3,10 @@ package reuseableClasses;
 import java.util.ArrayList;
 import java.util.List;
 
-import reuseablePackage.abstractFactory.IReuseableClassFactory;
-import reuseablePackage.abstractFactory.ReuseableClassFactory;
+import reuseablePackage.abstractFactory.IReuseableClasssFactory;
+import reuseablePackage.abstractFactory.ReuseableClasssFactory;
 import reuseablePackage.interfaces.ITableGenerator;
-import reuseablePackage.interfaces.IDisplayTicket;
+import reuseablePackage.interfaces.IDisplayTickets;
 import reuseablePackage.interfaces.IOpenTicket;
 
 public class OpenTicketMock implements IOpenTicket
@@ -17,9 +17,9 @@ public class OpenTicketMock implements IOpenTicket
 	
 	List<String> columnOfTable;
 		
-	private IReuseableClassFactory reuseableclassfactory = ReuseableClassFactory.instance();
+	private IReuseableClasssFactory reuseableclassfactory = ReuseableClasssFactory.instance();
 	private ITableGenerator generateTable;
-	private IDisplayTicket displayticket;
+	private IDisplayTickets displayticket;
 	
 	public OpenTicketMock()
 	{

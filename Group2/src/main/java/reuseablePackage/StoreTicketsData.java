@@ -9,13 +9,13 @@ import java.util.List;
 
 import reuseablePackage.interfaces.IStoreTicketData;
 
-public class StoreTicketData implements IStoreTicketData
+public class StoreTicketsData implements IStoreTicketData
 {
 	static LinkedHashMap<String,ArrayList<String>> ticketData ; 
 	static ArrayList<String> commentsOntickets;
 	static List<String> columnsOfTable;
 			
-	public StoreTicketData()
+	public StoreTicketsData()
 	{
 		ticketData = new LinkedHashMap<String,ArrayList<String>>();; 
 		commentsOntickets = new ArrayList<String>();

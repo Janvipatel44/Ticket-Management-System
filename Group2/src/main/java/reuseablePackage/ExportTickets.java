@@ -11,13 +11,13 @@ import java.util.Scanner;
 import reuseablePackage.interfaces.IExportTicket;
 import reuseablePackage.interfaces.IStoreTicketData;
 
-public class ExportTicket implements  IExportTicket{
+public class ExportTickets implements  IExportTicket{
 	private Scanner sc=new Scanner(System.in);
 	
 	private IStoreTicketData storeTicketData;
 	private TableGenerator tableFormate;
 	
-	public ExportTicket(IStoreTicketData storeTicketData)
+	public ExportTickets(IStoreTicketData storeTicketData)
 	{
 		this.storeTicketData = storeTicketData;
 		tableFormate = new TableGenerator();

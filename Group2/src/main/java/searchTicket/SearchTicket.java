@@ -10,7 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import database.intefaces.IConnectionManager;
-import reuseablePackage.interfaces.IDisplayTicket;
+import reuseablePackage.interfaces.IDisplayTickets;
 import reuseablePackage.interfaces.IStoreTicketData;
 import searchTicket.interfaces.ISearchTicket;
 
@@ -23,10 +23,10 @@ public class SearchTicket implements ISearchTicket
 	
 	
 	private IStoreTicketData storeTicketData;
-	private IDisplayTicket displayUser;
+	private IDisplayTickets displayUser;
 	private IConnectionManager ConnectionMng;
 	
-	public SearchTicket(IStoreTicketData storeTicketData,IDisplayTicket displayuser, IConnectionManager ConnectionMng)
+	public SearchTicket(IStoreTicketData storeTicketData,IDisplayTickets displayuser, IConnectionManager ConnectionMng)
 	{
 		this.storeTicketData = storeTicketData; 
 		this.displayUser = displayuser;

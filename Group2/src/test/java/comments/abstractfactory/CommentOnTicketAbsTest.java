@@ -1,9 +1,9 @@
 package comments.abstractfactory;
 
-import commentOnTicket.interfaces.ICommentOnTicket;
+import commentOnTicket.interfaces.ICommentOnTickets;
 
 public abstract class CommentOnTicketAbsTest
 {
-	public abstract ICommentOnTicket commentonticketMock();
+	public abstract ICommentOnTickets commentonticketMock();
 	
 }

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import database.intefaces.IConnectionManager;
-import reuseablePackage.interfaces.IDisplayTicket;
+import reuseablePackage.interfaces.IDisplayTickets;
 import reuseablePackage.interfaces.IStoreTicketData;
 import sortTickets.interfaces.ISortTicket;
 
@@ -23,10 +23,10 @@ public class SortTicket implements ISortTicket
 	private boolean hasResult=false;
 	
 	IConnectionManager ConnectionMng;
-	IDisplayTicket displayUser;
+	IDisplayTickets displayUser;
 	IStoreTicketData storeTicketData ;
 	
-	public SortTicket(IStoreTicketData storeTicketData, IDisplayTicket displayUser, IConnectionManager ConnectionMng)
+	public SortTicket(IStoreTicketData storeTicketData, IDisplayTickets displayUser, IConnectionManager ConnectionMng)
 	{
 		this.storeTicketData = storeTicketData; 
 		this.displayUser = displayUser;

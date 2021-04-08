@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import reuseablePackage.interfaces.ITableGenerator;
-import reuseablePackage.interfaces.IDisplayTicket;
+import reuseablePackage.interfaces.IDisplayTickets;
 import userinterface.IInputOutputHandler;
 
 
-public class DisplayTicket implements IDisplayTicket
+public class DisplayTickets implements IDisplayTickets
 {
 	List<String> tableHeader;
 	List<List<String>> rowOfTable;
@@ -17,7 +17,7 @@ public class DisplayTicket implements IDisplayTicket
 	ITableGenerator tableFormate;
 	IInputOutputHandler inputoutputhandler;
 	
-	public DisplayTicket(ITableGenerator tableFormate) 
+	public DisplayTickets(ITableGenerator tableFormate) 
 	{
 		this.tableFormate = tableFormate;
 	}

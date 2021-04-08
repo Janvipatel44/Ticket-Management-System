@@ -1,6 +1,6 @@
 package deleteTicket.interfaces;
 
-public interface IDeleteTicket 
+public interface IDeleteTickets 
 {
 	public boolean deleteticket(String ticketId);
 }

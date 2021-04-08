@@ -7,12 +7,12 @@ import org.junit.Test;
 
 import reuseableClasses.abstractfactory.IReuseableClassesFactoryTest;
 import reuseableClasses.abstractfactory.ReuseableClassFactoryTest;
-import reuseablePackage.interfaces.ICheckTicketExists;
+import reuseablePackage.interfaces.ICheckTicketsExists;
 
 public class CheckTicketExistsTest 
 {
 	IReuseableClassesFactoryTest reuseableclassfactorytest = ReuseableClassFactoryTest.instance();
-	ICheckTicketExists checkticketexists =reuseableclassfactorytest.checkticketexistMock();
+	ICheckTicketsExists checkticketexists =reuseableclassfactorytest.checkticketexistMock();
 	
 	@Test
 	public void ticketExistsTest()

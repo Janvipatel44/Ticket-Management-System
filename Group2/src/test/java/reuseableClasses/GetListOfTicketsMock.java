@@ -5,17 +5,17 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import reuseablePackage.abstractFactory.IReuseableClassFactory;
-import reuseablePackage.abstractFactory.ReuseableClassFactory;
+import reuseablePackage.abstractFactory.IReuseableClasssFactory;
+import reuseablePackage.abstractFactory.ReuseableClasssFactory;
 import reuseablePackage.interfaces.ITableGenerator;
-import reuseablePackage.interfaces.IDisplayTicket;
+import reuseablePackage.interfaces.IDisplayTickets;
 import reuseablePackage.interfaces.IGetListOfTickets;
 
 public class GetListOfTicketsMock implements IGetListOfTickets
 {
-	private IReuseableClassFactory reuseableclassfactory = ReuseableClassFactory.instance();
+	private IReuseableClasssFactory reuseableclassfactory = ReuseableClasssFactory.instance();
 	private ITableGenerator generateTable;
-	private IDisplayTicket displayticket;
+	private IDisplayTickets displayticket;
 	
 	Map<String, ArrayList<String>> ticketsData ;
 	List<String> columnOfTable;
