@@ -2,7 +2,6 @@ package attachment;
 
 import java.io.InputStream;
 import org.apache.commons.lang3.StringUtils;
-
 import attachment.interfaces.IAttachmentDao;
 
 public class FileAttachmentDaoMock implements IAttachmentDao {
@@ -19,7 +18,7 @@ public class FileAttachmentDaoMock implements IAttachmentDao {
 
 	@Override
 	public InputStream downloadFileAttachment(String attachmentId) throws Exception {
-		if(StringUtils.isNotBlank(attachmentId) && attachmentId.trim().equalsIgnoreCase(this.attachmentId)) {
+		if (StringUtils.isNotBlank(attachmentId) && attachmentId.trim().equalsIgnoreCase(this.attachmentId)) {
 			return this.inputStream;
 		}
 		return null;

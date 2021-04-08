@@ -7,18 +7,18 @@ import managerfeatures.interfaces.IManagerTeamTracking;
 
 public class ManagerFeaturesMockFactory implements IManagerFeaturesFactory {
 
-	private static IManagerFeaturesFactory uniqueInstance = null;		
-	
+	private static IManagerFeaturesFactory uniqueInstance = null;
+
 	private ManagerFeaturesMockFactory() {
 	}
 
 	public static IManagerFeaturesFactory instance() {
-		if(null == uniqueInstance) {
+		if (null == uniqueInstance) {
 			uniqueInstance = new ManagerFeaturesMockFactory();
 		}
 		return uniqueInstance;
 	}
-	
+
 	@Override
 	public IManagerTeamTracking makeManagerFeaturesFactoryObject() {
 		IManagerFeaturesDao managerFeaturesDao = new ManagerFeaturesDaoMock();

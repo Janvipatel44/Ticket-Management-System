@@ -5,22 +5,21 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
-
 import mailservice.abstractfactory.IMailFactory;
 import mailservice.abstractfactory.MailFactory;
 import mailservice.interfaces.IMailMessage;
 
 public class MailMessageTest {
-	
+
 	private final String RECIPIENT = "abc@gmail.com";
 	private final String RECIPIENT2 = "def@gmail.com";
 	private final String SUBJECT = "TEST";
 	private final String BODY = "Testing MailMessage class";
 	private final String NULL_OBJECT = null;
 	private final String EMPTY = "";
-	
+
 	private IMailMessage mailMessage;
-	
+
 	@Before
 	public void init() {
 		IMailFactory mailFactory = MailFactory.instance();
@@ -34,7 +33,7 @@ public class MailMessageTest {
 		boolean noObjectInRecipients = recipients.size() == 0;
 		assertTrue(noObjectInRecipients);
 	}
-	
+
 	@Test
 	public void addRecipientEmptyTest() {
 		mailMessage.addRecipient(EMPTY);
@@ -42,7 +41,7 @@ public class MailMessageTest {
 		boolean noObjectInRecipients = recipients.size() == 0;
 		assertTrue(noObjectInRecipients);
 	}
-	
+
 	@Test
 	public void addRecipientTest() {
 		mailMessage.addRecipient(RECIPIENT);
@@ -50,7 +49,7 @@ public class MailMessageTest {
 		boolean isRecipientAdded = recipients.contains(RECIPIENT);
 		assertTrue(isRecipientAdded);
 	}
-	
+
 	@Test
 	public void removeRecipientNullTest() {
 		mailMessage.addRecipient(NULL_OBJECT);
@@ -58,7 +57,7 @@ public class MailMessageTest {
 		boolean noObjectInRecipients = recipients.size() == 0;
 		assertTrue(noObjectInRecipients);
 	}
-	
+
 	@Test
 	public void removeRecipientEmptyTest() {
 		mailMessage.addRecipient(EMPTY);
@@ -66,7 +65,7 @@ public class MailMessageTest {
 		boolean noObjectInRecipients = recipients.size() == 0;
 		assertTrue(noObjectInRecipients);
 	}
-	
+
 	@Test
 	public void removeRecipientTest() {
 		mailMessage.addRecipient(RECIPIENT);
@@ -78,7 +77,7 @@ public class MailMessageTest {
 		boolean isRecipientRemoved = recipients.size() == 0;
 		assertTrue(isRecipientRemoved);
 	}
-	
+
 	@Test
 	public void getRecipientsTest() {
 		mailMessage.addRecipient(RECIPIENT);
@@ -87,14 +86,14 @@ public class MailMessageTest {
 		boolean isRecipientAdded = recipients.size() == 2;
 		assertTrue(isRecipientAdded);
 	}
-	
+
 	@Test
 	public void addSubjectTest() {
 		mailMessage.addSubject(SUBJECT);
 		String subject = mailMessage.getSubject();
 		assertEquals(SUBJECT, subject);
 	}
-	
+
 	@Test
 	public void addBodyTest() {
 		mailMessage.addBody(BODY);

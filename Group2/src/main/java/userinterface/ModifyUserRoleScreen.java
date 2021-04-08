@@ -8,7 +8,7 @@ import userinterface.abstractFactory.IUserInterfaceFactory;
 import userinterface.abstractFactory.UserInterfaceFactory;
 
 public class ModifyUserRoleScreen implements IModifyUserRoleScreen {
-	
+
 	public final String SUCCESSFUL_USER_ROLE_UPDATE = "User role is updated successfully.";
 	public final String UNSUCCESSFUL_USER_ROLE_UPDATE = "Error while updating user role. Please contact admin.";
 
@@ -23,12 +23,12 @@ public class ModifyUserRoleScreen implements IModifyUserRoleScreen {
 	}
 
 	public void displayModifyUserRoleScreen(IParameterizedUser user) {
-		
+
 		try {
 			roleFactory = RoleFactory.instance();
-	    	modifyUserRole = roleFactory.makeModifyUserRoleObject();
+			modifyUserRole = roleFactory.makeModifyUserRoleObject();
 
-	    	inputOutputHandler.displayMethod("Enter employee ID of the user whose role needs to be updated:");
+			inputOutputHandler.displayMethod("Enter employee ID of the user whose role needs to be updated:");
 			String inputEmpId = inputOutputHandler.input();
 			inputOutputHandler.displayMethod("\nEnter new role:");
 			String inputUserType = inputOutputHandler.input();

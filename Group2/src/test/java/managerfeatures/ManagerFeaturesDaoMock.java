@@ -2,7 +2,6 @@ package managerfeatures;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import insertTicket.Interfaces.ICreateTicket;
 import insertTicket.abstractFactory.IInsertTicketFactory;
 import insertTicket.abstractFactory.InsertTicketFactory;
@@ -25,8 +24,8 @@ public class ManagerFeaturesDaoMock implements IManagerFeaturesDao {
 			String employeeId = EMPLOYEE_ID;
 			String ticketId = TICKET_ID;
 			String description = DESCRIPTION;
-			ICreateTicket createTicket = insertTicketFactory.getcreateTicket(ticketId, description, null, null, employeeId, null,
-					null, null, 0, 0, 0, null, null, null, null, null);
+			ICreateTicket createTicket = insertTicketFactory.getcreateTicket(ticketId, description, null, null,
+					employeeId, null, null, null, 0, 0, 0, null, null, null, null, null);
 			createTickets.add(createTicket);
 		}
 		return createTickets;
