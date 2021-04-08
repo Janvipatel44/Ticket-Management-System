@@ -64,7 +64,7 @@ public class UpdateTicketTest {
 	
 	@Test
 	public void updateForManagerWithValidTicketIDAndInValidEmployeeID() {
-		String ticketID = "111";
+		String ticketID = "112";
 		String employeeID="emp1233";
 		String valuetoupdateAssigneeNamer = "manan";
 		String valuesToUpdateInProgress="in progress";
@@ -151,7 +151,7 @@ public class UpdateTicketTest {
 	
 	@Test
 	public void updateForNotManagerWithValidTicketIDAndInValidEmployeeID() {
-		String ticketID = "111";
+		String ticketID = "112";
 		String employeeID="emp1233";
 		String valuetoupdateAssigneeNamer = "manan";
 		String valuesToUpdateInProgress="in progress";
