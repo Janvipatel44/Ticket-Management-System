@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import mailservice.abstractfactory.IMailFactory;
-import mailservice.abstractfactory.MailFactory;
+import mailservice.abstractfactory.MailFactoryMock;
 import mailservice.interfaces.IMailMessage;
 
 public class MailMessageTest {
@@ -23,7 +23,7 @@ public class MailMessageTest {
 
 	@Before
 	public void init() {
-		IMailFactory mailFactory = MailFactory.instance();
+		IMailFactory mailFactory = MailFactoryMock.instance();
 		mailMessage = mailFactory.makeMailMessageObject();
 	}
 
