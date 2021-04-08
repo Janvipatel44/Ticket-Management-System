@@ -1,6 +1,6 @@
 package userinterface;
 import login.Interfaces.IForgotPassword;
-import login.Interfaces.IPersistenceForgotPasswordOperations;
+import login.Interfaces.IForgotPasswordDao;
 import login.abstractfactory.*;
 import mailservice.Gmail;
 import mailservice.interfaces.IMail;
@@ -21,7 +21,7 @@ public class ForgotPasswordScreen implements IForgotPasswordScreen
     {
         IServiceNowWelcomeScreen serviceNowWelcomeScreen;
         IMail mail = new Gmail();
-        IPersistenceForgotPasswordOperations persistenceForgotPasswordOperations = null;
+        IForgotPasswordDao persistenceForgotPasswordOperations = null;
         serviceNowWelcomeScreen = userInterfaceFactory.getServiceNowWelcomeScreen(inputOutputHandler);
 
         try

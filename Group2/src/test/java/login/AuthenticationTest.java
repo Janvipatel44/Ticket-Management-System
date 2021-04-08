@@ -7,7 +7,7 @@ import login.Interfaces.*;
 public class AuthenticationTest
 {
     ILoginFactoryTest loginFactoryTest = LoginFactoryTest.instance();
-    IPersistenceAuthenticationOperations authenticationOperations;
+    IAuthenticationDao authenticationOperations;
 
     @Before
     public void initialize()

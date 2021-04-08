@@ -7,10 +7,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD:Group2/src/main/java/reuseablePackage/OpenTicket.java
 import database.IConnectionManager;
 import reuseablePackage.interfaces.IDisplayTicket;
 import reuseablePackage.interfaces.IOpenTicket;
 import reuseablePackage.interfaces.IStoreTicketData;
+=======
+import database.intefaces.IConnectionManager;
+import reuseablePackage.interfaces.IdisplayTicket;
+import reuseablePackage.interfaces.IopenTicket;
+import reuseablePackage.interfaces.IstoreTicketData;
+>>>>>>> 5a2ea7b7154c35580472c415ac24ce2ced02e5a3:Group2/src/main/java/reuseablePackage/openTicket.java
 
 
 public class OpenTicket implements IOpenTicket

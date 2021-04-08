@@ -6,8 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import database.ConnectionManager;
+<<<<<<< HEAD:Group2/src/main/java/reuseablePackage/CheckTicketExists.java
 import database.IConnectionManager;
 import reuseablePackage.interfaces.ICheckTicketExists;
+=======
+import database.intefaces.IConnectionManager;
+import reuseablePackage.interfaces.IcheckTicketExists;
+>>>>>>> 5a2ea7b7154c35580472c415ac24ce2ced02e5a3:Group2/src/main/java/reuseablePackage/checkTicketExists.java
 
 public class CheckTicketExists  implements ICheckTicketExists
 {

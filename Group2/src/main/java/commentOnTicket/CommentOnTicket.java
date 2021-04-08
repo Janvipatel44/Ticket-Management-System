@@ -6,8 +6,13 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
+<<<<<<< HEAD:Group2/src/main/java/commentOnTicket/CommentOnTicket.java
 import commentOnTicket.interfaces.ICommentOnTicket;
 import database.IConnectionManager;
+=======
+import commentOnTicket.interfaces.IcommentOnTicket;
+import database.intefaces.IConnectionManager;
+>>>>>>> 5a2ea7b7154c35580472c415ac24ce2ced02e5a3:Group2/src/main/java/commentOnTicket/commentOnTicket.java
 
 public class CommentOnTicket implements ICommentOnTicket
 {

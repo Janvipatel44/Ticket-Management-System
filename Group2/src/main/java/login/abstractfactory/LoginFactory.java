@@ -24,14 +24,14 @@ public class LoginFactory implements ILoginFactory
         return uniqueInstance;
     }
 
-    public IAuthentication getAuthentication(IPersistenceAuthenticationOperations authenticationOperations)
+    public IAuthentication getAuthentication(IAuthenticationDao authenticationOperations)
     {
         return new Authentication(authenticationOperations);
     }
 
-    public IPersistenceAuthenticationOperations getAuthenticationOperations() throws IOException
+    public IAuthenticationDao getAuthenticationOperations() throws IOException
     {
-        return new PersistenceAuthenticationOperations();
+        return new AuthenticationDao();
     }
 
     public IEncryption getEncryption()
@@ -39,7 +39,7 @@ public class LoginFactory implements ILoginFactory
         return new Encryption();
     }
 
-    public IForgotPassword getForgotPassword(IMail mail, IPersistenceForgotPasswordOperations persistenceForgotPasswordOperations)
+    public IForgotPassword getForgotPassword(IMail mail, IForgotPasswordDao persistenceForgotPasswordOperations)
     {
         return new ForgotPassword(mail, persistenceForgotPasswordOperations);
     }
@@ -54,17 +54,17 @@ public class LoginFactory implements ILoginFactory
         return new PasswordValidations();
     }
 
-    public IPersistenceForgotPasswordOperations getPersistenceForgotPasswordOperations() throws IOException
+    public IForgotPasswordDao getPersistenceForgotPasswordOperations() throws IOException
     {
-        return new PersistenceForgotPasswordOperations();
+        return new ForgotPasswordDao();
     }
 
-    public IPersistenceUserRegistrationOperations getPersistenceUserRegistrationOperations() throws IOException
+    public IUserRegistrationDao getPersistenceUserRegistrationOperations() throws IOException
     {
-        return new PersistenceUserRegistrationOperations();
+        return new UserRegistrationDao();
     }
 
-    public IRegister getRegister(IPersistenceUserRegistrationOperations userRegistrationOperations, IInputOutputHandler inputOutputHandler)
+    public IRegister getRegister(IUserRegistrationDao userRegistrationOperations, IInputOutputHandler inputOutputHandler)
     {
         return new Registration(userRegistrationOperations, inputOutputHandler);
     }

@@ -130,8 +130,11 @@ public class ComputeCustomerProperties implements IComputeCustomerProperties
         {
             divisor++;
             startDate = tempTicket.getStartDate();
-
             endDate = tempTicket.getEndDate();
+            if(endDate == null)
+            {
+                endDate = new java.sql.Date(System.currentTimeMillis());
+            }
             differenceInSeconds = endDate.getTime() - startDate.getTime();
             differenceInDays = differenceInSeconds/(toSeconds * toMinutes * toHours * toDays);
             dividend = dividend + differenceInDays;

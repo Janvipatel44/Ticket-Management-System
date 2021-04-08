@@ -3,5 +3,5 @@ import customerAnalysis.Interfaces.*;
 public interface ICustomerAnalysisFactoryTest
 {
     ICustomerAnalysis getCustomerAnalysis();
-    IPersistenceCustomer getPersistenceCustomerMock();
+    ICustomerAnalysisDao getPersistenceCustomerMock();
 }

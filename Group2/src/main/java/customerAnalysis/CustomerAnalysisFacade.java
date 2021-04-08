@@ -7,11 +7,11 @@ import java.util.Map;
 public class CustomerAnalysisFacade implements ICustomerAnalysis
 {
     private final ICustomerAnalysisFactory customerAnalysisFactory = CustomerAnalysisFactory.instance();
-    private final IPersistenceCustomer persistenceCustomer;
+    private final ICustomerAnalysisDao persistenceCustomer;
     private List<IParameterizedCustomerTicket> tickets;
     private IComputeCustomerProperties computeCustomerProperties;
 
-    public CustomerAnalysisFacade(IPersistenceCustomer persistenceCustomer)
+    public CustomerAnalysisFacade(ICustomerAnalysisDao persistenceCustomer)
     {
         this.persistenceCustomer = persistenceCustomer;
     }
@@ -72,16 +72,16 @@ public class CustomerAnalysisFacade implements ICustomerAnalysis
                 String valueString = Integer.toString(value);
                 assigneeStatisticsRecords = assigneeStatisticsRecords.concat("\t"+assigneeStats.getKey()+" : "+valueString+"\n");
             }
-            customerAnalysis.put("Tickets assignee statistics : \n", assigneeStatisticsRecords);
+            customerAnalysis.put("Tickets assignee statistics : ", assigneeStatisticsRecords);
         }
 
         if(computeCustomerProperties.getMeanRating() >= ratingThreshold)
         {
-            customerAnalysis.put("Overall user rating : ", ticketRating[0]+"\n");
+            customerAnalysis.put("Overall user rating : ", ticketRating[0]);
         }
         else
         {
-            customerAnalysis.put("Overall user rating : ", ticketRating[1]+"\n");
+            customerAnalysis.put("Overall user rating : ", ticketRating[1]);
         }
 
         return customerAnalysis;

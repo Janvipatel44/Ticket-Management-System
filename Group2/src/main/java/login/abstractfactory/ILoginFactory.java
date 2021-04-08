@@ -7,13 +7,13 @@ import java.io.IOException;
 
 public interface ILoginFactory
 {
-    IAuthentication getAuthentication(IPersistenceAuthenticationOperations authenticationOperations);
-    IPersistenceAuthenticationOperations getAuthenticationOperations() throws IOException;
+    IAuthentication getAuthentication(IAuthenticationDao authenticationOperations);
+    IAuthenticationDao getAuthenticationOperations() throws IOException;
     IEncryption getEncryption();
-    IForgotPassword getForgotPassword(IMail mail, IPersistenceForgotPasswordOperations persistenceForgotPasswordOperations);
+    IForgotPassword getForgotPassword(IMail mail, IForgotPasswordDao persistenceForgotPasswordOperations);
     IParameterizedUser getParameterizedUser(String employeeID, String firstName, String lastName, String email, String user_type, String manager);
     IPasswordValidations getPasswordValidations();
-    IPersistenceForgotPasswordOperations getPersistenceForgotPasswordOperations() throws IOException;
-    IPersistenceUserRegistrationOperations getPersistenceUserRegistrationOperations() throws IOException;
-    IRegister getRegister(IPersistenceUserRegistrationOperations userRegistrationOperations, IInputOutputHandler inputOutputHandler);
+    IForgotPasswordDao getPersistenceForgotPasswordOperations() throws IOException;
+    IUserRegistrationDao getPersistenceUserRegistrationOperations() throws IOException;
+    IRegister getRegister(IUserRegistrationDao userRegistrationOperations, IInputOutputHandler inputOutputHandler);
 }

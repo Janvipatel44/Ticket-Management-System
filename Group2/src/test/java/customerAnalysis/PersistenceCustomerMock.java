@@ -4,7 +4,7 @@ import customerAnalysis.abstractfactory.*;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-public class PersistenceCustomerMock implements IPersistenceCustomer
+public class PersistenceCustomerMock implements ICustomerAnalysisDao
 {
     ICustomerAnalysisFactory customerAnalysisFactory = CustomerAnalysisFactory.instance();
     public List<IParameterizedCustomerTicket> getTicketsOfCustomer(String customerID)

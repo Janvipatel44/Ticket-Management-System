@@ -3,7 +3,7 @@ package twitterPosting.abstractfactory;
 import java.sql.ResultSet;
 
 import login.AuthenticationOperationsMock;
-import login.Interfaces.IPersistenceAuthenticationOperations;
+import login.Interfaces.IAuthenticationDao;
 import login.abstractfactory.ILoginFactoryTest;
 import login.abstractfactory.LoginFactoryTest;
 import twitterPosting.FetchProjectDetailsDB;

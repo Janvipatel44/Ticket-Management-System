@@ -1,10 +1,10 @@
 package Rating.abstractfactory;
-import Rating.interfaces.IPersistenceRating;
-import Rating.interfaces.IRatingAssignee;
-import Rating.interfaces.IRatingQuestionnaire;
+import employeerating.interfaces.IRatingDao;
+import employeerating.interfaces.IRatingAssignee;
+import employeerating.interfaces.IRatingQuestionnaire;
 public interface IRatingFactoryTest
 {
     IRatingAssignee getRatingAssignee(IRatingQuestionnaire questionnaire);
-    IPersistenceRating getPersistenceRatingMock();
+    IRatingDao getPersistenceRatingMock();
     IRatingQuestionnaire getRatingQuestionnaire(int userSatisfactionRating, int userFeedbackRating, int userExperienceRating, int userRecommendationRating);
 }

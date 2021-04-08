@@ -83,6 +83,10 @@ public class CalculateMilestone implements ICalculateMilestone
             divisor++;
             startDate = tempTicket.getStartDate();
             endDate = tempTicket.getEndDate();
+            if(endDate == null)
+            {
+                endDate = new java.sql.Date(System.currentTimeMillis());
+            }
             differenceInSeconds = endDate.getTime() - startDate.getTime();
             differenceInTime = differenceInSeconds/(toSeconds * toMinutes * toHours);
             remainingHours = Math.round(hoursNotIncludedInWorkOnADay*(differenceInTime/hoursInADay));

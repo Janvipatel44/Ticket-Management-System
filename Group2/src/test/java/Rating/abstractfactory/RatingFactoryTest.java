@@ -1,8 +1,8 @@
 package Rating.abstractfactory;
 import Rating.PersistenceRatingMock;
-import Rating.RatingAssigneeFacade;
-import Rating.RatingQuestionnaire;
-import Rating.interfaces.*;
+import employeerating.RatingAssigneeFacade;
+import employeerating.RatingQuestionnaire;
+import employeerating.interfaces.*;
 public class RatingFactoryTest implements IRatingFactoryTest
 {
     private static IRatingFactoryTest uniqueInstance = null;
@@ -23,11 +23,11 @@ public class RatingFactoryTest implements IRatingFactoryTest
 
     public IRatingAssignee getRatingAssignee(IRatingQuestionnaire questionnaire)
     {
-        IPersistenceRating persistenceRatingMock = getPersistenceRatingMock();
+        IRatingDao persistenceRatingMock = getPersistenceRatingMock();
         return new RatingAssigneeFacade(questionnaire, persistenceRatingMock);
     }
 
-    public IPersistenceRating getPersistenceRatingMock()
+    public IRatingDao getPersistenceRatingMock()
     {
         return new PersistenceRatingMock();
     }

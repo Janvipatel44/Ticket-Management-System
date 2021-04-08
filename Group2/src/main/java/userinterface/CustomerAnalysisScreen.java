@@ -39,7 +39,7 @@ public class CustomerAnalysisScreen implements ICustomerAnalysisScreen
             return;
         }
 
-        inputOutputHandler.displayMethod("Enter customer ID:\n");
+        inputOutputHandler.displayMethod("Enter customer ID:");
         customerID = inputOutputHandler.input();
         outputResult = customerAnalysis.getCustomerAnalysis(customerID);
 
@@ -53,7 +53,6 @@ public class CustomerAnalysisScreen implements ICustomerAnalysisScreen
             {
                 inputOutputHandler.displayMethod(outputRecord.getKey()+"\n"+outputRecord.getValue()+"\n");
             }
-            inputOutputHandler.displayMethod("\n");
         }
 
         userInterfaceFactory = UserInterfaceFactory.instance();

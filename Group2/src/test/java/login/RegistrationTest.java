@@ -16,7 +16,7 @@ public class RegistrationTest
 	ILoginFactoryTest loginFactoryTest = LoginFactoryTest.instance();
 	IUserInterfaceFactory userInterfaceFactory = new UserInterfaceFactory();
 	IInputOutputHandler inputOutputHandler = userInterfaceFactory.getInputOutputHandler();
-	IPersistenceUserRegistrationOperations databaseUserMock = loginFactoryTest.getPersistenceUserRegistrationOperationsMock();
+	IUserRegistrationDao databaseUserMock = loginFactoryTest.getPersistenceUserRegistrationOperationsMock();
 
 	@Test
 	public void registerUserTestSuccessfull()

@@ -1,6 +1,6 @@
 package Rating;
-import Rating.interfaces.IPersistenceRating;
-public class PersistenceRatingMock implements IPersistenceRating
+import employeerating.interfaces.IRatingDao;
+public class PersistenceRatingMock implements IRatingDao
 {
     public String getPersistenceCreatorID(String ticketID)
     {

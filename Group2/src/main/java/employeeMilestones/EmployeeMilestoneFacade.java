@@ -8,9 +8,9 @@ import java.util.Set;
 public class EmployeeMilestoneFacade implements IEmployeeMilestone
 {
     private final IEmployeeMilestoneFactory employeeMilestoneFactory = EmployeeMilestoneFactory.instance();
-    private final IPersistenceEmployeeTickets persistenceEmployeeTickets;
+    private final IEmployeeTicketsDao persistenceEmployeeTickets;
 
-    public EmployeeMilestoneFacade(IPersistenceEmployeeTickets persistenceEmployeeTickets)
+    public EmployeeMilestoneFacade(IEmployeeTicketsDao persistenceEmployeeTickets)
     {
         this.persistenceEmployeeTickets = persistenceEmployeeTickets;
     }

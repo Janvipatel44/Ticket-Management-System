@@ -2,7 +2,7 @@ package login;
 import login.Interfaces.IEncryption;
 import login.Interfaces.IForgotPassword;
 import login.Interfaces.IPasswordValidations;
-import login.Interfaces.IPersistenceForgotPasswordOperations;
+import login.Interfaces.IForgotPasswordDao;
 import login.abstractfactory.ILoginFactory;
 import login.abstractfactory.LoginFactory;
 import mailservice.abstractfactory.IMailFactory;
@@ -16,9 +16,9 @@ public class ForgotPassword implements IForgotPassword
     private final IMailFactory factoryMethodMail = MailFactory.instance();
     private final IMail mail;
     private final IMailMessage mailMessage = factoryMethodMail.makeMailMessageObject();
-    private final IPersistenceForgotPasswordOperations persistenceForgotPasswordOperations;
+    private final IForgotPasswordDao persistenceForgotPasswordOperations;
 
-    public ForgotPassword(IMail mail, IPersistenceForgotPasswordOperations persistenceForgotPasswordOperations)
+    public ForgotPassword(IMail mail, IForgotPasswordDao persistenceForgotPasswordOperations)
     {
         this.mail = mail;
         this.persistenceForgotPasswordOperations = persistenceForgotPasswordOperations;

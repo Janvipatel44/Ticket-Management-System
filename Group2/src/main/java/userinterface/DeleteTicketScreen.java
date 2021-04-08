@@ -3,7 +3,7 @@ package userinterface;
 import java.util.Scanner;
 
 import database.ConnectionManager;
-import database.IConnectionManager;
+import database.intefaces.IConnectionManager;
 import deleteTicket.abstractfactory.DeleteTicketFactory;
 import deleteTicket.abstractfactory.IDeleteTicketFactory;
 import deleteTicket.interfaces.IDeleteTicket;
@@ -12,10 +12,17 @@ import managerfeatures.abstractfactory.IManagerFeaturesFactory;
 import reuseablePackage.abstractFactory.IReuseableClassFactory;
 import reuseablePackage.abstractFactory.ReuseableClassFactory;
 import reuseablePackage.interfaces.ITableGenerator;
+<<<<<<< HEAD:Group2/src/main/java/userinterface/DeleteTicketScreen.java
 import reuseablePackage.interfaces.ICheckTicketExists;
 import reuseablePackage.interfaces.IDisplayTicket;
 import reuseablePackage.interfaces.IGetListOfTickets;
 import reuseablePackage.interfaces.IStoreTicketData;
+=======
+import reuseablePackage.interfaces.IcheckTicketExists;
+import reuseablePackage.interfaces.IdisplayTicket;
+import reuseablePackage.interfaces.IgetListOfTickets;
+import reuseablePackage.interfaces.IstoreTicketData;
+>>>>>>> 5a2ea7b7154c35580472c415ac24ce2ced02e5a3:Group2/src/main/java/userinterface/deleteTicketScreen.java
 import userinterface.abstractFactory.IUserInterfaceFactory;
 import userinterface.abstractFactory.UserInterfaceFactory;
 

@@ -23,7 +23,7 @@ public class LoginScreen implements ILoginScreen
     public void displayLoginScreen()
     {
         IServiceNowWelcomeScreen serviceNowWelcomeScreen = userInterfaceFactory.getServiceNowWelcomeScreen(inputOutputHandler);;
-        IPersistenceAuthenticationOperations authenticationOperations = null;
+        IAuthenticationDao authenticationOperations = null;
         try
         {
             authenticationOperations = loginFactory.getAuthenticationOperations();

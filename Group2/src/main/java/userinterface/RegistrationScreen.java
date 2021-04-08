@@ -1,6 +1,6 @@
 package userinterface;
 import login.Interfaces.IParameterizedUser;
-import login.Interfaces.IPersistenceUserRegistrationOperations;
+import login.Interfaces.IUserRegistrationDao;
 import login.Interfaces.IRegister;
 import login.abstractfactory.*;
 import userinterface.abstractFactory.IUserInterfaceFactory;
@@ -30,7 +30,7 @@ public class RegistrationScreen implements IRegistrationScreen
         String user_type;
         String manager;
         IServiceNowWelcomeScreen serviceNowWelcomeScreen = userInterfaceFactory.getServiceNowWelcomeScreen(inputOutputHandler);;
-        IPersistenceUserRegistrationOperations userRegistrationOperations = null;
+        IUserRegistrationDao userRegistrationOperations = null;
         try
         {
             userRegistrationOperations = loginFactory.getPersistenceUserRegistrationOperations();

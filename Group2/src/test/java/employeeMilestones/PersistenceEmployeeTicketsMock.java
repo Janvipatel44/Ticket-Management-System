@@ -4,7 +4,7 @@ import employeeMilestones.interfaces.*;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-public class PersistenceEmployeeTicketsMock implements IPersistenceEmployeeTickets
+public class PersistenceEmployeeTicketsMock implements IEmployeeTicketsDao
 {
     IEmployeeMilestoneFactory employeeMilestoneFactory = EmployeeMilestoneFactory.instance();
 
