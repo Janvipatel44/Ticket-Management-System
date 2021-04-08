@@ -26,7 +26,7 @@ public class EmployeeEfficiencyCalculator implements IEmployeeEfficiencyCalculat
 	public HashMap<Integer,Integer> calculateEmployeeEfficiency(ArrayList<IFetchedPerformanceDetails> fetchedPerformanceDetails) throws SQLException, ParseException
 	{ 
 		WorkWeights myVar = null; 
-		int efficiency = 0;
+		double efficiency = 0;
 		int avg_efficiency = 0;
 		int count = 0;
 		int countMonth = 0;
