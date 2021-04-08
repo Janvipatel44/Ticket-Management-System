@@ -51,7 +51,7 @@ public class RatingDao implements IRatingDao
             }
             return null;
         }
-        catch (SQLException throwables)
+        catch (Exception throwables)
         {
             return null;
         }
@@ -74,7 +74,7 @@ public class RatingDao implements IRatingDao
             procedureCall.setInt(2, rating);
             return databaseOperations.executeUpdateCommand(procedureCall);
         }
-        catch (SQLException throwables)
+        catch (Exception throwables)
         {
             return false;
         }
