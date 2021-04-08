@@ -4,11 +4,11 @@ import database.intefaces.IConnectionManager;
 import updateTicketDetails.UpdateTicket;
 import updateTicketDetails.interfaces.IUpdateTicket;
 
-public class UpdateTicketsFactory implements IUpdateTicketFactory
+public class UpdateTicketFactory implements IUpdateTicketFactory
 {
 	private static IUpdateTicketFactory uniqueInstance = null;
 
-    private UpdateTicketsFactory()
+    private UpdateTicketFactory()
     {
 
     }
@@ -17,13 +17,14 @@ public class UpdateTicketsFactory implements IUpdateTicketFactory
     {
         if(null == uniqueInstance)
         {
-            uniqueInstance = new UpdateTicketsFactory();
+            uniqueInstance = new UpdateTicketFactory();
         }
         return uniqueInstance;
     }
-	
-	public IUpdateTicket UpdateTicket(IConnectionManager ConnectionMngs) 
-	{	
-		return new UpdateTicket(ConnectionMngs);
+
+	@Override
+	public IUpdateTicket UpdateTicket(IConnectionManager connectionMng) {
+		return new UpdateTicket(connectionMng);
 	}
+
 }

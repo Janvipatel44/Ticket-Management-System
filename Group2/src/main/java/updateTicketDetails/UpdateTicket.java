@@ -20,10 +20,9 @@ public class UpdateTicket implements IUpdateTicket
 	private IConnectionManager ConnectionMng;
 	private IticketStatusInProgress ticketInProgress;
 	
-	public UpdateTicket(IConnectionManager ConnectionMng,IticketStatusInProgress ticketInProgress)
+	public UpdateTicket(IConnectionManager ConnectionMng)
 	{
 		this.ConnectionMng = ConnectionMng;
-		this.ticketInProgress= ticketInProgress;
 	}
 	
 	public boolean updateValueOfTicketForManager(String ticketID, int choice , String valueToUpdate)
