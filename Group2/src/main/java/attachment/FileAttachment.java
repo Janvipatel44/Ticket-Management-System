@@ -5,10 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
-
 import attachment.interfaces.IAttachmentDao;
 
 public class FileAttachment extends AbstractAttachment {
@@ -21,7 +19,7 @@ public class FileAttachment extends AbstractAttachment {
 
 	public String upload(String sourcePath) throws Exception {
 		String attachmentId = null;
-		
+
 		if (StringUtils.isNotBlank(sourcePath)) {
 			try {
 				attachmentId = generateAttachmentId();
@@ -32,13 +30,13 @@ public class FileAttachment extends AbstractAttachment {
 				throw new IllegalArgumentException("File is not present at the specified path");
 			}
 		}
-		
+
 		return attachmentId;
 	}
 
 	public boolean download(String attachmentId, String destinationPath) throws Exception {
 		boolean downloadedSuccessfully = false;
-		
+
 		if (StringUtils.isNotBlank(attachmentId) && StringUtils.isNotBlank(destinationPath)) {
 			try {
 				File outputFile = new File(destinationPath);
@@ -49,7 +47,7 @@ public class FileAttachment extends AbstractAttachment {
 				throw new IllegalArgumentException("Please check destination path.");
 			}
 		}
-		
+
 		return downloadedSuccessfully;
 	}
 }

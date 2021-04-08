@@ -1,7 +1,6 @@
 package attachment.abstractfactory;
 
 import java.io.IOException;
-
 import attachment.interfaces.IAttachment;
 
 public interface IAttachmentFactory {

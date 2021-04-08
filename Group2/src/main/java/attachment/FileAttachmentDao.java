@@ -5,15 +5,12 @@ import java.io.InputStream;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Properties;
-
 import com.mysql.cj.jdbc.Blob;
-
 import attachment.interfaces.IAttachmentDao;
-import database.intefaces.IConnectionManager;
 import database.abstractfactory.DatabaseFactory;
 import database.abstractfactory.IDatabaseFactory;
+import database.intefaces.IConnectionManager;
 import database.intefaces.IDatabaseOperations;
 import mailservice.ReadPropertiesFile;
 
@@ -29,52 +26,51 @@ public class FileAttachmentDao implements IAttachmentDao {
 
 	public FileAttachmentDao() throws IOException {
 		Properties properties = ReadPropertiesFile.readConfigPropertyFile(projectConfigurationFile);
-		String configurationFile = (String)properties.get(dbConfigurationKey);
+		String configurationFile = (String) properties.get(dbConfigurationKey);
 		connectionManager = databaseFactory.getConnectionManager(configurationFile);
 	}
-	
+
 	@Override
-	public boolean uploadFileAttachment(String attachmentId, InputStream inputStream) throws Exception{
-		
-		if(connectionManager == null) {
-			throw new Exception("Error while creating connection to DB. Please contact admin.");	
+	public boolean uploadFileAttachment(String attachmentId, InputStream inputStream) throws Exception {
+
+		if (connectionManager == null) {
+			throw new Exception("Error while creating connection to DB. Please contact admin.");
 		}
-		
+
 		Connection connection = connectionManager.establishConnection();
 		CallableStatement procedureCall;
-			procedureCall = connection.prepareCall("call " + uploadAttachment + "(?,?)");
-			procedureCall.setString(1, attachmentId);
-			procedureCall.setBlob(2, inputStream);
+		procedureCall = connection.prepareCall("call " + uploadAttachment + "(?,?)");
+		procedureCall.setString(1, attachmentId);
+		procedureCall.setBlob(2, inputStream);
 
-			boolean result = databaseOperations.executeUpdateCommand(procedureCall);
+		boolean result = databaseOperations.executeUpdateCommand(procedureCall);
 		connectionManager.closeConnection();
-			return result;
-
+		return result;
 
 	}
-	
+
 	@Override
 	public InputStream downloadFileAttachment(String attachmentId) throws Exception {
-		
-		if(connectionManager == null) {
-			throw new Exception("Error while creating connection to DB. Please contact admin.");	
+
+		if (connectionManager == null) {
+			throw new Exception("Error while creating connection to DB. Please contact admin.");
 		}
-		
+
 		InputStream inputStream = null;
 		Connection connection = connectionManager.establishConnection();
 		CallableStatement procedureCall;
 
-			procedureCall = connection.prepareCall("call " + downloadAttachment + "(?)");
-			procedureCall.setString(1, attachmentId);
+		procedureCall = connection.prepareCall("call " + downloadAttachment + "(?)");
+		procedureCall.setString(1, attachmentId);
 
-			boolean isResultSet = databaseOperations.executeCommand(procedureCall);
+		boolean isResultSet = databaseOperations.executeCommand(procedureCall);
 
-			if (isResultSet) {
-				ResultSet resultSet = procedureCall.getResultSet();
-				if (resultSet.next()) {
-					inputStream = ((Blob) resultSet.getBlob(1)).getBinaryStream();
-				}
+		if (isResultSet) {
+			ResultSet resultSet = procedureCall.getResultSet();
+			if (resultSet.next()) {
+				inputStream = ((Blob) resultSet.getBlob(1)).getBinaryStream();
 			}
+		}
 		connectionManager.closeConnection();
 		return inputStream;
 	}
