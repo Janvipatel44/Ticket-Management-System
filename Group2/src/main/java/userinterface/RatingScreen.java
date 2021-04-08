@@ -1,6 +1,6 @@
 package userinterface;
-import Rating.abstractfactory.*;
-import Rating.interfaces.*;
+import employeerating.abstractfactory.*;
+import employeerating.interfaces.*;
 import login.Interfaces.IParameterizedUser;
 import userinterface.abstractFactory.*;
 import java.io.IOException;
@@ -26,7 +26,7 @@ public class RatingScreen implements IRatingScreen
         int userFeedbackRating;
         int userExperienceRating;
         int userRecommendationRating;
-        IPersistenceRating persistenceRating;
+        IRatingDao persistenceRating;
         IRatingQuestionnaire ratingQuestionnaire;
         IRatingAssignee ratingAssignee = null;
 

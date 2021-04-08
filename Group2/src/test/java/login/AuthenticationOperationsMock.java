@@ -1,7 +1,7 @@
 package login;
 import login.Interfaces.IParameterizedUser;
-import login.Interfaces.IPersistenceAuthenticationOperations;
-public class AuthenticationOperationsMock implements IPersistenceAuthenticationOperations
+import login.Interfaces.IAuthenticationDao;
+public class AuthenticationOperationsMock implements IAuthenticationDao
 {
     public String getPassword(String employeeID) {
         return "AcegD68:";

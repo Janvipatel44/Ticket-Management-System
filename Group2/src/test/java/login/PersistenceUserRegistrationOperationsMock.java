@@ -1,6 +1,6 @@
 package login;
 import login.Interfaces.*;
-public class PersistenceUserRegistrationOperationsMock implements IPersistenceUserRegistrationOperations
+public class PersistenceUserRegistrationOperationsMock implements IUserRegistrationDao
 {
     public boolean registerUserDatabase(IParameterizedUser user, String user_password)
     {

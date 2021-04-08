@@ -78,7 +78,7 @@ public class CustomerAnalysisDao implements ICustomerAnalysisDao
             }
             return tickets;
         }
-        catch (SQLException throwable)
+        catch (Exception throwable)
         {
             return null;
         }

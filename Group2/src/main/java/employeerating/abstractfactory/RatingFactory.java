@@ -1,6 +1,6 @@
-package Rating.abstractfactory;
-import Rating.*;
-import Rating.interfaces.*;
+package employeerating.abstractfactory;
+import employeerating.*;
+import employeerating.interfaces.*;
 
 import java.io.IOException;
 
@@ -24,13 +24,13 @@ public class RatingFactory implements IRatingFactory
 
     public IRatingAssignee getRatingAssignee(IRatingQuestionnaire questionnaire) throws IOException
     {
-        IPersistenceRating persistenceRating = getPersistenceRating();
+        IRatingDao persistenceRating = getPersistenceRating();
         return new RatingAssigneeFacade(questionnaire, persistenceRating);
     }
 
-    public IPersistenceRating getPersistenceRating() throws IOException
+    public IRatingDao getPersistenceRating() throws IOException
     {
-        return new PersistenceRating();
+        return new RatingDao();
     }
 
     public IRatingQuestionnaire getRatingQuestionnaire(int userSatisfactionRating, int userFeedbackRating, int userExperienceRating, int userRecommendationRating)

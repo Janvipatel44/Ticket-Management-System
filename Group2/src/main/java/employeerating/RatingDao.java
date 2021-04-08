@@ -1,52 +1,55 @@
-package login;
-import database.abstractfactory.*;
-import database.intefaces.IConnectionManager;
-import database.intefaces.IDatabaseOperations;
-import login.Interfaces.IPersistenceForgotPasswordOperations;
-import mailservice.ReadPropertiesFile;
+package employeerating;
+
 import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.Properties;
-public class PersistenceForgotPasswordOperations implements IPersistenceForgotPasswordOperations
+
+import database.abstractfactory.*;
+import database.intefaces.IConnectionManager;
+import database.intefaces.IDatabaseOperations;
+import employeerating.interfaces.*;
+import mailservice.ReadPropertiesFile;
+
+public class RatingDao implements IRatingDao
 {
+    private final IDatabaseFactory databaseFactory = DatabaseFactory.instance();
     private String projectConfigurationFile = "ProjectConfiguration.properties";
     private String dbConfigurationKey = "DBConfiguration";
-    private final IDatabaseFactory databaseFactory = DatabaseFactory.instance();
-    private final IConnectionManager connection;
+    private IConnectionManager connection;
     IDatabaseOperations databaseOperations = databaseFactory.getDatabaseOperations();
 
-    public PersistenceForgotPasswordOperations() throws IOException
-    {
+    public RatingDao() throws IOException {
         Properties properties = ReadPropertiesFile.readConfigPropertyFile(projectConfigurationFile);
         String configurationFile = (String)properties.get(dbConfigurationKey);
         connection = databaseFactory.getConnectionManager(configurationFile);
     }
 
-    public String getEmail(String employeeID)
+    public String getPersistenceCreatorID(String ticketID)
     {
         Connection dummyConnection=null;
         CallableStatement procedureCall;
-        String email = "";
 
         if(connection == null)
         {
             return null;
         }
 
-        try {
-            String procedureName = "getEmail";
+        try
+        {
+
+            String procedureName = "checkCreator";
             dummyConnection = connection.establishConnection();
-            procedureCall = dummyConnection.prepareCall("{call "+procedureName+"(?)}");
-            procedureCall.setString(1, employeeID);
-            ResultSet resultSet = procedureCall.executeQuery();
-            while(resultSet.next())
+            procedureCall = dummyConnection.prepareCall("{call "+procedureName+"(?,?}");
+            procedureCall.setString(1, ticketID);
+            procedureCall.registerOutParameter(2, Types.VARCHAR);
+            if(databaseOperations.executeCommand(procedureCall))
             {
-                email = resultSet.getString("email");
+                return procedureCall.getString(2);
             }
-            return email;
+            return null;
         }
         catch (SQLException throwables)
         {
@@ -58,22 +61,17 @@ public class PersistenceForgotPasswordOperations implements IPersistenceForgotPa
         }
     }
 
-    public boolean updatePassword(String employeeID, String newPassword)
+    public boolean insertRating(String ticketID, int rating)
     {
         Connection dummyConnection=null;
         CallableStatement procedureCall;
-
-        if(connection == null)
+        try
         {
-            return false;
-        }
-
-        try {
-            String procedureName = "updatePassword";
+            String procedureName = "insertRating";
             dummyConnection = connection.establishConnection();
-            procedureCall = dummyConnection.prepareCall("{call "+procedureName+"(?,?)}");
-            procedureCall.setString(1, employeeID);
-            procedureCall.setString(2, newPassword);
+            procedureCall = dummyConnection.prepareCall("{call "+procedureName+"(?,?}");
+            procedureCall.setString(1, ticketID);
+            procedureCall.setInt(2, rating);
             return databaseOperations.executeUpdateCommand(procedureCall);
         }
         catch (SQLException throwables)

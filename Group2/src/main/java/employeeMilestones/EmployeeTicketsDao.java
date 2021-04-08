@@ -77,7 +77,7 @@ public class EmployeeTicketsDao implements IEmployeeTicketsDao
 
             return employeeTicketList;
         }
-        catch (SQLException throwables)
+        catch (Exception throwables)
         {
             return null;
         }

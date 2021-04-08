@@ -1,6 +1,7 @@
-package Rating;
+package employeerating;
 import static java.lang.Math.floor;
-import Rating.interfaces.*;
+
+import employeerating.interfaces.*;
 public class RatingQuestionnaire implements IRatingQuestionnaire
 {
     protected int userSatisfactionRating;

@@ -3,8 +3,8 @@ import login.Interfaces.*;
 import mailservice.interfaces.IMail;
 public interface ILoginFactoryTest
 {
-    IPersistenceAuthenticationOperations getAuthenticationOperationsMock();
+    IAuthenticationDao getAuthenticationOperationsMock();
     IMail getMailMock();
-    IPersistenceForgotPasswordOperations getPersistenceForgotPasswordOperationsMock();
-    IPersistenceUserRegistrationOperations getPersistenceUserRegistrationOperationsMock();
+    IForgotPasswordDao getPersistenceForgotPasswordOperationsMock();
+    IUserRegistrationDao getPersistenceUserRegistrationOperationsMock();
 }

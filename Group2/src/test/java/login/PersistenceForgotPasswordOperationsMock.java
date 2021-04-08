@@ -1,6 +1,6 @@
 package login;
-import login.Interfaces.IPersistenceForgotPasswordOperations;
-public class PersistenceForgotPasswordOperationsMock implements IPersistenceForgotPasswordOperations
+import login.Interfaces.IForgotPasswordDao;
+public class PersistenceForgotPasswordOperationsMock implements IForgotPasswordDao
 {
     public String getEmail(String employeeID)
     {
