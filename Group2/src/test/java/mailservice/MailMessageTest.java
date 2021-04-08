@@ -1,6 +1,7 @@
 package mailservice;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import java.util.List;
 import org.junit.Before;
@@ -52,18 +53,16 @@ public class MailMessageTest {
 
 	@Test
 	public void removeRecipientNullTest() {
-		mailMessage.addRecipient(NULL_OBJECT);
-		List<String> recipients = mailMessage.getRecipients();
-		boolean noObjectInRecipients = recipients.size() == 0;
-		assertTrue(noObjectInRecipients);
+		mailMessage.addRecipient(RECIPIENT);
+		boolean isRecipientRempoved = mailMessage.removeRecipient(NULL_OBJECT);
+		assertFalse(isRecipientRempoved);
 	}
 
 	@Test
 	public void removeRecipientEmptyTest() {
-		mailMessage.addRecipient(EMPTY);
-		List<String> recipients = mailMessage.getRecipients();
-		boolean noObjectInRecipients = recipients.size() == 0;
-		assertTrue(noObjectInRecipients);
+		mailMessage.addRecipient(RECIPIENT);
+		boolean isRecipientRempoved = mailMessage.removeRecipient(EMPTY);
+		assertFalse(isRecipientRempoved);
 	}
 
 	@Test

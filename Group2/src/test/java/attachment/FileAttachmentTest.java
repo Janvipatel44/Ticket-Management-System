@@ -15,6 +15,7 @@ public class FileAttachmentTest {
 
 	private final String NULL_OBJECT = null;
 	private final String EMPTY = "";
+	private final String INVALID_PATH = "C://InvalidFolder";
 	private final String SOURCE_PATH = "src/test/java/attachment/sourceFile.txt";
 	private final String DESTINATION_PATH = "src/test/java/attachment/destinationFile.txt";
 	private final String ATTACHMENT_TYPE = "file";
@@ -45,6 +46,12 @@ public class FileAttachmentTest {
 		assertNotNull(attachmentId);
 	}
 
+	@Test(expected = Exception.class)
+	public void uploadInvalidPathTest() throws Exception {
+		String attachmentId = attachment.upload(INVALID_PATH);
+		assertNotNull(attachmentId);
+	}	
+	
 	@Test
 	public void downloadNullAttachmentTest() throws Exception {
 		boolean result = attachment.download(NULL_OBJECT, DESTINATION_PATH);
@@ -77,4 +84,11 @@ public class FileAttachmentTest {
 		boolean result = attachment.download(attachmentId, DESTINATION_PATH);
 		assertTrue(result);
 	}
+	
+	@Test(expected = Exception.class)
+	public void downloadInvalidPathTest() throws Exception {
+		String attachmentId = attachment.upload(SOURCE_PATH);
+		boolean result = attachment.download(attachmentId, INVALID_PATH);
+		assertTrue(result);
+	}	
 }
