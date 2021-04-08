@@ -1,7 +1,7 @@
 package searchTicket.abstractfactory;
 
 
-import database.IConnectionManager;
+import database.intefaces.IConnectionManager;
 import reuseablePackage.interfaces.IDisplayTicket;
 import reuseablePackage.interfaces.IExportTicket;
 import reuseablePackage.interfaces.IStoreTicketData;

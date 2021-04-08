@@ -4,13 +4,8 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-<<<<<<< HEAD:Group2/src/main/java/deleteTicket/DeleteTicket.java
-import database.IConnectionManager;
-import deleteTicket.interfaces.IDeleteTicket;
-=======
 import database.intefaces.IConnectionManager;
-import deleteTicket.interfaces.IdeleteTicket;
->>>>>>> 5a2ea7b7154c35580472c415ac24ce2ced02e5a3:Group2/src/main/java/deleteTicket/deleteTicket.java
+import deleteTicket.interfaces.IDeleteTicket;
 
 public class DeleteTicket implements IDeleteTicket
 {

@@ -1,13 +1,13 @@
 package reuseablePackage.abstractFactory;
 
-import database.IConnectionManager;
-import reuseablePackage.interfaces.ITableGenerator;
+import database.intefaces.IConnectionManager;
 import reuseablePackage.interfaces.ICheckTicketExists;
 import reuseablePackage.interfaces.IDisplayTicket;
 import reuseablePackage.interfaces.IExportTicket;
 import reuseablePackage.interfaces.IGetListOfTickets;
 import reuseablePackage.interfaces.IOpenTicket;
 import reuseablePackage.interfaces.IStoreTicketData;
+import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.IticketStatusInProgress;
 
 public interface IReuseableClassFactory

@@ -1,21 +1,21 @@
 package reuseablePackage.abstractFactory;
 
-import database.IConnectionManager;
-import reuseablePackage.TableGenerator;
+import database.intefaces.IConnectionManager;
 import reuseablePackage.CheckTicketExists;
 import reuseablePackage.DisplayTicket;
 import reuseablePackage.ExportTicket;
 import reuseablePackage.GetListOfTickets;
 import reuseablePackage.OpenTicket;
 import reuseablePackage.StoreTicketData;
+import reuseablePackage.TableGenerator;
 import reuseablePackage.ticketStatusInProgress;
-import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.ICheckTicketExists;
 import reuseablePackage.interfaces.IDisplayTicket;
 import reuseablePackage.interfaces.IExportTicket;
 import reuseablePackage.interfaces.IGetListOfTickets;
 import reuseablePackage.interfaces.IOpenTicket;
 import reuseablePackage.interfaces.IStoreTicketData;
+import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.IticketStatusInProgress;
 
 public class ReuseableClassFactory implements IReuseableClassFactory {

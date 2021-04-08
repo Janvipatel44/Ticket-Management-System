@@ -8,17 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-<<<<<<< HEAD:Group2/src/main/java/reuseablePackage/GetListOfTickets.java
-import database.IConnectionManager;
+import database.intefaces.IConnectionManager;
 import reuseablePackage.interfaces.IDisplayTicket;
 import reuseablePackage.interfaces.IGetListOfTickets;
 import reuseablePackage.interfaces.IStoreTicketData;
-=======
-import database.intefaces.IConnectionManager;
-import reuseablePackage.interfaces.IdisplayTicket;
-import reuseablePackage.interfaces.IgetListOfTickets;
-import reuseablePackage.interfaces.IstoreTicketData;
->>>>>>> 5a2ea7b7154c35580472c415ac24ce2ced02e5a3:Group2/src/main/java/reuseablePackage/getListOfTickets.java
 
 public class GetListOfTickets implements IGetListOfTickets
 {

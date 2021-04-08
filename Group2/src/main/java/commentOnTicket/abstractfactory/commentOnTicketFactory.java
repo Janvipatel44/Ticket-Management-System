@@ -2,7 +2,7 @@ package commentOnTicket.abstractfactory;
 
 import commentOnTicket.CommentOnTicket;
 import commentOnTicket.interfaces.ICommentOnTicket;
-import database.IConnectionManager;
+import database.intefaces.IConnectionManager;
 
 public class CommentOnTicketFactory implements ICommentOnTicketFactory
 {
