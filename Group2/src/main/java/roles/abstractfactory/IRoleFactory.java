@@ -1,7 +1,6 @@
 package roles.abstractfactory;
 
 import java.io.IOException;
-
 import roles.interfaces.IMenuItemsByRole;
 import roles.interfaces.IModifyUserRole;
 
