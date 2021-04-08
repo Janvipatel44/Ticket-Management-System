@@ -1,6 +1,6 @@
 package reuseablePackage.abstractFactory;
 
-import database.IConnectionManager;
+import database.intefaces.IConnectionManager;
 import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.IcheckTicketExists;
 import reuseablePackage.interfaces.IdisplayTicket;

@@ -1,7 +1,7 @@
 package login;
-import database.*;
 import database.abstractfactory.DatabaseFactory;
 import database.abstractfactory.IDatabaseFactory;
+import database.intefaces.IConnectionManager;
 import login.Interfaces.*;
 import mailservice.ReadPropertiesFile;
 import java.io.IOException;

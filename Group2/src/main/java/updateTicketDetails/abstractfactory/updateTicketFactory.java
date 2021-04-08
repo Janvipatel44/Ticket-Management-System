@@ -1,6 +1,6 @@
 package updateTicketDetails.abstractfactory;
 
-import database.IConnectionManager;
+import database.intefaces.IConnectionManager;
 import reuseablePackage.interfaces.IticketStatusInProgress;
 import updateTicketDetails.updateTicket;
 import updateTicketDetails.interfaces.IupdateTicket;

@@ -1,7 +1,7 @@
 package customerAnalysis.abstractfactory;
 import customerAnalysis.CustomerAnalysisFacade;
 import customerAnalysis.Interfaces.ICustomerAnalysis;
-import customerAnalysis.Interfaces.IPersistenceCustomer;
+import customerAnalysis.Interfaces.ICustomerAnalysisDao;
 import customerAnalysis.PersistenceCustomerMock;
 public class CustomerAnalysisFactoryTest implements ICustomerAnalysisFactoryTest
 {
@@ -23,11 +23,11 @@ public class CustomerAnalysisFactoryTest implements ICustomerAnalysisFactoryTest
 
     public ICustomerAnalysis getCustomerAnalysis()
     {
-        IPersistenceCustomer persistenceCustomerMock = getPersistenceCustomerMock();
+        ICustomerAnalysisDao persistenceCustomerMock = getPersistenceCustomerMock();
         return new CustomerAnalysisFacade(persistenceCustomerMock);
     }
 
-    public IPersistenceCustomer getPersistenceCustomerMock()
+    public ICustomerAnalysisDao getPersistenceCustomerMock()
     {
         return new PersistenceCustomerMock();
     }

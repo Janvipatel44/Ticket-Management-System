@@ -7,8 +7,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import database.intefaces.IConnectionManager;
 import userinterface.IInputOutputHandler;
-public class ConnectionManager implements IConnectionManager{
+public class ConnectionManager implements IConnectionManager {
 	
     private static String driverName = "com.mysql.cj.jdbc.Driver";   
 	private Connection connection = null;

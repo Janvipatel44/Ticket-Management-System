@@ -1,6 +1,7 @@
 package login;
-import database.*;
 import database.abstractfactory.*;
+import database.intefaces.IConnectionManager;
+import database.intefaces.IDatabaseOperations;
 import login.Interfaces.IPersistenceForgotPasswordOperations;
 import mailservice.ReadPropertiesFile;
 import java.io.IOException;

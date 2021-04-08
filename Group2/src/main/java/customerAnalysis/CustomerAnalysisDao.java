@@ -1,26 +1,24 @@
 package customerAnalysis;
 import customerAnalysis.Interfaces.*;
 import customerAnalysis.abstractfactory.*;
-import database.*;
 import database.abstractfactory.*;
-import employeeMilestones.PersistenceEmployeeTickets;
+import database.intefaces.*;
 import mailservice.ReadPropertiesFile;
-
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-
-public class PersistenceCustomer implements IPersistenceCustomer
+public class CustomerAnalysisDao implements ICustomerAnalysisDao
 {
     private final IDatabaseFactory databaseFactory = DatabaseFactory.instance();
     private final ICustomerAnalysisFactory customerAnalysisFactory = CustomerAnalysisFactory.instance();
-    private String projectConfigurationFile = "ProjectConfiguration.properties";
-    private String dbConfigurationKey = "DBConfiguration";
-    private IConnectionManager connection;
+    private final String projectConfigurationFile = "ProjectConfiguration.properties";
+    private final String dbConfigurationKey = "DBConfiguration";
+    private final IDatabaseOperations databaseOperations = databaseFactory.getDatabaseOperations();
+    private final IConnectionManager connection;
 
-    public PersistenceCustomer() throws IOException
+    public CustomerAnalysisDao() throws IOException
     {
         Properties properties = ReadPropertiesFile.readConfigPropertyFile(projectConfigurationFile);
         String configurationFile = (String)properties.get(dbConfigurationKey);
@@ -55,7 +53,13 @@ public class PersistenceCustomer implements IPersistenceCustomer
             dummyConnection = connection.establishConnection();
             procedureCall = dummyConnection.prepareCall("{call "+procedureName+"(?)}");
             procedureCall.setString(1, customerID);
-            ResultSet resultSet = procedureCall.executeQuery();
+            ResultSet resultSet = databaseOperations.executeQuery(procedureCall);
+
+            if(resultSet == null)
+            {
+                return null;
+            }
+
             while(resultSet.next())
             {
                 ticketID = resultSet.getString("ticketId");

@@ -4,7 +4,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import database.IConnectionManager;
+import database.intefaces.IConnectionManager;
 import deleteTicket.interfaces.IdeleteTicket;
 
 public class deleteTicket implements IdeleteTicket

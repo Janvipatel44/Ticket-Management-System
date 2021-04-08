@@ -12,7 +12,7 @@ import twitterPosting.Interfaces.ITwitterOperations;
 import twitterPosting.abstractFactory.IPostHandlingFactory;
 import twitterPosting.abstractFactory.PostHandlingFactory;
 import database.ConnectionManager;
-import database.IConnectionManager;
+import database.intefaces.IConnectionManager;
 import userinterface.IInputOutputHandler;
 
 public class FetchProjectDetailsDB implements IFetchProjectDetailsDB 

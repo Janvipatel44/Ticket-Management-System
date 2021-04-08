@@ -8,7 +8,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import database.ConnectionManager;
-import database.IConnectionManager;
+import database.intefaces.IConnectionManager;
 import employeePerformance.Interfaces.IEmployeeEfficiencyCalculator;
 import employeePerformance.Interfaces.IEmployeePerformanceDB;
 import employeePerformance.Interfaces.IEmployeeProductivityCalculator;

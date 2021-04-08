@@ -30,7 +30,7 @@ public class CustomerAnalysisFactory implements ICustomerAnalysisFactory
 
     public ICustomerAnalysis getCustomerAnalysis() throws IOException
     {
-        IPersistenceCustomer persistenceCustomer = getPersistenceCustomer();
+        ICustomerAnalysisDao persistenceCustomer = getPersistenceCustomer();
         return new CustomerAnalysisFacade(persistenceCustomer);
     }
 
@@ -39,8 +39,8 @@ public class CustomerAnalysisFactory implements ICustomerAnalysisFactory
         return new ParameterizedCustomerTicket(ticketID, customerID, startDate, endDate, ticketType, priority, urgency, impact, ticketLevel, creatorID, employeeID, rating);
     }
 
-    public IPersistenceCustomer getPersistenceCustomer() throws IOException
+    public ICustomerAnalysisDao getPersistenceCustomer() throws IOException
     {
-        return new PersistenceCustomer();
+        return new CustomerAnalysisDao();
     }
 }

@@ -1,4 +1,4 @@
-package database;
+package database.intefaces;
 import java.sql.Connection;
 public interface IConnectionManager
 {

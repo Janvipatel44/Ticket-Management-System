@@ -1,5 +1,8 @@
 package database;
+import database.intefaces.IDatabaseOperations;
+
 import java.sql.CallableStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 public class DatabaseOperations implements IDatabaseOperations
 {
@@ -36,6 +39,18 @@ public class DatabaseOperations implements IDatabaseOperations
         {
             result = false;
             return result;
+        }
+    }
+
+    public ResultSet executeQuery(CallableStatement procedureCall)
+    {
+        try
+        {
+            return procedureCall.executeQuery();
+        }
+        catch (SQLException throwables)
+        {
+            return null;
         }
     }
 }

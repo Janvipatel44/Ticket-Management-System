@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
 import commentOnTicket.interfaces.IcommentOnTicket;
-import database.IConnectionManager;
+import database.intefaces.IConnectionManager;
 
 public class commentOnTicket implements IcommentOnTicket
 {

@@ -3,7 +3,7 @@ package userinterface;
 import java.util.Scanner;
 
 import database.ConnectionManager;
-import database.IConnectionManager;
+import database.intefaces.IConnectionManager;
 import deleteTicket.abstractfactory.DeleteTicketFactory;
 import deleteTicket.abstractfactory.IDeleteTicketFactory;
 import deleteTicket.interfaces.IdeleteTicket;
@@ -16,8 +16,6 @@ import reuseablePackage.interfaces.IcheckTicketExists;
 import reuseablePackage.interfaces.IdisplayTicket;
 import reuseablePackage.interfaces.IgetListOfTickets;
 import reuseablePackage.interfaces.IstoreTicketData;
-import userinterface.IBackToHomePageScreen;
-import userinterface.IInputOutputHandler;
 import userinterface.abstractFactory.IUserInterfaceFactory;
 import userinterface.abstractFactory.UserInterfaceFactory;
 

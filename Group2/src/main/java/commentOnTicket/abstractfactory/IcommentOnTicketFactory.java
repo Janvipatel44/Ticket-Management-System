@@ -1,7 +1,7 @@
 package commentOnTicket.abstractfactory;
 
 import commentOnTicket.interfaces.IcommentOnTicket;
-import database.IConnectionManager;
+import database.intefaces.IConnectionManager;
 
 public interface IcommentOnTicketFactory 
 {

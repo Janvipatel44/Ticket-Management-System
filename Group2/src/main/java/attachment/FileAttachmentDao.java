@@ -11,7 +11,7 @@ import java.util.Properties;
 import com.mysql.cj.jdbc.Blob;
 
 import attachment.interfaces.IAttachmentDao;
-import database.IConnectionManager;
+import database.intefaces.IConnectionManager;
 import database.abstractfactory.DatabaseFactory;
 import database.abstractfactory.IDatabaseFactory;
 import mailservice.ReadPropertiesFile;
