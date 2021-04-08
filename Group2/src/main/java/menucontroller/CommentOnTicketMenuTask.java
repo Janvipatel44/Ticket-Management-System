@@ -12,8 +12,7 @@ public class CommentOnTicketMenuTask implements IMenuTask {
 	@Override
 	public void runMenuTask(IParameterizedUser user, IInputOutputHandler inputOutputHandler) {
 		IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
-		ICommentOnTicketScreen commentonticketscreen = userInterfaceFactory
-				.getCommentOnTicketScreen(inputOutputHandler);
+		ICommentOnTicketScreen commentonticketscreen = userInterfaceFactory.getCommentOnTicketScreen(inputOutputHandler);
 		commentonticketscreen.commentonticketscreen(user);
 	}
 }

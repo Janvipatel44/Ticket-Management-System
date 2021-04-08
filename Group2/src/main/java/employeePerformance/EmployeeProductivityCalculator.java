@@ -36,9 +36,14 @@ public class EmployeeProductivityCalculator implements IEmployeeProductivityCalc
 		
 		while(resultSetProductivity.next()) 
     	{    		
-    	    startDate = LocalDate.parse(resultSetProductivity.getString("startDate").substring(0, 10));
-    	    endDate = LocalDate.parse(resultSetProductivity.getString("endDate").substring(0, 10));
-    	    workingHours = resultSetProductivity.getInt("resolutionHours");
+			startDate = LocalDate.parse(resultSetProductivity.getString("startDate"));
+			endDate = LocalDate.parse(resultSetProductivity.getString("endDate"));
+	    	workingHours = resultSetProductivity.getInt("resolutionHours");
+	    	    
+	    	System.out.print("\nStartDate:" +startDate);
+	    	System.out.print("\nEndDate:" +endDate);
+	    	System.out.print("\nWorking Hours:" +workingHours);
+
     	    totalHours = ChronoUnit.DAYS.between(startDate,endDate);
     	    totalHours = totalHours*officeHours;
     	    

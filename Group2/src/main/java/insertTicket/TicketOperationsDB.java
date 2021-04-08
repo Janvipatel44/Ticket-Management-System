@@ -31,7 +31,7 @@ public class TicketOperationsDB implements ITicketOperationsDB{
         boolean success=false;
 		try 
 		{
-			CallableStatement statement = (CallableStatement) connection.prepareCall("{call insertTicket(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
+			CallableStatement statement = (CallableStatement) connection.prepareCall("{call insertTicket(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
 		
 			statement.setString(1, createTicket.getTicketID());
             statement.setString(2, createTicket.getDescription());
@@ -49,6 +49,7 @@ public class TicketOperationsDB implements ITicketOperationsDB{
             statement.setString(14, createTicket.getCustomerName());
             statement.setString(15, createTicket.getCreatorID());
             statement.setString(16, createTicket.getCreatorName());
+            statement.setString(17, createTicket.getAttachmentID());
 
 	        statement.execute();
 	        success = true;

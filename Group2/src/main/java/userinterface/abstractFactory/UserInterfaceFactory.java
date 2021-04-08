@@ -3,6 +3,7 @@ import userinterface.BackToHomePageOption;
 import userinterface.CustomerAnalysisScreen;
 import userinterface.EmployeeMilestoneScreen;
 import userinterface.EmployeePerformanceScreen;
+import userinterface.ExportEmployeePerformanceReport;
 import userinterface.ForgotPasswordScreen;
 import userinterface.GenerateTicketScreen;
 import userinterface.HomePageScreen;
@@ -10,6 +11,7 @@ import userinterface.IBackToHomePageScreen;
 import userinterface.ICustomerAnalysisScreen;
 import userinterface.IEmployeeMilestoneScreen;
 import userinterface.IEmployeePerformanceScreen;
+import userinterface.IExportEmployeePerformanceReport;
 import userinterface.IForgotPasswordScreen;
 import userinterface.IGenerateTicketScreen;
 import userinterface.IHomePageScreen;
@@ -54,10 +56,10 @@ public class UserInterfaceFactory implements IUserInterfaceFactory
 		return uniqueInstance;
 	}
 	
-    public IServiceNowWelcomeScreen getServiceNowWelcomeScreen(IInputOutputHandler inputOutputHandler)
-    {
-        return new ServiceNowWelcomeScreen(inputOutputHandler);
-    }
+	public IServiceNowWelcomeScreen getServiceNowWelcomeScreen(IInputOutputHandler inputOutputHandler)
+	{
+	        return new ServiceNowWelcomeScreen(inputOutputHandler);
+	}
 
     public IInputOutputHandler getInputOutputHandler()
     {
@@ -152,5 +154,11 @@ public class UserInterfaceFactory implements IUserInterfaceFactory
     {
         return new CommentOnTicketScreen(inputOutputHandler);
     }
+
+	@Override
+	public IExportEmployeePerformanceReport getExportEmployeePerformanceReport(IInputOutputHandler inputOutputHandler) {
+		// TODO Auto-generated method stub
+		return new ExportEmployeePerformanceReport(inputOutputHandler);
+	}
 
 }

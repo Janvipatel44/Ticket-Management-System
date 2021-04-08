@@ -26,6 +26,7 @@ public class InsertTicketTest
 	String customerName = "Elegant Microweb";
 	String creatorID = "creator55";
 	String creatorName = "";
+	String attachmentId = "gyftdseyGek";
 
 	IInsertTicketTestFactory insertTicketTestFactory = InsertTicketTestFactory.instance();
 	IInsertTicket insertTicket ;
@@ -35,7 +36,7 @@ public class InsertTicketTest
 	{
 		ICreateTicket createTicket = insertTicketTestFactory.getcreateTicket(ticketID,  description,   expectedEndDate,  reporterID,
 				 employeeID,   assigneeName,  ticketType,  ticketStatus,  priority,  urgency,  impact,
-				 ticketLevel,  customerID,  customerName,  creatorID, creatorName);
+				 ticketLevel,  customerID,  customerName,  creatorID, creatorName, attachmentId);
 		insertTicket = insertTicketTestFactory.insertTicket(createTicket);
 		try {
 			assertTrue(insertTicket.successfulInsertion());
@@ -52,7 +53,7 @@ public class InsertTicketTest
 		ticketID = "111";
 		ICreateTicket createTicket = insertTicketTestFactory.getcreateTicket(ticketID,  description,   expectedEndDate,  reporterID,
 				 employeeID,   assigneeName,  ticketType,  ticketStatus,  priority,  urgency,  impact,
-				 ticketLevel,  customerID,  customerName,  creatorID, creatorName);
+				 ticketLevel,  customerID,  customerName,  creatorID, creatorName, attachmentId);
 		
 		insertTicket = insertTicketTestFactory.insertTicket(createTicket);
 		try {
