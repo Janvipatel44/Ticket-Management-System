@@ -9,5 +9,6 @@ public class ServiceNowMockApplication
         IInputOutputHandler inputOutputHandler = userInterfaceFactory.getInputOutputHandler();
         IServiceNowWelcomeScreen serviceNowWelcomeScreen = userInterfaceFactory.getServiceNowWelcomeScreen(inputOutputHandler);
         serviceNowWelcomeScreen.displayLoginScreen();
+        inputOutputHandler.closeScanner();
     }
 }
