@@ -75,7 +75,6 @@ public class GmailTest {
 		gmail.sendMail(MAIL_CONFIGURATION, INVALID_PATH, mailMessage);
 	}
 
-	@Test
 	public void sendMailTest() throws Exception {
 		boolean isMailSent = gmail.sendMail(MAIL_CONFIGURATION, USER_CONFIGURATION, mailMessage);
 		assertTrue(isMailSent);
