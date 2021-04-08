@@ -1,7 +1,6 @@
 package userinterface;
 
 import java.util.List;
-
 import insertTicket.Interfaces.ICreateTicket;
 import login.Interfaces.IParameterizedUser;
 import managerfeatures.abstractfactory.IManagerFeaturesFactory;
@@ -29,10 +28,10 @@ public class ManagerTeamTrackingScreen implements IManagerTeamTrackingScreen {
 	@Override
 	public void displayManagerTrackingScreen(IParameterizedUser user) {
 
-		try {	
+		try {
 			managerFeaturesFactory = ManagerFeaturesFactory.instance();
-	        managerTeamTracking = managerFeaturesFactory.makeManagerFeaturesFactoryObject();
-			
+			managerTeamTracking = managerFeaturesFactory.makeManagerFeaturesFactoryObject();
+
 			String managerId = user.getEmployeeID();
 			List<ICreateTicket> teamsTickets = managerTeamTracking.fetchTeamsTicketDetails(managerId);
 

@@ -3,7 +3,6 @@ package userinterface;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import login.Interfaces.IParameterizedUser;
 import menucontroller.MenuHandler;
 import menucontroller.abstractfactory.IMenuHandlerFactory;
@@ -47,7 +46,7 @@ public class HomePageScreen implements IHomePageScreen {
 
 			try {
 				int maximumMenuItems = displayMenuItems(userType);
-				
+
 				if (maximumMenuItems > 0) {
 
 					boolean isUserSelecting = true;
