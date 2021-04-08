@@ -3,6 +3,7 @@ package employeerating;
 import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Properties;
@@ -31,6 +32,7 @@ public class RatingDao implements IRatingDao
     {
         Connection dummyConnection=null;
         CallableStatement procedureCall;
+        ResultSet resultSet;
 
         if(connection == null)
         {
@@ -42,12 +44,18 @@ public class RatingDao implements IRatingDao
 
             String procedureName = "checkCreator";
             dummyConnection = connection.establishConnection();
-            procedureCall = dummyConnection.prepareCall("{call "+procedureName+"(?,?}");
+            procedureCall = dummyConnection.prepareCall("{call "+procedureName+"(?)}");
             procedureCall.setString(1, ticketID);
-            procedureCall.registerOutParameter(2, Types.VARCHAR);
-            if(databaseOperations.executeCommand(procedureCall))
+            resultSet = databaseOperations.executeQuery(procedureCall);
+            
+            if(resultSet == null)
             {
-                return procedureCall.getString(2);
+            	return null;
+            }
+            
+            while(resultSet.next())
+            {
+            	return resultSet.getString("creatorID");
             }
             return null;
         }
