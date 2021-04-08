@@ -18,7 +18,6 @@ import userinterface.IInputOutputHandler;
 
 public class GenerateEmployeePerformanceReport implements IGenerateEmployeePerformanceReport
 {	
-		private ArrayList<String> employeeDetailsString = new ArrayList<String>();
 		private IInputEmployeeDetails employeeDetails = null;
 		private IExportEmployeePerformanceReport employeePerformanceReport ;
 		private IBarChartGeneration barchart;
@@ -28,6 +27,8 @@ public class GenerateEmployeePerformanceReport implements IGenerateEmployeePerfo
 		
 		public ArrayList<String> displayEmployeeDetailsAndTicketCount( IInputEmployeeDetails employeeDetails, ResultSet resultset) throws SQLException, ParseException
 		{
+			ArrayList<String> employeeDetailsString = new ArrayList<String>();
+
 			TableGenerator tableEmployeeInformation = new TableGenerator();
 	        List<String> headersList = new ArrayList<>(); 
 	        headersList.add("Employee ID");
@@ -64,6 +65,10 @@ public class GenerateEmployeePerformanceReport implements IGenerateEmployeePerfo
 		
 		public ArrayList<String> displayEmployeeEfficiency(HashMap <Integer, Integer> calculatedEmployeeEfficiency) 
 		{
+			ArrayList<String> employeeDetailsString = new ArrayList<String>();
+
+	    	System.out.print("In display function" +calculatedEmployeeEfficiency);
+
 			employeeDetailsString.add("################ Month Wise Efficiency ################");
 			TableGenerator tableGeneratorEmployeeEfficiency = new TableGenerator();
 	        List<String> headersList = new ArrayList<>();
@@ -83,14 +88,18 @@ public class GenerateEmployeePerformanceReport implements IGenerateEmployeePerfo
 		            rowsList.add(ticketDetailRow);
 				}
 	        }
-	    	System.out.print(calculatedEmployeeEfficiency);
+
 	        employeeDetailsString.add(tableGeneratorEmployeeEfficiency.generateTable(headersList, rowsList));
-	        employeeDetailsString.add(barchart.Displaybarchart(calculatedEmployeeEfficiency));
+	        //employeeDetailsString.add(barchart.Displaybarchart(calculatedEmployeeEfficiency));
+	    	System.out.print("In display function calculated employee efficiency" +employeeDetailsString);
+
 			return employeeDetailsString;
 		}
 		
 		public ArrayList<String> displayEmployeeProductivity(HashMap <Integer, Integer> calculatedEmployeeProductivity)  
 		{
+			ArrayList<String> employeeDetailsString = new ArrayList<String>();
+
 			employeeDetailsString.add("################ Month Wise Productivity ################");
 			TableGenerator tableGeneratorEmployeeProductivity = new TableGenerator();
 	        List<String> headersList = new ArrayList<>();
@@ -112,9 +121,8 @@ public class GenerateEmployeePerformanceReport implements IGenerateEmployeePerfo
 	        }
 	    	
 	        employeeDetailsString.add(tableGeneratorEmployeeProductivity.generateTable(headersList, rowsList));
-			employeeDetailsString.add(barchart.Displaybarchart(calculatedEmployeeProductivity));
+			//employeeDetailsString.add(barchart.Displaybarchart(calculatedEmployeeProductivity));
 			
-			//employeePerformanceReport = employeePerformanceFactory.getExportEmployeePerformanceReport(inputOutputHandler, employeeDetailsString);
 			return employeeDetailsString;
 		}
 }

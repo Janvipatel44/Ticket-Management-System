@@ -158,10 +158,9 @@ public class UserInterfaceFactory implements IUserInterfaceFactory
         return new commentOnTicketScreen(inputOutputHandler);
     }
     
-    //
+    
     public IExportEmployeePerformanceReport getExportEmployeePerformanceReport(IInputOutputHandler inputOutputHandler) 
 	{
-    	//
 		return new ExportEmployeePerformanceReport(inputOutputHandler);
 	}
 

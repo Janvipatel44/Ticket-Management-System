@@ -12,7 +12,6 @@ public class ExportEmployeePerformanceReport implements IExportEmployeePerforman
 {	
 	private String FileName = null;
 	private Scanner sc = new Scanner(System.in);
-	private ArrayList<String> employeeDetailsString = new ArrayList<String>();
 	IGenerateEmployeePerformanceReport generateEmployeePerformanceReport;
 	IInputOutputHandler inputOutputHandler;
 	
@@ -25,17 +24,19 @@ public class ExportEmployeePerformanceReport implements IExportEmployeePerforman
 	{
 		inputOutputHandler.displayMethod("Enter file name with Path:");
 		FileName=sc.next();
+	    
 		File myObj = new File(FileName);
 	    try 
 	    {
 			if (myObj.createNewFile()) 
 			{
 				  FileWriter myWriter = new FileWriter(FileName);
-				  for(String employeedetails: employeeDetailsString) 
+				  for(String employeedetails: employeeEfficiency) 
 				  {
 					  inputOutputHandler.displayMethod(employeedetails);
 					  myWriter.write(employeedetails);
 					  myWriter.write("\n");
+					  inputOutputHandler.displayMethod("Successfully Created");
      			  }		  
 			      myWriter.close();
 			}

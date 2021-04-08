@@ -46,6 +46,6 @@ public interface IUserInterfaceFactory
     public ITwitterPostScreen getTwitterPostScreen(IInputOutputHandler inputOutputHandler);
     public IupdateTicketScreen getUpdateTicketScreen(IInputOutputHandler inputOutputHandler);
     public IcommentOnTicketScreen getCommentOnTicketScreen(IInputOutputHandler inputOutputHandler);
-    public IExportEmployeePerformanceReport getExportEmployeePerformanceReport(); 
+	public IExportEmployeePerformanceReport getExportEmployeePerformanceReport(IInputOutputHandler inputOutputHandler); 
 
 }

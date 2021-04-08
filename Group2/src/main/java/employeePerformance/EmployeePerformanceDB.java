@@ -59,7 +59,8 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB
             	
             	generateEmployeePerformanceReport = employeePerformanceFactory.getPerformanceReport();
             	employeeDetailsString = generateEmployeePerformanceReport.displayEmployeeDetailsAndTicketCount(employeeDetails, resultset);
-    			return employeeDetailsString;
+            	IConnectionMng.closeConnection();
+            	return employeeDetailsString;
             }
             else 
             	return null;
@@ -95,7 +96,9 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB
             	employeeEfficiency = employeePerformanceFactory.getEmployeeEfficiencyCalculator(resultset);
             	calculatedEmployeeEfficiency = employeeEfficiency.calculateEmployeeEfficiency();
             	employeeDetailsString = generateEmployeePerformanceReport.displayEmployeeEfficiency(calculatedEmployeeEfficiency);
-    			return employeeDetailsString;
+            	IConnectionMng.closeConnection();
+    			System.out.print("Employee details string: " +employeeDetailsString);
+            	return employeeDetailsString;
             }
             else {
             	return null;
@@ -132,7 +135,8 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB
             	employeeProductivity = employeePerformanceFactory.getEmployeeProductivityCalculator(resultset);
             	calculatedEmployeeProductivity = employeeProductivity.calculateEmployeeProductivity();
             	employeeDetailsString  = generateEmployeePerformanceReport.displayEmployeeProductivity(calculatedEmployeeProductivity);
-    			return employeeDetailsString;
+            	IConnectionMng.closeConnection();
+            	return employeeDetailsString;
             }
             else
             {

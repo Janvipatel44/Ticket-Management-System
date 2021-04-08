@@ -48,6 +48,8 @@ public class EmployeePerformanceScreen implements IEmployeePerformanceScreen
 		try
 		{
 			efficiencyReport.add(employeedetailsDB.getticketCountsDB().toString());
+			System.out.print("Efficiency" +efficiencyReport);
+
 			if(employeedetailsDB.getticketCountsDB()!=null) 
 			{
 			    inputOutputHandler.displayMethod("Successfully performed fetching of ticket count based on ticket level:");
@@ -66,6 +68,8 @@ public class EmployeePerformanceScreen implements IEmployeePerformanceScreen
 		
 		try {
 			efficiencyReport.add(employeedetailsDB.getemployeeEfficiencyDB().toString());
+			System.out.print("Efficiency" +efficiencyReport);
+
 			if(employeedetailsDB.getemployeeEfficiencyDB()!=null) 
 			{
 			    inputOutputHandler.displayMethod("Successfully performed data fetching for generating employee efficiency:");
@@ -85,6 +89,8 @@ public class EmployeePerformanceScreen implements IEmployeePerformanceScreen
 		try 
 		{
 			efficiencyReport.add(employeedetailsDB.getemployeeProductivityDB().toString());
+			System.out.print("Efficiency" +efficiencyReport);
+
 			if(employeedetailsDB.getemployeeProductivityDB() != null) 
 			{
 				
@@ -102,6 +108,7 @@ public class EmployeePerformanceScreen implements IEmployeePerformanceScreen
 			e1.printStackTrace();
 		}
 		
+		System.out.print("Efficiency" +efficiencyReport);
 		employeePerformanceReport = userInterfaceFactory.getExportEmployeePerformanceReport(inputOutputHandler);
 		employeePerformanceReport.exportTicket(efficiencyReport);
 		
