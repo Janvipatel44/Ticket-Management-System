@@ -20,9 +20,16 @@ public class InputOutputHandler implements IInputOutputHandler {
 
 	}
 
-	public int inputInt() {
+	public int inputInt() 
+	{
 		int input = scanner.nextInt();
 		return input;
+	}
+
+	public String inputdate() 
+	{
+		String nextLine = scanner.nextLine();
+		return nextLine;
 	}
 
 	public void closeScanner() {

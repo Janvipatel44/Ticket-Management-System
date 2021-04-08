@@ -32,17 +32,16 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB
 	IGenerateEmployeePerformanceReport generateEmployeePerformanceReport;
 
 	private IInputEmployeeDetails employeeDetails = null;
-	ArrayList<String> employeeDetailsString = new ArrayList<String>() ;
 	
 	public EmployeePerformanceDB(IInputEmployeeDetails employeeDetails)
     {
         this.employeeDetails = employeeDetails;
     }
 
-	public boolean getticketCountsDB() throws ParseException
+	public ArrayList<String> getticketCountsDB() throws ParseException
 	{
+		ArrayList<String> employeeDetailsString = new ArrayList<String>() ;
 		connection = IConnectionMng.establishConnection();
-        boolean success = false;
         boolean hasResult = false;
         ResultSet resultset = null;
 		
@@ -60,23 +59,25 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB
             	
             	generateEmployeePerformanceReport = employeePerformanceFactory.getPerformanceReport();
             	employeeDetailsString = generateEmployeePerformanceReport.displayEmployeeDetailsAndTicketCount(employeeDetails, resultset);
+            	IConnectionMng.closeConnection();
+            	return employeeDetailsString;
             }
-            success = true;
-			return success;
-		
+            else 
+            	return null;
 		} 
 		catch (SQLException e) 
 		{
 			System.out.print("SQL Exception");
 			e.printStackTrace();
 		}
-        return success;
+        return employeeDetailsString;
 	}
 	
-	public boolean getemployeeEfficiencyDB() throws ParseException
+	public ArrayList<String> getemployeeEfficiencyDB() throws ParseException
 	{
+		ArrayList<String> employeeDetailsString = new ArrayList<String>() ;
+
 		connection = IConnectionMng.establishConnection();
-        boolean success=false;
         boolean hasResult = false;
         ResultSet resultset = null;
         HashMap<Integer,Integer> calculatedEmployeeEfficiency = null;
@@ -95,21 +96,27 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB
             	employeeEfficiency = employeePerformanceFactory.getEmployeeEfficiencyCalculator(resultset);
             	calculatedEmployeeEfficiency = employeeEfficiency.calculateEmployeeEfficiency();
             	employeeDetailsString = generateEmployeePerformanceReport.displayEmployeeEfficiency(calculatedEmployeeEfficiency);
+            	IConnectionMng.closeConnection();
+    			System.out.print("Employee details string: " +employeeDetailsString);
+            	return employeeDetailsString;
             }
-			return true;
+            else {
+            	return null;
+            }
 		} 
 		catch (SQLException e) 
 		{
 			System.out.print("SQL Exception");
 			e.printStackTrace();
 		}
-        return success;
+        return employeeDetailsString;
 	}
 
-	public boolean getemployeeProductivityDB() throws ParseException
+	public ArrayList<String> getemployeeProductivityDB() throws ParseException
 	{
+		ArrayList<String> employeeDetailsString = new ArrayList<String>() ;
+
 		connection = IConnectionMng.establishConnection();
-        boolean success=false;
         boolean hasResult = false;
         ResultSet resultset = null;
         HashMap<Integer, Integer> calculatedEmployeeProductivity = null;
@@ -122,21 +129,25 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB
             statement.setTimestamp(2, new java.sql.Timestamp(employeeDetails.generateDateFormat().getTime()));
             hasResult = statement.execute();
                         
-	        System.out.print(hasResult); 
             if(hasResult)  
             {  
             	resultset = statement.getResultSet();
             	employeeProductivity = employeePerformanceFactory.getEmployeeProductivityCalculator(resultset);
             	calculatedEmployeeProductivity = employeeProductivity.calculateEmployeeProductivity();
             	employeeDetailsString  = generateEmployeePerformanceReport.displayEmployeeProductivity(calculatedEmployeeProductivity);
+            	IConnectionMng.closeConnection();
+            	return employeeDetailsString;
             }
-			return true;
+            else
+            {
+            	return null;
+            }
 		} 
 		catch (SQLException e) 
 		{
 			System.out.print("SQL Exception");
 			e.printStackTrace();
 		}
-        return success;
+        return employeeDetailsString;
 	}
 }

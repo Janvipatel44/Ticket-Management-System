@@ -17,7 +17,7 @@ public interface IInsertTicketTestFactory
     public ITicketOperationsDB insertTicketDB(ICreateTicket createTicket);
     public 	ICreateTicket getcreateTicket(String ticketID, String description,  String expectedEndDate, String reporterID,
 			String employeeID,  String assigneeName, String ticketType, String ticketStatus, int priority, int urgency, int impact,
-			String ticketLevel, String customerID, String customerName, String creatorID, String creatorName);
+			String ticketLevel, String customerID, String customerName, String creatorID, String creatorName, String attachmentID);
     public IInsertTicket insertTicket(ICreateTicket createTicket); 
     public IUserInputValidation userInputValidation();
 

@@ -1,6 +1,5 @@
 package userinterface;
 
-
 import database.ConnectionManager;
 import database.intefaces.IConnectionManager;
 import login.Interfaces.IParameterizedUser;

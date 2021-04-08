@@ -8,4 +8,7 @@ public interface IInputOutputHandler {
 	public int inputInt();
 
 	public void closeScanner();
+	
+	public String inputdate(); 
+
 }

@@ -1,14 +1,19 @@
 package userinterface;
 import login.Interfaces.*;
 import login.abstractfactory.*;
+import mailservice.ReadPropertiesFile;
 import menucontroller.MenuHandler;
 import menucontroller.abstractfactory.*;
 import menucontroller.interfaces.IMenuHandler;
 import userinterface.abstractFactory.*;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Properties;
 import java.util.Scanner;
 
+import attachment.abstractfactory.AttachmentFactory;
+import attachment.abstractfactory.IAttachmentFactory;
+import attachment.interfaces.IAttachment;
 import insertTicket.EnumValidation;
 import insertTicket.Interfaces.ICreateTicket;
 import insertTicket.Interfaces.IInsertTicket;
@@ -24,7 +29,10 @@ public class GenerateTicketScreen implements IGenerateTicketScreen
     private IInsertTicketFactory insertTicketFactory = InsertTicketFactory.instance();
 	private IInsertTicket insertTicket;
     private ICreateTicket createTicket;
+    
+    private IAttachmentFactory attachmentfactory= AttachmentFactory.instance();
 
+    private IAttachment attachment;
     public GenerateTicketScreen(IInputOutputHandler inputOutputHandler)
     {
         this.inputOutputHandler = inputOutputHandler;
@@ -49,29 +57,63 @@ public class GenerateTicketScreen implements IGenerateTicketScreen
 	    String customerName = null;
 	    String creatorID = null;
 	    String creatorName = null;
+	    String attachmentID = null;
+		String projectConfigurationFile = "ProjectConfiguration.properties";
+
 	   	int validInput = -1;	 
 	   	    
 		
-	   	ticketID = displayGenerateTicketScreenController(validInput,"ticketID",EnumValidation.VALIDATETICKETID);
-	   	description = displayGenerateTicketScreenController(validInput,"description",EnumValidation.VALIDATEDESCRIPTION);
-	   	expectedEndDate = displayGenerateTicketScreenController(validInput,"expectedEndDate",EnumValidation.VALIDATEEXPECTEDENDDATE);
-	   	reporterID = displayGenerateTicketScreenController(validInput,"reporterID",EnumValidation.VALIDATEREPORTERID);
-	   	employeeID = displayGenerateTicketScreenController(validInput,"employeeID",EnumValidation.VALIDATEEMPLOYEEID);
-	   	assigneeName = displayGenerateTicketScreenController(validInput,"assigneeName",EnumValidation.VALIDATEASSIGNEENAME);
-	   	ticketType = displayGenerateTicketScreenController(validInput,"ticketType",EnumValidation.VALIDATETICKETTYPE);
-	   	ticketStatus = displayGenerateTicketScreenController(validInput,"ticketStatus",EnumValidation.VALIDATETICKETSTATUS);
-	   	priority = Integer.parseInt(displayGenerateTicketScreenController(validInput,"priority",EnumValidation.VALIDATEPRIORITY));
-	   	urgency = Integer.parseInt(displayGenerateTicketScreenController(validInput,"urgency",EnumValidation.VALIDATEURGENCY));
-	   	impact = Integer.parseInt(displayGenerateTicketScreenController(validInput,"impact",EnumValidation.VALIDATEIMPACT));
-	   	ticketLevel = displayGenerateTicketScreenController(validInput,"ticketLevel",EnumValidation.VALIDATETICKETLEVEL);
-	   	customerID = displayGenerateTicketScreenController(validInput,"customerID",EnumValidation.VALIDATECUSTOMERID);
-	   	customerName = displayGenerateTicketScreenController(validInput,"customerName",EnumValidation.VALIDATECUSTOMERNAME);
-	   	creatorID = displayGenerateTicketScreenController(validInput,"creatorID",EnumValidation.VALIDATECREATORID);
-	   	creatorName = displayGenerateTicketScreenController(validInput,"creatorName",EnumValidation.VALIDATECREATORNAME);
+	   	ticketID = displayGenerateTicketScreenController(validInput,"ticketID",EnumValidation.VALIDATETICKETID,user);
+	   	description = displayGenerateTicketScreenController(validInput,"description",EnumValidation.VALIDATEDESCRIPTION,user);
+	   	expectedEndDate = displayGenerateTicketScreenController(validInput,"expectedEndDate",EnumValidation.VALIDATEEXPECTEDENDDATE,user);
+	   	reporterID = displayGenerateTicketScreenController(validInput,"reporterID",EnumValidation.VALIDATEREPORTERID,user);
+	   	employeeID = displayGenerateTicketScreenController(validInput,"employeeID",EnumValidation.VALIDATEEMPLOYEEID,user);
+	   	assigneeName = displayGenerateTicketScreenController(validInput,"assigneeName",EnumValidation.VALIDATEASSIGNEENAME,user);
+	   	ticketType = displayGenerateTicketScreenController(validInput,"ticketType",EnumValidation.VALIDATETICKETTYPE,user);
+	   	ticketStatus = displayGenerateTicketScreenController(validInput,"ticketStatus",EnumValidation.VALIDATETICKETSTATUS,user);
+	   	priority = Integer.parseInt(displayGenerateTicketScreenController(validInput,"priority",EnumValidation.VALIDATEPRIORITY,user));
+	   	urgency = Integer.parseInt(displayGenerateTicketScreenController(validInput,"urgency",EnumValidation.VALIDATEURGENCY,user));
+	   	impact = Integer.parseInt(displayGenerateTicketScreenController(validInput,"impact",EnumValidation.VALIDATEIMPACT,user));
+	   	ticketLevel = displayGenerateTicketScreenController(validInput,"ticketLevel",EnumValidation.VALIDATETICKETLEVEL,user);
+	   	customerID = displayGenerateTicketScreenController(validInput,"customerID",EnumValidation.VALIDATECUSTOMERID,user);
+	   	customerName = displayGenerateTicketScreenController(validInput,"customerName",EnumValidation.VALIDATECUSTOMERNAME,user);
+	   	creatorID = displayGenerateTicketScreenController(validInput,"creatorID",EnumValidation.VALIDATECREATORID,user);
+	   	creatorName = displayGenerateTicketScreenController(validInput,"creatorName",EnumValidation.VALIDATECREATORNAME,user);
+	   	
+		String attchmentType = "ATTACHMENT_TYPE";
+
+		Properties properties;
+		String attachmentFileName = null;
+		try {
+			properties = ReadPropertiesFile.readConfigPropertyFile(projectConfigurationFile);
+			attachmentFileName = (String) properties.get(attchmentType);
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		
+	     Scanner scanner = new Scanner(System.in);  // Create a Scanner object
+
+	   	inputOutputHandler.displayMethod("Enter Attachment Path");
+	   	attachmentID = scanner.nextLine();
+	   	try {
+			attachment = attachmentfactory.makeAttachmentObject(attachmentFileName);
+			try {
+				attachmentID = attachment.upload(attachmentID);
+				System.out.print(attachmentID);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	    
 
 	    createTicket = insertTicketFactory.getcreateTicket(ticketID, description, expectedEndDate, reporterID,
 	    		employeeID, assigneeName, ticketType, ticketStatus,priority, urgency, impact, ticketLevel, customerID, 
-	    		customerName, creatorID, creatorName);
+	    		customerName, creatorID, creatorName,attachmentID);
 	   
         inputOutputHandler.displayMethod("\n");
 	   	
@@ -97,7 +139,7 @@ public class GenerateTicketScreen implements IGenerateTicketScreen
         backToHomePageScreen.displayGoBackToHomePageOption(user);
     }
     
-    public String displayGenerateTicketScreenController(int validInput, String inputType, EnumValidation validationString)
+    public String displayGenerateTicketScreenController(int validInput, String inputType, EnumValidation validationString, IParameterizedUser user)
     {
     	String inputString = null;
     	String inputMessage = null;
@@ -107,8 +149,18 @@ public class GenerateTicketScreen implements IGenerateTicketScreen
                
     	while(validInput != 0) 
     	{
-    	    inputOutputHandler.displayMethod(inputMessage);
-    	    inputString = inputOutputHandler.input();
+    		if(inputType!="expectedEndDate") 
+    		{
+    			 inputOutputHandler.displayMethod(inputMessage);
+    	    	 inputString = inputOutputHandler.input();
+    		}
+    		else 
+    		{
+    		     Scanner scanner = new Scanner(System.in);  // Create a Scanner object
+    			 inputOutputHandler.displayMethod(inputMessage);
+    	    	 inputString = scanner.nextLine();
+    		}
+    	   
     	    
 		    try {
 				if(insertTicketFactory.validation().validation(inputString,validationString) == false) 
@@ -130,8 +182,8 @@ public class GenerateTicketScreen implements IGenerateTicketScreen
 	    	    inputString = inputOutputHandler.input();
 	    	    if(inputString == "Yes") 
 	    	    {
-	    	    	//backToHomePageScreen = userInterfaceFactory.getBackToHomePageScreen(inputOutputHandler);
-	    	        //backToHomePageScreen.displayGoBackToHomePageOption(user);
+	    	    	backToHomePageScreen = userInterfaceFactory.getBackToHomePageScreen(inputOutputHandler);
+	    	        backToHomePageScreen.displayGoBackToHomePageOption(user);
 	    	    }
 	    	    else 
 	    	    {
@@ -141,4 +193,6 @@ public class GenerateTicketScreen implements IGenerateTicketScreen
     	}
     	return inputString;
     }
+
+	
 }

@@ -23,4 +23,5 @@ public interface ICreateTicket {
     public String getCustomerName();
     public String getCreatorID();
     public String getCreatorName();
+    public String getAttachmentID();
 }
