@@ -1,24 +1,24 @@
 package mailservice.abstractfactory;
 
 import mailservice.Gmail;
-import mailservice.GmailSendMailApi;
+import mailservice.GmailSendMailApiMock;
 import mailservice.MailMessage;
 import mailservice.interfaces.IGmailSendMailApi;
 import mailservice.interfaces.IMail;
 import mailservice.interfaces.IMailMessage;
 
-public class MailFactory implements IMailFactory {
+public class MailFactoryMock implements IMailFactory {
 
 	public final String GMAIL = "gmail";
 
 	private static IMailFactory uniqueInstance = null;
 
-	private MailFactory() {
+	private MailFactoryMock() {
 	}
 
 	public static IMailFactory instance() {
 		if (null == uniqueInstance) {
-			uniqueInstance = new MailFactory();
+			uniqueInstance = new MailFactoryMock();
 		}
 		return uniqueInstance;
 	}
@@ -31,15 +31,16 @@ public class MailFactory implements IMailFactory {
 		}
 
 		if (mailType.equalsIgnoreCase(GMAIL)) {
-			IGmailSendMailApi gmailSendMailApi = new GmailSendMailApi();
+			IGmailSendMailApi gmailSendMailApi = new GmailSendMailApiMock();
 			return new Gmail(gmailSendMailApi);
 		}
-
 		return null;
 	}
 
 	@Override
 	public IMailMessage makeMailMessageObject() {
+		// TODO Auto-generated method stub
 		return new MailMessage();
 	}
+
 }

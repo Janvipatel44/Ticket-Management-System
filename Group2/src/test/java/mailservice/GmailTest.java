@@ -2,10 +2,12 @@ package mailservice;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import mailservice.abstractfactory.IMailFactory;
-import mailservice.abstractfactory.MailFactory;
+import mailservice.abstractfactory.MailFactoryMock;
 import mailservice.interfaces.IMail;
 import mailservice.interfaces.IMailMessage;
 
@@ -14,7 +16,6 @@ public class GmailTest {
 	private final IMailMessage MAIL_MESSAGE_NULL_OBJECT = null;
 	private final String NULL_OBJECT = null;
 	private final String EMPTY = "";
-	private final String INVALID_PATH = "invalidpath.txt";
 	private final String MAIL_CONFIGURATION = "MailConfiguration.properties";
 	private final String USER_CONFIGURATION = "MailUserConfiguration.properties";
 	private final String RECIPIENT = "csci5308gp2@gmail.com";
@@ -27,7 +28,7 @@ public class GmailTest {
 
 	@Before
 	public void init() {
-		IMailFactory mailFactory = MailFactory.instance();
+		IMailFactory mailFactory = MailFactoryMock.instance();
 		gmail = mailFactory.makeMailObject(MAIL_TYPE);
 		mailMessage = mailFactory.makeMailMessageObject();
 		mailMessage.addRecipient(RECIPIENT);
@@ -65,16 +66,7 @@ public class GmailTest {
 		assertFalse(isMailSent);
 	}
 
-	@Test(expected = Exception.class)
-	public void sendMailInvalidMailConfigurationTest() throws Exception {
-		gmail.sendMail(INVALID_PATH, USER_CONFIGURATION, mailMessage);
-	}
-
-	@Test(expected = Exception.class)
-	public void sendMailInvalidUserConfigurationTest() throws Exception {
-		gmail.sendMail(MAIL_CONFIGURATION, INVALID_PATH, mailMessage);
-	}
-
+	@Test
 	public void sendMailTest() throws Exception {
 		boolean isMailSent = gmail.sendMail(MAIL_CONFIGURATION, USER_CONFIGURATION, mailMessage);
 		assertTrue(isMailSent);
