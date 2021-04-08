@@ -1,10 +1,12 @@
 package insertTickets;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import java.text.ParseException;
 import org.junit.Test;
 import insertTicket.Interfaces.ICreateTicket;
 import insertTicket.Interfaces.IInsertTicket;
+import insertTicket.Interfaces.ITicketOperationsDB;
 import insertTickets.abstractfactory.IInsertTicketTestFactory;
 import insertTickets.abstractfactory.InsertTicketTestFactory;
 
@@ -28,7 +30,7 @@ public class InsertTicketTest
 	String creatorName = "";
 
 	IInsertTicketTestFactory insertTicketTestFactory = InsertTicketTestFactory.instance();
-	IInsertTicket insertTicket ;
+	ITicketOperationsDB insertTicket ;
 	
 	@Test
 	public void successfulGenerationTicket() 
@@ -36,9 +38,9 @@ public class InsertTicketTest
 		ICreateTicket createTicket = insertTicketTestFactory.getcreateTicket(ticketID,  description,   expectedEndDate,  reporterID,
 				 employeeID,   assigneeName,  ticketType,  ticketStatus,  priority,  urgency,  impact,
 				 ticketLevel,  customerID,  customerName,  creatorID, creatorName);
-		insertTicket = insertTicketTestFactory.insertTicket(createTicket);
+		insertTicket = insertTicketTestFactory.insertTicketDB(createTicket);
 		try {
-			assertTrue(insertTicket.successfulInsertion());
+			assertTrue(insertTicket.insertTicket());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -54,9 +56,9 @@ public class InsertTicketTest
 				 employeeID,   assigneeName,  ticketType,  ticketStatus,  priority,  urgency,  impact,
 				 ticketLevel,  customerID,  customerName,  creatorID, creatorName);
 		
-		insertTicket = insertTicketTestFactory.insertTicket(createTicket);
+		insertTicket = insertTicketTestFactory.insertTicketDB(createTicket);
 		try {
-			assertTrue(insertTicket.successfulInsertion());
+			assertFalse(insertTicket.duplicateTicket());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
