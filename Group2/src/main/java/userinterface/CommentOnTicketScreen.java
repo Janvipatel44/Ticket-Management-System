@@ -2,8 +2,8 @@ package userinterface;
 
 import java.util.Scanner;
 
-import commentOnTicket.abstractfactory.ICommentOnTicketsFactory;
 import commentOnTicket.abstractfactory.CommentOnTicketsFactory;
+import commentOnTicket.abstractfactory.ICommentOnTicketsFactory;
 import commentOnTicket.interfaces.ICommentOnTickets;
 import database.ConnectionManager;
 import database.intefaces.IConnectionManager;
@@ -11,11 +11,11 @@ import login.Interfaces.IParameterizedUser;
 import managerfeatures.abstractfactory.IManagerFeaturesFactory;
 import reuseablePackage.abstractFactory.IReuseableClasssFactory;
 import reuseablePackage.abstractFactory.ReuseableClasssFactory;
-import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.ICheckTicketsExists;
 import reuseablePackage.interfaces.IDisplayTickets;
 import reuseablePackage.interfaces.IGetListOfTickets;
 import reuseablePackage.interfaces.IStoreTicketData;
+import reuseablePackage.interfaces.ITableGenerator;
 import userinterface.abstractFactory.IUserInterfaceFactory;
 import userinterface.abstractFactory.UserInterfaceFactory;
 
@@ -27,7 +27,10 @@ public class CommentOnTicketScreen implements ICommentOnTicketScreen
 	private String commentString = null;
 	private boolean result = false;
 	private boolean commentPostResult=false;
-	private String employeeID = "emp123";
+	private String employeeID;
+	private String currentUserRole;
+	private static String userRole="manager";
+	private String managerId;
 	private final String ConfigurationFile = "ConfigurationFile";
 
 	IBackToHomePageScreen backToHomePageScreen;
@@ -55,14 +58,25 @@ public class CommentOnTicketScreen implements ICommentOnTicketScreen
 	
 	public  void commentonticketscreen(IParameterizedUser user)
 	{
-		
+		userRole=user.getUserType().toLowerCase();
+		if(userRole.equals(userRole))
+		{
+			employeeID=user.getManager();
+		}
+		else
+		{
+			employeeID=user.getEmployeeID();
+		}
 		String output="";
 		output=getalltickets.listOfTickets();
+		inputoutputhandler.displayMethod(output);
 		do {
-			inputoutputhandler.displayMethod(output);
+			
 			inputoutputhandler.displayMethod("Enter Ticket Id you want to post comment on.:");
 			inputoutputhandler.displayMethod("Enter exit to go to main page");
+			inputoutputhandler.displayMethod("\n");
 			ticketId = inputoutputhandler.input();
+			
 			if(ticketId.toLowerCase().equals("exit"))
 			{
 				break;
