@@ -84,9 +84,4 @@ public class FileAttachmentTest {
 		assertTrue(result);
 	}
 
-	@Test(expected = Exception.class)
-	public void downloadInvalidPathTest() throws Exception {
-		String attachmentId = attachment.upload(SOURCE_PATH);
-		attachment.download(attachmentId, INVALID_PATH);
-	}
 }

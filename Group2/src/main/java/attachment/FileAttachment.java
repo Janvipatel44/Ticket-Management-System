@@ -38,14 +38,10 @@ public class FileAttachment extends AbstractAttachment {
 		boolean downloadedSuccessfully = false;
 
 		if (StringUtils.isNotBlank(attachmentId) && StringUtils.isNotBlank(destinationPath)) {
-			try {
-				File outputFile = new File(destinationPath);
-				InputStream dbStoredFile = fileAttachmentDao.downloadFileAttachment(attachmentId);
-				FileUtils.copyInputStreamToFile(dbStoredFile, outputFile);
-				downloadedSuccessfully = true;
-			} catch (IOException e) {
-				throw new IllegalArgumentException("Please check destination path.");
-			}
+			File outputFile = new File(destinationPath);
+			InputStream dbStoredFile = fileAttachmentDao.downloadFileAttachment(attachmentId);
+			FileUtils.copyInputStreamToFile(dbStoredFile, outputFile);
+			downloadedSuccessfully = true;
 		}
 
 		return downloadedSuccessfully;
