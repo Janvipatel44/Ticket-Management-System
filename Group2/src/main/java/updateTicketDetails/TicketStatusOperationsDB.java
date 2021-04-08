@@ -83,11 +83,6 @@ public class TicketStatusOperationsDB implements ITicketStatusOperationsDB
 		        	resultset = statement.getResultSet();
 		        	hours = new workingHours(resultset);
 		        	inProgressHours = hours.insertTicket(resultset);
-
-		        	
-		        	//responseTime_resolutionTime_Calculator(inProgressHours);
-			        //insertHours(inProgressHours);
-		        	
 		        }
 				
 			} 
@@ -112,14 +107,12 @@ public class TicketStatusOperationsDB implements ITicketStatusOperationsDB
 			statement.setString(1,ticketID);
 			
 			hasResult = statement.execute();
-			System.out.println(hasResult);
 	
 	        if(hasResult)  
 	        {  
 	        	resultset = statement.getResultSet();
 	        	hours = new workingHours(resultset);
 	        	inProgressHours = hours.insertTicket(resultset);
-				System.out.println(hasResult);
 
 	        	connection = IConnectionMng.establishConnection();
 				statement = connection.prepareCall("{call calculating_responseHours(?,?)}");

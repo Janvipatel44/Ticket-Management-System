@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 import database.intefaces.IConnectionManager;
-import reuseablePackage.interfaces.IticketStatusInProgress;
+import updateTicketDetails.interfaces.ITicketStatusOperationsDB;
 import updateTicketDetails.interfaces.IUpdateTicket;
 
 public class UpdateTicket implements IUpdateTicket
@@ -18,8 +18,7 @@ public class UpdateTicket implements IUpdateTicket
 
 	static String fileName = "ConfigurationFile";
 	private IConnectionManager ConnectionMng;
-	private IticketStatusInProgress ticketInProgress;
-	
+	private ITicketStatusOperationsDB ticketStatusOperationsDB = new TicketStatusOperationsDB();
 	public UpdateTicket(IConnectionManager ConnectionMng)
 	{
 		this.ConnectionMng = ConnectionMng;
@@ -63,8 +62,9 @@ public class UpdateTicket implements IUpdateTicket
 	
 	private boolean changeTicketSatatus(String ticketID, String valueToUpdate) {
 		valueToUpdate = valueToUpdate.toLowerCase();
-		double hours=0;
+		double hours = 0;
 		boolean result = false;
+		int choice = 0;
 		try 
 		{
 			connect = ConnectionMng.establishConnection();
@@ -77,49 +77,85 @@ public class UpdateTicket implements IUpdateTicket
 			if(resultSet.next())
 			{
 				String status = resultSet.getString("ticketStatus");
-				if(status.equals("done"))
+				if(status.equals("null"))
+				{
+					hours=0;
+					ticketStatusOperationsDB.openTicket(ticketID);
+				}
+				else if(status.equals("done"))
 				{
 					return false;
-					
 				}else if(status.equalsIgnoreCase("on hold"))
 				{
-					if(status.equals(valueToUpdate))
-					{
+					if(status.equalsIgnoreCase(valueToUpdate)) {
 						return false;
-					}else 
-					{
-						
 					}
-				}else if(status.equalsIgnoreCase("in progress"))
+					else
+					{
+						hours = ticketStatusOperationsDB.ticketonHoldHours(ticketID);
+						choice = 1;
+					}
+					
+				}
+				else if(status.equalsIgnoreCase("in progress"))
 				{
 					if(status.equals(valueToUpdate))
 					{
 						return false;
-					}else 
+					}
+					else 
 					{
-						
-						hours = ticketInProgress.calculateHours(ticketID);
-						if(hours > -1)
-						{
-							double previoushours = resultSet.getDouble("ticketInProgressHours");
-							if(previoushours > 0 ) 
-							{
-								hours = hours + previoushours;
-							}
-							SPstatement = connect.prepareCall("{call updateTicketStatusDetails(?,?,?,?)}");
-							SPstatement.setInt(1,1);
-							SPstatement.setString(2,ticketID);
-							SPstatement.setDouble(3,hours);
-							SPstatement.setString(4,valueToUpdate);
-							SPstatement.execute();
-							int count = SPstatement.getUpdateCount();
-							if(count > 0)
-							{
-								   result = true;
-							}
-						}
+						hours = ticketStatusOperationsDB.ticketInProgressHours(ticketID);
+						choice = 2;
+						//hours = ticketInProgress.calculateHours(ticketID);
 					}
 					
+				}
+				
+				
+				System.out.println("Hours: "+hours);
+				double previoushours =0;
+				int count=0;
+				if(choice==1)
+				{
+					 previoushours = resultSet.getDouble("ticketOnHoldHours");
+				}
+				else if(choice==2)
+				{
+					previoushours = resultSet.getDouble("ticketInProgressHours");
+				}
+				
+				if(previoushours > 0 ) 
+				{
+					hours = hours + previoushours;
+				}
+				
+				if(valueToUpdate.equals("done"))
+				{
+					SPstatement = connect.prepareCall("{call calculating_resolutionHours(?,?,?,?)}");
+					SPstatement.setString(1,status);
+					SPstatement.setString(2,ticketID);
+					SPstatement.setDouble(3,hours);
+					SPstatement.setString(4,valueToUpdate);
+					SPstatement.execute();
+					count = SPstatement.getUpdateCount();
+					
+				}
+				else if(hours>-1)
+				{
+					
+					SPstatement = connect.prepareCall("{call updateTicketStatusDetails(?,?,?,?)}");
+					SPstatement.setInt(1,choice);
+					SPstatement.setString(2,ticketID);
+					SPstatement.setDouble(3,hours);
+					SPstatement.setString(4,valueToUpdate);
+					SPstatement.execute();
+					count = SPstatement.getUpdateCount();
+					
+				}
+				if(count > 0)
+				{
+					   result = true;
 				}
 			}
 			
