@@ -1,6 +1,9 @@
 package Rating;
-import Rating.abstractfactory.*;
-import Rating.interfaces.*;
+import Rating.abstractfactory.IRatingFactoryTest;
+import Rating.abstractfactory.RatingFactoryTest;
+import employeerating.abstractfactory.*;
+import employeerating.interfaces.*;
+
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertTrue;

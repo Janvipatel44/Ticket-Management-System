@@ -5,13 +5,13 @@ import login.Interfaces.*;
 public class Registration implements IRegister
 {
     private final ILoginFactory loginFactory = LoginFactory.instance();
-    private final IPersistenceUserRegistrationOperations userRegistrationOperations;
+    private final IUserRegistrationDao userRegistrationOperations;
     private final IInputOutputHandler inputOutputHandler;
     private final IEncryption encryption = loginFactory.getEncryption();
     private boolean result = false;
     private IPasswordValidations passwordValidations = loginFactory.getPasswordValidations();
 
-    public Registration(IPersistenceUserRegistrationOperations userRegistrationOperations, IInputOutputHandler inputOutputHandler)
+    public Registration(IUserRegistrationDao userRegistrationOperations, IInputOutputHandler inputOutputHandler)
     {
         this.userRegistrationOperations = userRegistrationOperations;
         this.inputOutputHandler = inputOutputHandler;

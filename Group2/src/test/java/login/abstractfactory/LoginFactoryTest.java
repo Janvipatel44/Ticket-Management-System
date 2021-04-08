@@ -23,7 +23,7 @@ public class LoginFactoryTest implements ILoginFactoryTest
         return uniqueInstance;
     }
 
-    public IPersistenceAuthenticationOperations getAuthenticationOperationsMock()
+    public IAuthenticationDao getAuthenticationOperationsMock()
     {
         return new AuthenticationOperationsMock();
     }
@@ -33,12 +33,12 @@ public class LoginFactoryTest implements ILoginFactoryTest
         return new MailMock();
     }
 
-    public IPersistenceForgotPasswordOperations getPersistenceForgotPasswordOperationsMock()
+    public IForgotPasswordDao getPersistenceForgotPasswordOperationsMock()
     {
         return new PersistenceForgotPasswordOperationsMock();
     }
 
-    public IPersistenceUserRegistrationOperations getPersistenceUserRegistrationOperationsMock()
+    public IUserRegistrationDao getPersistenceUserRegistrationOperationsMock()
     {
         return new PersistenceUserRegistrationOperationsMock();
     }

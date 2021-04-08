@@ -6,11 +6,11 @@ import userinterface.InputOutputHandler;
 public class Authentication implements IAuthentication
 {
     ILoginFactory loginFactory = LoginFactory.instance();
-    private final IPersistenceAuthenticationOperations authenticationOperations;
+    private final IAuthenticationDao authenticationOperations;
     private final IEncryption encryption = loginFactory.getEncryption();
     private final IInputOutputHandler inputOutputHandler = new InputOutputHandler();
 
-    public Authentication(IPersistenceAuthenticationOperations authenticationOperations)
+    public Authentication(IAuthenticationDao authenticationOperations)
     {
         this.authenticationOperations = authenticationOperations;
     }

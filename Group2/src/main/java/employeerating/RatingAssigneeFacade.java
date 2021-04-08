@@ -1,11 +1,11 @@
-package Rating;
-import Rating.interfaces.*;
+package employeerating;
+import employeerating.interfaces.*;
 public class RatingAssigneeFacade implements IRatingAssignee
 {
     IRatingQuestionnaire questionnaire;
-    IPersistenceRating persistenceRating;
+    IRatingDao persistenceRating;
 
-    public RatingAssigneeFacade(IRatingQuestionnaire questionnaire, IPersistenceRating persistenceRating)
+    public RatingAssigneeFacade(IRatingQuestionnaire questionnaire, IRatingDao persistenceRating)
     {
         this.questionnaire = questionnaire;
         this.persistenceRating = persistenceRating;

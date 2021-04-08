@@ -1,6 +1,6 @@
 package login;
 import login.Interfaces.IForgotPassword;
-import login.Interfaces.IPersistenceForgotPasswordOperations;
+import login.Interfaces.IForgotPasswordDao;
 import login.abstractfactory.ILoginFactory;
 import login.abstractfactory.ILoginFactoryTest;
 import login.abstractfactory.LoginFactory;
@@ -13,7 +13,7 @@ public class ForgotPasswordTest
     ILoginFactoryTest loginFactoryTest = LoginFactoryTest.instance();
     ILoginFactory loginFactory = LoginFactory.instance();
     IMail mail = loginFactoryTest.getMailMock();
-    IPersistenceForgotPasswordOperations forgotPasswordOperations = loginFactoryTest.getPersistenceForgotPasswordOperationsMock();
+    IForgotPasswordDao forgotPasswordOperations = loginFactoryTest.getPersistenceForgotPasswordOperationsMock();
     IForgotPassword forgotPassword = loginFactory.getForgotPassword(mail, forgotPasswordOperations);
 
     @Test

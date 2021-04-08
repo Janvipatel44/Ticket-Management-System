@@ -8,7 +8,7 @@ import mailservice.ReadPropertiesFile;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
-public class PersistenceAuthenticationOperations implements IPersistenceAuthenticationOperations
+public class AuthenticationDao implements IAuthenticationDao
 {
     ILoginFactory loginFactory = LoginFactory.instance();
     private final IDatabaseFactory databaseFactory = DatabaseFactory.instance();
@@ -16,7 +16,7 @@ public class PersistenceAuthenticationOperations implements IPersistenceAuthenti
     private String dbConfigurationKey = "DBConfiguration";
     private final IConnectionManager connection;
 
-    public PersistenceAuthenticationOperations() throws IOException {
+    public AuthenticationDao() throws IOException {
         Properties properties = ReadPropertiesFile.readConfigPropertyFile(projectConfigurationFile);
         String configurationFile = (String)properties.get(dbConfigurationKey);
         connection = databaseFactory.getConnectionManager(configurationFile);
@@ -101,7 +101,7 @@ public class PersistenceAuthenticationOperations implements IPersistenceAuthenti
                 return null;
             }
         }
-        catch (SQLException throwables)
+        catch (Exception throwables)
         {
             return null;
         }
