@@ -64,6 +64,7 @@ public class updateTicket implements IupdateTicket
 	
 	private boolean changeTicketSatatus(String ticketID, String valueToUpdate) {
 		valueToUpdate = valueToUpdate.toLowerCase();
+		double hours=0;
 		boolean result = false;
 		try 
 		{
@@ -79,19 +80,26 @@ public class updateTicket implements IupdateTicket
 				String status = resultSet.getString("ticketStatus");
 				if(status.equals("done"))
 				{
+					return false;
 					
 				}else if(status.equalsIgnoreCase("on hold"))
 				{
-					
+					if(status.equals(valueToUpdate))
+					{
+						return false;
+					}else 
+					{
+						
+					}
 				}else if(status.equalsIgnoreCase("in progress"))
 				{
 					if(status.equals(valueToUpdate))
 					{
-						
+						return false;
 					}else 
 					{
 						
-						double hours = ticketInProgress.calculateHours(ticketID);
+						hours = ticketInProgress.calculateHours(ticketID);
 						if(hours > -1)
 						{
 							double previoushours = resultSet.getDouble("ticketInProgressHours");
