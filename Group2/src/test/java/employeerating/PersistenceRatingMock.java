@@ -1,4 +1,4 @@
-package Rating;
+package employeerating;
 import employeerating.interfaces.IRatingDao;
 public class PersistenceRatingMock implements IRatingDao
 {

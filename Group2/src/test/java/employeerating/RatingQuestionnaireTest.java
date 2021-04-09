@@ -1,10 +1,8 @@
-package Rating;
+package employeerating;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import Rating.abstractfactory.IRatingFactoryTest;
-import Rating.abstractfactory.RatingFactoryTest;
 import employeerating.abstractfactory.*;
 import employeerating.interfaces.*;
 public class RatingQuestionnaireTest

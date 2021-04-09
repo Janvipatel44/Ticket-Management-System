@@ -1,6 +1,4 @@
-package Rating;
-import Rating.abstractfactory.IRatingFactoryTest;
-import Rating.abstractfactory.RatingFactoryTest;
+package employeerating;
 import employeerating.abstractfactory.*;
 import employeerating.interfaces.*;
 

@@ -1,6 +1,7 @@
-package customerAnalysis;
-import customerAnalysis.Interfaces.*;
+package sncustomeranalysis;
 import java.sql.Date;
+
+import sncustomeranalysis.Interfaces.*;
 public class ParameterizedCustomerTicket implements IParameterizedCustomerTicket
 {
     private final String ticketID;

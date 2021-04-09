@@ -1,8 +1,8 @@
-package customerAnalysis.abstractfactory;
-import customerAnalysis.CustomerAnalysisFacade;
-import customerAnalysis.Interfaces.ICustomerAnalysis;
-import customerAnalysis.Interfaces.ICustomerAnalysisDao;
-import customerAnalysis.PersistenceCustomerMock;
+package sncustomeranalysis.abstractfactory;
+import sncustomeranalysis.CustomerAnalysisFacade;
+import sncustomeranalysis.PersistenceCustomerMock;
+import sncustomeranalysis.Interfaces.ICustomerAnalysis;
+import sncustomeranalysis.Interfaces.ICustomerAnalysisDao;
 public class CustomerAnalysisFactoryTest implements ICustomerAnalysisFactoryTest
 {
     private static ICustomerAnalysisFactoryTest uniqueInstance = null;

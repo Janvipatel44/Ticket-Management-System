@@ -1,6 +1,7 @@
-package customerAnalysis;
-import customerAnalysis.Interfaces.*;
-import customerAnalysis.abstractfactory.*;
+package sncustomeranalysis;
+import sncustomeranalysis.Interfaces.*;
+import sncustomeranalysis.abstractfactory.*;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

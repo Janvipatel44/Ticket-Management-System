@@ -1,6 +1,7 @@
-package customerAnalysis;
-import customerAnalysis.Interfaces.*;
-import customerAnalysis.abstractfactory.*;
+package sncustomeranalysis;
+import sncustomeranalysis.Interfaces.*;
+import sncustomeranalysis.abstractfactory.*;
+
 import org.junit.Before;
 import org.junit.Test;
 import java.util.List;

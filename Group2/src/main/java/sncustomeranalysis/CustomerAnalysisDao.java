@@ -1,9 +1,10 @@
-package customerAnalysis;
-import customerAnalysis.Interfaces.*;
-import customerAnalysis.abstractfactory.*;
+package sncustomeranalysis;
 import database.abstractfactory.*;
 import database.intefaces.*;
 import mailservice.ReadPropertiesFile;
+import sncustomeranalysis.Interfaces.*;
+import sncustomeranalysis.abstractfactory.*;
+
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;

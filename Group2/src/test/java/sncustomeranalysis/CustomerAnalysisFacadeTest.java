@@ -1,7 +1,8 @@
-package customerAnalysis;
-import customerAnalysis.Interfaces.ICustomerAnalysis;
-import customerAnalysis.abstractfactory.CustomerAnalysisFactoryTest;
-import customerAnalysis.abstractfactory.ICustomerAnalysisFactoryTest;
+package sncustomeranalysis;
+import sncustomeranalysis.Interfaces.ICustomerAnalysis;
+import sncustomeranalysis.abstractfactory.CustomerAnalysisFactoryTest;
+import sncustomeranalysis.abstractfactory.ICustomerAnalysisFactoryTest;
+
 import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;

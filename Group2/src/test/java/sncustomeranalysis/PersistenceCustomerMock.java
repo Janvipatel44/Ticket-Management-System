@@ -1,6 +1,7 @@
-package customerAnalysis;
-import customerAnalysis.Interfaces.*;
-import customerAnalysis.abstractfactory.*;
+package sncustomeranalysis;
+import sncustomeranalysis.Interfaces.*;
+import sncustomeranalysis.abstractfactory.*;
+
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;

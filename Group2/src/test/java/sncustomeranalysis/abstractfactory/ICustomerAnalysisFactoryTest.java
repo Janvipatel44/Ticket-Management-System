@@ -1,5 +1,5 @@
-package customerAnalysis.abstractfactory;
-import customerAnalysis.Interfaces.*;
+package sncustomeranalysis.abstractfactory;
+import sncustomeranalysis.Interfaces.*;
 public interface ICustomerAnalysisFactoryTest
 {
     ICustomerAnalysis getCustomerAnalysis();

@@ -1,4 +1,4 @@
-package customerAnalysis.Interfaces;
+package sncustomeranalysis.Interfaces;
 import java.sql.Date;
 public interface IParameterizedCustomerTicket
 {

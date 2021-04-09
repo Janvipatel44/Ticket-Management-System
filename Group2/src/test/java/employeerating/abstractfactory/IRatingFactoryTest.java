@@ -1,4 +1,4 @@
-package Rating.abstractfactory;
+package employeerating.abstractfactory;
 import employeerating.interfaces.IRatingDao;
 import employeerating.interfaces.IRatingAssignee;
 import employeerating.interfaces.IRatingQuestionnaire;

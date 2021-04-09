@@ -1,6 +1,6 @@
-package customerAnalysis.abstractfactory;
-import customerAnalysis.Interfaces.*;
-import customerAnalysis.*;
+package sncustomeranalysis.abstractfactory;
+import sncustomeranalysis.*;
+import sncustomeranalysis.Interfaces.*;
 
 import java.io.IOException;
 import java.sql.Date;

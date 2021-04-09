@@ -1,9 +1,9 @@
-package customerAnalysis.abstractfactory;
-import customerAnalysis.Interfaces.*;
-
+package sncustomeranalysis.abstractfactory;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
+
+import sncustomeranalysis.Interfaces.*;
 public interface ICustomerAnalysisFactory
 {
     IComputeCustomerProperties getComputeCustomerProperties(List<IParameterizedCustomerTicket> tickets);

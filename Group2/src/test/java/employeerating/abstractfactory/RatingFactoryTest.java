@@ -1,5 +1,5 @@
-package Rating.abstractfactory;
-import Rating.PersistenceRatingMock;
+package employeerating.abstractfactory;
+import employeerating.PersistenceRatingMock;
 import employeerating.RatingAssigneeFacade;
 import employeerating.RatingQuestionnaire;
 import employeerating.interfaces.*;

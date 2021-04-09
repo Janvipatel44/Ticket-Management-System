@@ -1,4 +1,4 @@
-package customerAnalysis.Interfaces;
+package sncustomeranalysis.Interfaces;
 import java.util.List;
 public interface ICustomerAnalysisDao
 {
