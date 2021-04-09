@@ -1,4 +1,7 @@
+//Author : Vamsi Krishna Utla
+
 package employeerating.interfaces;
+
 public interface IRatingDao
 {
     public String getPersistenceCreatorID(String ticketID);

@@ -1,15 +1,18 @@
+//Author : Vamsi Krishna Utla
+
 package sncustomeranalysis;
+
 import database.abstractfactory.*;
 import database.intefaces.*;
 import mailservice.ReadPropertiesFile;
 import sncustomeranalysis.Interfaces.*;
 import sncustomeranalysis.abstractfactory.*;
-
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+
 public class CustomerAnalysisDao implements ICustomerAnalysisDao
 {
     private final IDatabaseFactory databaseFactory = DatabaseFactory.instance();

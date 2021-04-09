@@ -1,3 +1,5 @@
+//Author : Vamsi Krishna Utla
+
 package employeerating;
 
 import java.io.IOException;
@@ -7,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Properties;
-
 import database.abstractfactory.*;
 import database.intefaces.IConnectionManager;
 import database.intefaces.IDatabaseOperations;
