@@ -18,15 +18,15 @@ public class ExportTickets implements  IExportTicket{
 	private IStoreTicketData storeTicketData;
 	private ITableGenerator tableFormate;
 	
-	public ExportTickets()
+	public ExportTickets(IStoreTicketData storeTicketData)
 	{
-		storeTicketData = new StoreTicketData();
+		this.storeTicketData = storeTicketData;
 		tableFormate = new TableGenerator();
 	}
 	
-	public void exportTicket(String FileName) {
+	public boolean exportTicket(String FileName) {
 		File myObj = new File(FileName);
-	      try {
+	      try{
 			if (myObj.createNewFile()) 
 			{
 				FileWriter myWriter = new FileWriter(FileName);
@@ -61,11 +61,12 @@ public class ExportTickets implements  IExportTicket{
 				 
 				  myWriter.write(tableFormate.generateTable(columnOfTable, allRowData));
 				  myWriter.close();
-			}		  
-		} 
-	    catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			}
+			return true;
+	      }
+	    catch (IOException e)
+	    {
+	    	return false;
 		} 
 	}
 }

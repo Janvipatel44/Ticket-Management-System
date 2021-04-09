@@ -13,7 +13,7 @@ import reuseablePackage.interfaces.IGetListOfTickets;
 import reuseablePackage.interfaces.IStoreTicketData;
 import roles.abstractfactory.IRoleFactory;
 import updateTicketDetails.abstractfactory.IUpdateTicketFactory;
-import updateTicketDetails.abstractfactory.UpdateTicketsFactory;
+import updateTicketDetails.abstractfactory.UpdateTicketFactory;
 import updateTicketDetails.interfaces.IUpdateTicket;
 import userinterface.abstractFactory.IUserInterfaceFactory;
 import userinterface.abstractFactory.UserInterfaceFactory;
@@ -34,15 +34,15 @@ public class UpdateTicketScreen implements IUpdateTicketScreen
 	private String dbConfigurationKey = "DBConfiguration";
 	private final IDatabaseFactory databaseFactory = DatabaseFactory.instance();
 		
-	IUpdateTicketFactory updateticketfactory = UpdateTicketsFactory.instance(); 
-	IReuseableClasssFactory reusableFactory = ReuseableClasssFactory.instance();
-	IReuseableClasssFactory reuseableclassfactory = ReuseableClasssFactory.instance();
+	private IUpdateTicketFactory updateticketfactory = UpdateTicketFactory.instance(); 
+	private IReuseableClasssFactory reusableFactory = ReuseableClasssFactory.instance();
+	private IReuseableClasssFactory reuseableclassfactory = ReuseableClasssFactory.instance();
 	
-	ICheckTicketsExists checkticketexists;
-	IStoreTicketData storeticketdata;
-	IGetListOfTickets getalltickets;
-	IInputOutputHandler inputoutputhandler;
-	IUpdateTicket updateTicket;
+	private ICheckTicketsExists checkticketexists;
+	private IStoreTicketData storeticketdata;
+	private IGetListOfTickets getalltickets;
+	private IInputOutputHandler inputoutputhandler;
+	private IUpdateTicket updateTicket;
 	
 	
 	public UpdateTicketScreen(IInputOutputHandler inputoutputhandler)
@@ -78,10 +78,14 @@ public class UpdateTicketScreen implements IUpdateTicketScreen
 				if(result == true)
 				{
 					inputoutputhandler.displayMethod("1. Expected Date"+"\n"+"2. Reporter ID"+"\n"+"3. Assignee Name"+"\n"+"4. priority"+"\n"+"5. urgency"+
-							"\n"+"6. impact"+"\n"+"7. status of ticket");
+							"\n"+"6. impact"+"\n"+"7. status of ticket"+"\n"+"8. exit");
 					
 					inputoutputhandler.displayMethod("Please provide your choice");
 					int choiceToUpdate =inputoutputhandler.inputInt();
+					if(choiceToUpdate==8)
+					{
+						break;
+					}
 					inputoutputhandler.displayMethod("Enter Update Value:");
 					String value = inputoutputhandler.input();
 					result = updateTicket.updateValueOfTicketForManager(ticketId,choiceToUpdate,value);

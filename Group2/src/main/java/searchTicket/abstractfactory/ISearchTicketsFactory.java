@@ -9,6 +9,6 @@ import searchTicket.interfaces.ISearchTicket;
 public interface ISearchTicketsFactory {
 
 	ISearchTicket searchticket(IStoreTicketData storeTicketData,IConnectionManager ConnectionMng);
-	IExportTicket exportTicketData();
+	IExportTicket exportTicketData(IStoreTicketData storeTicketData);
 }
 

@@ -2,6 +2,7 @@ package sortTickets.abstractfactory;
 
 
 import database.intefaces.IConnectionManager;
+import reuseablePackage.interfaces.IStoreTicketData;
 import sortTickets.SortTicket;
 import sortTickets.interfaces.ISortTicket;
 
@@ -26,9 +27,9 @@ public class SortTicketFactory implements ISortTicketFactory
 
 
 	
-	public ISortTicket sortTicketobj(IConnectionManager connectionManager)
+	public ISortTicket sortTicketobj(IStoreTicketData storeTicketData,IConnectionManager connectionManager)
 	{
-		return new SortTicket(connectionManager);
+		return new SortTicket(storeTicketData,connectionManager);
 	}
 	
 }

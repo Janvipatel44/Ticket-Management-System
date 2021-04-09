@@ -131,7 +131,7 @@ public class SearchTicketScreen implements ISearchTicketScreen
 			choice=inputoutputhandler.inputInt();
 			if(choice == 1)
 			{
-				openticket = reuseablefactory.openticket(connectionManager);
+				openticket = reuseablefactory.openticket(storeticketdata,connectionManager);
 				
 				inputoutputhandler.displayMethod("Enter Ticket ID:");
 				ticketID = inputoutputhandler.input();
@@ -140,7 +140,7 @@ public class SearchTicketScreen implements ISearchTicketScreen
 			}
 			else if(choice == 2)
 			{
-				IExportTicket exportTicketData = searchticketfactory.exportTicketData();
+				IExportTicket exportTicketData = searchticketfactory.exportTicketData(storeticketdata);
 				String FileName = "";
 				inputoutputhandler.displayMethod("Enter FileName with Path:");
 				FileName = inputoutputhandler.input();

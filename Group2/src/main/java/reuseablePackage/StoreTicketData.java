@@ -14,7 +14,6 @@ public class StoreTicketData implements IStoreTicketData
 	private static LinkedHashMap<String,ArrayList<String>> ticketData ; 
 	private static ArrayList<String> commentsOntickets;
 	private static List<String> columnsOfTable;
-	private IStoreTicketData storeTicketData = new StoreTicketData();
 	
 	public StoreTicketData()
 	{

@@ -19,10 +19,10 @@ public class OpenTickets implements IOpenTicket
 	private IStoreTicketData storeTicketData;
 	private IDisplayTickets displayUser;
 	
-	public OpenTickets(IConnectionManager ConnectionManager)
+	public OpenTickets(IStoreTicketData storeTicketData,IConnectionManager ConnectionManager)
 	{
 		this.ConnectionManager = ConnectionManager;
-		storeTicketData = new StoreTicketData() ; 
+		this.storeTicketData = storeTicketData; 
 		displayUser = new DisplayTickets();	
 	}
 

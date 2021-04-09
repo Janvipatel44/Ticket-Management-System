@@ -71,7 +71,6 @@ public class CheckTicketsExists  implements ICheckTicketsExists
 				}
 				connectionManager.closeConnection();
 			}
-			
 		} 
 		catch (Exception e)
 		{

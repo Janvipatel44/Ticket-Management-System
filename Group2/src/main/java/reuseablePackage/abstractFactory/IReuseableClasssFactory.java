@@ -14,8 +14,8 @@ public interface IReuseableClasssFactory
 	IStoreTicketData storeTicketData();
 	ITableGenerator tableFormate();
 	IDisplayTickets displayUser();
-	IOpenTicket openticket(IConnectionManager connectionManager);
+	IOpenTicket openticket(IStoreTicketData storeTicketData,IConnectionManager connectionManager);
 	ICheckTicketsExists checkticketexists(IConnectionManager connectionManager);
 	IGetListOfTickets getalltickets(IConnectionManager connectionManager);
-	IExportTicket exportTicketData();	
+	IExportTicket exportTicketData(IStoreTicketData storeTicketData);	
 }

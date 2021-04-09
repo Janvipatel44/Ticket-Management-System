@@ -57,12 +57,17 @@ public class OpenTicketMock implements IOpenTicket
 	{
 		ArrayList<String> comment = new ArrayList<String>();
 		String ticketID = "111";
+		String commentData;
 		if(ticketId.equals(ticketID))
 		{
-			String commentData = "Tejaswi" + " "+"Chaudhary"+"\t\t"+"2021-03-14"+"\n"+"ITs good enough";
+			commentData = "Tejaswi" + " "+"Chaudhary"+"\t\t"+"2021-03-14"+"\n"+"ITs good enough";
 			comment.add(commentData);
+			return comment;
 		}
-		return comment;
+		else
+		{
+			return comment;
+		}
 	}
 	
 	private void addColumnsOfTable() {

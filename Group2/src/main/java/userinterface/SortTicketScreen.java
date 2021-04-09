@@ -50,7 +50,7 @@ public class SortTicketScreen implements ISortTciketScreen
 		do {
 			inputoutputhandler.displayMethod("Enter your choice:");
 			choice = inputoutputhandler.inputInt();
-			ISortTicket sortTicketobj = sortticketfactory.sortTicketobj(connectionManager);
+			ISortTicket sortTicketobj = sortticketfactory.sortTicketobj(storeTicketData,connectionManager);
 			if (choice <= 3 && choice >= 1) {
 				output = sortTicketobj.sortTickets(choice);
 				inputoutputhandler.displayMethod(output);
@@ -67,7 +67,7 @@ public class SortTicketScreen implements ISortTciketScreen
 		int choice = 0;
 		String output="";
 		String ticketID = null;
-		IOpenTicket openticket = resuableclassfactore.openticket(connectionManager);
+		IOpenTicket openticket = resuableclassfactore.openticket(storeTicketData,connectionManager);
 
 		printOnScreenString = "1. open Ticket" + " \n" + "2. exit";
 		inputoutputhandler.displayMethod(printOnScreenString);

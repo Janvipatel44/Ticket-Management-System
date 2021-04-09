@@ -23,9 +23,9 @@ public class SortTicket implements ISortTicket
 	private IDisplayTickets displayUser;
 	private IStoreTicketData storeTicketData ;
 	
-	public SortTicket(IConnectionManager connectionManager)
+	public SortTicket(IStoreTicketData storeTicketData,IConnectionManager connectionManager)
 	{
-		storeTicketData = reuseablefactory.storeTicketData(); 
+		this.storeTicketData = storeTicketData; 
 		displayUser = reuseablefactory.displayUser();
 		this.connectionManager = connectionManager;
 	}

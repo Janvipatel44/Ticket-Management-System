@@ -52,9 +52,9 @@ public class ReuseableClasssFactory implements IReuseableClasssFactory {
 
 	}
 
-	public IOpenTicket openticket(IConnectionManager connectionManager)
+	public IOpenTicket openticket(IStoreTicketData storeTicketData,IConnectionManager connectionManager)
 	{
-		return new OpenTickets(connectionManager);
+		return new OpenTickets(storeTicketData,connectionManager);
 	}
 
 
@@ -70,9 +70,9 @@ public class ReuseableClasssFactory implements IReuseableClasssFactory {
 	}
 	
 
-	public IExportTicket exportTicketData() 
+	public IExportTicket exportTicketData(IStoreTicketData storeTicketData) 
 	{
-		return new ExportTickets();
+		return new ExportTickets(storeTicketData);
 	}
 	
 }

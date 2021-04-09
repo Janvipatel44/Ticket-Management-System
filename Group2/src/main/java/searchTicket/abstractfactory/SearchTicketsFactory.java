@@ -34,9 +34,9 @@ public class SearchTicketsFactory implements ISearchTicketsFactory
 	}
 
 	
-	public IExportTicket exportTicketData() 
+	public IExportTicket exportTicketData(IStoreTicketData storeTicketData) 
 	{
-		return new ExportTickets();
+		return new ExportTickets(storeTicketData);
 	}
 
    
