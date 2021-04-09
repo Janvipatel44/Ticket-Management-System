@@ -1,10 +1,13 @@
-package customerAnalysis.abstractfactory;
-import customerAnalysis.Interfaces.*;
-import customerAnalysis.*;
+//Author : Vamsi Krishna Utla
 
+package sncustomeranalysis.abstractfactory;
+
+import sncustomeranalysis.*;
+import sncustomeranalysis.Interfaces.*;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
+
 public class CustomerAnalysisFactory implements ICustomerAnalysisFactory
 {
     private static ICustomerAnalysisFactory uniqueInstance = null;

@@ -1,9 +1,13 @@
-package customerAnalysis;
-import customerAnalysis.Interfaces.*;
+//Author : Vamsi Krishna Utla
+
+package sncustomeranalysis;
+
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import sncustomeranalysis.Interfaces.*;
+
 public class ComputeCustomerProperties implements IComputeCustomerProperties
 {
     private List<IParameterizedCustomerTicket> tickets;

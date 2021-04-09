@@ -1,10 +1,14 @@
+//Author : Vamsi Krishna Utla
+
 package userinterface;
-import customerAnalysis.Interfaces.ICustomerAnalysis;
-import customerAnalysis.abstractfactory.*;
+
 import login.Interfaces.IParameterizedUser;
+import sncustomeranalysis.Interfaces.ICustomerAnalysis;
+import sncustomeranalysis.abstractfactory.*;
 import userinterface.abstractFactory.*;
 import java.io.IOException;
 import java.util.Map;
+
 public class CustomerAnalysisScreen implements ICustomerAnalysisScreen
 {
     private final ICustomerAnalysisFactory customerAnalysisFactory = CustomerAnalysisFactory.instance();
