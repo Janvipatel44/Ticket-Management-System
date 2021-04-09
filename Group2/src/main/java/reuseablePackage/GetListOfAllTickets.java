@@ -1,3 +1,4 @@
+//Author : Tejaswi Chaudhary
 package reuseablePackage;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -40,7 +41,7 @@ public class GetListOfAllTickets implements IGetListOfTickets
 			SPstatement.setLong(1,choice);
 			SPstatement.setString(2, null);
 			boolean hasResult = SPstatement.execute();
-			if(hasResult)
+			if(hasResult == true)
 			{
 				ResultSet resultSet = SPstatement.getResultSet();
 			    ResultSetMetaData tableMetaData = resultSet.getMetaData(); 
