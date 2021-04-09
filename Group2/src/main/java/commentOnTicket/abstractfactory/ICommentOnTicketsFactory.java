@@ -5,5 +5,5 @@ import database.intefaces.IConnectionManager;
 
 public interface ICommentOnTicketsFactory 
 {
-	ICommentOnTickets postComment(IConnectionManager ConnectionMng);
+	ICommentOnTickets postComment(IConnectionManager connectionManager);
 }

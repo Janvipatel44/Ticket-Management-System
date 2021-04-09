@@ -1,13 +1,12 @@
 package userinterface;
 
-import database.ConnectionManager;
+import database.abstractfactory.DatabaseFactory;
+import database.abstractfactory.IDatabaseFactory;
 import database.intefaces.IConnectionManager;
 import login.Interfaces.IParameterizedUser;
 import managerfeatures.abstractfactory.IManagerFeaturesFactory;
 import reuseablePackage.abstractFactory.IReuseableClasssFactory;
 import reuseablePackage.abstractFactory.ReuseableClasssFactory;
-import reuseablePackage.interfaces.ITableGenerator;
-import reuseablePackage.interfaces.IDisplayTickets;
 import reuseablePackage.interfaces.IExportTicket;
 import reuseablePackage.interfaces.IOpenTicket;
 import reuseablePackage.interfaces.IStoreTicketData;
@@ -19,28 +18,30 @@ import userinterface.abstractFactory.UserInterfaceFactory;
 
 public class SearchTicketScreen implements ISearchTicketScreen
 {
-	static String ConfigurationFile = "ConfigurationFile";
+	private String configurationFile = "ConfigurationFile";
 	
 	IBackToHomePageScreen backToHomePageScreen;
 	IUserInterfaceFactory userInterfaceFactory;
 	IManagerFeaturesFactory managerFeaturesFactory;
 
-
-	static IConnectionManager connectionMng = new ConnectionManager(ConfigurationFile);
-	static IInputOutputHandler inputoutputhandler;
+	private static IConnectionManager connectionManager;
+	private final IDatabaseFactory databaseFactory = DatabaseFactory.instance();
+	
 	
 	static IReuseableClasssFactory reuseablefactory=ReuseableClasssFactory.instance();
-	static IStoreTicketData storeticketdata=reuseablefactory.storeTicketData();
-	static ITableGenerator tablegenerator = reuseablefactory.tableFormate();
-	static IDisplayTickets displayuser=reuseablefactory.displayUser(tablegenerator);
-	static IOpenTicket openticket;
-	
 	static ISearchTicketsFactory searchticketfactory= SearchTicketsFactory.instance();
-	static ISearchTicket searchticket=searchticketfactory.searchticket(storeticketdata,displayuser, connectionMng);;
+	static IStoreTicketData storeticketdata;
+	
+	static IOpenTicket openticket;
+	static IInputOutputHandler inputoutputhandler;
+	static ISearchTicket searchticket;
 	
 	public SearchTicketScreen(IInputOutputHandler inputoutputhandler)
 	{
 		this.inputoutputhandler = inputoutputhandler;
+		connectionManager = databaseFactory.getConnectionManager(configurationFile);
+		storeticketdata=reuseablefactory.storeTicketData();
+		searchticket=searchticketfactory.searchticket(storeticketdata,connectionManager);
 	}
 	
 	public void searchTicketScreen(IParameterizedUser user)
@@ -48,8 +49,7 @@ public class SearchTicketScreen implements ISearchTicketScreen
 		int choice=0;
 		String output="";
 		String searchInput=null;
-			
-		//Available options for user
+		
 		String userOptions = "1. Ticket ID"+"\n"+"2. Assignee"+"\n"+"3. Ticket type"+"\n"+"4. All Ticket"+"\n"+
 							 "5. Ticket creator"+"\n"+"6. keyword"+"\n"+"7. exit";
 		inputoutputhandler.displayMethod(userOptions);
@@ -109,7 +109,6 @@ public class SearchTicketScreen implements ISearchTicketScreen
 			{
 				inputoutputhandler.displayMethod("No ticket found!");
 			}
-			
 		}
 		while(choice!=7);
 		userInterfaceFactory = UserInterfaceFactory.instance();
@@ -118,7 +117,8 @@ public class SearchTicketScreen implements ISearchTicketScreen
 
 	}
 
-	private static void open() {
+	private static void open() 
+	{
 		int choice=0;
 		String ticketID=null;
 		
@@ -131,11 +131,11 @@ public class SearchTicketScreen implements ISearchTicketScreen
 			choice=inputoutputhandler.inputInt();
 			if(choice == 1)
 			{
-				openticket = reuseablefactory.openticket(storeticketdata,displayuser, connectionMng);
+				openticket = reuseablefactory.openticket(storeticketdata,connectionManager);
 				
 				inputoutputhandler.displayMethod("Enter Ticket ID:");
 				ticketID = inputoutputhandler.input();
-				String output=openticket.openticket(ticketID);
+				String output = openticket.openticket(ticketID);
 				inputoutputhandler.displayMethod(output);
 			}
 			else if(choice == 2)

@@ -1,8 +1,7 @@
 package userinterface;
 
-import java.util.Scanner;
-
-import database.ConnectionManager;
+import database.abstractfactory.DatabaseFactory;
+import database.abstractfactory.IDatabaseFactory;
 import database.intefaces.IConnectionManager;
 import deleteTicket.abstractfactory.DeleteTicketsFactory;
 import deleteTicket.abstractfactory.IDeleteTicketsFactory;
@@ -12,58 +11,55 @@ import managerfeatures.abstractfactory.IManagerFeaturesFactory;
 import reuseablePackage.abstractFactory.IReuseableClasssFactory;
 import reuseablePackage.abstractFactory.ReuseableClasssFactory;
 import reuseablePackage.interfaces.ICheckTicketsExists;
-import reuseablePackage.interfaces.IDisplayTickets;
 import reuseablePackage.interfaces.IGetListOfTickets;
-import reuseablePackage.interfaces.IStoreTicketData;
-import reuseablePackage.interfaces.ITableGenerator;
 import userinterface.abstractFactory.IUserInterfaceFactory;
 import userinterface.abstractFactory.UserInterfaceFactory;
 
 public class DeleteTicketScreen implements IDeleteTicketScreen
 {
-	String configurationFile = "ConfigurationFile";
-	String ticketId = null;
-	String userRole = "admin";
-	boolean result=false;
-	Scanner sc = new Scanner(System.in);
+	private String ticketId = null;
+	private String userRole = "admin";
+	private boolean result=false;
+	private String configurationFile = "ConfigurationFile";
 	
 	IBackToHomePageScreen backToHomePageScreen;
 	IUserInterfaceFactory userInterfaceFactory;
 	IManagerFeaturesFactory managerFeaturesFactory;
 
-	IInputOutputHandler inputoutputhandler;
-	IConnectionManager ConnectionMng = new ConnectionManager(configurationFile);
-	
-	IReuseableClasssFactory reusableFactory = ReuseableClasssFactory.instance();
-	ICheckTicketsExists checkticketexists = reusableFactory.checkticketexists();
-	IStoreTicketData storeticketdata = reusableFactory.storeTicketData();
-	ITableGenerator tableformate = reusableFactory.tableFormate();
-	IDisplayTickets displayticket = reusableFactory.displayUser(tableformate);
-	IGetListOfTickets getalltickets = reusableFactory.getalltickets(storeticketdata, displayticket, ConnectionMng);
-	
-	IDeleteTicketsFactory deleteticketfactory = DeleteTicketsFactory.instance();
-	IDeleteTickets deleteticket;
+
+	private IReuseableClasssFactory reusableFactory = ReuseableClasssFactory.instance();
+	private IDeleteTicketsFactory deleteticketfactory = DeleteTicketsFactory.instance();
+	private final IDatabaseFactory databaseFactory = DatabaseFactory.instance();
+	private IConnectionManager connectionManager;
+	private IInputOutputHandler inputoutputhandler;
+	private ICheckTicketsExists checkticketexists;
+	private IGetListOfTickets getalltickets;
+	private IDeleteTickets deleteticket;
 	
 	public DeleteTicketScreen(IInputOutputHandler inputoutputhandler)
 	{
 		this.inputoutputhandler = inputoutputhandler;
+		connectionManager = databaseFactory.getConnectionManager(configurationFile);
+		getalltickets = reusableFactory.getalltickets(connectionManager);
+	    checkticketexists = reusableFactory.checkticketexists(connectionManager);
+	    getalltickets = reusableFactory.getalltickets(connectionManager);
+	    deleteticket = deleteticketfactory.deleteticket(connectionManager);
 	}
 	
 	public void deleteTicketScreen(IParameterizedUser user)
 	{
 		String output;
-		
 		String userenterRole = user.getUserType().toLowerCase();
 		inputoutputhandler.displayMethod("Tickets Details");
 		output = getalltickets.listOfTickets();
+		
 		inputoutputhandler.displayMethod(output);
 		
 		if(userRole.equals(userenterRole))
 		{
-			
 			inputoutputhandler.displayMethod("Enter Ticket Id you want to delete:");
 			ticketId = inputoutputhandler.input();
-			result=checkticketexists.ticketExistForManager(ticketId);
+			result = checkticketexists.ticketExists(ticketId);
 			if(result == true)
 			{
 				result = deleteticket.deleteticket(ticketId);

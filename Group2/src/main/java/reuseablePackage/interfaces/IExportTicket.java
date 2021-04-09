@@ -1,5 +1,5 @@
 package reuseablePackage.interfaces;
 
 public interface IExportTicket {
-	public void exportTicket(String FileName);
+	public boolean exportTicket(String FileName);
 }

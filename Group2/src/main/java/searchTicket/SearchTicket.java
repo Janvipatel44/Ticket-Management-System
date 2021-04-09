@@ -10,41 +10,40 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import database.intefaces.IConnectionManager;
+import reuseablePackage.abstractFactory.IReuseableClasssFactory;
+import reuseablePackage.abstractFactory.ReuseableClasssFactory;
 import reuseablePackage.interfaces.IDisplayTickets;
 import reuseablePackage.interfaces.IStoreTicketData;
 import searchTicket.interfaces.ISearchTicket;
 
 public class SearchTicket implements ISearchTicket
 {
-	private Connection connect=null;
-	private CallableStatement SPstatement=null;
-	private ResultSet resultSet=null;
-	private boolean hasResult=false;
-	
-	
+	static IReuseableClasssFactory reuseablefactory=ReuseableClasssFactory.instance();
 	private IStoreTicketData storeTicketData;
 	private IDisplayTickets displayUser;
-	private IConnectionManager ConnectionMng;
+	private IConnectionManager connectionManager;
 	
-	public SearchTicket(IStoreTicketData storeTicketData,IDisplayTickets displayuser, IConnectionManager ConnectionMng)
+	public SearchTicket(IStoreTicketData storeTicketData,IConnectionManager connectionManager)
 	{
 		this.storeTicketData = storeTicketData; 
-		this.displayUser = displayuser;
-		this.ConnectionMng = ConnectionMng;
+		this.connectionManager = connectionManager;
+		displayUser = reuseablefactory.displayUser();
 	}
 	public String searchbyTicket(int choice, String searchInput) 
 	{
 		String output="";
 		try 
 		{
-			connect = ConnectionMng.establishConnection();
-			SPstatement = connect.prepareCall("{call searchTicket(?,?)}");
+			Connection connect = connectionManager.establishConnection();
+			CallableStatement SPstatement;
+			String procedureCall = "searchTicket";
+			SPstatement = connect.prepareCall("{call "+procedureCall+"(?,?)}");
 			SPstatement.setLong(1,choice);
 			SPstatement.setString(2,searchInput);
-			hasResult=SPstatement.execute();
+			boolean hasResult=SPstatement.execute();
 			if(hasResult)
 			{
-			    resultSet = SPstatement.getResultSet();
+				ResultSet resultSet = SPstatement.getResultSet();
 			    ResultSetMetaData tableMetaData = resultSet.getMetaData();
 			    storeTicketData.addFetchedTickets(resultSet,tableMetaData);
 			    LinkedHashMap<String,ArrayList<String>> ticketData = storeTicketData.getTableData();
@@ -55,11 +54,11 @@ public class SearchTicket implements ISearchTicket
 			    }
 			}
 	
-			ConnectionMng.closeConnection();
+			connectionManager.closeConnection();
 		} 
 		catch (SQLException e)
 		{
-				e.printStackTrace();
+			connectionManager.closeConnection();
 		}
 		return output;
 	}	

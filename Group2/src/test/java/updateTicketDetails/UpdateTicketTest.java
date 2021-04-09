@@ -22,6 +22,60 @@ public class UpdateTicketTest {
 	ICheckTicketsExists checkticketexists = reuseableClassFactorytest.checkticketexistMock();
 	
 	@Test
+	public void updateExpectedDate()
+	{
+		String ticketId = "111";
+		int choice =1;
+		String expectedDate = "2003-02-01";
+		assertTrue(updateticketdetails.updateValueOfTicketForManager(ticketId,choice,expectedDate));
+	}
+	
+	@Test
+	public void updateResportedId()
+	{
+		String ticketId = "111";
+		int choice = 2;
+		String reporterdId = "emp123";
+		assertTrue(updateticketdetails.updateValueOfTicketForManager(ticketId,choice,reporterdId));
+	}
+	
+	@Test
+	public void updateAssigneeName()
+	{
+		String ticketId = "111";
+		int choice = 3;
+		String assigneName = "Tejaswi"; 
+		assertTrue(updateticketdetails.updateValueOfTicketForManager(ticketId,choice,assigneName));
+	}
+	
+	@Test
+	public void updatePriority()
+	{
+		String ticketId = "111";
+		int choice = 4;
+		String priority = "1";
+		assertTrue(updateticketdetails.updateValueOfTicketForManager(ticketId,choice,priority));
+	}
+	
+	@Test
+	public void updateImpact()
+	{
+		String ticketId = "111";
+		int choice = 5;
+		String impact = "1";
+		assertTrue(updateticketdetails.updateValueOfTicketForManager(ticketId,choice,impact));
+	}
+	
+	@Test
+	public void updateUrgency()
+	{
+		String ticketId = "111";
+		int choice = 6;
+		String urgency = "1";
+		assertTrue(updateticketdetails.updateValueOfTicketForManager(ticketId,choice,urgency));
+	}
+	
+	@Test
 	public void updateForManagerWithValidTicketIDAndValidEmployeeID() {
 		String ticketID = "111";
 		String employeeID="emp123";
@@ -31,7 +85,7 @@ public class UpdateTicketTest {
 		String valuesToUpdatedone="done";
 		int choice = 3;
 		int choiceForchangeTicketStatus = 7;
-		boolean result = checkticketexists.ticketExistForManager(ticketID);
+		boolean result = checkticketexists.ticketExists(ticketID);
 		if(result == true) {
 			assertTrue(updateticketdetails.updateValueOfTicketForManager(ticketID, choice, valuetoupdateAssigneeNamer));
 			assertTrue(updateticketdetails.updateValueOfTicketForManager(ticketID, choiceForchangeTicketStatus, valuesToUpdateInProgress));
@@ -51,7 +105,7 @@ public class UpdateTicketTest {
 		String valuesToUpdatedone="done";
 		int choice = 3;
 		int choiceForchangeTicketStatus = 7;
-		boolean result = checkticketexists.ticketExistForManager(ticketID);
+		boolean result = checkticketexists.ticketExists(ticketID);
 		if(result == false) {
 			assertFalse(updateticketdetails.updateValueOfTicketForManager(ticketID, choice, valuetoupdateAssigneeNamer));
 			assertFalse(updateticketdetails.updateValueOfTicketForManager(ticketID, choiceForchangeTicketStatus, valuesToUpdateInProgress));
@@ -72,7 +126,7 @@ public class UpdateTicketTest {
 		String valuesToUpdatedone="done";
 		int choice = 3;
 		int choiceForchangeTicketStatus = 7;
-		boolean result = checkticketexists.ticketExistForManager(ticketID);
+		boolean result = checkticketexists.ticketExists(ticketID);
 		if(result == true)
 		{
 			assertFalse(updateticketdetails.updateValueOfTicketForManager(ticketID, choice, valuetoupdateAssigneeNamer));
@@ -84,7 +138,8 @@ public class UpdateTicketTest {
 	}
 	
 	@Test
-	public void updateForManagerWithCloseTicket() {
+	public void updateForManagerWithCloseTicket()
+	{
 		String ticketID = "111";
 		String employeeID="emp123";
 		String valuetoupdateAssigneeNamer = "manan";
@@ -93,11 +148,8 @@ public class UpdateTicketTest {
 		String valuesToUpdatedone="done";
 		int choice = 3;
 		int choiceForchangeTicketStatus = 7;
-		boolean result = checkticketexists.ticketExistForManager(ticketID);
-		if(result == true) {
-			assertFalse(updateticketdetails.updateValueOfTicketForManager(ticketID, choiceForchangeTicketStatus, valuesToUpdatedone));
-	
-		}
+		assertTrue(checkticketexists.ticketExistForNotManager(ticketID,employeeID));
+		assertFalse(updateticketdetails.updateValueOfTicketForManager(ticketID, choiceForchangeTicketStatus, valuesToUpdatedone));
 	}
 
 	@Test
@@ -110,23 +162,22 @@ public class UpdateTicketTest {
 		String valuesToUpdatedone="done";
 		int choice = 3;
 		int choiceForchangeTicketStatus = 7;
-		boolean result = checkticketexists.ticketExistForManager(ticketID);
-		if(result == true) 
+		assertTrue(checkticketexists.ticketExistForNotManager(ticketID,employeeID));
+		try
 		{
-			try {
-			
 				assertTrue(updateticketdetails.updateValueOfTicketForNotManager(ticketID, valuesToUpdateInProgress));
 				assertTrue(updateticketdetails.updateValueOfTicketForNotManager(ticketID, valuesToUpdateOnHold));
 			
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
 		}
-			
+		catch (ParseException e) 
+		{
+				e.printStackTrace();
+		}
 	}
 	
 	@Test
-	public void updateForNotManagerWithInvalidValidTicketIDAndValidEmployeeID() {
+	public void updateForNotManagerWithInvalidValidTicketIDAndValidEmployeeID() 
+	{
 		String ticketID = "112";
 		String employeeID="emp123";
 		String valuetoupdateAssigneeNamer = "manan";
@@ -135,22 +186,22 @@ public class UpdateTicketTest {
 		String valuesToUpdatedone="done";
 		int choice = 3;
 		int choiceForchangeTicketStatus = 7;
-		boolean result = checkticketexists.ticketExistForManager(ticketID);
-		if(result == true) {
-			try 
-			{
-				assertFalse(updateticketdetails.updateValueOfTicketForNotManager(ticketID, valuesToUpdateInProgress));
-				assertFalse(updateticketdetails.updateValueOfTicketForNotManager(ticketID, valuesToUpdateOnHold));
-			
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
+		assertFalse(checkticketexists.ticketExistForNotManager(ticketID,employeeID));
+		try 
+		{
+			assertFalse(updateticketdetails.updateValueOfTicketForNotManager(ticketID, valuesToUpdateInProgress));
+			assertFalse(updateticketdetails.updateValueOfTicketForNotManager(ticketID, valuesToUpdateOnHold));
+		}
+		catch (ParseException e)
+		{
+			e.printStackTrace();
 		}
 	}
 
 	
 	@Test
-	public void updateForNotManagerWithValidTicketIDAndInValidEmployeeID() {
+	public void updateForNotManagerWithValidTicketIDAndInValidEmployeeID() 
+	{
 		String ticketID = "112";
 		String employeeID="emp1233";
 		String valuetoupdateAssigneeNamer = "manan";
@@ -159,16 +210,15 @@ public class UpdateTicketTest {
 		String valuesToUpdatedone="done";
 		int choice = 3;
 		int choiceForchangeTicketStatus = 7;
-		boolean result = checkticketexists.ticketExistForManager(ticketID);
-		if(result == true) {
-			try {
-				assertFalse(updateticketdetails.updateValueOfTicketForNotManager(ticketID, valuesToUpdateInProgress));
-				assertFalse(updateticketdetails.updateValueOfTicketForNotManager(ticketID, valuesToUpdateOnHold));
-				
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-	
+		assertFalse(checkticketexists.ticketExistForNotManager(ticketID,employeeID));
+		try 
+		{
+			assertFalse(updateticketdetails.updateValueOfTicketForNotManager(ticketID, valuesToUpdateInProgress));
+			assertFalse(updateticketdetails.updateValueOfTicketForNotManager(ticketID, valuesToUpdateOnHold));
+		} 
+		catch (ParseException e)
+		{
+			e.printStackTrace();
 		}
 	}
 
@@ -183,16 +233,14 @@ public class UpdateTicketTest {
 		String valuesToUpdatedone="done";
 		int choice = 3;
 		int choiceForchangeTicketStatus = 7;
-		boolean result = checkticketexists.ticketExistForManager(ticketID);
-		if(result == true) {
-			try {
-				assertFalse(updateticketdetails.updateValueOfTicketForNotManager(ticketID, valuesToUpdatedone));
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			
+		assertTrue(checkticketexists.ticketExistForNotManager(ticketID,employeeID));
+		try {
+			assertFalse(updateticketdetails.updateValueOfTicketForNotManager(ticketID, valuesToUpdatedone));
 		}
-			
+		catch (ParseException e)
+		{
+			e.printStackTrace();
+		}		
 	}
 
 }

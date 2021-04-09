@@ -5,9 +5,14 @@ import reuseablePackage.interfaces.IExportTicket;
 public class ExportTicketDataMock implements IExportTicket
 {
 
-	public void exportTicket(String FileName) 
+	public boolean exportTicket(String FileName) 
 	{
-		
+		String fileNameExists = "t2.txt";
+		if(fileNameExists.equals(FileName))
+		{
+			return false;
+		}
+		return true;
 	}
 
 }

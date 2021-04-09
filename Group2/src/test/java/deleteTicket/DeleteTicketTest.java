@@ -4,8 +4,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import deleteTicket.abstractfactory.IDeleteTicketfactoryTest;
 import deleteTicket.abstractfactory.DeleteTicketfactoryTest;
+import deleteTicket.abstractfactory.IDeleteTicketfactoryTest;
 import deleteTicket.interfaces.IDeleteTickets;
 import reuseableClasses.abstractfactory.IReuseableClassesFactoryTest;
 import reuseableClasses.abstractfactory.ReuseableClassFactoryTest;
@@ -33,7 +33,7 @@ public class DeleteTicketTest
 		String employeeId = "emp123";
 		String output = getlistofticket.listOfTickets();
 		inputoutputhandler.displayMethod(output);
-		boolean result = checkticketexist.ticketExistForManager(ticketId);
+		boolean result = checkticketexist.ticketExists(ticketId);
 		if(result == true)
 		{
 			assertTrue(deleteticket.deleteticket(ticketId));
@@ -48,7 +48,7 @@ public class DeleteTicketTest
 		String employeeId = "emp123";
 		String output = getlistofticket.listOfTickets();
 		inputoutputhandler.displayMethod(output);
-		boolean result = checkticketexist.ticketExistForManager(ticketId);
+		boolean result = checkticketexist.ticketExists(ticketId);
 		if(result == true)
 		{
 			assertTrue(deleteticket.deleteticket(ticketId));
@@ -63,7 +63,7 @@ public class DeleteTicketTest
 		String employeeId = "emp1233";
 		String output = getlistofticket.listOfTickets();
 		inputoutputhandler.displayMethod(output);
-		boolean result = checkticketexist.ticketExistForManager(ticketId);
+		boolean result = checkticketexist.ticketExists(ticketId);
 		if(result == true)
 		{
 			assertTrue(deleteticket.deleteticket(ticketId));

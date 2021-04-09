@@ -1,8 +1,14 @@
 package searchTicket;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import reuseableClasses.abstractfactory.IReuseableClassesFactoryTest;
+import reuseableClasses.abstractfactory.ReuseableClassFactoryTest;
+import reuseablePackage.interfaces.IExportTicket;
 import searchTicket.abstarctfactory.ISearchFactoryTest;
 import searchTicket.abstarctfactory.SearchFactoryTest;
 import searchTicket.interfaces.ISearchTicket;
@@ -15,11 +21,14 @@ public class SearchTicketTest
 	ISearchFactoryTest  searchfactorytest = SearchFactoryTest.instance();
 	ISearchTicket searchticket;
 	IInputOutputHandler inputoutputhandler = new InputOutputHandler();
+	IReuseableClassesFactoryTest searchTicket = ReuseableClassFactoryTest.instance();
+	IExportTicket exportTicket;
 	
 	@Before
     public void initialize()
     {
 		searchticket = searchfactorytest.searchticketMock();
+		exportTicket = searchTicket.exportticketdataMock();
     }
 
 	
@@ -71,4 +80,15 @@ public class SearchTicketTest
 		inputoutputhandler.displayMethod(output);
 	}
 	
+	@Test
+	public void exportTicketSuccessfully()
+	{
+		assertTrue(exportTicket.exportTicket("t1.txt"));
+	}
+	
+	@Test
+	public void exportTicketUnSuccessfully()
+	{
+		assertFalse(exportTicket.exportTicket("t2.txt"));
+	}
 }

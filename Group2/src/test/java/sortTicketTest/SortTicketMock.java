@@ -7,8 +7,8 @@ import java.util.Map;
 
 import reuseablePackage.abstractFactory.IReuseableClasssFactory;
 import reuseablePackage.abstractFactory.ReuseableClasssFactory;
-import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.IDisplayTickets;
+import reuseablePackage.interfaces.ITableGenerator;
 import sortTickets.interfaces.ISortTicket;
 
 public class SortTicketMock implements ISortTicket
@@ -18,7 +18,7 @@ public class SortTicketMock implements ISortTicket
 	
 	IReuseableClasssFactory reuseableclassfactory = ReuseableClasssFactory.instance();
 	ITableGenerator tableformate = reuseableclassfactory.tableFormate();
-	IDisplayTickets displayuser=reuseableclassfactory.displayUser(tableformate);
+	IDisplayTickets displayuser=reuseableclassfactory.displayUser();
 	
 	
 	public SortTicketMock()

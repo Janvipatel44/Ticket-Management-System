@@ -5,17 +5,16 @@ import java.util.Scanner;
 import commentOnTicket.abstractfactory.CommentOnTicketsFactory;
 import commentOnTicket.abstractfactory.ICommentOnTicketsFactory;
 import commentOnTicket.interfaces.ICommentOnTickets;
-import database.ConnectionManager;
+import database.abstractfactory.DatabaseFactory;
+import database.abstractfactory.IDatabaseFactory;
 import database.intefaces.IConnectionManager;
 import login.Interfaces.IParameterizedUser;
 import managerfeatures.abstractfactory.IManagerFeaturesFactory;
 import reuseablePackage.abstractFactory.IReuseableClasssFactory;
 import reuseablePackage.abstractFactory.ReuseableClasssFactory;
 import reuseablePackage.interfaces.ICheckTicketsExists;
-import reuseablePackage.interfaces.IDisplayTickets;
 import reuseablePackage.interfaces.IGetListOfTickets;
 import reuseablePackage.interfaces.IStoreTicketData;
-import reuseablePackage.interfaces.ITableGenerator;
 import userinterface.abstractFactory.IUserInterfaceFactory;
 import userinterface.abstractFactory.UserInterfaceFactory;
 
@@ -30,46 +29,50 @@ public class CommentOnTicketScreen implements ICommentOnTicketScreen
 	private String employeeID;
 	private String currentUserRole;
 	private static String userRole="manager";
-	private String managerId;
-	private final String ConfigurationFile = "ConfigurationFile";
+	private String configurationFile = "ConfigurationFile";
 
 	IBackToHomePageScreen backToHomePageScreen;
 	IUserInterfaceFactory userInterfaceFactory;
 	IManagerFeaturesFactory managerFeaturesFactory;
 
-	IConnectionManager ConnectionMng = new ConnectionManager(ConfigurationFile);
-	IInputOutputHandler inputoutputhandler;
+	private IConnectionManager connectionManager;
+	private IDatabaseFactory databaseFactory = DatabaseFactory.instance();
+	IReuseableClasssFactory reuseableclassfactory = ReuseableClasssFactory.instance();
 	
 	ICommentOnTicketsFactory commentonticketfactory = CommentOnTicketsFactory.instance();
-	ICommentOnTickets postcomment = commentonticketfactory.postComment(ConnectionMng);
-	
-	IReuseableClasssFactory reuseableclassfactory = ReuseableClasssFactory.instance();
-	ICheckTicketsExists checkticketexists= reuseableclassfactory.checkticketexists();
-	IStoreTicketData storeTicketData =reuseableclassfactory.storeTicketData();
-	ITableGenerator tableformate = reuseableclassfactory.tableFormate();
-	IDisplayTickets displaytickets = reuseableclassfactory.displayUser(tableformate);
-	IGetListOfTickets getalltickets = reuseableclassfactory.getalltickets(storeTicketData,displaytickets,ConnectionMng);
+	IInputOutputHandler inputoutputhandler;
+	ICommentOnTickets postcomment;
+	ICheckTicketsExists checkticketexists;
+	IStoreTicketData storeTicketData;
+	IGetListOfTickets getalltickets;
 	
 	public CommentOnTicketScreen(IInputOutputHandler inputoutputhandler)
 	{
 		this.inputoutputhandler = inputoutputhandler;
-	
+		connectionManager = databaseFactory.getConnectionManager(configurationFile);
+		checkticketexists=reuseableclassfactory.checkticketexists(connectionManager);
+		getalltickets = reuseableclassfactory.getalltickets(connectionManager);
+		storeTicketData = reuseableclassfactory.storeTicketData();
+		postcomment = commentonticketfactory.postComment(connectionManager);
 	}
 	
 	public  void commentonticketscreen(IParameterizedUser user)
 	{
-		userRole=user.getUserType().toLowerCase();
-		if(userRole.equals(userRole))
+		currentUserRole = user.getUserType().toLowerCase();
+		
+		if(currentUserRole.equals(userRole))
 		{
-			employeeID=user.getManager();
+			employeeID = user.getManager();
 		}
 		else
 		{
-			employeeID=user.getEmployeeID();
+			employeeID = user.getEmployeeID();
 		}
-		String output="";
-		output=getalltickets.listOfTickets();
+		
+		String output = "";
+		output = getalltickets.listOfTickets();
 		inputoutputhandler.displayMethod(output);
+		
 		do {
 			
 			inputoutputhandler.displayMethod("Enter Ticket Id you want to post comment on.:");
@@ -81,14 +84,14 @@ public class CommentOnTicketScreen implements ICommentOnTicketScreen
 			{
 				break;
 			}
-			result=checkticketexists.ticketExists(ticketId);
+			result = checkticketexists.ticketExists(ticketId);
 			
 			if(result == true)
 			{
 				inputoutputhandler.displayMethod("Write comment you want to post");
 				commentString = inputoutputhandler.input();
-				commentPostResult=postcomment.postCommentOnticket(ticketId,employeeID, commentString);
-				if(commentPostResult==true)
+				commentPostResult = postcomment.postCommentOnticket(ticketId,employeeID,commentString);
+				if(commentPostResult == true)
 				{
 					inputoutputhandler.displayMethod("true");
 				}

@@ -10,7 +10,7 @@ import userinterface.abstractFactory.UserInterfaceFactory;
 public class CommentOnTicketMenuTask implements IMenuTask {
 	
 	@Override
-	public void runMenuTask(IParameterizedUser user, IInputOutputHandler inputOutputHandler) {
+	public void runMenuTask(IParameterizedUser user, IInputOutputHandler inputOutputHandler)  {
 		IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
 		ICommentOnTicketScreen commentonticketscreen = userInterfaceFactory.getCommentOnTicketScreen(inputOutputHandler);
 		commentonticketscreen.commentonticketscreen(user);

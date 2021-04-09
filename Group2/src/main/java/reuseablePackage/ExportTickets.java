@@ -10,12 +10,13 @@ import java.util.Scanner;
 
 import reuseablePackage.interfaces.IExportTicket;
 import reuseablePackage.interfaces.IStoreTicketData;
+import reuseablePackage.interfaces.ITableGenerator;
 
 public class ExportTickets implements  IExportTicket{
 	private Scanner sc=new Scanner(System.in);
 	
 	private IStoreTicketData storeTicketData;
-	private TableGenerator tableFormate;
+	private ITableGenerator tableFormate;
 	
 	public ExportTickets(IStoreTicketData storeTicketData)
 	{
@@ -23,9 +24,9 @@ public class ExportTickets implements  IExportTicket{
 		tableFormate = new TableGenerator();
 	}
 	
-	public void exportTicket(String FileName) {
+	public boolean exportTicket(String FileName) {
 		File myObj = new File(FileName);
-	      try {
+	      try{
 			if (myObj.createNewFile()) 
 			{
 				FileWriter myWriter = new FileWriter(FileName);
@@ -60,11 +61,12 @@ public class ExportTickets implements  IExportTicket{
 				 
 				  myWriter.write(tableFormate.generateTable(columnOfTable, allRowData));
 				  myWriter.close();
-			}		  
-		} 
-	    catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			}
+			return true;
+	      }
+	    catch (IOException e)
+	    {
+	    	return false;
 		} 
 	}
 }

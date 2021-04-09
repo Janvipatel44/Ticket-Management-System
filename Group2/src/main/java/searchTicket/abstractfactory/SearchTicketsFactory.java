@@ -2,7 +2,6 @@ package searchTicket.abstractfactory;
 
 import database.intefaces.IConnectionManager;
 import reuseablePackage.ExportTickets;
-import reuseablePackage.interfaces.IDisplayTickets;
 import reuseablePackage.interfaces.IExportTicket;
 import reuseablePackage.interfaces.IStoreTicketData;
 import searchTicket.SearchTicket;
@@ -29,9 +28,9 @@ public class SearchTicketsFactory implements ISearchTicketsFactory
 	
 
 	
-	public ISearchTicket searchticket(IStoreTicketData storeTicketData,IDisplayTickets displayuser,IConnectionManager ConnectionMng) {
+	public ISearchTicket searchticket(IStoreTicketData storeTicketData,IConnectionManager ConnectionMng) {
 		
-		return new SearchTicket(storeTicketData,displayuser,ConnectionMng);
+		return new SearchTicket(storeTicketData,ConnectionMng);
 	}
 
 	

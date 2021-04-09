@@ -7,8 +7,8 @@ import java.util.Map;
 
 import reuseablePackage.abstractFactory.IReuseableClasssFactory;
 import reuseablePackage.abstractFactory.ReuseableClasssFactory;
-import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.IDisplayTickets;
+import reuseablePackage.interfaces.ITableGenerator;
 import searchTicket.interfaces.ISearchTicket;
 
 public class SearchTicketMock implements ISearchTicket
@@ -25,7 +25,7 @@ public class SearchTicketMock implements ISearchTicket
 	public SearchTicketMock()
 	{
 		generateTable = reuseableclassfactory.tableFormate();
-		displayticket = reuseableclassfactory.displayUser(generateTable);
+		displayticket = reuseableclassfactory.displayUser();
 		ticketsData = new LinkedHashMap<String, ArrayList<String>>();
 		columnOfTable = new ArrayList<String>();
 	}

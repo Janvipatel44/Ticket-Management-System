@@ -5,20 +5,22 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import database.ConnectionManager;
 import database.intefaces.IConnectionManager;
 import reuseablePackage.interfaces.ICheckTicketsExists;
 
 public class CheckTicketsExists  implements ICheckTicketsExists
 {
+	private final int choice=1;
 	private Connection connect=null;
 	private CallableStatement SPstatement=null;
 	private ResultSet resultSet=null;
-	private String ConfigurationFile = "ConfigurationFile";
-	private int choice=1;
+
+	private IConnectionManager connectionManager;
 	
-	private IConnectionManager IConnectionMng = new ConnectionManager(ConfigurationFile);
-	
+	public CheckTicketsExists(IConnectionManager connectionManager)
+	{
+		this.connectionManager = connectionManager;
+	}
 	public boolean ticketExists(String ticketID)
 	{
 		boolean result=false;
@@ -28,19 +30,18 @@ public class CheckTicketsExists  implements ICheckTicketsExists
 			{
 				result=true;	
 			}
-			IConnectionMng.closeConnection();
+			connectionManager.closeConnection();
 		} catch (Exception e) {
-			e.printStackTrace();
-			
+			connectionManager.closeConnection();
 		}
 		return result;
 	}
 	
-	private void fetchTicketForTicketID(String ticketID) throws Exception
+	private void fetchTicketForTicketID(String ticketID)
 	{
 		try 
 		{
-			connect = IConnectionMng.establishConnection();
+			connect = connectionManager.establishConnection();
 			SPstatement = connect.prepareCall("{call searchTicket(?,?)}");
 			SPstatement.setLong(1,choice);
 			SPstatement.setString(2,ticketID);
@@ -49,29 +50,9 @@ public class CheckTicketsExists  implements ICheckTicketsExists
 		}
 		catch (SQLException e)
 		{
-			throw new Exception();
+			connectionManager.closeConnection();
 		}
 		
-	}
-	
-	public boolean ticketExistForManager(String ticketID)
-	{
-		boolean result=false;
-		try
-		{
-			fetchTicketForTicketID(ticketID);
-			if(resultSet.next())
-			{
-				result=true;
-				IConnectionMng.closeConnection();
-			}
-			
-		} 
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		return result;
 	}
 	
 	public boolean ticketExistForNotManager(String ticketID,String employeeID)
@@ -88,13 +69,12 @@ public class CheckTicketsExists  implements ICheckTicketsExists
 					
 					result=true;
 				}
-				IConnectionMng.closeConnection();
+				connectionManager.closeConnection();
 			}
-			
 		} 
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			connectionManager.closeConnection();
 		}
 		return result;
 	}

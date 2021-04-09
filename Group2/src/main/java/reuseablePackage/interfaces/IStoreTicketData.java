@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface IStoreTicketData
 {
-	public void addFetchedTickets(ResultSet resultSet, ResultSetMetaData tableMetaData);
-	public void addFetchedComments(ResultSet resultSet);
+	public boolean addFetchedTickets(ResultSet resultSet, ResultSetMetaData tableMetaData);
+	public boolean addFetchedComments(ResultSet resultSet);
 	public LinkedHashMap<String, ArrayList<String>> getTableData();
 	public ArrayList<String> getSingleTicketData(String TicketID);
 	public List<String> getTicketColumns();

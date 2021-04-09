@@ -2,7 +2,6 @@ package updateTicketDetails;
 
 import java.text.ParseException;
 
-import reuseablePackage.interfaces.IticketStatusInProgress;
 import updateTicketDetails.abstractfactory.IUpdateTicketDetailsfactoryTest;
 import updateTicketDetails.abstractfactory.UpdateTicketDetailsfactoryTest;
 import updateTicketDetails.interfaces.IUpdateTicket;
@@ -10,7 +9,8 @@ import updateTicketDetails.interfaces.IUpdateTicket;
 public class UpdateTicketTestMock  implements IUpdateTicket
 {
 
-	public boolean updateValueOfTicketForManager(String ticketID, int choice, String valueToUpdate) {
+	public boolean updateValueOfTicketForManager(String ticketID, int choice, String valueToUpdate)
+	{
 		boolean result = false;
 		if(choice == 7) 
 		{
@@ -28,7 +28,6 @@ public class UpdateTicketTestMock  implements IUpdateTicket
 		boolean result;
 		result =changeTicketSatatus(ticketID,valueToUpdate);
 		return result;
-		
 	}
 	
 	private boolean ticketExist(String ticketID)
@@ -44,10 +43,9 @@ public class UpdateTicketTestMock  implements IUpdateTicket
 		}
 	}
 
-	private boolean changeTicketSatatus(String ticketID, String valueToUpdate) 
+    private boolean changeTicketSatatus(String ticketID, String valueToUpdate) 
 	{
 		IUpdateTicketDetailsfactoryTest updateticketsdetailsfactore = UpdateTicketDetailsfactoryTest.instance();
-		IticketStatusInProgress ticketinprogress = updateticketsdetailsfactore.ticketInProgressMock();
 		boolean result=false;
 		double hour=0;
 		String previousInProgressTicket = "in progress";
@@ -55,11 +53,11 @@ public class UpdateTicketTestMock  implements IUpdateTicket
 		 result = ticketExist(ticketID);
 		 if(result == true && previousInProgressTicket.equals(valueToUpdate))
 		 {
-			 hour = ticketinprogress.calculateHours(ticketID);
+			 hour = 1;
 		 }
 		 else if(result == true && previousOnHoldTicket.equals(valueToUpdate))
 		 {
-			 hour = ticketinprogress.calculateHours(ticketID);
+			 hour = 1;
 		 }
 		 else
 		 {

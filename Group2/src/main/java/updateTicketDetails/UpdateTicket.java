@@ -16,12 +16,12 @@ public class UpdateTicket implements IUpdateTicket
 	private CallableStatement SPstatement=null;
 	private ResultSet resultSet=null;
 
-	static String fileName = "ConfigurationFile";
-	private IConnectionManager ConnectionMng;
+	private IConnectionManager connectionManager;
 	private ITicketStatusOperationsDB ticketStatusOperationsDB = new TicketStatusOperationsDB();
-	public UpdateTicket(IConnectionManager ConnectionMng)
+	
+	public UpdateTicket(IConnectionManager connectionManager)
 	{
-		this.ConnectionMng = ConnectionMng;
+		this.connectionManager = connectionManager;
 	}
 	
 	public boolean updateValueOfTicketForManager(String ticketID, int choice , String valueToUpdate)
@@ -35,7 +35,7 @@ public class UpdateTicket implements IUpdateTicket
 			}
 			else
 			{
-				connect = ConnectionMng.establishConnection();
+				connect = connectionManager.establishConnection();
 				SPstatement = connect.prepareCall("{call updateTicketForManager(?,?,?)}");
 				SPstatement.setLong(1,choice);
 				SPstatement.setString(2,ticketID);
@@ -49,12 +49,12 @@ public class UpdateTicket implements IUpdateTicket
 					}
 			
 				}
-				ConnectionMng.closeConnection();
+				connectionManager.closeConnection();
 			} 
 		}
 		catch (SQLException e)
 		{
-			result = false;
+			connectionManager.closeConnection();
 		}
 	
 		return result;
@@ -67,8 +67,7 @@ public class UpdateTicket implements IUpdateTicket
 		int choice = 0;
 		try 
 		{
-			connect = ConnectionMng.establishConnection();
-			
+			connect = connectionManager.establishConnection();
 			SPstatement = connect.prepareCall("{call searchTicket(?,?)}");
 			SPstatement.setLong(1,1);
 			SPstatement.setString(2,ticketID);
@@ -107,13 +106,10 @@ public class UpdateTicket implements IUpdateTicket
 					{
 						hours = ticketStatusOperationsDB.ticketInProgressHours(ticketID);
 						choice = 2;
-						//hours = ticketInProgress.calculateHours(ticketID);
 					}
 					
 				}
 				
-				
-				System.out.println("Hours: "+hours);
 				double previoushours =0;
 				int count=0;
 				if(choice==1)
@@ -159,11 +155,11 @@ public class UpdateTicket implements IUpdateTicket
 				}
 			}
 			
-			ConnectionMng.closeConnection();
+			connectionManager.closeConnection();
 		} 
 		catch (SQLException e)
 		{
-				e.printStackTrace();
+			connectionManager.closeConnection();
 		}
 
 		return result;
