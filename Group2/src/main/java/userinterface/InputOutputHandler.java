@@ -1,28 +1,42 @@
+//Author : Akshay Garg and Vamsi Krishna Utla
+
 package userinterface;
 
 import java.util.Scanner;
 
-import validations.StringValidations;
-
 public class InputOutputHandler implements IInputOutputHandler {
 
-	public void displayMethod(String printMessage) {
-		System.out.println(printMessage);
+	private Scanner scanner;
+
+	public InputOutputHandler() 
+	{
+		scanner = new Scanner(System.in);
 	}
 
-	public String input() {	
-		int i = -1;
-		Scanner scanner = new Scanner(System.in);
-		String nextLine = scanner.nextLine();
-		scanner.close();
+	public void displayMethod(String printMessage) 
+	{
+		System.out.println(printMessage);
+	}
+ 
+	public String input() 
+	{
+		String nextLine = scanner.next();
 		return nextLine;
 	}
 
-	public int inputInt()
+	public int inputInt() 
 	{
-		Scanner scanner = new Scanner(System.in);
 		int input = scanner.nextInt();
-		scanner.close();
 		return input;
+	}
+
+	public String inputdate() 
+	{
+		String nextLine = scanner.nextLine();
+		return nextLine;
+	}
+
+	public void closeScanner() {
+		scanner.close();
 	}
 }

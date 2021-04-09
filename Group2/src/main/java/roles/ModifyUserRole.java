@@ -1,26 +1,29 @@
+//Author : Akshay Garg
+
 package roles;
 
-import validations.StringValidations;
+import org.apache.commons.lang3.StringUtils;
+import roles.interfaces.IModifyUserRole;
+import roles.interfaces.IRoleManagementDao;
 
 public class ModifyUserRole implements IModifyUserRole {
 
-	private IRoleManagementDao iRolePersistence;
+	private IRoleManagementDao roleManagementDao;
 
-	public ModifyUserRole (IRoleManagementDao iRolePersistence) {
-		this.iRolePersistence = iRolePersistence;
+	public ModifyUserRole(IRoleManagementDao roleManagementDao) {
+		this.roleManagementDao = roleManagementDao;
 	}
-	
-	
+
 	@Override
 	public boolean modifyUserRole(String empId, String userType) throws Exception {
-		
+
 		boolean isUserModified = false;
-		
-		if (StringValidations.isStringValid(empId) && StringValidations.isStringValid(userType)) {
-			isUserModified = iRolePersistence.updateUserRole(empId, userType);
+
+		if (StringUtils.isNotBlank(empId) && StringUtils.isNotBlank(userType)) {
+			isUserModified = roleManagementDao.updateUserRole(empId, userType);
 		}
-		
+
 		return isUserModified;
 	}
-	
+
 }

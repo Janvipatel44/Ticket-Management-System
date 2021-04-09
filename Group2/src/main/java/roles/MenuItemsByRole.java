@@ -1,27 +1,30 @@
+//Author : Akshay Garg
+
 package roles;
 
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
+import roles.interfaces.IMenuItemsByRole;
+import roles.interfaces.IRoleManagementDao;
 
-import validations.StringValidations;
+public class MenuItemsByRole implements IMenuItemsByRole {
 
-public class MenuItemsByRole implements IMenuItemsByRole {	
-	
-	private IRoleManagementDao iRolePersistence;
+	private IRoleManagementDao roleManagementDao;
 
-	public MenuItemsByRole (IRoleManagementDao iRolePersistence) {
-		this.iRolePersistence = iRolePersistence;
+	public MenuItemsByRole(IRoleManagementDao roleManagementDao) {
+		this.roleManagementDao = roleManagementDao;
 	}
-	
+
 	@Override
-	public List<String>  fetchMenuItemsByRole(String userType) throws Exception {
-		
-		List<String> menuItemsByRole  = null;
-		
-		if (StringValidations.isStringValid(userType)) {
-			menuItemsByRole  = iRolePersistence.accessMenuItemsByRole(userType);
+	public List<String> fetchMenuItemsByRole(String userType) throws Exception {
+
+		List<String> menuItemsByRole = null;
+
+		if (StringUtils.isNotBlank(userType)) {
+			menuItemsByRole = roleManagementDao.accessMenuItemsByRole(userType);
 			return menuItemsByRole;
 		}
-		
+
 		return menuItemsByRole;
 	}
 

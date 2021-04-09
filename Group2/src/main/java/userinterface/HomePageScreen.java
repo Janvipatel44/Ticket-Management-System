@@ -1,74 +1,105 @@
+//Author : Akshay Garg
+
 package userinterface;
 
+import java.util.HashMap;
 import java.util.List;
-
-import roles.IMenuItemsByRole;
+import java.util.Map;
+import login.Interfaces.IParameterizedUser;
+import menucontroller.MenuHandler;
+import menucontroller.abstractfactory.IMenuHandlerFactory;
+import menucontroller.abstractfactory.MenuHandlerFactory;
+import menucontroller.interfaces.IMenuHandler;
+import roles.abstractfactory.IRoleFactory;
+import roles.abstractfactory.RoleFactory;
+import roles.interfaces.IMenuItemsByRole;
 import validations.StringValidations;
 
 public class HomePageScreen implements IHomePageScreen {
 
-	private IMenuItemsByRole iMenuItemsByRole;
-	IInputOutputHandler inputOutputHandler;
-
 	private final String INVALID_INPUT_MESSAGE = "Please provide valid value for emp name and user type";
 	private final String MENU_ITEMS_SELECTION_MESSAGE = "Please select the item from menu (provide corresponding menu item number) : ";
 	private final String ERROR_MESSAGE = "You have provided wrong input. Please choose the correct input from menu.";
+	public final String UNSUCCESSFUL_DATA_FETCH = "Error while fetching data from DB. Please contact admin.";
 	private final int MINIMUM_MENU_ITEMS = 1;
 
-	public HomePageScreen(IMenuItemsByRole iMenuItemsByRole, IInputOutputHandler inputOutputHandler) {
-		this.iMenuItemsByRole = iMenuItemsByRole;
+	private IMenuItemsByRole menuItemsByRole;
+	private IInputOutputHandler inputOutputHandler;
+	private Map<Integer, String> menuMap;
+	private IMenuHandler menuHandler;
+	IRoleFactory roleFactory;
+
+	public HomePageScreen(IInputOutputHandler inputOutputHandler) {
 		this.inputOutputHandler = inputOutputHandler;
+		this.menuMap = new HashMap<Integer, String>();
+		IMenuHandlerFactory menuHandlerFactory = MenuHandlerFactory.instance();
+		this.menuHandler = menuHandlerFactory.makeMenuHandlerObject();
 	}
 
-	public void handleHomePageMenu(String empName, String userType) throws Exception {
+	public void handleHomePageMenu(IParameterizedUser user) {
 
-		if (StringValidations.isStringValid(empName) && StringValidations.isStringValid(userType)) {
-			String welcomeUser = "Hello " + empName + "\n\nMenu\n";
+		String firstName = user.getfirstName();
+		String userType = user.getUserType();
+
+		if (StringValidations.isStringValid(firstName) && StringValidations.isStringValid(userType)) {
+
+			String welcomeUser = "Hello " + firstName + "\n\nMenu\n";
 			inputOutputHandler.displayMethod(welcomeUser);
 
-			int maximumMenuItems = displayMenuItems(userType);
+			try {
+				int maximumMenuItems = displayMenuItems(userType);
 
-			if (maximumMenuItems > 0) {
+				if (maximumMenuItems > 0) {
 
-				boolean hasSelectedValidMenuItem = false;
+					boolean isUserSelecting = true;
 
-				while (hasSelectedValidMenuItem == false) {
-					inputOutputHandler.displayMethod(MENU_ITEMS_SELECTION_MESSAGE);
-					String menuItemSelection = inputOutputHandler.input();
+					while (isUserSelecting) {
+						inputOutputHandler.displayMethod(MENU_ITEMS_SELECTION_MESSAGE);
+						String menuItemSelection = inputOutputHandler.input();
 
-					try {
-						int selectedMenuItem = Integer.parseInt(menuItemSelection);
-						boolean isValidMenuSelection = isValidMenuInput(MINIMUM_MENU_ITEMS, maximumMenuItems,
-								selectedMenuItem);
+						try {
+							int selectedMenuItem = Integer.parseInt(menuItemSelection);
+							boolean isValidMenuSelection = isValidMenuInput(MINIMUM_MENU_ITEMS, maximumMenuItems,
+									selectedMenuItem);
 
-						if (isValidMenuSelection == false) {
-							throw new IllegalArgumentException();
+							if (isValidMenuSelection == false) {
+								throw new IllegalArgumentException();
+							}
+
+							MenuHandler.Menu menuItem = MenuHandler.Menu.valueOf(menuMap.get(selectedMenuItem));
+
+							menuHandler.runMenuTask(menuItem, user, inputOutputHandler);
+
+						} catch (Exception e) {
+							inputOutputHandler.displayMethod(ERROR_MESSAGE);
+							continue;
 						}
-
-					} catch (IllegalArgumentException e) {
-						inputOutputHandler.displayMethod(ERROR_MESSAGE);
-						continue;
 					}
-
-					break;
+				} else {
+					inputOutputHandler.displayMethod(INVALID_INPUT_MESSAGE);
 				}
-			} else {
-				inputOutputHandler.displayMethod(INVALID_INPUT_MESSAGE);
+			} catch (Exception e) {
+				inputOutputHandler.displayMethod(UNSUCCESSFUL_DATA_FETCH);
 			}
+
 		} else {
 			inputOutputHandler.displayMethod(INVALID_INPUT_MESSAGE);
 		}
 	}
 
 	private int displayMenuItems(String userType) throws Exception {
-		List<String> menuItemsList = iMenuItemsByRole.fetchMenuItemsByRole(userType);
+		roleFactory = RoleFactory.instance();
+		menuItemsByRole = roleFactory.makeMenuItemsByRoleObject();
+		List<String> menuItemsList = menuItemsByRole.fetchMenuItemsByRole(userType);
 		int i = 0;
 
 		for (; i < menuItemsList.size(); i++) {
-			String displayMenuItem = "" + (i + 1) + ". " + menuItemsList.get(i);
+			int menuoption = i + 1;
+			String menuItem = menuItemsList.get(i);
+			String displayMenuItem = "" + menuoption + ". " + menuItem;
 			inputOutputHandler.displayMethod(displayMenuItem + "\n");
+			menuMap.put(menuoption, menuItem);
 		}
-
 		return i;
 	}
 

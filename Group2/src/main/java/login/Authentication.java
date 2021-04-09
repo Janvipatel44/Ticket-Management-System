@@ -1,17 +1,22 @@
+//Author : Vamsi Krishna Utla
+
 package login;
+
 import login.Interfaces.*;
+import login.abstractfactory.*;
 import userinterface.IInputOutputHandler;
+import userinterface.InputOutputHandler;
+
 public class Authentication implements IAuthentication
 {
-    private final IAuthenticationOperations authenticationOperations;
-    private final IEncryption encryption;
-    private final IInputOutputHandler inputOutputHandler;
+    ILoginFactory loginFactory = LoginFactory.instance();
+    private final IAuthenticationDao authenticationOperations;
+    private final IEncryption encryption = loginFactory.getEncryption();
+    private final IInputOutputHandler inputOutputHandler = new InputOutputHandler();
 
-    public Authentication(IAuthenticationOperations authenticationOperations, IEncryption encryption, IInputOutputHandler inputOutputHandler)
+    public Authentication(IAuthenticationDao authenticationOperations)
     {
         this.authenticationOperations = authenticationOperations;
-        this.encryption = encryption;
-        this.inputOutputHandler = inputOutputHandler;
     }
 
     public boolean authenticateUser(String employeeID, String user_password)
@@ -23,6 +28,10 @@ public class Authentication implements IAuthentication
         
         user_password = encryption.encryptPassword(user_password);
         actual_password = authenticationOperations.getPassword(employeeID);
+        if(actual_password == null)
+        {
+            return false;
+        }
         if(actual_password.equals(user_password))
         {
             inputOutputHandler.displayMethod(successfulMessage);
@@ -35,5 +44,10 @@ public class Authentication implements IAuthentication
             result = false;
             return result;
         }
+    }
+
+    public IParameterizedUser getUserDetails(String employeeID)
+    {
+        return authenticationOperations.getUserDetails(employeeID);
     }
 }
