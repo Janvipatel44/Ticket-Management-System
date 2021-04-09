@@ -23,7 +23,7 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB
 {
 	private Connection connection;
 	private String ConfigurationFile = "ConfigurationFile.txt"; 
- 
+  
 	IConnectionManager IConnectionMng = new ConnectionManager(ConfigurationFile);
 	IEmployeePerformanceFactory  employeePerformanceFactory = EmployeePerformanceFactory.instance();
 	IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
@@ -38,7 +38,7 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB
         this.employeeDetails = employeeDetails;
     }
 
-	public ArrayList<String> getticketCountsDB() throws ParseException
+	public ArrayList<String> getticketCountsDB() throws ParseException, SQLException
 	{
 		ArrayList<String> employeeDetailsString = new ArrayList<String>() ;
 		connection = IConnectionMng.establishConnection();
@@ -55,25 +55,28 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB
            
             if(hasResult)  
             {  
-            	resultset = statement.getResultSet();
-            	
+            	resultset = statement.getResultSet();	
             	generateEmployeePerformanceReport = employeePerformanceFactory.getPerformanceReport();
             	employeeDetailsString = generateEmployeePerformanceReport.displayEmployeeDetailsAndTicketCount(employeeDetails, resultset);
-            	IConnectionMng.closeConnection();
             	return employeeDetailsString;
             }
             else 
+            {
             	return null;
+            }
 		} 
 		catch (SQLException e) 
 		{
-			System.out.print("SQL Exception");
 			e.printStackTrace();
 		}
+		
+		resultset.close();
+    	IConnectionMng.closeConnection();
+
         return employeeDetailsString;
 	}
 	
-	public ArrayList<String> getemployeeEfficiencyDB() throws ParseException
+	public ArrayList<String> getemployeeEfficiencyDB() throws ParseException, SQLException
 	{
 		ArrayList<String> employeeDetailsString = new ArrayList<String>() ;
 
@@ -89,30 +92,30 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB
             statement.setTimestamp(2, new java.sql.Timestamp(employeeDetails.generateDateFormat().getTime()));
             hasResult = statement.execute();
                         
-	        System.out.print(hasResult); 
             if(hasResult)  
             {  
             	resultset = statement.getResultSet();
             	employeeEfficiency = employeePerformanceFactory.getEmployeeEfficiencyCalculator(resultset);
             	calculatedEmployeeEfficiency = employeeEfficiency.calculateEmployeeEfficiency();
             	employeeDetailsString = generateEmployeePerformanceReport.displayEmployeeEfficiency(calculatedEmployeeEfficiency);
-            	IConnectionMng.closeConnection();
-    			System.out.print("Employee details string: " +employeeDetailsString);
             	return employeeDetailsString;
             }
-            else {
+            else 
+            {
             	return null;
             }
 		} 
 		catch (SQLException e) 
 		{
-			System.out.print("SQL Exception");
 			e.printStackTrace();
 		}
+		
+		resultset.close();
+    	IConnectionMng.closeConnection();
         return employeeDetailsString;
 	}
 
-	public ArrayList<String> getemployeeProductivityDB() throws ParseException
+	public ArrayList<String> getemployeeProductivityDB() throws ParseException, SQLException
 	{
 		ArrayList<String> employeeDetailsString = new ArrayList<String>() ;
 
@@ -135,7 +138,6 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB
             	employeeProductivity = employeePerformanceFactory.getEmployeeProductivityCalculator(resultset);
             	calculatedEmployeeProductivity = employeeProductivity.calculateEmployeeProductivity();
             	employeeDetailsString  = generateEmployeePerformanceReport.displayEmployeeProductivity(calculatedEmployeeProductivity);
-            	IConnectionMng.closeConnection();
             	return employeeDetailsString;
             }
             else
@@ -145,9 +147,11 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB
 		} 
 		catch (SQLException e) 
 		{
-			System.out.print("SQL Exception");
 			e.printStackTrace();
 		}
+
+		resultset.close();
+    	IConnectionMng.closeConnection();
         return employeeDetailsString;
 	}
 }

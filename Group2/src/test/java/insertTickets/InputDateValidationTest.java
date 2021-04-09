@@ -9,19 +9,23 @@ import org.junit.Test;
 import insertTicket.Interfaces.IInputDateValidation;
 import insertTickets.abstractfactory.IInsertTicketTestFactory;
 import insertTickets.abstractfactory.InsertTicketTestFactory;
+import userinterface.abstractFactory.IUserInterfaceFactory;
+import userinterface.abstractFactory.UserInterfaceFactory;
 
-public class InputDateValidationTest {
+public class InputDateValidationTest 
+{
 
 	IInsertTicketTestFactory insertTicketTestFactory = InsertTicketTestFactory.instance();
+	IUserInterfaceFactory userInterfactory = UserInterfaceFactory.instance();
 	
-	IInputDateValidation inputDateValidation = insertTicketTestFactory.dateValidation();
-
-	@Test
+	IInputDateValidation inputDateValidation = insertTicketTestFactory.dateValidation(userInterfactory.getInputOutputHandler());
+	
+	@Test 
 	public void isDurationValid () throws ParseException 
 	{
 		assertTrue(inputDateValidation.isDurationValid("2020-01-01 12:00:01", "2020-01-01 14:00:00"));
 	}
-	
+	 
 	@Test
 	public void isExpectedEndValid() throws ParseException 
 	{

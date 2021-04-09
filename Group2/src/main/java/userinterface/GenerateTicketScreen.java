@@ -1,10 +1,6 @@
 package userinterface;
 import login.Interfaces.*;
-import login.abstractfactory.*;
 import mailservice.ReadPropertiesFile;
-import menucontroller.MenuHandler;
-import menucontroller.abstractfactory.*;
-import menucontroller.interfaces.IMenuHandler;
 import userinterface.abstractFactory.*;
 import java.io.IOException;
 import java.text.ParseException;
@@ -25,11 +21,10 @@ public class GenerateTicketScreen implements IGenerateTicketScreen
     private final IInputOutputHandler inputOutputHandler;
     private final IUserInterfaceFactory userInterfaceFactory;
     private IBackToHomePageScreen backToHomePageScreen;
-    
     private IInsertTicketFactory insertTicketFactory = InsertTicketFactory.instance();
 	private IInsertTicket insertTicket;
     private ICreateTicket createTicket;
-    
+     
     private IAttachmentFactory attachmentfactory= AttachmentFactory.instance();
 
     private IAttachment attachment;
@@ -135,8 +130,10 @@ public class GenerateTicketScreen implements IGenerateTicketScreen
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}      
+	    scanner.close();
 	    backToHomePageScreen = userInterfaceFactory.getBackToHomePageScreen(inputOutputHandler);
         backToHomePageScreen.displayGoBackToHomePageOption(user);
+        
     }
     
     public String displayGenerateTicketScreenController(int validInput, String inputType, EnumValidation validationString, IParameterizedUser user)

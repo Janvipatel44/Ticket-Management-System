@@ -12,18 +12,19 @@ import insertTicket.Interfaces.IInputRangeValidation;
 import insertTicket.Interfaces.IInputStringValidation;
 import insertTicket.Interfaces.IInsertTicket;
 import insertTicket.Interfaces.ITicketOperationsDB;
-import insertTicket.Interfaces.IUserInputTicket;
 import insertTicket.Interfaces.ICreateTicket;
 import insertTicket.Interfaces.IUserInputValidation;
+import userinterface.IInputOutputHandler;
 
-public class InsertTicketFactory implements IInsertTicketFactory {
+public class InsertTicketFactory implements IInsertTicketFactory 
+{
 	private static IInsertTicketFactory uniqueInstance = null;
 
     private InsertTicketFactory()
     {
     	
     }
-
+ 
     public static IInsertTicketFactory instance()
     {
         if(null == uniqueInstance)
@@ -47,21 +48,21 @@ public class InsertTicketFactory implements IInsertTicketFactory {
 				 ticketLevel,  customerID,  customerName,  creatorID, creatorName, attachmentId);
 	}
     
-    public 	IInputStringValidation ticketStringValidation()
+    public 	IInputStringValidation ticketStringValidation( IInputOutputHandler inputOutputHandler)
     {
-    	return new InputStringValidation();
+    	return new InputStringValidation(  inputOutputHandler);
     }
     
-    public 	IInputDateValidation dateValidation()
+    public 	IInputDateValidation dateValidation( IInputOutputHandler inputOutputHandler)
     {
-    	return new InputDateValidation();
+    	return new InputDateValidation(  inputOutputHandler);
     }
     
-    public 	IInputRangeValidation rangeValidation() 
+    public 	IInputRangeValidation rangeValidation( IInputOutputHandler inputOutputHandler) 
     {
-    	return new InputRangeValidation();
+    	return new InputRangeValidation(  inputOutputHandler);
     }
-    
+     
 
     public ITicketOperationsDB insertTicketDB(ICreateTicket createTicket) 
     {

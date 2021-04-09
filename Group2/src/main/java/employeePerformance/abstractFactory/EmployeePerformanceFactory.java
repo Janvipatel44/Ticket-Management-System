@@ -1,25 +1,16 @@
 package employeePerformance.abstractFactory;
 
 import java.sql.ResultSet;
-import java.util.ArrayList;
-
 import employeePerformance.EmployeeEfficiencyCalculator;
 import employeePerformance.EmployeePerformanceDB;
 import employeePerformance.EmployeeProductivityCalculator;
 import employeePerformance.GenerateEmployeePerformanceReport;
 import employeePerformance.InputEmployeeDetails;
-import employeePerformance.UserInputEmployeePerformance;
-import employeePerformance.Interfaces.IBarChartGeneration;
 import employeePerformance.Interfaces.IEmployeeEfficiencyCalculator;
 import employeePerformance.Interfaces.IEmployeePerformanceDB;
 import employeePerformance.Interfaces.IEmployeeProductivityCalculator;
 import employeePerformance.Interfaces.IGenerateEmployeePerformanceReport;
 import employeePerformance.Interfaces.IInputEmployeeDetails;
-import employeePerformance.Interfaces.ITableGenerator;
-import employeePerformance.Interfaces.IUserInputEmployeePerformance;
-import userinterface.ExportEmployeePerformanceReport;
-import userinterface.IExportEmployeePerformanceReport;
-import userinterface.IInputOutputHandler;
 
 public class EmployeePerformanceFactory implements IEmployeePerformanceFactory
 { 
@@ -29,7 +20,7 @@ public class EmployeePerformanceFactory implements IEmployeePerformanceFactory
     {
     	
     }
-
+ 
     public static IEmployeePerformanceFactory instance()
     {
         if(null == uniqueInstance)
@@ -63,11 +54,4 @@ public class EmployeePerformanceFactory implements IEmployeePerformanceFactory
 	{
 		return new EmployeeProductivityCalculator(resultset);
 	}
-	
-	public IUserInputEmployeePerformance userinputemployee()
-	{
-		return new UserInputEmployeePerformance();
-	}
-	
-	
 }

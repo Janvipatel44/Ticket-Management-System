@@ -6,18 +6,20 @@ public class InputOutputHandler implements IInputOutputHandler {
 
 	private Scanner scanner;
 
-	public InputOutputHandler() {
+	public InputOutputHandler() 
+	{
 		scanner = new Scanner(System.in);
 	}
 
-	public void displayMethod(String printMessage) {
+	public void displayMethod(String printMessage) 
+	{
 		System.out.println(printMessage);
 	}
-
-	public String input() {
+ 
+	public String input() 
+	{
 		String nextLine = scanner.next();
 		return nextLine;
-
 	}
 
 	public int inputInt() 

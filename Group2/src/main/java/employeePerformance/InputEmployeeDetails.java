@@ -13,12 +13,14 @@ public class InputEmployeeDetails implements IInputEmployeeDetails
     private Date date = null;
 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 	
-    public InputEmployeeDetails(String date, String employeeId){
+    public InputEmployeeDetails(String date, String employeeId)
+    {
     	this.dateString = date;
     	this.employeeId = employeeId;
     }
+    
     public String getEmployeeId() 
-    {
+    { 
         return employeeId;
     }
 
@@ -29,7 +31,6 @@ public class InputEmployeeDetails implements IInputEmployeeDetails
     
     public Date generateDateFormat() throws ParseException 
     {
-    	System.out.print(dateString);
     	dateString = formatter.format(formatter.parse(dateString));
     	date = (Date)formatter.parseObject(dateString);
         return date;

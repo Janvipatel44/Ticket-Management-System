@@ -11,5 +11,4 @@ public interface ITableGenerator
     Map<Integer,Integer> getMaximumWidhtofTable(List<String> headersList, List<List<String>> rowsList);
     int getOptimumCellPadding(int cellIndex,int datalength,Map<Integer,Integer> columnMaxWidthMapping,int cellPaddingSize);
     void fillCell(StringBuilder stringBuilder,String cell,int cellIndex,Map<Integer,Integer> columnMaxWidthMapping);
-  
 }
