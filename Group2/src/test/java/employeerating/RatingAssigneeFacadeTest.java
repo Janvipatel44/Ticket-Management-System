@@ -1,12 +1,13 @@
-package Rating;
-import Rating.abstractfactory.IRatingFactoryTest;
-import Rating.abstractfactory.RatingFactoryTest;
+//Author : Vamsi Krishna Utla
+
+package employeerating;
+
 import employeerating.abstractfactory.*;
 import employeerating.interfaces.*;
-
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertTrue;
+
 public class RatingAssigneeFacadeTest {
 
     IRatingFactory ratingFactory;

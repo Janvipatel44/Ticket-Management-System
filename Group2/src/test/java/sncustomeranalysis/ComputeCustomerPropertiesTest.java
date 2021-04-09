@@ -1,11 +1,16 @@
-package customerAnalysis;
-import customerAnalysis.Interfaces.*;
-import customerAnalysis.abstractfactory.*;
+//Author : Vamsi Krishna Utla
+
+package sncustomeranalysis;
+
+
+import sncustomeranalysis.Interfaces.*;
+import sncustomeranalysis.abstractfactory.*;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.List;
 import java.util.Map;
 import static org.junit.Assert.assertEquals;
+
 public class ComputeCustomerPropertiesTest
 {
     ICustomerAnalysisFactory customerAnalysisFactory;

@@ -1,9 +1,14 @@
-package customerAnalysis;
-import customerAnalysis.Interfaces.*;
-import customerAnalysis.abstractfactory.*;
+//Author : Vamsi Krishna Utla
+
+package sncustomeranalysis;
+
+
+import sncustomeranalysis.Interfaces.*;
+import sncustomeranalysis.abstractfactory.*;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+
 public class PersistenceCustomerMock implements ICustomerAnalysisDao
 {
     ICustomerAnalysisFactory customerAnalysisFactory = CustomerAnalysisFactory.instance();

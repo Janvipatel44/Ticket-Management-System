@@ -1,5 +1,9 @@
-package customerAnalysis.Interfaces;
+//Author : Vamsi Krishna Utla
+
+package sncustomeranalysis.Interfaces;
+
 import java.util.Map;
+
 public interface IComputeCustomerProperties
 {
     float getMeanPriority();

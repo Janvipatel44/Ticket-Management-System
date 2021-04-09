@@ -1,8 +1,12 @@
-package Rating.abstractfactory;
-import Rating.PersistenceRatingMock;
+//Author : Vamsi Krishna Utla
+
+package employeerating.abstractfactory;
+
+import employeerating.PersistenceRatingMock;
 import employeerating.RatingAssigneeFacade;
 import employeerating.RatingQuestionnaire;
 import employeerating.interfaces.*;
+
 public class RatingFactoryTest implements IRatingFactoryTest
 {
     private static IRatingFactoryTest uniqueInstance = null;

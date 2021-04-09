@@ -1,7 +1,10 @@
-package employeerating;
-import static java.lang.Math.floor;
+//Author : Vamsi Krishna Utla
 
+package employeerating;
+
+import static java.lang.Math.floor;
 import employeerating.interfaces.*;
+
 public class RatingQuestionnaire implements IRatingQuestionnaire
 {
     protected int userSatisfactionRating;

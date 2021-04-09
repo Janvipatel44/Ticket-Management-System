@@ -1,12 +1,12 @@
-package Rating;
+//Author : Vamsi Krishna Utla
+
+package employeerating;
+
 import org.junit.Test;
-
 import static org.junit.Assert.*;
-
-import Rating.abstractfactory.IRatingFactoryTest;
-import Rating.abstractfactory.RatingFactoryTest;
 import employeerating.abstractfactory.*;
 import employeerating.interfaces.*;
+
 public class RatingQuestionnaireTest
 {
     IRatingFactoryTest ratingFactory = RatingFactoryTest.instance();
