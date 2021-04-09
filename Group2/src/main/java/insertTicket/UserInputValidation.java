@@ -18,13 +18,13 @@ public class UserInputValidation implements IUserInputValidation {
 		
 		IInsertTicketFactory  insertTicketFactory = InsertTicketFactory.instance();
 
-		IInputStringValidation ticketStringValidation = insertTicketFactory.ticketStringValidation();
-		IInputDateValidation dateValidation = insertTicketFactory.dateValidation();
-		IInputRangeValidation rangeValidation = insertTicketFactory.rangeValidation();
+
 		IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
 		IInputOutputHandler inputOutputHandler = userInterfaceFactory.getInputOutputHandler();
-	
-		
+		IInputStringValidation ticketStringValidation = insertTicketFactory.ticketStringValidation(inputOutputHandler);
+		IInputDateValidation dateValidation = insertTicketFactory.dateValidation(inputOutputHandler);
+		IInputRangeValidation rangeValidation = insertTicketFactory.rangeValidation(inputOutputHandler);
+		 
 		boolean success = false;
 		switch (input) 
 		{
@@ -41,12 +41,12 @@ public class UserInputValidation implements IUserInputValidation {
 		case VALIDATETICKETTYPE:
 
 			if (ticketStringValidation.isStringNull(validationString) == true) {
-				System.err.println("Null String");
+				inputOutputHandler.displayMethod("Null String");
 				success = false;
 				break;
 			}
 			if (ticketStringValidation.isStringContainsSpecialCharacters(validationString) == true) {
-				System.err.println("String contains Special Characters");
+				inputOutputHandler.displayMethod("String contains Special Characters");
 				success = false;
 				break;
 			}
@@ -71,32 +71,36 @@ public class UserInputValidation implements IUserInputValidation {
 			
 		case VALIDATEREPORTERID :
 		case VALIDATEEMPLOYEEID:
-			if (ticketStringValidation.isStringContainsSpecialCharacters(validationString) == true) {
-				System.err.println("String contains Special Characters");
+			
+			if (ticketStringValidation.isStringContainsSpecialCharacters(validationString) == true) 
+			{
+				inputOutputHandler.displayMethod("String contains Special Characters");
 				success = false;
 				break;
 			}
-			if (ticketStringValidation.isStringNull(validationString) == true) {
-				System.err.println("String contains Special Characters");
+			if (ticketStringValidation.isStringNull(validationString) == true) 
+			{
+				inputOutputHandler.displayMethod("String contains Special Characters");
 				success = false;
 				break;
 			}
-			if(ticketStringValidation.isStringEmployeeAndReporterID(validationString) == false) {
-				System.err.println("EMP not found");
+			if(ticketStringValidation.isStringEmployeeAndReporterID(validationString) == false)
+			{
+				inputOutputHandler.displayMethod("EMP not found");
 				success = false;
 				break;
 			}
 			success = true;
 
 			break;
-			
+			 
 		case VALIDATEPRIORITY:
 		case VALIDATEIMPACT:
 		case VALIDATEURGENCY:
 
 			if(rangeValidation.isRangeValid(Integer.parseInt(validationString)) == false) 
 			{
-				System.err.println("Range not valid");
+				inputOutputHandler.displayMethod("Range not valid");
 				success = false;
 				break;
 			}

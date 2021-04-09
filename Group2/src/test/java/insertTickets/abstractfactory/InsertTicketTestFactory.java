@@ -17,6 +17,7 @@ import insertTicket.Interfaces.IUserInputValidation;
 import insertTicket.abstractFactory.IInsertTicketFactory;
 import insertTicket.abstractFactory.InsertTicketFactory;
 import insertTickets.InsertTicketsDBMock;
+import userinterface.IInputOutputHandler;
 
 public class InsertTicketTestFactory implements IInsertTicketTestFactory
 {
@@ -36,19 +37,19 @@ public class InsertTicketTestFactory implements IInsertTicketTestFactory
         return uniqueInstance;
     }
 
-    public IInputStringValidation ticketStringValidation()
+    public IInputStringValidation ticketStringValidation(IInputOutputHandler inputOutputHandler)
     {
-    	return new InputStringValidation();
+    	return new InputStringValidation(inputOutputHandler);
     }
     
-    public 	IInputDateValidation dateValidation()
+    public 	IInputDateValidation dateValidation( IInputOutputHandler inputOutputHandler)
     {
-    	return new InputDateValidation();
+    	return new InputDateValidation(  inputOutputHandler);
     }
     
-    public 	IInputRangeValidation rangeValidation() 
+    public 	IInputRangeValidation rangeValidation( IInputOutputHandler inputOutputHandler) 
     {
-    	return new InputRangeValidation();
+    	return new InputRangeValidation( inputOutputHandler);
     }    
     
     public 	ICreateTicket getcreateTicket(String ticketID, String description,  String expectedEndDate, String reporterID,

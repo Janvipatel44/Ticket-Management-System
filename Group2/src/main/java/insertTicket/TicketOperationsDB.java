@@ -19,7 +19,7 @@ public class TicketOperationsDB implements ITicketOperationsDB{
     IInputOutputHandler inputOutputHandler;
 	IConnectionManager IConnectionMng = new ConnectionManager(ConfigurationFile);
 	ICreateTicket createTicket = null;
-
+ 
 	public TicketOperationsDB(ICreateTicket createTicket)
 	{
 		this.createTicket = createTicket;
@@ -76,22 +76,20 @@ public class TicketOperationsDB implements ITicketOperationsDB{
             statement.execute();
             
             duplicate_ticket = statement.getInt(2);
-            System.out.print("duplicate_ticket:" +duplicate_ticket);
-            
+             
 			if(duplicate_ticket==0) 
 			{
 			    success = false;
 			}
 			else 
 			{
-				System.out.println("Duplicate Entry Found!!!");
+				inputOutputHandler.displayMethod("Duplicate Entry Found!!!");
 				success = true;
 			}
 		} 
 		catch (SQLException e) 
 		{
 			// TODO Auto-generated catch block
-			System.out.print("SQL Exception");
 			e.printStackTrace();
 		}
 		return success;

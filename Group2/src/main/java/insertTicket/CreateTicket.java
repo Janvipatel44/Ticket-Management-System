@@ -7,7 +7,7 @@ import java.util.Date;
 import insertTicket.Interfaces.ICreateTicket;
  
 public class CreateTicket implements ICreateTicket
-{
+{ 
 	private String ticketID = null;
     private String description = null;
     private Date startDate = null;
@@ -127,7 +127,7 @@ public class CreateTicket implements ICreateTicket
     }
   
     public String getCustomerID() 
-    {
+    { 
     	return customerID;
     }
   

@@ -8,7 +8,7 @@ import insertTicket.Interfaces.ITicketOperationsDB;
 public class InsertTicketsDBMock implements ITicketOperationsDB
 {
 	ICreateTicket createTicket;
-	
+	 
 	public InsertTicketsDBMock(ICreateTicket createTicket)
 	{
 		this.createTicket = createTicket;

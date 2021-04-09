@@ -16,9 +16,10 @@ public class ExportEmployeePerformanceReport implements IExportEmployeePerforman
 	private Scanner sc = new Scanner(System.in);
 	private ArrayList<String> employeeDetailsString = new ArrayList<String>();
 	IGenerateEmployeePerformanceReport generateEmployeePerformanceReport;
-	IInputOutputHandler inputOutputHandler;
+	IInputOutputHandler inputOutputHandler; 
 	
-	public ExportEmployeePerformanceReport(IInputOutputHandler inputOutputHandler, ArrayList<String> employeeEfficiency) {
+	public ExportEmployeePerformanceReport(IInputOutputHandler inputOutputHandler, ArrayList<String> employeeEfficiency) 
+	{
 		this.employeeDetailsString = employeeEfficiency;
 		this.inputOutputHandler = inputOutputHandler;
 	}

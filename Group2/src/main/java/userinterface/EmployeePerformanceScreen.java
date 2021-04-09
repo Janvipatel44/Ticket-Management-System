@@ -2,13 +2,11 @@ package userinterface;
 
 import userinterface.abstractFactory.*;
 
-import java.awt.List;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import employeePerformance.Interfaces.IEmployeePerformanceDB;
-import employeePerformance.Interfaces.IGenerateEmployeePerformanceReport;
 import employeePerformance.Interfaces.IInputEmployeeDetails;
 import employeePerformance.abstractFactory.EmployeePerformanceFactory;
 import employeePerformance.abstractFactory.IEmployeePerformanceFactory;
@@ -25,12 +23,11 @@ public class EmployeePerformanceScreen implements IEmployeePerformanceScreen
     private IInputOutputHandler inputOutputHandler = userInterfaceFactory.getInputOutputHandler();
     
     public EmployeePerformanceScreen(IInputOutputHandler inputOutputHandler)
-    {
+    { 
         this.inputOutputHandler = inputOutputHandler;
-        //this.userInterfaceFactory = UserInterfaceFactory.instance();
     }
     
-    public void displayTicketGenerationScreen(IParameterizedUser user)
+    public void displayTicketGenerationScreen(IParameterizedUser user) throws SQLException
     {
 	   
 	   	String date = null;
@@ -45,11 +42,10 @@ public class EmployeePerformanceScreen implements IEmployeePerformanceScreen
 		inputEmployeeDetails = employeePerformanceFactory.userInput(date, employeeID);
 		
 		employeedetailsDB = employeePerformanceFactory.employeedetailsDB(inputEmployeeDetails);
-		 
+		
 		try
 		{
 			efficiencyReport.add(employeedetailsDB.getticketCountsDB().toString());
-			System.out.print("Efficiency" +efficiencyReport);
 
 			if(employeedetailsDB.getticketCountsDB()!=null) 
 			{
@@ -69,7 +65,6 @@ public class EmployeePerformanceScreen implements IEmployeePerformanceScreen
 		
 		try {
 			efficiencyReport.add(employeedetailsDB.getemployeeEfficiencyDB().toString());
-			System.out.print("Efficiency" +efficiencyReport);
 
 			if(employeedetailsDB.getemployeeEfficiencyDB()!=null) 
 			{
@@ -90,7 +85,6 @@ public class EmployeePerformanceScreen implements IEmployeePerformanceScreen
 		try 
 		{
 			efficiencyReport.add(employeedetailsDB.getemployeeProductivityDB().toString());
-			System.out.print("Efficiency" +efficiencyReport);
 
 			if(employeedetailsDB.getemployeeProductivityDB() != null) 
 			{
@@ -108,8 +102,8 @@ public class EmployeePerformanceScreen implements IEmployeePerformanceScreen
 		    inputOutputHandler.displayMethod(e1.toString());
 			e1.printStackTrace();
 		}
-		
-		System.out.print("Efficiency" +efficiencyReport);
+
+		sc.close();
 		employeePerformanceReport = userInterfaceFactory.getExportEmployeePerformanceReport(inputOutputHandler);
 		employeePerformanceReport.exportTicket(efficiencyReport);
 		

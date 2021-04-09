@@ -15,20 +15,24 @@ public class TableGenerator
 	    private String TABLE_H_SPLIT_SYMBOL = "-";
 
 	    public String generateTable(List<String> headersList, List<List<String>> rowsList,int... overRiddenHeaderHeight)
-	    {
+	    { 
 	        StringBuilder stringBuilder = new StringBuilder();
 
 	        int rowHeight = overRiddenHeaderHeight.length > 0 ? overRiddenHeaderHeight[0] : 1; 
 
 	        Map<Integer,Integer> columnMaxWidthMapping = getMaximumWidhtofTable(headersList, rowsList);
 
+	        int headerIndex = 0;
+	        int i = 0;
+	        int cellIndex = 0;
+	        
 	        stringBuilder.append(NEW_LINE);
 	        stringBuilder.append(NEW_LINE);
 	        createRowLine(stringBuilder, headersList.size(), columnMaxWidthMapping);
 	        stringBuilder.append(NEW_LINE);
 
 
-	        for (int headerIndex = 0; headerIndex < headersList.size(); headerIndex++) {
+	        for (headerIndex = 0; headerIndex < headersList.size(); headerIndex++) {
 	            fillCell(stringBuilder, headersList.get(headerIndex), headerIndex, columnMaxWidthMapping);
 	        }
 
@@ -37,13 +41,15 @@ public class TableGenerator
 	        createRowLine(stringBuilder, headersList.size(), columnMaxWidthMapping);
 
 
-	        for (List<String> row : rowsList) {
-
-	            for (int i = 0; i < rowHeight; i++) {
+	        for (List<String> row : rowsList)
+	        {
+	            for (i = 0; i < rowHeight; i++) 
+	            {
 	                stringBuilder.append(NEW_LINE);
 	            }
 
-	            for (int cellIndex = 0; cellIndex < row.size(); cellIndex++) {
+	            for (cellIndex = 0; cellIndex < row.size(); cellIndex++) 
+	            {
 	                fillCell(stringBuilder, row.get(cellIndex), cellIndex, columnMaxWidthMapping);
 	            }
 
@@ -59,20 +65,26 @@ public class TableGenerator
 
 	    void fillSpace(StringBuilder stringBuilder, int length)
 	    {
-	        for (int i = 0; i < length; i++) {
+	        for (int i = 0; i < length; i++) 
+	        {
 	            stringBuilder.append(" ");
 	        }
 	    }
 
 	    void createRowLine(StringBuilder stringBuilder,int headersListSize, Map<Integer,Integer> columnMaxWidthMapping)
 	    {
-	        for (int i = 0; i < headersListSize; i++) {
+	    	int i = 0;
+	    	int j = 0;
+	    	
+	        for (i = 0; i < headersListSize; i++) 
+	        {
 	            if(i == 0)
 	            {
 	                stringBuilder.append(TABLE_JOINT_SYMBOL);   
 	            }
 
-	            for (int j = 0; j < columnMaxWidthMapping.get(i) + PADDING_SIZE * 2 ; j++) {
+	            for (j = 0; j < columnMaxWidthMapping.get(i) + PADDING_SIZE * 2 ; j++) 
+	            {
 	                stringBuilder.append(TABLE_H_SPLIT_SYMBOL);
 	            }
 	            stringBuilder.append(TABLE_JOINT_SYMBOL);
@@ -84,11 +96,13 @@ public class TableGenerator
 	    {
 	        Map<Integer,Integer> columnMaxWidthMapping = new HashMap<>();
 
-	        for (int columnIndex = 0; columnIndex < headersList.size(); columnIndex++) {
+	        for (int columnIndex = 0; columnIndex < headersList.size(); columnIndex++)
+	        {
 	            columnMaxWidthMapping.put(columnIndex, 0);
 	        }
 
-	        for (int columnIndex = 0; columnIndex < headersList.size(); columnIndex++) {
+	        for (int columnIndex = 0; columnIndex < headersList.size(); columnIndex++) 
+	        {
 
 	            if(headersList.get(columnIndex).length() > columnMaxWidthMapping.get(columnIndex))
 	            {
@@ -97,9 +111,11 @@ public class TableGenerator
 	        }
 
 
-	        for (List<String> row : rowsList) {
+	        for (List<String> row : rowsList)
+	        {
 
-	            for (int columnIndex = 0; columnIndex < row.size(); columnIndex++) {
+	            for (int columnIndex = 0; columnIndex < row.size(); columnIndex++) 
+	            {
 
 	                if(row.get(columnIndex).length() > columnMaxWidthMapping.get(columnIndex))
 	                {
@@ -108,7 +124,8 @@ public class TableGenerator
 	            }
 	        }
 
-	        for (int columnIndex = 0; columnIndex < headersList.size(); columnIndex++) {
+	        for (int columnIndex = 0; columnIndex < headersList.size(); columnIndex++) 
+	        {
 
 	            if(columnMaxWidthMapping.get(columnIndex) % 2 != 0)
 	            {
@@ -147,6 +164,7 @@ public class TableGenerator
 
 	        fillSpace(stringBuilder, cellPaddingSize);
 	        stringBuilder.append(cell);
+	        
 	        if(cell.length() % 2 != 0)
 	        {
 	            stringBuilder.append(" ");

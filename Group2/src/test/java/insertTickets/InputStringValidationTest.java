@@ -5,20 +5,22 @@ import org.junit.Test;
 import insertTicket.Interfaces.IInputStringValidation;
 import insertTickets.abstractfactory.IInsertTicketTestFactory;
 import insertTickets.abstractfactory.InsertTicketTestFactory;
+import userinterface.abstractFactory.IUserInterfaceFactory;
+import userinterface.abstractFactory.UserInterfaceFactory;
 
 public class InputStringValidationTest 
 {	
 	IInsertTicketTestFactory insertTicketTestFactory = InsertTicketTestFactory.instance();
-	
-	IInputStringValidation ticketStringValidation = insertTicketTestFactory.ticketStringValidation();
-	
+	IUserInterfaceFactory userInterfactory = UserInterfaceFactory.instance();
+	IInputStringValidation ticketStringValidation = insertTicketTestFactory.ticketStringValidation(userInterfactory.getInputOutputHandler());
+	 
 	@Test
 	public void isStringNull() 
 	{
 		assertTrue(ticketStringValidation.isStringNull(" "));
 		assertFalse(ticketStringValidation.isStringNull("Ticket123"));
 	}
-	
+	 
 	@Test
 	public void isStringEmployeeAndReporterID() 
 	{

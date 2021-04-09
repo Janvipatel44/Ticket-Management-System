@@ -1,5 +1,7 @@
 package menucontroller;
 
+import java.sql.SQLException;
+
 import login.Interfaces.IParameterizedUser;
 import menucontroller.interfaces.IMenuTask;
 import userinterface.IEmployeePerformanceScreen;
@@ -13,6 +15,11 @@ public class EmployeePerformanceReportTask implements IMenuTask {
 		IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
 		IEmployeePerformanceScreen employeePerformanceScreen = userInterfaceFactory
 				.getEmployeePerformanceScreen(inputOutputHandler);
-		employeePerformanceScreen.displayTicketGenerationScreen(user);
+		try {
+			employeePerformanceScreen.displayTicketGenerationScreen(user);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 	}
 }

@@ -6,43 +6,29 @@ import java.text.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import employeePerformance.Interfaces.IBarChartGeneration;
 import employeePerformance.Interfaces.IGenerateEmployeePerformanceReport;
 import employeePerformance.Interfaces.IInputEmployeeDetails;
-import employeePerformance.Interfaces.ITableGenerator;
-import employeePerformance.abstractFactory.EmployeePerformanceFactory;
-import employeePerformance.abstractFactory.IEmployeePerformanceFactory;
-import userinterface.IExportEmployeePerformanceReport;
-import userinterface.IInputOutputHandler;
 
 public class GenerateEmployeePerformanceReport implements IGenerateEmployeePerformanceReport
 {	
-		private IInputEmployeeDetails employeeDetails = null;
-		private IExportEmployeePerformanceReport employeePerformanceReport ;
-		private IBarChartGeneration barchart;
-		private IInputOutputHandler inputOutputHandler;
-	    private IEmployeePerformanceFactory employeePerformanceFactory = EmployeePerformanceFactory.instance();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 		
 		public ArrayList<String> displayEmployeeDetailsAndTicketCount( IInputEmployeeDetails employeeDetails, ResultSet resultset) throws SQLException, ParseException
-		{
+		{ 
 			ArrayList<String> employeeDetailsString = new ArrayList<String>();
-
 			TableGenerator tableEmployeeInformation = new TableGenerator();
 	        List<String> headersList = new ArrayList<>(); 
-	        headersList.add("Employee ID");
-	        headersList.add("Date");
-
 	        List<List<String>> rowsList = new ArrayList<>();
             List<String> row = new ArrayList<>(); 
+            
+	        headersList.add("Employee ID");
+	        headersList.add("Date");
             row.add(employeeDetails.getEmployeeId());
             row.add(employeeDetails.getDate());
             rowsList.add(row);
 	        
 	        employeeDetailsString.add(tableEmployeeInformation.generateTable(headersList, rowsList));
 	       
-			TableGenerator tableGeneratorTicketInformation = new TableGenerator();
 	        headersList.clear();
 	        headersList.add("Ticket Level");
 	        headersList.add("Count");
@@ -53,7 +39,6 @@ public class GenerateEmployeePerformanceReport implements IGenerateEmployeePerfo
 	            List<String> ticketDetailRow = new ArrayList<>(); 
 	            ticketDetailRow.add(resultset.getString("ticketLevel"));
 	            ticketDetailRow.add(resultset.getString("count"));
-	        	System.out.print(ticketDetailRow);
 	            rowsList.add(ticketDetailRow);
 	    	}
 	        
@@ -66,17 +51,15 @@ public class GenerateEmployeePerformanceReport implements IGenerateEmployeePerfo
 		public ArrayList<String> displayEmployeeEfficiency(HashMap <Integer, Integer> calculatedEmployeeEfficiency) 
 		{
 			ArrayList<String> employeeDetailsString = new ArrayList<String>();
-
-	    	System.out.print("In display function" +calculatedEmployeeEfficiency);
-
-			employeeDetailsString.add("################ Month Wise Efficiency ################");
+	        String[] monthString = new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 			TableGenerator tableGeneratorEmployeeEfficiency = new TableGenerator();
 	        List<String> headersList = new ArrayList<>();
+	        List<List<String>> rowsList = new ArrayList<>();
+
+			employeeDetailsString.add("################ Month Wise Efficiency ################");
 			headersList.clear();
 	        headersList.add("Month");
 	        headersList.add("Efficiency");
-	        List<List<String>> rowsList = new ArrayList<>();
-	        String[] monthString = new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 	        
 	        for(int i=0;i<12;i++)
 	        {
@@ -90,8 +73,6 @@ public class GenerateEmployeePerformanceReport implements IGenerateEmployeePerfo
 	        }
 
 	        employeeDetailsString.add(tableGeneratorEmployeeEfficiency.generateTable(headersList, rowsList));
-	        //employeeDetailsString.add(barchart.Displaybarchart(calculatedEmployeeEfficiency));
-	    	System.out.print("In display function calculated employee efficiency" +employeeDetailsString);
 
 			return employeeDetailsString;
 		}
@@ -99,15 +80,15 @@ public class GenerateEmployeePerformanceReport implements IGenerateEmployeePerfo
 		public ArrayList<String> displayEmployeeProductivity(HashMap <Integer, Integer> calculatedEmployeeProductivity)  
 		{
 			ArrayList<String> employeeDetailsString = new ArrayList<String>();
-
-			employeeDetailsString.add("################ Month Wise Productivity ################");
 			TableGenerator tableGeneratorEmployeeProductivity = new TableGenerator();
 	        List<String> headersList = new ArrayList<>();
+	        List<List<String>> rowsList = new ArrayList<>();
+	        String[] monthString = new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+
+			employeeDetailsString.add("################ Month Wise Productivity ################");
 			headersList.clear();
 	        headersList.add("Month");
 	        headersList.add("Productivity");
-	        List<List<String>> rowsList = new ArrayList<>();
-	        String[] monthString = new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 	        
 	        for(int i=0;i<12;i++)
 	        {
@@ -121,7 +102,6 @@ public class GenerateEmployeePerformanceReport implements IGenerateEmployeePerfo
 	        }
 	    	
 	        employeeDetailsString.add(tableGeneratorEmployeeProductivity.generateTable(headersList, rowsList));
-			//employeeDetailsString.add(barchart.Displaybarchart(calculatedEmployeeProductivity));
 			
 			return employeeDetailsString;
 		}
