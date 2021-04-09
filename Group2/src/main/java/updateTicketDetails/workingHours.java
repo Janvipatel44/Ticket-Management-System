@@ -2,12 +2,10 @@ package updateTicketDetails;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -39,19 +37,19 @@ public class workingHours implements IworkingHours
 		while(resultset.next()) 	
     	{
 				previousDate = resultset.getString("previousDate");
-			    System.out.print("Previous Date" +previousDate);
-
-				try {
+			    
+				try 
+				{
 					formateGetDate  = sdf.parse(previousDate);
 					todayDate = sdf.parse(sdf.format(cal.getTime()));
-				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				}
+				catch (ParseException e1) 
+				{
+					hours=0;
 				}
 	    	    long dateDifferenceInMinutes = Math.abs(formateGetDate.getTime() - todayDate.getTime());
 			    long minutes = TimeUnit.MILLISECONDS.toMinutes(dateDifferenceInMinutes);
 			    hours = minutes/(float)60;
-			    System.out.print("Hours total" +hours);
     	}
 		return hours;
 	}
