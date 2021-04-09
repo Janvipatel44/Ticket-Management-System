@@ -71,4 +71,4 @@ deployProd:
   environment:
     name: Test
   only:
-    - develop
+    - release
