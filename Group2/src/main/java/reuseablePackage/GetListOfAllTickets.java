@@ -15,21 +15,17 @@ import reuseablePackage.interfaces.IStoreTicketData;
 
 public class GetListOfAllTickets implements IGetListOfTickets
 {
-	private Connection connect=null;
-	private CallableStatement SPstatement=null;
-	private ResultSet resultSet=null;
-	private int choice=4;
+	private final int choice=4;
 	private List<String> listOfTicketsId = new ArrayList<String>();
 	
-	private IConnectionManager IConnectionMng;
-	private IStoreTicketData storeTicketData;
-	private IDisplayTickets displayTicket;
+	private IConnectionManager connectionManager;
+	private IDisplayTickets displayTickets = new DisplayTickets();
+	private IStoreTicketData storeTicketData = new StoreTicketData();
 	
-	public GetListOfAllTickets(IStoreTicketData storeTicketData,IDisplayTickets displayTicket,IConnectionManager IConnectionMng)
+	public GetListOfAllTickets(IConnectionManager connectionManager)
 	{
-		this.IConnectionMng = IConnectionMng;
-		this.storeTicketData = storeTicketData;
-		this.displayTicket = displayTicket;
+		this.connectionManager = connectionManager;
+		
 	}
 	
 	public String listOfTickets()
@@ -37,27 +33,31 @@ public class GetListOfAllTickets implements IGetListOfTickets
 		String tableofticket="";
 		try 
 		{
-			connect = IConnectionMng.establishConnection();
-			SPstatement = connect.prepareCall("{call searchTicket(?,?)}");
+			Connection connect = connectionManager.establishConnection();
+			String procedureCall="searchTicket";
+			CallableStatement SPstatement;
+			SPstatement = connect.prepareCall("{call "+procedureCall+"(?,?)}");
 			SPstatement.setLong(1,choice);
 			SPstatement.setString(2, null);
 			boolean hasResult = SPstatement.execute();
 			if(hasResult)
 			{
-			    resultSet = SPstatement.getResultSet();
-			    ResultSetMetaData tableMetaData = resultSet.getMetaData();
-			    System.out.println("hasresult:"+hasResult + "resultset:"+resultSet );
+				ResultSet resultSet = SPstatement.getResultSet();
+			    ResultSetMetaData tableMetaData = resultSet.getMetaData(); 
+			    
 			    storeTicketData.addFetchedTickets(resultSet,tableMetaData);
+			    
 			    Map<String, ArrayList <String>> ticketsData = storeTicketData.getTableData();
 			    List<String> columnOfTable = storeTicketData.getTicketColumns();
-			    tableofticket=displayTicket.printTicketsDetails(ticketsData,columnOfTable);
+			    
+			    tableofticket = displayTickets.printTicketsDetails(ticketsData,columnOfTable);
 			}
-			IConnectionMng.closeConnection();
+			connectionManager.closeConnection();
 			
 		}
 		catch (SQLException e)
 		{
-				e.printStackTrace();
+			connectionManager.closeConnection();
 		}
 		return tableofticket;
 	}

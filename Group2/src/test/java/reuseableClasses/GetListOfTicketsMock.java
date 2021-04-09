@@ -7,9 +7,9 @@ import java.util.Map;
 
 import reuseablePackage.abstractFactory.IReuseableClasssFactory;
 import reuseablePackage.abstractFactory.ReuseableClasssFactory;
-import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.IDisplayTickets;
 import reuseablePackage.interfaces.IGetListOfTickets;
+import reuseablePackage.interfaces.ITableGenerator;
 
 public class GetListOfTicketsMock implements IGetListOfTickets
 {
@@ -23,7 +23,7 @@ public class GetListOfTicketsMock implements IGetListOfTickets
 	public GetListOfTicketsMock()
 	{
 		generateTable = reuseableclassfactory.tableFormate() ;
-		displayticket =reuseableclassfactory.displayUser(generateTable);
+		displayticket =reuseableclassfactory.displayUser();
 		ticketsData = new LinkedHashMap<String, ArrayList<String>>();
 		columnOfTable = new ArrayList<String>();
 	}

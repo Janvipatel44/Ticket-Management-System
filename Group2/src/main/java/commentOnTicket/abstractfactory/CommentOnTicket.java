@@ -5,5 +5,5 @@ import database.intefaces.IConnectionManager;
 
 public abstract class CommentOnTicket
 {
-	public abstract ICommentOnTickets postComment(IConnectionManager ConnectionMng);
+	public abstract ICommentOnTickets postComment(IConnectionManager connectionManager);
 }

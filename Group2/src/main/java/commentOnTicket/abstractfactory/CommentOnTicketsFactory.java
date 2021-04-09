@@ -22,9 +22,9 @@ public class CommentOnTicketsFactory implements ICommentOnTicketsFactory
         return uniqueInstance;
     }
 
-	public ICommentOnTickets postComment(IConnectionManager ConnectionMng)
+	public ICommentOnTickets postComment(IConnectionManager connectionManager)
 	{
-		return new CommentOnTickets(ConnectionMng);
+		return new CommentOnTickets(connectionManager);
 	}
 
 }

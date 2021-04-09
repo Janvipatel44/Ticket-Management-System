@@ -10,7 +10,8 @@ import userinterface.abstractFactory.UserInterfaceFactory;
 public class SearchTicketMenuTask implements IMenuTask {
 
 	@Override
-	public void runMenuTask(IParameterizedUser user, IInputOutputHandler inputOutputHandler) {
+	public void runMenuTask(IParameterizedUser user, IInputOutputHandler inputOutputHandler)
+	{
 		IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
 		ISearchTicketScreen getsearchticketscreen = userInterfaceFactory.getsearchTicketScreen(inputOutputHandler);
 		getsearchticketscreen.searchTicketScreen(user);

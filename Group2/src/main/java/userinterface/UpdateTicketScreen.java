@@ -1,19 +1,16 @@
 package userinterface;
 
 import java.text.ParseException;
-import java.util.Scanner;
 
-import database.ConnectionManager;
+import database.abstractfactory.DatabaseFactory;
+import database.abstractfactory.IDatabaseFactory;
 import database.intefaces.IConnectionManager;
 import login.Interfaces.IParameterizedUser;
 import reuseablePackage.abstractFactory.IReuseableClasssFactory;
 import reuseablePackage.abstractFactory.ReuseableClasssFactory;
-import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.ICheckTicketsExists;
-import reuseablePackage.interfaces.IDisplayTickets;
 import reuseablePackage.interfaces.IGetListOfTickets;
 import reuseablePackage.interfaces.IStoreTicketData;
-import reuseablePackage.interfaces.IticketStatusInProgress;
 import roles.abstractfactory.IRoleFactory;
 import updateTicketDetails.abstractfactory.IUpdateTicketFactory;
 import updateTicketDetails.abstractfactory.UpdateTicketsFactory;
@@ -23,35 +20,39 @@ import userinterface.abstractFactory.UserInterfaceFactory;
 
 public class UpdateTicketScreen implements IUpdateTicketScreen
 {
-	String configurationFile = "ConfigurationFile";
-	String ticketId = null;
-	String userRole = "manager";
-	boolean result=false;
-	Scanner sc = new Scanner(System.in);
+	private String ticketId = null;
+	private String userRole = "manager";
+	private boolean result=false;
+	private String configurationFile = "ConfigurationFile";	
 	
 	IBackToHomePageScreen backToHomePageScreen;
 	IUserInterfaceFactory userInterfaceFactory;
 	IRoleFactory roleFactory;
-	
-	IInputOutputHandler inputoutputhandler;
-	
-	IConnectionManager ConnectionMng = new ConnectionManager(configurationFile);
+		
+	private static IConnectionManager connectionManager;
+	private String projectConfigurationFile = "ProjectConfiguration.properties";
+	private String dbConfigurationKey = "DBConfiguration";
+	private final IDatabaseFactory databaseFactory = DatabaseFactory.instance();
 		
 	IUpdateTicketFactory updateticketfactory = UpdateTicketsFactory.instance(); 
 	IReuseableClasssFactory reusableFactory = ReuseableClasssFactory.instance();
+	IReuseableClasssFactory reuseableclassfactory = ReuseableClasssFactory.instance();
 	
-	ICheckTicketsExists checkticketexists = reusableFactory.checkticketexists();
-	IStoreTicketData storeticketdata = reusableFactory.storeTicketData();
-	ITableGenerator tableformate = reusableFactory.tableFormate();
-	IDisplayTickets displayticket = reusableFactory.displayUser(tableformate);
-	IGetListOfTickets getalltickets = reusableFactory.getalltickets(storeticketdata, displayticket, ConnectionMng);
-	IticketStatusInProgress ticketInProgress = reusableFactory.ticketInProgress(ConnectionMng);
-	IUpdateTicket updateTicket = updateticketfactory.UpdateTicket(ConnectionMng);
+	ICheckTicketsExists checkticketexists;
+	IStoreTicketData storeticketdata;
+	IGetListOfTickets getalltickets;
+	IInputOutputHandler inputoutputhandler;
+	IUpdateTicket updateTicket;
 	
 	
 	public UpdateTicketScreen(IInputOutputHandler inputoutputhandler)
 	{
 		this.inputoutputhandler = inputoutputhandler;
+		connectionManager = databaseFactory.getConnectionManager(configurationFile);
+		checkticketexists = reusableFactory.checkticketexists(connectionManager);
+		storeticketdata = reusableFactory.storeTicketData();
+		getalltickets = reusableFactory.getalltickets(connectionManager);
+		updateTicket = updateticketfactory.UpdateTicket(connectionManager);
 	}
 	
 	public void updateticketscreen(IParameterizedUser user)
@@ -73,7 +74,7 @@ public class UpdateTicketScreen implements IUpdateTicketScreen
 				{
 					break;
 				}
-				result=checkticketexists.ticketExistForManager(ticketId);
+				result=checkticketexists.ticketExists(ticketId);
 				if(result == true)
 				{
 					inputoutputhandler.displayMethod("1. Expected Date"+"\n"+"2. Reporter ID"+"\n"+"3. Assignee Name"+"\n"+"4. priority"+"\n"+"5. urgency"+

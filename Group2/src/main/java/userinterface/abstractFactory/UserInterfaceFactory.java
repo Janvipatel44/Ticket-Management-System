@@ -1,6 +1,8 @@
 package userinterface.abstractFactory;
 import userinterface.BackToHomePageOption;
+import userinterface.CommentOnTicketScreen;
 import userinterface.CustomerAnalysisScreen;
+import userinterface.DeleteTicketScreen;
 import userinterface.EmployeeMilestoneScreen;
 import userinterface.EmployeePerformanceScreen;
 import userinterface.ExportEmployeePerformanceReport;
@@ -8,7 +10,9 @@ import userinterface.ForgotPasswordScreen;
 import userinterface.GenerateTicketScreen;
 import userinterface.HomePageScreen;
 import userinterface.IBackToHomePageScreen;
+import userinterface.ICommentOnTicketScreen;
 import userinterface.ICustomerAnalysisScreen;
+import userinterface.IDeleteTicketScreen;
 import userinterface.IEmployeeMilestoneScreen;
 import userinterface.IEmployeePerformanceScreen;
 import userinterface.IExportEmployeePerformanceReport;
@@ -21,25 +25,21 @@ import userinterface.IManagerTeamTrackingScreen;
 import userinterface.IModifyUserRoleScreen;
 import userinterface.IRatingScreen;
 import userinterface.IRegistrationScreen;
-import userinterface.IServiceNowWelcomeScreen;
-import userinterface.ITwitterPostScreen;
-import userinterface.ICommentOnTicketScreen;
-import userinterface.IDeleteTicketScreen;
-import userinterface.InputOutputHandler;
 import userinterface.ISearchTicketScreen;
+import userinterface.IServiceNowWelcomeScreen;
 import userinterface.ISortTciketScreen;
+import userinterface.ITwitterPostScreen;
 import userinterface.IUpdateTicketScreen;
+import userinterface.InputOutputHandler;
 import userinterface.LoginScreen;
 import userinterface.ManagerTeamTrackingScreen;
 import userinterface.ModifyUserRoleScreen;
 import userinterface.RatingScreen;
 import userinterface.RegistrationScreen;
-import userinterface.ServiceNowWelcomeScreen;
-import userinterface.TwitterPostScreen;
-import userinterface.CommentOnTicketScreen;
-import userinterface.DeleteTicketScreen;
 import userinterface.SearchTicketScreen;
+import userinterface.ServiceNowWelcomeScreen;
 import userinterface.SortTicketScreen;
+import userinterface.TwitterPostScreen;
 import userinterface.UpdateTicketScreen;
 
 public class UserInterfaceFactory implements IUserInterfaceFactory
@@ -145,7 +145,7 @@ public class UserInterfaceFactory implements IUserInterfaceFactory
         return new TwitterPostScreen(inputOutputHandler);
     }
     
-    public IUpdateTicketScreen getUpdateTicketScreen(IInputOutputHandler inputOutputHandler)
+    public IUpdateTicketScreen getUpdateTicketScreen(IInputOutputHandler inputOutputHandler) 
     {
         return new UpdateTicketScreen(inputOutputHandler);
     }

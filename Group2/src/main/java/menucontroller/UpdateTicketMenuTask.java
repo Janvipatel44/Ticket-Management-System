@@ -10,7 +10,8 @@ import userinterface.abstractFactory.UserInterfaceFactory;
 public class UpdateTicketMenuTask implements IMenuTask {
 	
 	@Override
-	public void runMenuTask(IParameterizedUser user, IInputOutputHandler inputOutputHandler) {
+	public void runMenuTask(IParameterizedUser user, IInputOutputHandler inputOutputHandler) 
+	{
 		IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
 		IUpdateTicketScreen updateticketscreen = userInterfaceFactory.getUpdateTicketScreen(inputOutputHandler);
 		updateticketscreen.updateticketscreen(user);

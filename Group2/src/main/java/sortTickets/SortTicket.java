@@ -10,46 +10,43 @@ import java.util.List;
 import java.util.Map;
 
 import database.intefaces.IConnectionManager;
+import reuseablePackage.abstractFactory.IReuseableClasssFactory;
+import reuseablePackage.abstractFactory.ReuseableClasssFactory;
 import reuseablePackage.interfaces.IDisplayTickets;
 import reuseablePackage.interfaces.IStoreTicketData;
 import sortTickets.interfaces.ISortTicket;
 
 public class SortTicket implements ISortTicket 
-{
+{	
+	private IConnectionManager connectionManager;
+	private IReuseableClasssFactory reuseablefactory = ReuseableClasssFactory.instance();
+	private IDisplayTickets displayUser;
+	private IStoreTicketData storeTicketData ;
 	
-	private Connection connect=null;
-	private CallableStatement SPstatement=null;
-	private ResultSet resultSet=null;
-	private boolean hasResult=false;
-	
-	IConnectionManager ConnectionMng;
-	IDisplayTickets displayUser;
-	IStoreTicketData storeTicketData ;
-	
-	public SortTicket(IStoreTicketData storeTicketData, IDisplayTickets displayUser, IConnectionManager ConnectionMng)
+	public SortTicket(IConnectionManager connectionManager)
 	{
-		this.storeTicketData = storeTicketData; 
-		this.displayUser = displayUser;
-		this.ConnectionMng = ConnectionMng;
+		storeTicketData = reuseablefactory.storeTicketData(); 
+		displayUser = reuseablefactory.displayUser();
+		this.connectionManager = connectionManager;
 	}
 	
-	@Override
 	public String sortTickets(int choice) 
 	{
 		String output="";
 		try 
 		{
-			connect = ConnectionMng.establishConnection();
-			
-			//Stored Procedure call that finds tickets from the system as per the user requirement 
-			SPstatement = connect.prepareCall("{call sortTickets(?)}");
-			//first parameter decided search option 
+			Connection connect = connectionManager.establishConnection();
+			CallableStatement SPstatement;
+			String procedureCall = "sortTickets";
+			SPstatement = connect.prepareCall("{call "+procedureCall+"(?)}");
+			 
 			SPstatement.setLong(1,choice);
 			SPstatement.execute();
-			hasResult=SPstatement.execute();
+			boolean hasResult=SPstatement.execute();
+			
 			if(hasResult)
 			{
-			    resultSet = SPstatement.getResultSet();
+				ResultSet resultSet = SPstatement.getResultSet();
 			    ResultSetMetaData tableMetaData = resultSet.getMetaData();
 			    storeTicketData.addFetchedTickets(resultSet,tableMetaData);
 			    Map<String, ArrayList <String>> ticketsData = storeTicketData.getTableData();
@@ -57,12 +54,11 @@ public class SortTicket implements ISortTicket
 			    output = displayUser.printTicketsDetails(ticketsData,columnOfTable);
 			}
 
-			ConnectionMng.closeConnection();
+			connectionManager.closeConnection();
 		} 
 		catch (SQLException e)
 		{
-			
-			e.printStackTrace();
+			connectionManager.closeConnection();
 		}
 		return output;
 	}

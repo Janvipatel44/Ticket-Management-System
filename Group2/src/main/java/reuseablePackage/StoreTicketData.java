@@ -9,27 +9,28 @@ import java.util.List;
 
 import reuseablePackage.interfaces.IStoreTicketData;
 
-public class StoreTicketsData implements IStoreTicketData
+public class StoreTicketData implements IStoreTicketData
 {
-	static LinkedHashMap<String,ArrayList<String>> ticketData ; 
-	static ArrayList<String> commentsOntickets;
-	static List<String> columnsOfTable;
-			
-	public StoreTicketsData()
+	private static LinkedHashMap<String,ArrayList<String>> ticketData ; 
+	private static ArrayList<String> commentsOntickets;
+	private static List<String> columnsOfTable;
+	private IStoreTicketData storeTicketData = new StoreTicketData();
+	
+	public StoreTicketData()
 	{
 		ticketData = new LinkedHashMap<String,ArrayList<String>>();; 
 		commentsOntickets = new ArrayList<String>();
 		columnsOfTable = new ArrayList<String>();
 	}
 
-	public void addFetchedTickets(ResultSet resultSet,ResultSetMetaData tableMetaData) 
+	public boolean addFetchedTickets(ResultSet resultSet,ResultSetMetaData tableMetaData) 
 	{
 		ticketData.clear();
 		columnsOfTable.clear();
 		
 		try 
 		{
-			for(int i=1;i<=tableMetaData.getColumnCount();i++)
+			for(int i = 1; i <= tableMetaData.getColumnCount(); i++)
 			{
 				String columnName = tableMetaData.getColumnName(i);
 				columnsOfTable.add(columnName);
@@ -38,21 +39,22 @@ public class StoreTicketsData implements IStoreTicketData
 			while (resultSet.next()) 
 			{
 				ticketData.put(resultSet.getString(columnsOfTable.get(0)), new ArrayList<String>());
-				for(int i=1;i<columnsOfTable.size();i++)
+				for(int i = 1; i < columnsOfTable.size(); i++)
 				{
 					ticketData.get(resultSet.getString(columnsOfTable.get(0))).add(resultSet.getString(columnsOfTable.get(i)));					
 				}
 			}
+			return true;
 		} 
 		catch (SQLException e)
 		{
-			e.printStackTrace();
+			return false;
 		}
 		
 	}
 
 	
-	public void addFetchedComments(ResultSet resultSet) 
+	public boolean addFetchedComments(ResultSet resultSet) 
 	{
 		commentsOntickets.clear();
 		try 
@@ -63,10 +65,11 @@ public class StoreTicketsData implements IStoreTicketData
 									 "\n"+resultSet.getString("text");
 				commentsOntickets.add(commentData);
 			}
+			return true;
 		}
 		catch (SQLException e)
 		{
-			e.printStackTrace();
+			return false;
 		}
 	}
 	

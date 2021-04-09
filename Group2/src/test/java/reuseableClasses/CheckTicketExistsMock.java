@@ -23,24 +23,6 @@ public class CheckTicketExistsMock implements ICheckTicketsExists
 		return result;
 	}
 
-
-	public boolean ticketExistForManager(String ticketID) {
-		boolean result=false;
-		try {
-			fetchTicketForTicketID(ticketID);
-			if(ticketExist == 1)
-			{
-				result = true;
-				
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return result;
-	}
-
-
 	public boolean ticketExistForNotManager(String ticketID, String employeeID) {
 		boolean result=false;
 		try {

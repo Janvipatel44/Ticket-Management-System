@@ -6,9 +6,8 @@ import reuseablePackage.DisplayTickets;
 import reuseablePackage.ExportTickets;
 import reuseablePackage.GetListOfAllTickets;
 import reuseablePackage.OpenTickets;
-import reuseablePackage.StoreTicketsData;
+import reuseablePackage.StoreTicketData;
 import reuseablePackage.TableGenerator;
-import reuseablePackage.ticketStatusInProgress;
 import reuseablePackage.interfaces.ICheckTicketsExists;
 import reuseablePackage.interfaces.IDisplayTickets;
 import reuseablePackage.interfaces.IExportTicket;
@@ -16,7 +15,6 @@ import reuseablePackage.interfaces.IGetListOfTickets;
 import reuseablePackage.interfaces.IOpenTicket;
 import reuseablePackage.interfaces.IStoreTicketData;
 import reuseablePackage.interfaces.ITableGenerator;
-import reuseablePackage.interfaces.IticketStatusInProgress;
 
 public class ReuseableClasssFactory implements IReuseableClasssFactory {
 
@@ -37,14 +35,14 @@ public class ReuseableClasssFactory implements IReuseableClasssFactory {
     }
 
 
-	public IStoreTicketData storeTicketData() 
+	public IStoreTicketData storeTicketData()
 	{
-		return new StoreTicketsData();
+		return new StoreTicketData();
 	}
 		
-	public IDisplayTickets displayUser(ITableGenerator tableFormate)
+	public IDisplayTickets displayUser()
 	{
-		return new DisplayTickets(tableFormate);
+		return new DisplayTickets();
 	}
 	
 
@@ -54,34 +52,27 @@ public class ReuseableClasssFactory implements IReuseableClasssFactory {
 
 	}
 
-	public IOpenTicket openticket(IStoreTicketData storeTicketData,IDisplayTickets displayUser,IConnectionManager ConnectionMng)
+	public IOpenTicket openticket(IConnectionManager connectionManager)
 	{
-		return new OpenTickets(storeTicketData,displayUser,ConnectionMng);
+		return new OpenTickets(connectionManager);
 	}
 
 
-	public ICheckTicketsExists checkticketexists()
+	public ICheckTicketsExists checkticketexists(IConnectionManager connectionManager)
 	{
-		return new CheckTicketsExists();
+		return new CheckTicketsExists(connectionManager);
 	}
 	
 
-	public IGetListOfTickets getalltickets(IStoreTicketData storeTicketData,IDisplayTickets displaytickets,IConnectionManager ConnectionMng)
+	public IGetListOfTickets getalltickets(IConnectionManager connectionManager)
 	{
-		return new GetListOfAllTickets(storeTicketData,displaytickets,ConnectionMng);
+		return new GetListOfAllTickets(connectionManager);
 	}
 	
 
-	public IExportTicket exportTicketData(IStoreTicketData storeTicketData) 
+	public IExportTicket exportTicketData() 
 	{
-		return new ExportTickets(storeTicketData);
-	}
-	
-	
-	public IticketStatusInProgress ticketInProgress(IConnectionManager ConnectionMng)
-	{
-		return new ticketStatusInProgress(ConnectionMng);
-
+		return new ExportTickets();
 	}
 	
 }

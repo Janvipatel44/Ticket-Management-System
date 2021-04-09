@@ -5,9 +5,9 @@ import java.util.List;
 
 import reuseablePackage.abstractFactory.IReuseableClasssFactory;
 import reuseablePackage.abstractFactory.ReuseableClasssFactory;
-import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.IDisplayTickets;
 import reuseablePackage.interfaces.IOpenTicket;
+import reuseablePackage.interfaces.ITableGenerator;
 
 public class OpenTicketMock implements IOpenTicket
 {
@@ -24,7 +24,7 @@ public class OpenTicketMock implements IOpenTicket
 	public OpenTicketMock()
 	{
 		generateTable = reuseableclassfactory.tableFormate();
-		displayticket = reuseableclassfactory.displayUser(generateTable);
+		displayticket = reuseableclassfactory.displayUser();
 		singleTicketData = new 	ArrayList<String>();
 		comments = new 	ArrayList<String>();
 		columnOfTable = new ArrayList<String>();

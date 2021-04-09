@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import reuseablePackage.interfaces.ITableGenerator;
 import reuseablePackage.interfaces.IDisplayTickets;
-import userinterface.IInputOutputHandler;
+import reuseablePackage.interfaces.ITableGenerator;
 
 
 public class DisplayTickets implements IDisplayTickets
@@ -14,12 +13,11 @@ public class DisplayTickets implements IDisplayTickets
 	List<String> tableHeader;
 	List<List<String>> rowOfTable;
 	
-	ITableGenerator tableFormate;
-	IInputOutputHandler inputoutputhandler;
+	private ITableGenerator tableFormate;
 	
-	public DisplayTickets(ITableGenerator tableFormate) 
+	public DisplayTickets() 
 	{
-		this.tableFormate = tableFormate;
+		tableFormate = new TableGenerator();
 	}
 	
 	public String printTicketsDetails(Map<String,ArrayList<String>> ticketData,List<String> columnsOfTable)

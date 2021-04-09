@@ -22,7 +22,6 @@ public class UpdateTicketFactory implements IUpdateTicketFactory
         return uniqueInstance;
     }
 
-	@Override
 	public IUpdateTicket UpdateTicket(IConnectionManager connectionMng) {
 		return new UpdateTicket(connectionMng);
 	}

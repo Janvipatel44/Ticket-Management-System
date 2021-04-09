@@ -10,7 +10,8 @@ import userinterface.abstractFactory.UserInterfaceFactory;
 public class DeleteTicketMenuTask implements IMenuTask {
 
 	@Override
-	public void runMenuTask(IParameterizedUser user, IInputOutputHandler inputOutputHandler) {
+	public void runMenuTask(IParameterizedUser user, IInputOutputHandler inputOutputHandler)
+	{
 		IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
 		IDeleteTicketScreen deleteticketscreen = userInterfaceFactory.getdeleteTicketScreen(inputOutputHandler);
 		deleteticketscreen.deleteTicketScreen(user);

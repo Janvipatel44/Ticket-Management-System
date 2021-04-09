@@ -1,7 +1,5 @@
 package userinterface.abstractFactory;
 
-import java.util.ArrayList;
-
 import userinterface.IBackToHomePageScreen;
 import userinterface.ICommentOnTicketScreen;
 import userinterface.ICustomerAnalysisScreen;
