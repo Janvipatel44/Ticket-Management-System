@@ -10,6 +10,11 @@ public class InputStringValidation implements IInputStringValidation
 	protected static String validationString = null;
 	protected static int length = 0;
 	
+	public InputStringValidation(IInputOutputHandler inputOutputHandler) 
+	{
+		this.inputOutputHandler = inputOutputHandler;
+	}
+
 	public boolean isStringNull(String validationString) 
 	{
 		

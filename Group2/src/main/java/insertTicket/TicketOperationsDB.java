@@ -76,7 +76,7 @@ public class TicketOperationsDB implements ITicketOperationsDB{
             statement.execute();
             
             duplicate_ticket = statement.getInt(2);
-            
+             
 			if(duplicate_ticket==0) 
 			{
 			    success = false;

@@ -18,12 +18,12 @@ public class UserInputValidation implements IUserInputValidation {
 		
 		IInsertTicketFactory  insertTicketFactory = InsertTicketFactory.instance();
 
-		IInputStringValidation ticketStringValidation = insertTicketFactory.ticketStringValidation();
-		IInputDateValidation dateValidation = insertTicketFactory.dateValidation();
-		IInputRangeValidation rangeValidation = insertTicketFactory.rangeValidation();
+
 		IUserInterfaceFactory userInterfaceFactory = UserInterfaceFactory.instance();
 		IInputOutputHandler inputOutputHandler = userInterfaceFactory.getInputOutputHandler();
-	
+		IInputStringValidation ticketStringValidation = insertTicketFactory.ticketStringValidation(inputOutputHandler);
+		IInputDateValidation dateValidation = insertTicketFactory.dateValidation(inputOutputHandler);
+		IInputRangeValidation rangeValidation = insertTicketFactory.rangeValidation(inputOutputHandler);
 		 
 		boolean success = false;
 		switch (input) 
@@ -93,7 +93,7 @@ public class UserInputValidation implements IUserInputValidation {
 			success = true;
 
 			break;
-			
+			 
 		case VALIDATEPRIORITY:
 		case VALIDATEIMPACT:
 		case VALIDATEURGENCY:

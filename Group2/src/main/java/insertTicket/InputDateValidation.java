@@ -10,7 +10,11 @@ import userinterface.IInputOutputHandler;
 public class InputDateValidation implements IInputDateValidation
 {
 	
-	IInputOutputHandler inputOutputHandler;
+	IInputOutputHandler inputOutputHandler; 
+	public InputDateValidation (IInputOutputHandler inputOutputHandler)
+	{
+		this.inputOutputHandler = inputOutputHandler;
+	}
 	public boolean isDurationValid (String startDate, String endDate) throws ParseException
 	{		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:SS");
@@ -24,7 +28,7 @@ public class InputDateValidation implements IInputDateValidation
 	    
 		return true;
 	}
-
+ 
 	public boolean isDateFormatValid (String validationString) throws ParseException {
 		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:SS");

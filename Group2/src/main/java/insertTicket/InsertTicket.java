@@ -29,7 +29,7 @@ public class InsertTicket implements IInsertTicket
 			ticketOperationDB = insertTicketFactory.insertTicketDB(createTicket);
 			result = ticketOperationDB.duplicateTicket();
 			if(result==false)
-			{
+			{ 
 				result = ticketOperationDB.insertTicket();
 				System.out.print(result);
 				return result;
