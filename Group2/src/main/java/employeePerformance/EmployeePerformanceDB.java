@@ -36,10 +36,11 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB
 	
 	private IInputEmployeeDetails employeeDetails = null;
 	private IInputOutputHandler inputOutputHandler; 
-	public EmployeePerformanceDB(IInputEmployeeDetails employeeDetails, IFetchedPerformanceDetails fetchedperformanceDetails)
+	public EmployeePerformanceDB(IInputEmployeeDetails employeeDetails, IFetchedPerformanceDetails fetchedperformanceDetails, IInputOutputHandler inputOutputHandler)
     {
         this.employeeDetails = employeeDetails;
         this.fetchedperformanceDetails = fetchedperformanceDetails;
+        this.inputOutputHandler = inputOutputHandler;
     }
 
 	public ArrayList<String> getticketCountsDB() throws ParseException
@@ -56,7 +57,8 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB
         String expectedEndDate = null;
         String ticketLevel = null;
         String count = null;
-
+        double workingHours = 0;
+        
 		try 
 		{  
 			CallableStatement statement = (CallableStatement) connection.prepareCall("{call ticketCount(?, ?)}");
@@ -77,11 +79,11 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB
             {
             	ticketLevel = resultset.getString("ticketLevel");
             	count = resultset.getString("count");
-            	IFetchedPerformanceDetails fetchedperformanceDetails = new FetchedPerformanceDetails(ticketLevel, count, startDate, expectedEndDate, endDate);
+            	IFetchedPerformanceDetails fetchedperformanceDetails = new FetchedPerformanceDetails(ticketLevel, count, startDate, expectedEndDate, endDate, workingHours);
             	ticketCountAnalysislist.add(fetchedperformanceDetails);
             }
             
-            generateEmployeePerformanceReport = employeePerformanceFactory.getPerformanceReport();
+            generateEmployeePerformanceReport = employeePerformanceFactory.getPerformanceReport(inputOutputHandler);
             employeeDetailsString = generateEmployeePerformanceReport.displayEmployeeDetailsAndTicketCount(employeeDetails, ticketCountAnalysislist);
         	IConnectionMng.closeConnection();
         	
@@ -106,6 +108,7 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB
         String expectedEndDate = null;
         String ticketLevel = null;
         String count = null;
+        double workingHours = 0;
         
         boolean hasResult = false;
         ResultSet resultset = null;
@@ -119,7 +122,6 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB
             statement.setTimestamp(2, new java.sql.Timestamp(employeeDetails.generateDateFormat().getTime()));
             hasResult = statement.execute();
                         
-	        System.out.print(hasResult); 
             if(hasResult)  
             {  
             	resultset = statement.getResultSet();
@@ -131,15 +133,13 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB
             
             while(resultset.next()) 
             {
-                System.out.print("Inner loop");
-            	startDate = resultset.getString("startDate");
+                startDate = resultset.getString("startDate");
             	expectedEndDate = resultset.getString("expectedEndDate");
             	endDate = resultset.getString("endDate");
-            	IFetchedPerformanceDetails fetchedperformanceDetails = new FetchedPerformanceDetails(ticketLevel, count, startDate, expectedEndDate, endDate);
+            	IFetchedPerformanceDetails fetchedperformanceDetails = new FetchedPerformanceDetails(ticketLevel, count, startDate, expectedEndDate, endDate, workingHours);
             	efficiencyEfficiencyDetailsList.add(fetchedperformanceDetails);
             }
             
-            System.out.print(efficiencyEfficiencyDetailsList);
             employeeEfficiency = employeePerformanceFactory.getEmployeeEfficiencyCalculator(inputOutputHandler);
         	calculatedEmployeeEfficiency = employeeEfficiency.calculateEmployeeEfficiency(efficiencyEfficiencyDetailsList);
         	employeeEfficiencyDetailsFormattedTable = generateEmployeePerformanceReport.displayEmployeeEfficiency(calculatedEmployeeEfficiency);
@@ -174,7 +174,8 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB
         String expectedEndDate = null;
         String ticketLevel = null;
         String count = null;
-        
+    	double workingHours = 0;
+
 		try 
 		{  
 			CallableStatement statement = (CallableStatement) connection.prepareCall("{call employeeProductivity(?, ?)}");
@@ -197,12 +198,12 @@ public class EmployeePerformanceDB implements IEmployeePerformanceDB
             {
             	startDate = resultset.getString("startDate");
             	endDate = resultset.getString("endDate");
-            	IFetchedPerformanceDetails fetchedperformanceDetails = new FetchedPerformanceDetails(ticketLevel, count, startDate, expectedEndDate, endDate);
+            	workingHours = resultset.getDouble("resolutionHours");
+				IFetchedPerformanceDetails fetchedperformanceDetails = new FetchedPerformanceDetails(ticketLevel, count, startDate, expectedEndDate, endDate, workingHours);
 
             	efficiencyProductivityDetailsList.add(fetchedperformanceDetails);
 
             }
-            System.out.print(efficiencyProductivityDetailsList);
 
             employeeProductivity = employeePerformanceFactory.getEmployeeProductivityCalculator(inputOutputHandler);
         	calculatedEmployeeProductivity = employeeProductivity.calculateEmployeeProductivity(efficiencyProductivityDetailsList);

@@ -1,6 +1,6 @@
 package employeePerformance.abstractFactory;
 
-import java.sql.ResultSet;
+import employeePerformance.Interfaces.IBarChartGeneration;
 import employeePerformance.Interfaces.IEmployeeEfficiencyCalculator;
 import employeePerformance.Interfaces.IEmployeePerformanceDB;
 import employeePerformance.Interfaces.IEmployeeProductivityCalculator;
@@ -12,9 +12,10 @@ import userinterface.IInputOutputHandler;
 public interface IEmployeePerformanceFactory 
 {
 	public IInputEmployeeDetails userInput(String date, String employeeId);
-	public IGenerateEmployeePerformanceReport getPerformanceReport (); 
-	public IEmployeePerformanceDB employeedetailsDB ( IInputEmployeeDetails inputEmployeeDetails, IFetchedPerformanceDetails fetchedPerformanceDetails); 
+	public IGenerateEmployeePerformanceReport getPerformanceReport (IInputOutputHandler inputOutputHandler); 
+	public IEmployeePerformanceDB employeedetailsDB ( IInputEmployeeDetails inputEmployeeDetails, IFetchedPerformanceDetails fetchedPerformanceDetails, IInputOutputHandler inputOutputHandler); 
 	public IEmployeeEfficiencyCalculator getEmployeeEfficiencyCalculator(IInputOutputHandler inputOutputHandler); 
-	public IFetchedPerformanceDetails fetchedPerformanceDetails(String ticketLevel, String count, String startDate, String expectedEndDate, String endDate);
+	public IFetchedPerformanceDetails fetchedPerformanceDetails(String ticketLevel, String count, String startDate, String expectedEndDate, String endDate, double workingHours);
 	public IEmployeeProductivityCalculator getEmployeeProductivityCalculator(IInputOutputHandler inputOutputHandler);
+	public IBarChartGeneration getbarchartGeneration(IInputOutputHandler inputOutputHandler);
 }

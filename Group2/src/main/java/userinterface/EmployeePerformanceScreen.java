@@ -1,14 +1,10 @@
 package userinterface;
 
 import userinterface.abstractFactory.*;
-
-import java.awt.List;
 import java.text.ParseException;
 import java.util.ArrayList;
-
 import employeePerformance.Interfaces.IEmployeePerformanceDB;
 import employeePerformance.Interfaces.IFetchedPerformanceDetails;
-import employeePerformance.Interfaces.IGenerateEmployeePerformanceReport;
 import employeePerformance.Interfaces.IInputEmployeeDetails;
 import employeePerformance.abstractFactory.EmployeePerformanceFactory;
 import employeePerformance.abstractFactory.IEmployeePerformanceFactory;
@@ -16,24 +12,23 @@ import login.Interfaces.IParameterizedUser;
 
 public class EmployeePerformanceScreen implements IEmployeePerformanceScreen
 {
-    private final IUserInterfaceFactory userInterfaceFactory =  UserInterfaceFactory.instance();;
+    private final IUserInterfaceFactory userInterfaceFactory;
     private IEmployeePerformanceFactory employeePerformanceFactory = EmployeePerformanceFactory.instance();
     private IInputEmployeeDetails inputEmployeeDetails;
     private IEmployeePerformanceDB employeedetailsDB;
     private IExportEmployeePerformanceReport employeePerformanceReport;
     private IBackToHomePageScreen backToHomePageScreen;
-    private IInputOutputHandler inputOutputHandler = userInterfaceFactory.getInputOutputHandler();
+    private IInputOutputHandler inputOutputHandler;
 	private IFetchedPerformanceDetails fetchpeformancedetails;
 
     public EmployeePerformanceScreen(IInputOutputHandler inputOutputHandler)
     {
         this.inputOutputHandler = inputOutputHandler;
-        //this.userInterfaceFactory = UserInterfaceFactory.instance();
+        this.userInterfaceFactory = UserInterfaceFactory.instance();
     }
     
     public void displayTicketGenerationScreen(IParameterizedUser user)
     {
-	   
 	   	String date = null;
 	    String employeeID = null;
 	 	ArrayList <String> efficiencyReport = new ArrayList<String>();
@@ -45,12 +40,11 @@ public class EmployeePerformanceScreen implements IEmployeePerformanceScreen
 			
 		inputEmployeeDetails = employeePerformanceFactory.userInput(date, employeeID);
 		
-		employeedetailsDB = employeePerformanceFactory.employeedetailsDB(inputEmployeeDetails, fetchpeformancedetails );
+		employeedetailsDB = employeePerformanceFactory.employeedetailsDB(inputEmployeeDetails, fetchpeformancedetails , inputOutputHandler);
 		 
 		try
 		{
 			efficiencyReport.add(employeedetailsDB.getticketCountsDB().toString());
-			System.out.print("Efficiency" +efficiencyReport);
 
 			if(employeedetailsDB.getticketCountsDB()!=null) 
 			{
@@ -70,7 +64,6 @@ public class EmployeePerformanceScreen implements IEmployeePerformanceScreen
 		
 		try {
 			efficiencyReport.add(employeedetailsDB.getemployeeEfficiencyDB().toString());
-			System.out.print("Efficiency" +efficiencyReport);
 
 			if(employeedetailsDB.getemployeeEfficiencyDB()!=null) 
 			{
@@ -91,7 +84,6 @@ public class EmployeePerformanceScreen implements IEmployeePerformanceScreen
 		try 
 		{
 			efficiencyReport.add(employeedetailsDB.getemployeeProductivityDB().toString());
-			System.out.print("Efficiency" +efficiencyReport);
 
 			if(employeedetailsDB.getemployeeProductivityDB() != null) 
 			{
@@ -110,6 +102,12 @@ public class EmployeePerformanceScreen implements IEmployeePerformanceScreen
 			e1.printStackTrace();
 		}
 		
+		for(String efficiency : efficiencyReport)
+		{
+			
+			inputOutputHandler.displayMethod(efficiency);
+		}
+		employeePerformanceReport = userInterfaceFactory.getExportEmployeePerformanceReport(inputOutputHandler);
 		employeePerformanceReport.exportTicket(efficiencyReport);
 		
 	    backToHomePageScreen = userInterfaceFactory.getBackToHomePageScreen(inputOutputHandler);

@@ -17,7 +17,6 @@ public class EmployeeEfficiencyCalculator implements IEmployeeEfficiencyCalculat
     static final int WORKWEIGHT_HIGH = 10;
     static final int WORKWEIGHT_MEDIUM = 5;
 
- 
 	public EmployeeEfficiencyCalculator(IInputOutputHandler inputOutputHandler)
 	{
 		this.inputOutputHandler = inputOutputHandler;
@@ -41,18 +40,15 @@ public class EmployeeEfficiencyCalculator implements IEmployeeEfficiencyCalculat
 		long durationTaken = 0;
 		long durationGiven = 0; 
 		 
-		System.out.print("Fetch performance details: " +fetchedPerformanceDetails.size());
 	    for(i = 0; i < fetchedPerformanceDetails.size(); i++) 
 		{
             startDate = LocalDate.parse(fetchedPerformanceDetails.get(i).getStartDate());
     	    expectedendDate = LocalDate.parse(fetchedPerformanceDetails.get(i).getExpectedEndDate());	    
     	    durationGiven = ChronoUnit.DAYS.between(startDate,expectedendDate);
-    	    inputOutputHandler.displayMethod("\nDifference duration Given:" +durationGiven);
 
     	    endDate = LocalDate.parse(fetchedPerformanceDetails.get(i).getEndDate());
     	    durationTaken = ChronoUnit.DAYS.between(startDate,endDate);
     	    
-    	    inputOutputHandler.displayMethod("\nDifference duration taken:" +durationTaken);
     	    durationTaken++;
     	    durationGiven++;
     	        	    
@@ -77,7 +73,6 @@ public class EmployeeEfficiencyCalculator implements IEmployeeEfficiencyCalculat
 	    	{
 	    		efficiency= ((durationTaken*100)/durationGiven);
 	    	} 
-    		inputOutputHandler.displayMethod("\nEfficiency:" +efficiency);
 
 	    	if(efficiency > 100) 
     		{

@@ -4,18 +4,17 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import employeePerformance.Interfaces.IGenerateEmployeePerformanceReport;
 
 public class ExportEmployeePerformanceReport implements IExportEmployeePerformanceReport 
 {	
 	private String FileName = null;
-	private Scanner sc = new Scanner(System.in);
 	IGenerateEmployeePerformanceReport generateEmployeePerformanceReport;
 	IInputOutputHandler inputOutputHandler;
 	
-	public ExportEmployeePerformanceReport(IInputOutputHandler inputOutputHandler) {
+	public ExportEmployeePerformanceReport(IInputOutputHandler inputOutputHandler)
+	{
 		this.inputOutputHandler = inputOutputHandler;
 	}
 	
@@ -23,7 +22,7 @@ public class ExportEmployeePerformanceReport implements IExportEmployeePerforman
 	public void exportTicket(ArrayList<String> employeeEfficiency) 
 	{
 		inputOutputHandler.displayMethod("Enter file name with Path:");
-		FileName=sc.next();
+		FileName=inputOutputHandler.input();
 	    
 		File myObj = new File(FileName);
 	    try 
@@ -33,11 +32,10 @@ public class ExportEmployeePerformanceReport implements IExportEmployeePerforman
 				  FileWriter myWriter = new FileWriter(FileName);
 				  for(String employeedetails: employeeEfficiency) 
 				  {
-					  inputOutputHandler.displayMethod(employeedetails);
 					  myWriter.write(employeedetails);
 					  myWriter.write("\n");
-					  inputOutputHandler.displayMethod("Successfully Created");
      			  }		  
+				  inputOutputHandler.displayMethod("Successfully Report Created");
 			      myWriter.close();
 			}
 		} 

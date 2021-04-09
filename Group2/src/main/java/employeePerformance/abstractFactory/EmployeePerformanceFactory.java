@@ -3,6 +3,7 @@ package employeePerformance.abstractFactory;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import employeePerformance.BarChartGeneration;
 import employeePerformance.EmployeeEfficiencyCalculator;
 import employeePerformance.EmployeePerformanceDB;
 import employeePerformance.EmployeeProductivityCalculator;
@@ -44,14 +45,14 @@ public class EmployeePerformanceFactory implements IEmployeePerformanceFactory
 		return new InputEmployeeDetails(date, employeeId);
 	}
 	
-	public IEmployeePerformanceDB employeedetailsDB ( IInputEmployeeDetails inputEmployeeDetails, IFetchedPerformanceDetails fetchedPerformanceDetails) 
+	public IEmployeePerformanceDB employeedetailsDB ( IInputEmployeeDetails inputEmployeeDetails, IFetchedPerformanceDetails fetchedPerformanceDetails, IInputOutputHandler inputOutputHandler) 
 	{	
-		return new EmployeePerformanceDB(inputEmployeeDetails, fetchedPerformanceDetails);
+		return new EmployeePerformanceDB(inputEmployeeDetails, fetchedPerformanceDetails, inputOutputHandler);
 	}
 
-	public IGenerateEmployeePerformanceReport getPerformanceReport () 
+	public IGenerateEmployeePerformanceReport getPerformanceReport (IInputOutputHandler inputOutputHandler) 
 	{	
-		return new GenerateEmployeePerformanceReport();
+		return new GenerateEmployeePerformanceReport(inputOutputHandler);
 	}
 	
 	public IEmployeeEfficiencyCalculator getEmployeeEfficiencyCalculator(IInputOutputHandler inputOutputHandler) 
@@ -64,9 +65,15 @@ public class EmployeePerformanceFactory implements IEmployeePerformanceFactory
 		return new EmployeeProductivityCalculator(inputOutputHandler);
 	}
 	
-	public IFetchedPerformanceDetails fetchedPerformanceDetails(String ticketLevel, String count, String startDate, String expectedEndDate, String endDate)
+	public IFetchedPerformanceDetails fetchedPerformanceDetails(String ticketLevel, String count, String startDate, String expectedEndDate, String endDate, double workingHours)
 	{
-		return new FetchedPerformanceDetails(ticketLevel, count, startDate, expectedEndDate, endDate);
+		return new FetchedPerformanceDetails(ticketLevel, count, startDate, expectedEndDate, endDate, workingHours);
+	}
+
+	public IBarChartGeneration getbarchartGeneration(IInputOutputHandler inputOutputHandler)
+	{
+		return new BarChartGeneration(inputOutputHandler);
+
 	}
 
 	

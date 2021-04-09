@@ -57,9 +57,7 @@ public class BarChartGeneration implements IBarChartGeneration
 		      pattern += string;
 		      pattern += "\n";
 
-		      inputOutputHandler.displayMethod(pattern);
 		      string = null;
-		      inputOutputHandler.displayMethod("\n");
 	      }
 	    }
 	    return pattern;

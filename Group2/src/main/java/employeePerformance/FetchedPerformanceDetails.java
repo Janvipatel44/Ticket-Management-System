@@ -9,41 +9,18 @@ public class FetchedPerformanceDetails implements IFetchedPerformanceDetails
 	String endDate = null;
 	String ticketLevel = null;
 	String count = null;
+	double workingHours = 0;
 	
-	public FetchedPerformanceDetails(String ticketLevel, String count, String startDate, String expectedEndDate, String endDate) 
+	public FetchedPerformanceDetails(String ticketLevel, String count, String startDate, String expectedEndDate, String endDate, double workingHours) 
 	{	
 		this.ticketLevel = ticketLevel;
 		this.count = count;
 		this.startDate = startDate;
 		this.expectedEndDate = expectedEndDate;
 		this.endDate = endDate;
+		this.workingHours = workingHours;
 	}
 	
-	public void setTicketLevel(String ticketLevel) 
-	{
-    	this.ticketLevel = ticketLevel;
-    }
-	
-	public void setCount(String count) 
-	{
-    	this.count = count;
-    }
-	
-	public void setStartDate(String startDate) 
-    {
-        this.startDate = startDate;
-    }
-
-    public void setExpectedEndDate(String expectedEndDate)
-    {
-        this.expectedEndDate = expectedEndDate;
-    }
-    
-    public void setEndDate(String endDate)
-    {
-        this.endDate = endDate;
-    }
-    
 	public String getStartDate() 
     {
         return startDate;
@@ -67,5 +44,10 @@ public class FetchedPerformanceDetails implements IFetchedPerformanceDetails
     public String getCount()
     {
     	return count;
+    }
+    
+    public double getWorkingHours()
+    {
+    	return workingHours;
     }
 }

@@ -16,11 +16,18 @@ import userinterface.IInputOutputHandler;
 
 public class GenerateEmployeePerformanceReport implements IGenerateEmployeePerformanceReport
 {	
+		
+	    private IEmployeePerformanceFactory employeePerformanceFactory = EmployeePerformanceFactory.instance();
 		private IBarChartGeneration barchart;
 		private IInputOutputHandler inputOutputHandler;
-	    private IEmployeePerformanceFactory employeePerformanceFactory = EmployeePerformanceFactory.instance();
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 		
+		public GenerateEmployeePerformanceReport(IInputOutputHandler inputOutputHandler)
+		{
+			this.inputOutputHandler = inputOutputHandler;
+		}
+		
+	    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+	    
 		public ArrayList<String> displayEmployeeDetailsAndTicketCount( IInputEmployeeDetails employeeDetails, ArrayList<IFetchedPerformanceDetails> fetchedPerformanceDetails) throws SQLException, ParseException
 		{
 			ArrayList<String> employeeDetailsString = new ArrayList<String>();
@@ -62,8 +69,6 @@ public class GenerateEmployeePerformanceReport implements IGenerateEmployeePerfo
 		{
 			ArrayList<String> employeeDetailsString = new ArrayList<String>();
 
-	    	System.out.print("In display function" +calculatedEmployeeEfficiency);
-
 			employeeDetailsString.add("################ Month Wise Efficiency ################");
 			TableGenerator tableGeneratorEmployeeEfficiency = new TableGenerator();
 	        List<String> headersList = new ArrayList<>();
@@ -85,8 +90,8 @@ public class GenerateEmployeePerformanceReport implements IGenerateEmployeePerfo
 	        }
 
 	        employeeDetailsString.add(tableGeneratorEmployeeEfficiency.generateTable(headersList, rowsList));
+	        barchart = employeePerformanceFactory.getbarchartGeneration(inputOutputHandler);
 	        employeeDetailsString.add(barchart.Displaybarchart(calculatedEmployeeEfficiency));
-	    	System.out.print("In display function calculated employee efficiency" +employeeDetailsString);
 
 			return employeeDetailsString;
 		}
@@ -117,7 +122,7 @@ public class GenerateEmployeePerformanceReport implements IGenerateEmployeePerfo
 	    	
 	        employeeDetailsString.add(tableGeneratorEmployeeProductivity.generateTable(headersList, rowsList));
 			employeeDetailsString.add(barchart.Displaybarchart(calculatedEmployeeProductivity));
-			
+			inputOutputHandler.displayMethod("Successfully created Employee Performance Report");
 			return employeeDetailsString;
 		}
 }
