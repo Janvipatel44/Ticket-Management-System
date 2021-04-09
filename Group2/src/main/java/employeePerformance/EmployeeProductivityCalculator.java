@@ -16,33 +16,30 @@ public class EmployeeProductivityCalculator implements IEmployeeProductivityCalc
 	{
 		// TODO Auto-generated constructor stub
 		this.resultSetProductivity = resultset;
-	}
+	} 
  
 	public HashMap<Integer,Integer> calculateEmployeeProductivity() throws SQLException, ParseException
 	{
+		LocalDate startDate = null;
+		LocalDate endDate = null;
 		int productivity = 0;
 		int avg_productivity = 0;
 		int count = 0;
 		int officeHours = 8;
 		int workingHours = 0;
 		int avgProductivity = 0;
-		HashMap<Integer,Integer> ProductivityHashMap=new HashMap<Integer,Integer>();//Creating HashMap    
 		int month = 0;
 		int countMonth = 0;
-		LocalDate startDate = null;
-		LocalDate endDate = null;
 		long totalHours = 0;
 		int year = 0;
+		HashMap<Integer,Integer> ProductivityHashMap=new HashMap<Integer,Integer>();//Creating HashMap    
+
 		
 		while(resultSetProductivity.next()) 
     	{    		
 			startDate = LocalDate.parse(resultSetProductivity.getString("startDate"));
 			endDate = LocalDate.parse(resultSetProductivity.getString("endDate"));
 	    	workingHours = resultSetProductivity.getInt("resolutionHours");
-	    	    
-	    	System.out.print("\nStartDate:" +startDate);
-	    	System.out.print("\nEndDate:" +endDate);
-	    	System.out.print("\nWorking Hours:" +workingHours);
 
     	    totalHours = ChronoUnit.DAYS.between(startDate,endDate);
     	    totalHours = totalHours*officeHours;
@@ -56,11 +53,12 @@ public class EmployeeProductivityCalculator implements IEmployeeProductivityCalc
 	    		productivity= 100;
 	    	}
     	    
-    	    avg_productivity +=productivity;
+    	    avg_productivity = avg_productivity + productivity;
 	    	count++;
+	    	
 	    	if(startDate.getMonthValue() == month || count==1)
 	    	{
-	    		avgProductivity +=productivity;
+	    		avgProductivity = avgProductivity + productivity;
 		    	countMonth++;
 	    	}
 	    	else
@@ -69,7 +67,7 @@ public class EmployeeProductivityCalculator implements IEmployeeProductivityCalc
 	    		ProductivityHashMap.put(month, avgProductivity);
      	    	avgProductivity = 0;
     			countMonth = 0;
-    			avgProductivity += productivity;
+    			avgProductivity = avgProductivity + productivity;
 	    		countMonth++;
     	    }
 	    	month = startDate.getMonthValue();

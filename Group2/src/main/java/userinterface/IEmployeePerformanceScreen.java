@@ -1,10 +1,11 @@
 package userinterface;
 
+import java.sql.SQLException;
+
 import login.Interfaces.IParameterizedUser;
 
 public interface IEmployeePerformanceScreen {
 
-	//IParameterizedUser user
-    public void displayTicketGenerationScreen(IParameterizedUser user);
+    public void displayTicketGenerationScreen(IParameterizedUser user) throws SQLException;
 
 }

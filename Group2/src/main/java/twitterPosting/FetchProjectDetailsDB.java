@@ -25,7 +25,7 @@ public class FetchProjectDetailsDB implements IFetchProjectDetailsDB
 	IInputPostingDetails postDetails;
 	ITwitterOperations twitterPost;
 	IInputOutputHandler inputOutputHandler;
-	
+	 
 	public FetchProjectDetailsDB(IInputPostingDetails postDetails, IInputOutputHandler inputOutputHandler)
     {
         this.postDetails = postDetails;
@@ -53,7 +53,8 @@ public class FetchProjectDetailsDB implements IFetchProjectDetailsDB
             	postDescription = twitterPost.generateTweetContent();
             	twitterPost.tweetTicket(postDescription); 
             }
-            else {
+            else 
+            {
             	inputOutputHandler.displayMethod("Ticket ID not found");
     			return false;
             }

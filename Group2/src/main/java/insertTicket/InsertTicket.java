@@ -19,7 +19,7 @@ public class InsertTicket implements IInsertTicket
 	{
 		this.createTicket = createTicket;
 	}
-	
+	 
 	public boolean successfulInsertion() throws ParseException
 	{
 		boolean result = false;
@@ -28,12 +28,14 @@ public class InsertTicket implements IInsertTicket
 		{
 			ticketOperationDB = insertTicketFactory.insertTicketDB(createTicket);
 			result = ticketOperationDB.duplicateTicket();
-			if(result==false) {
+			if(result==false)
+			{
 				result = ticketOperationDB.insertTicket();
 				System.out.print(result);
 				return result;
 			}
-			else {
+			else 
+			{
 				return result;
 			}
 		} catch (NumberFormatException e) {

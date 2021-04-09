@@ -12,18 +12,18 @@ import insertTicket.Interfaces.IInputRangeValidation;
 import insertTicket.Interfaces.IInputStringValidation;
 import insertTicket.Interfaces.IInsertTicket;
 import insertTicket.Interfaces.ITicketOperationsDB;
-import insertTicket.Interfaces.IUserInputTicket;
 import insertTicket.Interfaces.ICreateTicket;
 import insertTicket.Interfaces.IUserInputValidation;
 
-public class InsertTicketFactory implements IInsertTicketFactory {
+public class InsertTicketFactory implements IInsertTicketFactory 
+{
 	private static IInsertTicketFactory uniqueInstance = null;
 
     private InsertTicketFactory()
     {
     	
     }
-
+ 
     public static IInsertTicketFactory instance()
     {
         if(null == uniqueInstance)

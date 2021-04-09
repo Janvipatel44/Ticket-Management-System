@@ -7,7 +7,7 @@ public class StringValidations {
 		if(validationString != null && validationString.trim().length() > 0) 
 		{
 			return true;
-		}
+		} 
 		return false;
 	}
 

@@ -1,9 +1,11 @@
 package insertTicket;
 
 import insertTicket.Interfaces.IInputStringValidation;
+import userinterface.IInputOutputHandler;
 
 public class InputStringValidation implements IInputStringValidation
 {
+	IInputOutputHandler inputOutputHandler;
 
 	protected static String validationString = null;
 	protected static int length = 0;
@@ -13,10 +15,10 @@ public class InputStringValidation implements IInputStringValidation
 		
 		if(validationString == null || validationString.equals(" ")) 
 		{
-			System.out.print("Null value found for input string");
+			inputOutputHandler.displayMethod("Null value found for input string");
 			return true;
 		}
-		
+		 
 		return false;
 	}
 	
@@ -25,7 +27,7 @@ public class InputStringValidation implements IInputStringValidation
 		
 		if(validationString.contains("@") || validationString.contains("#") || validationString.contains("!") ||  validationString.contains("_") ||  validationString.contains("%") || validationString.contains("&"))
 		{
-			System.out.print("SpecialCharacters found for input string");
+			inputOutputHandler.displayMethod("SpecialCharacters found for input string");
 			return true;
 		}
 		
@@ -34,9 +36,9 @@ public class InputStringValidation implements IInputStringValidation
 
 	public boolean isStringEmployeeAndReporterID (String validationString) 
 	{
-		
 		String prefix = "EMP";
-		if(validationString.equals(null) || validationString.equals(" ") || validationString.equals("")) {
+		if(validationString.equals(null) || validationString.equals(" ") || validationString.equals("")) 
+		{
 			return true;
 		}
 		if(validationString.substring(0, 3).equalsIgnoreCase(prefix) ) {
@@ -45,7 +47,8 @@ public class InputStringValidation implements IInputStringValidation
 				return true;
 			}
 		}
-		System.out.print("\nPrefix should be 'EMP' for input string");
+		
+		inputOutputHandler.displayMethod("\nPrefix should be 'EMP' for input string");
 		return false;
 	}
 }

@@ -23,7 +23,7 @@ public class TwitterOperations implements ITwitterOperations {
 		{
 			this.resultSet = resultSet;
 			this.inputOutputHandler = inputOutputHandler;
-		}
+		} 
 		
 		public String generateTweetContent() throws SQLException 
 		{
@@ -32,8 +32,6 @@ public class TwitterOperations implements ITwitterOperations {
 			String startDate = null;
 			String endDate = null;
 			String ticketType = null;
-			String firstName = null;
-			String lastName = null;
 	    	String postDescription = null;
 
 			while(resultSet.next()) 
@@ -43,11 +41,9 @@ public class TwitterOperations implements ITwitterOperations {
 	    		startDate = resultSet.getString("startDate");
 	    		endDate = resultSet.getString("endDate");
 	    		ticketType = resultSet.getString("ticketType");
-	    		firstName = resultSet.getString("firstName");
-	    		lastName = resultSet.getString("lastName");
 			}
     		
-			postDescription = "Hey, I just finished working on this" +ticketType + " of ticket." +"Following are the details: " +"\n" +
+			postDescription = "Hey, I just finished working on this " +ticketType + " of ticket." +"Following are the details: " +"\n" +
 					"Title: " +description + "\n" + "Time taken: " + resolutionHours + "(" + startDate + "to" + endDate + ")" +"\n" + 
 					"Kindly let me know if further issues are found regarding this.";
     		
