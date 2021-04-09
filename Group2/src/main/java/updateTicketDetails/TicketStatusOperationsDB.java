@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+
 import database.ConnectionManager;
 import database.intefaces.IConnectionManager;
 import insertTicket.Interfaces.ICreateTicket;
@@ -38,7 +39,6 @@ public class TicketStatusOperationsDB implements ITicketStatusOperationsDB
 				statement.setString(1, ticketID);
 			
 				hasResult = statement.execute();
-				System.out.println(hasResult);
 		
 		        if(hasResult)  
 		        {  
@@ -49,9 +49,7 @@ public class TicketStatusOperationsDB implements ITicketStatusOperationsDB
 			}
 			catch (SQLException e)
 			{
-				// TODO Auto-generated catch block
-				System.out.print("SQL Exception inprogress");
-				e.printStackTrace();
+				onHoldHours=0;
 			}
 			return onHoldHours;	
 		}
@@ -76,7 +74,6 @@ public class TicketStatusOperationsDB implements ITicketStatusOperationsDB
 				statement.setString(1,ticketID);
 				
 				hasResult = statement.execute();
-				System.out.println(hasResult);
 		
 		        if(hasResult)  
 		        {  
@@ -123,84 +120,6 @@ public class TicketStatusOperationsDB implements ITicketStatusOperationsDB
 	        }
 			return true;
 	    }
-		/*public boolean insertHours(double inProgressHours)
-		{
-			connection = IConnectionMng.establishConnection();
-	        boolean success=false;
-	        boolean hasResult = false;
-	        ResultSet resultset;
-			try 
-			{
-				
-				CallableStatement statement = (CallableStatement) connection.prepareCall("{call insert_Hours_InProgress(?,?)}");
-				
-				statement.setString(1, "111");
-				statement.setDouble(2, inProgressHours);
-				hasResult = statement.execute();
-		
-				System.out.println(hasResult);
-
-		        success = true;
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				System.out.print("SQL Exception insertHourse");
-				e.printStackTrace();
-			}
-			return success;	
-		}*/
-		/*public boolean responseTime_resolutionTime_Calculator(double inProgressHours)
-		{
-			connection = IConnectionMng.establishConnection();
-	        boolean success=false;
-	        boolean hasResult = false;
-	        ResultSet resultset;
-			try 
-			{
-				CallableStatement statement = (CallableStatement) connection.prepareCall("{call ticketStatus_InProgress(?)}");
-				
-				statement.setString(1, "111");
-			
-				hasResult = statement.execute();
-				System.out.println(hasResult);
-			
-			    if(hasResult)  
-			    {  
-			    	resultset = statement.getResultSet();
-			    	while(resultset.next()) {
-				    	if(resultset.getString("status")==null)
-				    	{
-				    		CallableStatement statement1 = (CallableStatement) connection.prepareCall("{call calculating_responseHours(?,?)}");
-							
-							statement1.setString(1, "111");
-							statement1.setDouble(2,inProgressHours);
-							
-							statement1.execute();				
-				    	}
-				    	else if(resultset.getString("status")=="done")
-				    	{
-				    		CallableStatement statement1 = (CallableStatement) connection.prepareCall("{call calculating_resolutionHours(?)}");
-							
-							statement1.setString(1, "111");
-							
-							statement1.execute();				
-				    	}
-				    	else {
-				    		return false;
-				    	}
-			    	}
-			    }
-			    System.out.println(hasResult);
-			
-			    success = true;
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-			    System.out.println("respones");
-
-				System.out.print("SQL Exception");
-				e.printStackTrace();
-			}
-				return success;	
-		}*/
 	}
 
 
