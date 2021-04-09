@@ -85,8 +85,7 @@ public class TicketStatusOperationsDB implements ITicketStatusOperationsDB
 			} 
 			catch (SQLException e) 
 			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				inProgressHours = 0;
 			}
 		    return inProgressHours;	
 	    }
