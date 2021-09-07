@@ -2,13 +2,11 @@
 
 Authors:
 
-Akshay Garg 
+- Akshay Garg 
+- Janvi Patel  
+- Vamsi Utla
+- Tejaswi Chaudhary 
 
-Janvi Patel  
-
-Vamsi Utla
-
-Tejaswi Chaudhary 
 
 Description:
 
